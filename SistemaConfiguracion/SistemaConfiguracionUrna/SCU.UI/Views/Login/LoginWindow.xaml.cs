@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SCU.UI.Models;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SCU.UI.Views.Login
 {
@@ -19,6 +8,8 @@ namespace SCU.UI.Views.Login
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private UsuariosModel usuariosModel;
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -27,6 +18,14 @@ namespace SCU.UI.Views.Login
         private void Window_DpiChanged(object sender, DpiChangedEventArgs e)
         {
 
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            usuariosModel = new UsuariosModel();
+            usuariosModel.usuario = txtUsuario.Text;
+            usuariosModel.password = txtPassword.Text;
+            MessageBox.Show("Usuario: " + usuariosModel.usuario + "\n" + "Contraseña: " + usuariosModel.password, "Validando datos", MessageBoxButton.OK);
         }
     }
 }
