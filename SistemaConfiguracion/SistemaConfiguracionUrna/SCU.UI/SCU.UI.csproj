@@ -7,4 +7,54 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\Img\background.png" />
+    <None Remove="Assets\Img\icons8-add-new-90.png" />
+    <None Remove="Assets\Img\icons8-camera-90 1.png" />
+    <None Remove="Assets\Img\icons8-checkmark-96 1.png" />
+    <None Remove="Assets\Img\icons8-close-90 1.png" />
+    <None Remove="Assets\Img\icons8-delete-90.png" />
+    <None Remove="Assets\Img\icons8-edit-90.png" />
+    <None Remove="Assets\Img\icons8-eye-90.png" />
+    <None Remove="Assets\Img\icons8-save-90 1.png" />
+    <None Remove="Assets\Img\LogoOple.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Img\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Img\icons8-add-new-90.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Img\icons8-camera-90 1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Img\icons8-checkmark-96 1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Img\icons8-close-90 1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Img\icons8-delete-90.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Img\icons8-edit-90.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Img\icons8-eye-90.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Img\icons8-save-90 1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Img\LogoOple.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
