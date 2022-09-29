@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 ﻿using SCU.UWP.Models;
 using SCU.UWP.Views.Inicio;
+=======
+﻿using SCU.UWP.Views.Dashboard;
+>>>>>>> Stashed changes
 using System;
 using System.Collections.Generic;
 using System.IO;

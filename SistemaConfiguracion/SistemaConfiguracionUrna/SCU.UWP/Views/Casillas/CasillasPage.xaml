@@ -1,0 +1,14 @@
+﻿<Page
+    x:Class="SCU.UWP.Views.Casillas.CasillasPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SCU.UWP.Views.Casillas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock Text="Esta es la pagina de Casillas" FontSize="40" SelectionChanged="TextBlock_SelectionChanged" Margin="440,383,-440,-383"></TextBlock>
+    </Grid>
+</Page>
