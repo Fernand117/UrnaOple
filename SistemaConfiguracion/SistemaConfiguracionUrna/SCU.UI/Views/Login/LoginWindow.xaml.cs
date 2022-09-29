@@ -25,7 +25,7 @@ namespace SCU.UI.Views.Login
         {
             usuariosModel = new UsuariosModel();
             usuariosModel.usuario = txtUsuario.Text;
-            usuariosModel.password = txtPassword.Text;
+            usuariosModel.password = txtPassword.Password;
             MessageBox.Show("Usuario: " + usuariosModel.usuario + "\n" + "Contraseña: " + usuariosModel.password, "Validando datos", MessageBoxButton.OK);
 
             Inicio.Inicio inicio = new Inicio.Inicio();
