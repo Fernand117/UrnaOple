@@ -10,7 +10,7 @@
 
     <Grid>
 
-        <NavigationView x:Name="navView" Loaded="NavigationView_Loaded" SelectionChanged="navView_SelectionChanged" >
+        <NavigationView x:Name="navView" Loaded="NavigationView_Loaded" SelectionChanged="navView_SelectionChanged" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Menú" Foreground="#E33889"/>
                 <NavigationViewItem Icon="Home" Content="Inicio" Tag="Inicio"/>
@@ -18,6 +18,10 @@
                 <NavigationViewItem Icon="Home" Content="Partidos" Tag="Partidos"/>
                 <NavigationViewItem Icon="Home" Content="Elecciones" Tag="Elecciones"/>
             </NavigationView.MenuItems>
+
+            <NavigationView.PaneFooter>
+                <NavigationViewItem Icon="SetLockScreen" Content="Cerrar sesión" Tag="Cerrar" Tapped="NavigationViewItem_Tapped"/>
+            </NavigationView.PaneFooter>
 
             <ScrollViewer>
                 <Frame x:Name="ContentFrame"></Frame>

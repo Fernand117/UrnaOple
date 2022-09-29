@@ -1,6 +1,7 @@
 ﻿using SCU.UWP.Views.Casillas;
 using SCU.UWP.Views.Elecciones;
 using SCU.UWP.Views.Inicio;
+using SCU.UWP.Views.Login;
 using SCU.UWP.Views.Partidos;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -31,27 +32,28 @@ namespace SCU.UWP.Views.Dashboard
 
         private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            if(args.IsSettingsSelected)
-            {
+            NavigationViewItem item = args.SelectedItem as NavigationViewItem;
 
-            } else
+            switch (item.Tag.ToString())
             {
-                NavigationViewItem item = args.SelectedItem as NavigationViewItem;
-
-                switch (item.Tag.ToString())
-                {
-                    case "Casillas":
-                        ContentFrame.Navigate(typeof(CasillasPage));
-                        break;
-                    case "Partidos":
-                        ContentFrame.Navigate(typeof(PartidosPage));
-                        break;
-                    case "Elecciones":
-                        ContentFrame.Navigate(typeof(EleccionesPage));
-                        break;
-                }
+                case "Inicio":
+                    ContentFrame.Navigate(typeof(InicioPage));
+                    break;
+                case "Casillas":
+                    ContentFrame.Navigate(typeof(CasillasPage));
+                    break;
+                case "Partidos":
+                    ContentFrame.Navigate(typeof(PartidosPage));
+                    break;
+                case "Elecciones":
+                    ContentFrame.Navigate(typeof(EleccionesPage));
+                    break;
             }
+        }
 
+        private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(LoginPage), null);
         }
     }
 }
