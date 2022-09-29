@@ -9,6 +9,20 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="asfdasfd"/>
+        <Image Source="../../Assets/Img/background.png" Stretch="Uniform" Grid.Row="0" Grid.RowSpan="3"/>
+
+        <NavigationView>
+            
+            <NavigationView.MenuItems>
+                <NavigationViewItem IsSelected="False" >
+                    <Image Source="../../Assets/Img/LogoOple.png" VerticalAlignment="Center"/>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="Home" Content="Inicio" IsSelected="False"/>
+                <NavigationViewItem Icon="Home" Content="Casillas"/>
+                <NavigationViewItem Icon="Home" Content="Partidos"/>
+                <NavigationViewItem Icon="Home" Content="Elecciones"/>
+                <NavigationViewItem Icon="Home" Content="Ajustes"/>
+            </NavigationView.MenuItems>
+        </NavigationView>
     </Grid>
 </Page>
