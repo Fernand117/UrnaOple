@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Image Source="../../Assets/Img/background.png" Stretch="Fill" Grid.Row="0" Grid.RowSpan="3"/>
+        <Image Source="../../Assets/Img/background.png" Stretch="Uniform" Grid.Row="0" Grid.RowSpan="3"/>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.RowSpan="3">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Image Source="../../Assets/Img/LogoOple.png" Width="300"/>
