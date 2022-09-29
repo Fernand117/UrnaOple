@@ -2,6 +2,15 @@
     x:Class="SCU.UWP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SCU.UWP">
-
+    xmlns:local="using:SCU.UWP"
+    RequestedTheme="Light">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="SystemAccentColor">#E33889</Color>
+            <Color x:Key="ButtonBackgroundPointerOver">#E33889</Color>
+            <Color x:Key="ButtonBackgroundPressed">#E33889</Color>
+            <Color x:Key="ButtonForegroundPressed">#fff</Color>
+            <Color x:Key="ButtonForegroundPointerOver">#fff</Color>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
