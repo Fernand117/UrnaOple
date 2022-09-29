@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCU.UWP.Views.Inicio;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,11 @@ namespace SCU.UWP.Views.Login
         public LoginPage()
         {
             this.InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(HomePage), null);
         }
     }
 }
