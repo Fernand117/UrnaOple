@@ -12,11 +12,9 @@
         <Image Source="../../Assets/Img/background.png" Stretch="Uniform" Grid.Row="0" Grid.RowSpan="3"/>
 
         <NavigationView>
-            
+
             <NavigationView.MenuItems>
-                <NavigationViewItem IsSelected="False" >
-                    <Image Source="../../Assets/Img/LogoOple.png" VerticalAlignment="Center"/>
-                </NavigationViewItem>
+                <NavigationViewItemHeader Content="Menú" Foreground="#E33889"/>
                 <NavigationViewItem Icon="Home" Content="Inicio" IsSelected="False"/>
                 <NavigationViewItem Icon="Home" Content="Casillas"/>
                 <NavigationViewItem Icon="Home" Content="Partidos"/>
