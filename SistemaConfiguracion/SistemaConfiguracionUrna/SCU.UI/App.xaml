@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:SCU.UI"
              StartupUri="Views/Login/LoginWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

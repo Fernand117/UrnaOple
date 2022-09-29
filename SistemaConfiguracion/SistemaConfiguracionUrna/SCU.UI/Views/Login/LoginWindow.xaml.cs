@@ -1,4 +1,5 @@
 ﻿using SCU.UI.Models;
+using SCU.UI.Views.Inicio;
 using System.Windows;
 
 namespace SCU.UI.Views.Login
@@ -26,6 +27,9 @@ namespace SCU.UI.Views.Login
             usuariosModel.usuario = txtUsuario.Text;
             usuariosModel.password = txtPassword.Text;
             MessageBox.Show("Usuario: " + usuariosModel.usuario + "\n" + "Contraseña: " + usuariosModel.password, "Validando datos", MessageBoxButton.OK);
+
+            Inicio.Inicio inicio = new Inicio.Inicio();
+            inicio.Show();
         }
     }
 }
