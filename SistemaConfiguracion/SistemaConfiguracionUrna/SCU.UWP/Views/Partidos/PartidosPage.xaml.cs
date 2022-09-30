@@ -26,5 +26,13 @@ namespace SCU.UWP.Views.Partidos
         {
             this.InitializeComponent();
         }
+
+        private async void btn_add(Object sender, RoutedEventArgs e)
+        {
+
+            AgregarPartido modalAgregar = new AgregarPartido();
+            await modalAgregar.ShowAsync();
+           
+        }
     }
 }

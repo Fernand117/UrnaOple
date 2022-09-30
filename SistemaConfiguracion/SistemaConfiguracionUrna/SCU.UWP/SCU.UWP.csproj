@@ -136,6 +136,9 @@
     <Compile Include="Views\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Partidos\AgregarPartido.xaml.cs">
+      <DependentUpon>AgregarPartido.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Partidos\PartidosPage.xaml.cs">
       <DependentUpon>PartidosPage.xaml</DependentUpon>
     </Compile>
@@ -196,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Login\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Partidos\AgregarPartido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

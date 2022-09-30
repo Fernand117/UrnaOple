@@ -9,7 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Esta es la pagina de Partidos" FontSize="40"></TextBlock>
-        <TextBlock Text="Esta es la pagina de Partidos" FontSize="40"></TextBlock>        
+        <Button Content="Button" Click="btn_add" Margin="750,435,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
