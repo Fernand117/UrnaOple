@@ -9,6 +9,25 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Esta es la pagina de Casillas" FontSize="40" SelectionChanged="TextBlock_SelectionChanged" Margin="440,383,-440,-383"></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="220"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            
+        </StackPanel>
+
+        <Button Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 20, 0, 0" Background="#E33889" Foreground="White" CornerRadius="10" Grid.Column="1">
+            <Grid Width="150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Añadir" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Image Source="../../Assets/Img/icons8-add-new-90.png" Width="25" Grid.Column="1"/>
+            </Grid>
+        </Button>
+
     </Grid>
 </Page>
