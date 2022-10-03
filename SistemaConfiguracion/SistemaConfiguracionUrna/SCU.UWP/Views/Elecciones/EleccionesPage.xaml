@@ -9,6 +9,30 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Esta es la pagina de Elecciones" FontSize="40" Margin="440,383,-440,-383"></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="15" Background="#E5E5E5E5" Grid.Column="0" Margin="60">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Procesos Electorales Locales"  HorizontalAlignment="Center" Margin="0, 170, 0, 0" FontSize="30" FontWeight="Bold"/>
+            </StackPanel>
+        </Border>
+        <Border CornerRadius="15" Background="#E5E5E5E5" Grid.Column="1" Margin="60">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Mecanismos de Participacion Ciudadana" HorizontalAlignment="Center" Margin="0, 170, 0, 0" FontSize="30" FontWeight="Bold"/>
+            </StackPanel>            
+        </Border>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Border CornerRadius="15" Background="#E5E5E5E5" Margin="60" Width="650">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Elecciones Escolares" HorizontalAlignment="Center" Margin="0, 170, 0, 0" FontSize="30" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Page>
