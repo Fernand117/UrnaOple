@@ -16,16 +16,65 @@
 
         <StackPanel Grid.Column="0">
             <Border CornerRadius="15" Background="#E5E5E5" Margin="25,25,25,20" Padding="25">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="126" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Margin="0, 5, 0, 0"/>
-                    <TextBlock Text="Casillas disponibles" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="35"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Número de la urna: 01" Grid.Row="1" Grid.Column="0" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="Distrito: 01" Grid.Row="1" Grid.Column="0" FontSize="16" FontWeight="Bold" Margin="0, 25, 0, 0"/>
+
+                    <TextBlock Text="Casilla: 01010101" Grid.Row="1" Grid.Column="1" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="Municipio: Cuitláhuac" Grid.Row="1" Grid.Column="1" FontSize="16" FontWeight="Bold" Margin="0, 25, 0, 0"/>
+
+                    <TextBlock Text="Tipo de casilla:" Grid.Row="1" Grid.Column="2" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="Básica" Grid.Row="1" Grid.Column="2" FontSize="16" FontWeight="Bold" Margin="0, 25, 0, 0"/>
+
+                    <Image Source="../../Assets/Img/icons8-delete-90.png" Grid.Row="1" Grid.Column="3"/>
+                    <Image Source="../../Assets/Img/icons8-edit-90.png" Grid.Row="1" Grid.Column="4"/>
+                    <Image Source="../../Assets/Img/icons8-eye-90.png" Grid.Row="1" Grid.Column="5"/>
+                </Grid>
             </Border>
+
             <Border CornerRadius="15" Background="#E5E5E5" Margin="25,0,25,20" Padding="25">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="126" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Margin="0, 5, 0, 0"/>
-                    <TextBlock Text="Casillas disponibles" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="35"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Número de la urna: 01" Grid.Row="1" Grid.Column="0" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="Distrito: 01" Grid.Row="1" Grid.Column="0" FontSize="16" FontWeight="Bold" Margin="0, 25, 0, 0"/>
+
+                    <TextBlock Text="Casilla: 01010101" Grid.Row="1" Grid.Column="1" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="Municipio: Cuitláhuac" Grid.Row="1" Grid.Column="1" FontSize="16" FontWeight="Bold" Margin="0, 25, 0, 0"/>
+
+                    <TextBlock Text="Tipo de casilla:" Grid.Row="1" Grid.Column="2" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="Básica" Grid.Row="1" Grid.Column="2" FontSize="16" FontWeight="Bold" Margin="0, 25, 0, 0"/>
+
+                    <Image Source="../../Assets/Img/icons8-delete-90.png" Grid.Row="1" Grid.Column="3"/>
+                    <Image Source="../../Assets/Img/icons8-edit-90.png" Grid.Row="1" Grid.Column="4"/>
+                    <Image Source="../../Assets/Img/icons8-eye-90.png" Grid.Row="1" Grid.Column="5"/>
+                </Grid>
             </Border>
         </StackPanel>
 
