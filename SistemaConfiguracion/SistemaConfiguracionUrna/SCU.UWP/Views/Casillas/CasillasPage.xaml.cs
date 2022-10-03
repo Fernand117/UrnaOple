@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCU.UWP.Views.Partidos;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,5 +32,14 @@ namespace SCU.UWP.Views.Casillas
         {
 
         }
+
+        private async void btn_add(Object sender, RoutedEventArgs e)
+        {
+
+            FormCasilla form = new FormCasilla();
+            await form.ShowAsync();
+
+        }
+
     }
 }

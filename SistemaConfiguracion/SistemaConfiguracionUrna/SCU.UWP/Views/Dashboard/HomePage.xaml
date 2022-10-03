@@ -14,9 +14,9 @@
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Menú" Foreground="#E33889"/>
                 <NavigationViewItem Icon="Home" Content="Inicio" Tag="Inicio"/>
-                <NavigationViewItem Icon="Home" Content="Casillas" Tag="Casillas"/>
-                <NavigationViewItem Icon="Home" Content="Partidos" Tag="Partidos"/>
-                <NavigationViewItem Icon="Home" Content="Elecciones" Tag="Elecciones"/>
+                <NavigationViewItem Icon="Accept" Content="Casillas" Tag="Casillas"/>
+                <NavigationViewItem Icon="OtherUser" Content="Partidos" Tag="Partidos"/>
+                <NavigationViewItem Icon="Bullets" Content="Elecciones" Tag="Elecciones"/>
             </NavigationView.MenuItems>
 
             <NavigationView.PaneFooter>

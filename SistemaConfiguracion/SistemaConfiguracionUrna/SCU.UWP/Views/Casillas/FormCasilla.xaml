@@ -1,0 +1,52 @@
+﻿<ContentDialog
+    x:Class="SCU.UWP.Views.Casillas.FormCasilla"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SCU.UWP.Views.Casillas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonText="Cancelar"
+    SecondaryButtonText="Guardar"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
+    Height="Auto" Width="Auto">
+
+    <Grid Height="350" Width="500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="../../Assets/Img/LogoOple.png"  />
+            <TextBlock Text="Registrar nueva casilla" Grid.Column="1" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBox x:Name="num_urna" Header="Número de urna" Margin="0,24,0,0" MaxLength="32" Width="234" HorizontalAlignment="Left" />
+                <TextBox x:Name="distritro" Header="Distrito" Margin="0,24,0,0" MaxLength="32" Width="234" HorizontalAlignment="Left" />
+                <ComboBox Header="Tipo de casilla" x:Name="tipo_casilla" Margin="0,24,0,0" Width="234">
+                    <x:String>Básica</x:String>
+                    <x:String>Contigua</x:String>
+                    <x:String>Extraordinaria</x:String>
+                    <x:String>Especial</x:String>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBox x:Name="entidad" PlaceholderText="Entidad" Header="Entidad" Margin="0,24,0,0" MaxLength="32" Width="234" HorizontalAlignment="Left" />
+                <TextBox x:Name="municipio" Header="Municipio" Margin="0,24,0,0" MaxLength="32" Width="234" HorizontalAlignment="Left" />
+                <TextBox x:Name="folio" Header="Folio" Margin="0,24,0,0" MaxLength="32" Width="234" HorizontalAlignment="Left" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</ContentDialog>
