@@ -23,7 +23,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
-        <Image Source="../../Assets/Img/LogoOple.png" />
+        <Image Source="../../Assets/Img/LogoOple.png"  />
         <TextBlock Text="Registrar nuevo partido" Grid.Column="1" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" >
@@ -31,7 +31,7 @@
             <TextBox x:Name="Suplente" Header= "Suplente" Margin="0,24,0,0" MaxLength="32" Width="350" HorizontalAlignment="Left"/>
             <TextBox x:Name="Partido" Header= "Partido" Margin="0,24,0,0" MaxLength="32" Width="350" HorizontalAlignment="Left"/>
         </StackPanel>
-        <Button Grid.Row="1" Grid.Column="2" Height="100" Width="100" Background="LightGray" Content="Logo" Click="AddPhotoButton_Click" HorizontalAlignment="Center" />
+        <Button Grid.Row="1" Grid.Column="2" Height="100" Width="100" Background="LightGray" Content="Logo" Click="AddPhotoButton_Click" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
 
     </Grid>
 </ContentDialog>

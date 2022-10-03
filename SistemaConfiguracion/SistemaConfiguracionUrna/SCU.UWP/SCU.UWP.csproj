@@ -124,6 +124,9 @@
     <Compile Include="Views\Casillas\CasillasPage.xaml.cs">
       <DependentUpon>CasillasPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Casillas\FormCasilla.xaml.cs">
+      <DependentUpon>FormCasilla.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Elecciones\EleccionesPage.xaml.cs">
       <DependentUpon>EleccionesPage.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Img\background.png" />
+    <Content Include="Assets\Img\casilla.png" />
     <Content Include="Assets\Img\icons8-add-new-90.png" />
     <Content Include="Assets\Img\icons8-camera-90 1.png" />
     <Content Include="Assets\Img\icons8-checkmark-96 1.png" />
@@ -159,6 +163,7 @@
     <Content Include="Assets\Img\icons8-eye-90.png" />
     <Content Include="Assets\Img\icons8-save-90 1.png" />
     <Content Include="Assets\Img\icons8-user-96 1.png" />
+    <Content Include="Assets\Img\icon_elecciones.png" />
     <Content Include="Assets\Img\LogoOple.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -180,9 +185,15 @@
       <Version>6.2.13</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Img\Icons\" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Casillas\CasillasPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Casillas\FormCasilla.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,7 +18,7 @@
             
         </StackPanel>
 
-        <Button Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 20, 0, 0" Background="#E33889" Foreground="White" CornerRadius="10" Grid.Column="1">
+        <Button Width="200" Click="btn_add" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 20, 0, 0" Background="#E33889" Foreground="White" CornerRadius="10" Grid.Column="1">
             <Grid Width="150">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
