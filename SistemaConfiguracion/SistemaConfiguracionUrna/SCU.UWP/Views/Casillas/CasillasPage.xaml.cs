@@ -44,8 +44,8 @@ namespace SCU.UWP.Views.Casillas
 
         private void imgDelete_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            MessageDialog mg = new MessageDialog("adsfasf", "asdfsd");
-            mg.ShowAsync();
+            DeleteCasilla delete = new DeleteCasilla();
+            delete.ShowAsync();
         }
 
         private void imgEdit_Tapped(object sender, TappedRoutedEventArgs e)
