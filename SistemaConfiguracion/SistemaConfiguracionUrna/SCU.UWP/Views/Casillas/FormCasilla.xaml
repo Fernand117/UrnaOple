@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <TextBox x:Name="num_urna" Header="Número de urna" Margin="0,24,0,0" MaxLength="32" Width="234" HorizontalAlignment="Left" />
+                <TextBox x:Name="num_urna" Header="Número de urna"  InputScope="Number" Margin="0,24,0,0" MaxLength="4" Width="234" HorizontalAlignment="Left" />
                 <TextBox x:Name="distritro" Header="Distrito" Margin="0,24,0,0" MaxLength="32" Width="234" HorizontalAlignment="Left" />
                 <ComboBox Header="Tipo de casilla" x:Name="tipo_casilla" Margin="0,24,0,0" Width="234">
                     <x:String>Básica</x:String>

@@ -124,6 +124,9 @@
     <Compile Include="Views\Casillas\CasillasPage.xaml.cs">
       <DependentUpon>CasillasPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Casillas\DeleteCasilla.xaml.cs">
+      <DependentUpon>DeleteCasilla.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Casillas\FormCasilla.xaml.cs">
       <DependentUpon>FormCasilla.xaml</DependentUpon>
     </Compile>
@@ -190,6 +193,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Casillas\CasillasPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Casillas\DeleteCasilla.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
