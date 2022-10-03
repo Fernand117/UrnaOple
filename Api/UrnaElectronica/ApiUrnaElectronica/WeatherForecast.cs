@@ -1,6 +1,6 @@
 using System;
 
-namespace ApiUrnaElectronica
+namespace Urna.Api
 {
     public class WeatherForecast
     {
