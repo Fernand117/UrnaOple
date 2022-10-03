@@ -9,6 +9,31 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Esta es la pagina de Elecciones" FontSize="40" Margin="440,383,-440,-383"></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="15" Background="#E5E5E5E5" Grid.Column="0" Margin="60">
+            <Grid>
+                <TextBlock Text="Procesos locales electorales" FontSize="30" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
+        <Border CornerRadius="15" Background="#E5E5E5E5" Grid.Column="1" Margin="60">
+            <Grid>
+                <TextBlock Text="Mecanismos de" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, -30, 0, 0" FontSize="30" FontWeight="Bold"/>
+                <TextBlock Text="Participacion Ciudadana" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 40, 0, 0" FontSize="30" FontWeight="Bold"/>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Border CornerRadius="15" Background="#E5E5E5E5" Margin="60" Width="550">
+                <Grid>
+                    <TextBlock Text="Elecciones Escolares" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Page>
