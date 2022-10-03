@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCU.UWP.Views.Partidos;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,12 +25,10 @@ namespace SCU.UWP.Views.Casillas
             this.InitializeComponent();
         }
 
-        private void btn_Confirmar(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void btn_confirmar(Object sender, RoutedEventArgs e)
         {
+
         }
 
-        private void btn_Cancelar(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
-        }
     }
 }

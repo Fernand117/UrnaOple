@@ -5,9 +5,7 @@
     xmlns:local="using:SCU.UWP.Views.Casillas"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
-    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+    mc:Ignorable="d">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,8 +21,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnConfirmar" Click="btn_Confirmar" Width="100" Content="Continuar" CornerRadius="5" Background="#E33889" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" FontSize="12"/>
-            <Button Grid.Column="1" x:Name="btnCancelar" Click="btn_Cancelar" Width="100" Content="Cancelar" CornerRadius="5" Background="#8F8F8F" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" FontSize="12"/>
+            <Button x:Name="btnConfirmar" Click="btn_confirmar" Width="100" Content="Continuar" CornerRadius="5" Background="#E33889" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" FontSize="12"/>
+            <Button Grid.Column="1" x:Name="btnCancelar" Width="100" Content="Cancelar" CornerRadius="5" Background="#8F8F8F" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" FontSize="12"/>
         </Grid>
     </Grid>
 </ContentDialog>
