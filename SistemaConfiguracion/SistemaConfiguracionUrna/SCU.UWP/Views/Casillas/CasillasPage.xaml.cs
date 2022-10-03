@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -41,5 +42,20 @@ namespace SCU.UWP.Views.Casillas
 
         }
 
+        private void imgDelete_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            MessageDialog mg = new MessageDialog("adsfasf", "asdfsd");
+            mg.ShowAsync();
+        }
+
+        private void imgEdit_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void imgView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
     }
 }
