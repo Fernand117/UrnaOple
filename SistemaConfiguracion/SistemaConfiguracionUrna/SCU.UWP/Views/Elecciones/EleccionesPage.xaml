@@ -19,18 +19,18 @@
         </Grid.RowDefinitions>
         <Border CornerRadius="15" Background="#E5E5E5E5" Grid.Column="0" Margin="60">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Procesos Electorales Locales"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 170, 0, 0" FontSize="30" FontWeight="Bold"/>
+                <TextBlock Text="Procesos Electorales Locales" HorizontalAlignment="Center" Margin="0, 35, 0, 0" Padding="130" FontSize="30" FontWeight="Bold"/>
             </StackPanel>
         </Border>
         <Border CornerRadius="15" Background="#E5E5E5E5" Grid.Column="1" Margin="60">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Mecanismos de Participacion Ciudadana" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 170, 0, 0" FontSize="30" FontWeight="Bold"/>
-            </StackPanel>            
+                <TextBlock Text="Mecanismos de Participacion Ciudadana" HorizontalAlignment="Center" Margin="0, 35, 0, 0" Padding="130" FontSize="30" FontWeight="Bold"/>
+            </StackPanel>
         </Border>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <Border CornerRadius="15" Background="#E5E5E5E5" Margin="60" Width="650">
+            <Border CornerRadius="15" Background="#E5E5E5E5" Margin="60" Width="690">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Elecciones Escolares" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 170, 0, 0" FontSize="30" FontWeight="Bold"/>
+                    <TextBlock Text="Elecciones Escolares" HorizontalAlignment="Center" Margin="0, 35, 0, 0" Padding="130" FontSize="30" FontWeight="Bold"/>
                 </StackPanel>
             </Border>
         </Grid>
