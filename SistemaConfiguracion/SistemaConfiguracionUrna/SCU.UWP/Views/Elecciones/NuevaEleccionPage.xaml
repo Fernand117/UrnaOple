@@ -14,18 +14,30 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Padding="16">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Click="Button_Click_Back" Width="45" Margin="20,0,0,0" >
+                <Image Source="../../Assets/Img/back.png"></Image>
+            </Button>
+            <TextBlock Grid.Column="1" Text="Procesos electorales locales" VerticalAlignment="Center" FontWeight="Bold" FontSize="28" Margin="10,0,0,0"/>
+        </Grid>
+           
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1" Padding="16">
             <TextBlock Text="Presidente"/>
             <TextBox x:Name="txtPresidente"/>
 
             <TextBlock Text="Secretario"/>
             <TextBox x:Name="txtSecretario"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0" Padding="16">
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Padding="16">
             <TextBlock Text="Primer escrutador"/>
             <TextBox x:Name="txtPrimerEscrutador"/>
 
