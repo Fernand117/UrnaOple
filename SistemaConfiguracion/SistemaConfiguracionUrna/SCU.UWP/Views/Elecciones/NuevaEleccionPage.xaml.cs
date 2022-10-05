@@ -26,5 +26,11 @@ namespace SCU.UWP.Views.Elecciones
         {
             this.InitializeComponent();
         }
+
+        private void Button_Click_Back(object sender, RoutedEventArgs e)
+        {
+            EleccionesPage mynewPage = new EleccionesPage();
+            this.Content = mynewPage;
+        }
     }
 }

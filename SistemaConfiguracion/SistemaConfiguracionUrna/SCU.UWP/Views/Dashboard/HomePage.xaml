@@ -9,7 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
         <NavigationView x:Name="navView" Loaded="NavigationView_Loaded" SelectionChanged="navView_SelectionChanged" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Menú" Foreground="#E33889"/>
@@ -23,10 +22,41 @@
                 <NavigationViewItem Icon="SetLockScreen" Content="Cerrar sesión" Tag="Cerrar" Tapped="NavigationViewItem_Tapped"/>
             </NavigationView.PaneFooter>
 
-            <ScrollViewer>
-                <Frame x:Name="ContentFrame"></Frame>
-            </ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="../../Assets/Img/icons8-user-96 1.png"/>
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,5">
+                            <TextBlock Text="Usuario" FontWeight="Bold"/>
+                            <TextBlock Text="Conectado" Foreground="#6F3CC6" FontWeight="Bold"/>
+                        </StackPanel>
+                        
+                    </Grid>
+                    <Image Source="../../Assets/Img/LogoOple.png"/>
+                  
+                </Grid>
+                <Image Source="../../Assets/Img/background.png" Grid.Row="1" Stretch="Uniform"/>
+
+                <ScrollViewer Grid.Row="1">
+
+                    <Frame x:Name="ContentFrame"/>
+                </ScrollViewer>
+            </Grid>
+            
         </NavigationView>
     </Grid>
-
 </Page>
