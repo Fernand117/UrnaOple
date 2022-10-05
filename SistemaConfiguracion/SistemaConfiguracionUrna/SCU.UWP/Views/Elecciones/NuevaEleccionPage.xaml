@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -24,6 +24,9 @@
 
             <TextBlock Text="Secretario"/>
             <TextBox x:Name="txtSecretario"/>
+
+            <TextBlock Text="Número de boletas"/>
+            <TextBox x:Name="txtNumeroBoletas"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0" Padding="16">
             <TextBlock Text="Primer escrutador"/>
@@ -32,6 +35,5 @@
             <TextBlock Text="Segundo escrutador"/>
             <TextBox x:Name="txtSegundoEscrutador"/>
         </StackPanel>
-
     </Grid>
 </Page>
