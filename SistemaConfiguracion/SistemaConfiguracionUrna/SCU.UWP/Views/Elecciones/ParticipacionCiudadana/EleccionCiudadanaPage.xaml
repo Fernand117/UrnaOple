@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="SCU.UWP.Views.Elecciones.ParticipacionCiudadana.EleccionCiudadanaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SCU.UWP.Views.Elecciones.ParticipacionCiudadana"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1" Padding="16" Margin="15,0,11,0">
+                <TextBlock Text="Datos generales de la boleta" FontSize="18" FontWeight="Bold"/>
+                <TextBox x:Name="entidad" Header="Entidad"  InputScope="Text" Margin="0,10,0,0" MaxLength="25"/>
+                <TextBox x:Name="distrito" Header="Distrito" InputScope="Text" Margin="0,10,0,0" MaxLength="25"/>
+                <TextBox x:Name="municipio" Header="Municipio" InputScope="Text" Margin="0,10,0,0" MaxLength="25"/>
+                <TextBox x:Name="seccion" Header="Sección" InputScope="Text" Margin="0,10,0,0" MaxLength="4"/>
+                <TextBlock Text="Datos generales de la boleta" FontSize="18" FontWeight="Bold" Margin="0,40,0,0"/>
+                <TextBox x:Name="mecanismo" Header="Nombre del mecanismo" InputScope="Text" Margin="0,10,0,0" MaxLength="4"/>
+                <TextBox x:Name="objeto_mecanismo" Header="Objeto del mecanismo" InputScope="Text" Margin="0,10,0,0" MaxLength="4"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Padding="16" Margin="15,0,15,0">
+                <TextBlock Text="Funcionariado de mesadirectiva de casilla" FontSize="18" FontWeight="Bold"/>
+                <TextBox x:Name="presidente" Header="Presidente"  InputScope="Text" Margin="0,10,0,0" MaxLength="25"/>
+                <TextBox x:Name="secretario" Header="Secretario" InputScope="Text" Margin="0,10,0,0" MaxLength="25"/>
+                <TextBox x:Name="primer_escrutador" Header="Primer escrutador" InputScope="Text" Margin="0,10,0,0" MaxLength="25"/>
+                <TextBox x:Name="segundo_escrutador" Header="Segundo escrutador" InputScope="Text" Margin="0,10,0,0" MaxLength="4"/>
+                <TextBox x:Name="cantidad_boletas" Header="Cantidad de boletas" InputScope="Text" Margin="0,75,0,0" MaxLength="4"/>
+                <TextBox x:Name="folio" Header="Folio" Margin="0,10,0,0" InputScope="Text" MaxLength="4"/>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Button Click="Button_Click_Back" Width="45" Margin="20,0,0,0">
+                <Image Source="../../../Assets/Img/back.png"></Image>
+            </Button>
+            <TextBlock Grid.Column="1" Text="Mecanismos de participación ciudadana" VerticalAlignment="Center" FontWeight="Bold" FontSize="28" Margin="10,0,0,0"/>
+        </Grid>
+        <StackPanel Grid.Row="2" Padding="16" Margin="15,0,15,0">
+            <TextBlock Text="Pregunta(s)" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="pregunta" Header="Pregunta 1" InputScope="Text" Margin="0,10,0,0" MaxLength="4"/>
+        </StackPanel>
+    </Grid>
+</Page>

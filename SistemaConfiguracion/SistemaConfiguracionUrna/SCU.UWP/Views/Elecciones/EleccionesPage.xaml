@@ -18,7 +18,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button Click="Button_Click" CornerRadius="15" Background="#E5E5E5E5" Grid.Column="0" Content="Procesos electorales locales" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" Width="500" Height="300" />
-        <Button Click="Button_Click" CornerRadius="15" Background="#E5E5E5E5" Grid.Column="1" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" Width="500" Height="300">
+        <Button Click="Button_Participacion_Ciudadana" CornerRadius="15" Background="#E5E5E5E5" Grid.Column="1" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" Width="500" Height="300">
             <StackPanel>
                 <TextBlock Text="Mecanismos de" HorizontalAlignment="Center"></TextBlock>
                 <TextBlock Text="participación ciudadana"></TextBlock>
