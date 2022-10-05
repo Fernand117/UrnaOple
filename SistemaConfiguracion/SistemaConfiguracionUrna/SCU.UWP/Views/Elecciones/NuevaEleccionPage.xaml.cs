@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using SCU.UWP.Views.Partidos;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,6 +21,12 @@ namespace SCU.UWP.Views.Elecciones
         {
             EleccionesPage mynewPage = new EleccionesPage();
             this.Content = mynewPage;
+        }
+
+        private async void btnNuevoPartido_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPartido agregarPartido = new AgregarPartido();
+            await agregarPartido.ShowAsync();
         }
     }
 }
