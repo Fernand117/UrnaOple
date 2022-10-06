@@ -28,9 +28,12 @@ namespace Urna.Api
         {
             services.AddControllers();
 
-            services.AddDbContext<UrnaContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("urnaOple"))
-                );
+            services.AddDbContext<UrnaContext>();
+
+        //    services.AddDbContext<UrnaContext>(options =>
+        //        options.UseNpgsql(Configuration.GetConnectionString("urnaOple"))
+        //        );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

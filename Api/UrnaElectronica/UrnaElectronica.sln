@@ -3,25 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Urna.Api", "ApiUrnaElectronica\Urna.Api.csproj", "{E448941F-3EBF-42FF-B431-AA8448AF5220}"
-	ProjectSection(ProjectDependencies) = postProject
-		{18324CB5-7352-4841-9DD1-1F014F734363} = {18324CB5-7352-4841-9DD1-1F014F734363}
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Urna.BLO", "UrnaBLO\Urna.BLO.csproj", "{18324CB5-7352-4841-9DD1-1F014F734363}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9E71B4E9-7D1F-4EFB-BF73-0FD1B88AC70C} = {9E71B4E9-7D1F-4EFB-BF73-0FD1B88AC70C}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Urna.COMMON", "UrnaCOMMON\Urna.COMMON.csproj", "{F92D91D8-82B0-4CEF-8B56-26E75D44C10C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Urna.COMMON", "UrnaCOMMON\Urna.COMMON.csproj", "{F92D91D8-82B0-4CEF-8B56-26E75D44C10C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Urna.DAL", "Urna.DAL\Urna.DAL.csproj", "{66CFD240-24F2-4FBD-9527-6E287CB7714A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Urna.DAL", "Urna.DAL\Urna.DAL.csproj", "{66CFD240-24F2-4FBD-9527-6E287CB7714A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Urna.DAO", "Urna.DAO\Urna.DAO.csproj", "{9E71B4E9-7D1F-4EFB-BF73-0FD1B88AC70C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Urna.DAO", "Urna.DAO\Urna.DAO.csproj", "{9E71B4E9-7D1F-4EFB-BF73-0FD1B88AC70C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{66CFD240-24F2-4FBD-9527-6E287CB7714A} = {66CFD240-24F2-4FBD-9527-6E287CB7714A}
 		{F92D91D8-82B0-4CEF-8B56-26E75D44C10C} = {F92D91D8-82B0-4CEF-8B56-26E75D44C10C}
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Urna.Api", "Urna.Api\Urna.Api.csproj", "{BBEBFA0F-98D6-4E24-956A-2818B11DE1E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +26,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E448941F-3EBF-42FF-B431-AA8448AF5220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E448941F-3EBF-42FF-B431-AA8448AF5220}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E448941F-3EBF-42FF-B431-AA8448AF5220}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E448941F-3EBF-42FF-B431-AA8448AF5220}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18324CB5-7352-4841-9DD1-1F014F734363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18324CB5-7352-4841-9DD1-1F014F734363}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18324CB5-7352-4841-9DD1-1F014F734363}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,6 +42,10 @@ Global
 		{9E71B4E9-7D1F-4EFB-BF73-0FD1B88AC70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E71B4E9-7D1F-4EFB-BF73-0FD1B88AC70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E71B4E9-7D1F-4EFB-BF73-0FD1B88AC70C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBEBFA0F-98D6-4E24-956A-2818B11DE1E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBEBFA0F-98D6-4E24-956A-2818B11DE1E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBEBFA0F-98D6-4E24-956A-2818B11DE1E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBEBFA0F-98D6-4E24-956A-2818B11DE1E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
