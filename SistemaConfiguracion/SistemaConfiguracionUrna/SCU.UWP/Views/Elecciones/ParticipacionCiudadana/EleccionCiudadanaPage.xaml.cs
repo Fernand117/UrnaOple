@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -27,11 +28,15 @@ namespace SCU.UWP.Views.Elecciones.ParticipacionCiudadana
     /// </summary>
     public sealed partial class EleccionCiudadanaPage : Page
     {
+        int num_textBox = 2;
+        String[] stringarr = new String[] { "Geeks", "GFG", "Noida" };
 
-        int txtbox = 1;
         public EleccionCiudadanaPage()
         {
             this.InitializeComponent();
+            Console.WriteLine("hola mundo");
+
+
         }
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
@@ -44,6 +49,20 @@ namespace SCU.UWP.Views.Elecciones.ParticipacionCiudadana
             await agregarPartido.ShowAsync();
         }
 
+        private void addTextBlock(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = new TextBox();
+            this.ListaPreguntas.Children.Add(textBox);
+            textBox.Header = "Pregunta " + this.num_textBox.ToString();
+            num_textBox = num_textBox + 1;
+            Console.WriteLine(this.stringarr[0]);
+            Console.WriteLine(stringarr[1]);
+            Console.WriteLine(stringarr[2]);
+        }
 
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace SCU.UWP.Views.Casillas
             this.InitializeComponent();
         }
 
-        private async void btn_confirmar(Object sender, RoutedEventArgs e)
+        private void btn_confirmar(Object sender, RoutedEventArgs e)
         {
 
         }

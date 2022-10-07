@@ -136,6 +136,9 @@
     <Compile Include="Views\Dashboard\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Elecciones\Escolares\EleccionesEscolaresPage.xaml.cs">
+      <DependentUpon>EleccionesEscolaresPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Elecciones\NuevaEleccionPage.xaml.cs">
       <DependentUpon>NuevaEleccionPage.xaml</DependentUpon>
     </Compile>
@@ -218,6 +221,10 @@
     <Page Include="Views\Dashboard\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Elecciones\Escolares\EleccionesEscolaresPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Elecciones\NuevaEleccionPage.xaml">
       <SubType>Designer</SubType>

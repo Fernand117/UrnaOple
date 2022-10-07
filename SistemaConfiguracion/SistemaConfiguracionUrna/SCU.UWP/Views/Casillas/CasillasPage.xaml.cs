@@ -42,10 +42,10 @@ namespace SCU.UWP.Views.Casillas
 
         }
 
-        private void imgDelete_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void imgDelete_Tapped(object sender, TappedRoutedEventArgs e)
         {
             DeleteCasilla delete = new DeleteCasilla();
-            delete.ShowAsync();
+            await delete.ShowAsync();
         }
 
         private void imgEdit_Tapped(object sender, TappedRoutedEventArgs e)

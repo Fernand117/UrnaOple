@@ -24,6 +24,6 @@
                 <TextBlock Text="participación ciudadana"></TextBlock>
             </StackPanel>
         </Button>
-        <Button Click="Button_Click" CornerRadius="15" Background="#E5E5E5E5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Elecciones escolares" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" Width="500" Height="300" />
+        <Button Click="Button_Elecciones_escolares" CornerRadius="15" Background="#E5E5E5E5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Elecciones escolares" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" Width="500" Height="300" />
     </Grid>
 </Page>

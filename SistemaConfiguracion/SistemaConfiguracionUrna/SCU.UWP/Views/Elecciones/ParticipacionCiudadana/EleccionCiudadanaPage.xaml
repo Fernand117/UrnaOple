@@ -14,6 +14,16 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Click="Button_Click_Back" Width="45" Margin="20,0,0,0">
+                <Image Source="../../../Assets/Img/back.png"></Image>
+            </Button>
+            <TextBlock Grid.Column="1" Text="Mecanismos de participación ciudadana" VerticalAlignment="Center" FontWeight="Bold" FontSize="28" Margin="10,0,0,0"/>
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -31,7 +41,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Padding="16" Margin="15,0,15,0">
-                <TextBlock Text="Funcionariado de mesadirectiva de casilla" FontSize="18" FontWeight="Bold"/>
+                <TextBlock Text="Funcionariado de mesa directiva de casilla" FontSize="18" FontWeight="Bold" SelectionChanged="TextBlock_SelectionChanged"/>
                 <TextBox x:Name="presidente" Header="Presidente"  InputScope="Text" Margin="0,10,0,0" MaxLength="25"/>
                 <TextBox x:Name="secretario" Header="Secretario" InputScope="Text" Margin="0,10,0,0" MaxLength="25"/>
                 <TextBox x:Name="primer_escrutador" Header="Primer escrutador" InputScope="Text" Margin="0,10,0,0" MaxLength="25"/>
@@ -40,20 +50,17 @@
                 <TextBox x:Name="folio" Header="Folio" Margin="0,10,0,0" InputScope="Text" MaxLength="4"/>
             </StackPanel>
         </Grid>
-        <Grid>
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
-
+                <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
-            <Button Click="Button_Click_Back" Width="45" Margin="20,0,0,0">
-                <Image Source="../../../Assets/Img/back.png"></Image>
-            </Button>
-            <TextBlock Grid.Column="1" Text="Mecanismos de participación ciudadana" VerticalAlignment="Center" FontWeight="Bold" FontSize="28" Margin="10,0,0,0"/>
+            <StackPanel x:Name="ListaPreguntas" Grid.Row="2" Padding="16" Margin="15,0,15,0">
+                <TextBlock Text="Pregunta(s)" FontSize="18" FontWeight="Bold"/>
+                <TextBox x:Name="pregunta" Header="Pregunta 1" InputScope="Text" Margin="0,10,0,0" MaxLength="4"/>
+            </StackPanel>
+            <Button Grid.Column="1" VerticalAlignment="Top" Margin="0,20,0,0" Click="addTextBlock">Agregar pregunta</Button>
         </Grid>
-        <StackPanel Grid.Row="2" Padding="16" Margin="15,0,15,0">
-            <TextBlock Text="Pregunta(s)" FontSize="18" FontWeight="Bold"/>
-            <TextBox x:Name="pregunta" Header="Pregunta 1" InputScope="Text" Margin="0,10,0,0" MaxLength="4"/>
-        </StackPanel>
+       
     </Grid>
 </Page>
