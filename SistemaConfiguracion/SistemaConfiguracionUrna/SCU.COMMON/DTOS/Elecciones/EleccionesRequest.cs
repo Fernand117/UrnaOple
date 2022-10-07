@@ -1,6 +1,12 @@
-﻿namespace SCU.DAL.Elecciones
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SCU.COMMON.Elecciones
 {
-    public class Elecciones
+    public class EleccionesRequest
     {
         public int Id { get; set; }
         public string TipoEleccion { get; set; }
@@ -15,6 +21,6 @@
         public string SeccionElectoral { get; set; }
         public string TipoCasilla { get; set; }
         public string Folio { get; set; }
-        public List<Partidos.Partidos> Partidos { get; set; }
+        public List<DTOS.Partidos.PartidosDTO> Partidos { get; set; }
     }
 }

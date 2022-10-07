@@ -251,6 +251,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SCU.BL">
+      <HintPath>..\SCU.BL\bin\Debug\net6.0\SCU.BL.dll</HintPath>
+    </Reference>
+    <Reference Include="SCU.COMMON">
+      <HintPath>..\SCU.COMMON\bin\Debug\net6.0\SCU.COMMON.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
