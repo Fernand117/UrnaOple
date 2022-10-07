@@ -59,5 +59,24 @@ namespace Urna.COMMON.RESOURCES {
                 resourceCulture = value;
             }
         }
+
+        public static string MensajeError
+        {
+            get
+            {
+                return ResourceManager.GetString("MensajeError", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Busca una cadena traducida similar a Transaccion completada correctamente..
+        /// </summary>
+        public static string MensajeOk
+        {
+            get
+            {
+                return ResourceManager.GetString("MensajeOk", resourceCulture);
+            }
+        }
     }
 }
