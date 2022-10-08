@@ -10,7 +10,7 @@ using Urna.DAL.Context;
 namespace Urna.DAL.Migrations
 {
     [DbContext(typeof(UrnaContext))]
-    [Migration("20221007062707_inicial")]
+    [Migration("20221008203614_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -215,7 +215,7 @@ namespace Urna.DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Urna.DAL.Entities.Eleccion", b =>
+            modelBuilder.Entity("Urna.DAL.Entities.Configuracion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -223,70 +223,20 @@ namespace Urna.DAL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("CantidadBoletas")
-                        .HasColumnName("cantidadBoletas")
-                        .HasColumnType("character varying(5)")
-                        .HasMaxLength(5);
+                    b.Property<string>("Configuraciones")
+                        .HasColumnName("configuracion")
+                        .HasColumnType("jsonb");
 
-                    b.Property<string>("Distrito")
-                        .HasColumnName("distrito")
-                        .HasColumnType("character varying(20)")
-                        .HasMaxLength(20);
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Entidad")
-                        .HasColumnName("entidad")
-                        .HasColumnType("character varying(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Folio")
-                        .HasColumnName("folio")
-                        .HasColumnType("character varying(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Municipio")
-                        .HasColumnName("municipio")
-                        .HasColumnType("character varying(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Presidente")
-                        .HasColumnName("presidente")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("PrimerEscrutador")
-                        .HasColumnName("primerEscrutador")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("SeccionElectoral")
-                        .HasColumnName("seccionElectoral")
-                        .HasColumnType("character varying(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Secretario")
-                        .HasColumnName("secretario")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("SegundoEscrutador")
-                        .HasColumnName("segundoEscrutador")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("TipoCasilla")
-                        .HasColumnName("tipoCasilla")
-                        .HasColumnType("character varying(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("TipoEleccion")
-                        .HasColumnName("tipoEleccion")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
+                    b.Property<string>("codigo")
+                        .HasColumnType("text");
 
                     b.HasKey("Id")
-                        .HasName("PK_tbElecciones");
+                        .HasName("PK_tbConfiguracion");
 
-                    b.ToTable("elecciones");
+                    b.ToTable("configuracion");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

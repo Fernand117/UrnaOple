@@ -50,14 +50,14 @@ namespace Urna.BLO.Elecciones
             return apiResponse;
         }
 
-        public async Task<ApiResponse> Read(int IdEleccion)
+        public async Task<ApiResponse> Read(string codigo)
         {
             ApiResponse apiResponse = new ApiResponse();
             try
             {
                 apiResponse.ResponseCode = Response.Success;
                 apiResponse.ResponseText = UrnaResources.MensajeOk;
-                apiResponse.Data = await new EleccionDAO().Read(IdEleccion);
+                apiResponse.Data = await new EleccionDAO().Read(codigo);
             }
             catch (Exception)
             {

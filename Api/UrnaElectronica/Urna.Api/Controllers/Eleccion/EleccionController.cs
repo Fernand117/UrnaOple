@@ -13,8 +13,8 @@ namespace Urna.Api.Controllers.Eleccion
         [HttpGet]
         public async Task<ActionResult<ApiResponse>> Get() => await new EleccionBLO().Read();
 
-        [HttpGet("idEleccion")]
-        public async Task<ActionResult<ApiResponse>> Get(int idEleccion) => await new EleccionBLO().Read(idEleccion);
+        [HttpGet("code/{codigo}")]
+        public async Task<ActionResult<ApiResponse>> Get(string codigo) => await new EleccionBLO().Read(codigo);
 
         [HttpPost]
         public async Task<ActionResult<ApiResponse>> Post([FromBody] EleccionRequest request) => await new EleccionBLO().Create(request);

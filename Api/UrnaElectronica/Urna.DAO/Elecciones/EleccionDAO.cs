@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Urna.COMMON.DTOS.Elecciones;
 using Urna.DAL.Context;
@@ -10,38 +10,31 @@ using Urna.DAL.Entities;
 
 namespace Urna.DAO.Elecciones
 {
-    public class EleccionDAO
-    {
-        public async Task<EleccionRequest> Create(EleccionRequest request)
-        {
+	public class EleccionDAO
+	{
+		public async Task<EleccionRequest> Create(EleccionRequest request)
+		{
 			try
 			{
 				using (UrnaContext context = new UrnaContext())
 				{
-					Eleccion eleccion = new Eleccion()
+					string codigo = "U-" + DateTime.Now.Year+ DateTime.Now.Month+ DateTime.Now.Day+ DateTime.Now.Hour+ DateTime.Now.Minute+ DateTime.Now.Second;
+					Configuracion configuracion = new Configuracion()
 					{
-						TipoEleccion = request.TipoEleccion,
-						Presidente = request.Presidente,
-						Secretario = request.Secretario,
-						PrimerEscrutador = request.PrimerEscrutador,
-						SegundoEscrutador = request.SegundoEscrutador,
-						CantidadBoletas = request.CantidadBoletas,
-						Entidad = request.Entidad,
-						Distrito = request.Distrito,
-						Municipio = request.Municipio,
-						SeccionElectoral = request.SeccionElectoral,
-						TipoCasilla = request.TipoCasilla,
-						Folio = request.Folio
+						Fecha = DateTime.Now,
+						Configuraciones = JsonSerializer.Serialize(request),
+						codigo = codigo
+						
 					};
 
-					await context.AddAsync(eleccion);
+					await context.AddAsync(configuracion);
 					await context.SaveChangesAsync();
 				}
 			}
 			catch (Exception ex) { }
-			
+
 			return request;
-        }
+		}
 
 		public async Task<List<EleccionDTO>> Read()
 		{
@@ -51,28 +44,9 @@ namespace Urna.DAO.Elecciones
 			{
 				using (UrnaContext context = new UrnaContext())
 				{
-					var elecciones = await context.Eleccions
+					var elecciones = await context.Configuracion
 												  .ToListAsync();
 
-					foreach (var e in elecciones)
-					{
-						response.Add(new EleccionDTO()
-						{
-							IdEleccion = e.Id,
-							TipoEleccion = e.TipoEleccion,
-							Presidente = e.Presidente,
-							Secretario = e.Secretario,
-							PrimerEscrutador = e.PrimerEscrutador,
-							SegundoEscrutador = e.SegundoEscrutador,
-							CantidadBoletas = e.CantidadBoletas,
-							Entidad = e.Entidad,
-							Distrito = e.Distrito,
-							Municipio = e.Municipio,
-							SeccionElectoral = e.SeccionElectoral,
-							TipoCasilla = e.TipoCasilla,
-							Folio = e.Folio,
-						});
-					}
 				}
 			}
 			catch (Exception) { }
@@ -80,34 +54,25 @@ namespace Urna.DAO.Elecciones
 			return response;
 		}
 
-		public async Task<EleccionDTO> Read(int IdELeccion)
+		public async Task<EleccionDTO> Read(string codigo)
 		{
 			EleccionDTO response = new EleccionDTO();
 
 			try
 			{
-				using(UrnaContext context = new UrnaContext())
+				using (UrnaContext context = new UrnaContext())
 				{
-                    var eleccion = await context.Eleccions
-												.Where(e => e.Id == IdELeccion)
+					var eleccion = await context.Configuracion
+												.Where(e => e.codigo.Trim() == codigo.Trim())
+												
 												.FirstOrDefaultAsync();
+					response.Fecha = eleccion.Fecha;
+					response.codigo = eleccion.codigo;
+					response.Configuraciones = eleccion.Configuraciones;
 
-					if (eleccion != null)
-					{
-						response.IdEleccion = eleccion.Id;
-						response.TipoEleccion = eleccion.TipoEleccion;
-						response.Presidente = eleccion.Presidente;
-						response.Secretario = eleccion.Secretario;
-						response.PrimerEscrutador = eleccion.PrimerEscrutador;
-						response.SegundoEscrutador = eleccion.SegundoEscrutador;
-						response.CantidadBoletas = eleccion.CantidadBoletas;
-						response.Entidad = eleccion.Entidad;
-						response.Distrito = eleccion.Distrito;
-						response.Municipio = eleccion.Municipio;
-						response.SeccionElectoral = eleccion.SeccionElectoral;
-						response.TipoCasilla = eleccion.TipoCasilla;
-						response.Folio = eleccion.Folio;
-					}
+
+
+
 				}
 			}
 			catch (Exception es) { }
@@ -119,30 +84,19 @@ namespace Urna.DAO.Elecciones
 		{
 			try
 			{
-				using(UrnaContext context = new UrnaContext())
+				using (UrnaContext context = new UrnaContext())
 				{
-                    var eleccion = await context.Eleccions
-												.Where(e => e.Id == request.IdEleccion)
-												.FirstOrDefaultAsync();
+					var config = await context.Configuracion
+											  .Where(e => e.Id == request.Id)
+											  .FirstOrDefaultAsync();
 
-					if (eleccion != null)
-					{
-						eleccion.Id = request.IdEleccion;
-						eleccion.TipoEleccion = request.TipoEleccion;
-						eleccion.Presidente = request.Presidente;
-						eleccion.Secretario = request.Secretario;
-						eleccion.PrimerEscrutador = request.PrimerEscrutador;
-						eleccion.SegundoEscrutador = request.SegundoEscrutador;
-						eleccion.CantidadBoletas = request.CantidadBoletas;
-						eleccion.Entidad = request.Entidad;
-						eleccion.Distrito = request.Distrito;
-						eleccion.Municipio = request.Municipio;
-						eleccion.SeccionElectoral = request.SeccionElectoral;
-						eleccion.TipoCasilla = request.TipoCasilla;
-						eleccion.Folio = request.Folio;
-						await context.SaveChangesAsync();
-					}
-				}
+					config.Configuraciones = JsonSerializer.Serialize(request);
+
+					await context.SaveChangesAsync();
+				
+
+
+                }
 			}
 			catch (Exception ex) { }
 
@@ -153,14 +107,15 @@ namespace Urna.DAO.Elecciones
 		{
 			try
 			{
-				using(UrnaContext context = new UrnaContext())
+				using (UrnaContext context = new UrnaContext())
 				{
-                    var eleccion = await context.Eleccions
+					var configuracion = await context.Configuracion
 												.Where(e => e.Id == id)
 												.FirstOrDefaultAsync();
 
-					if (eleccion != null)
+					if (configuracion != null)
 					{
+						context.Entry(configuracion).State = EntityState.Deleted;
 						await context.SaveChangesAsync();
 					}
 				}
@@ -169,8 +124,8 @@ namespace Urna.DAO.Elecciones
 
 			return new EleccionRequest()
 			{
-				IdEleccion = id
+				Id = id
 			};
 		}
-    }
+	}
 }

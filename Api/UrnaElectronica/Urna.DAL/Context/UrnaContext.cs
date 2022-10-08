@@ -25,71 +25,27 @@ namespace Urna.DAL.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Eleccion>(entity =>
+            modelBuilder.Entity<Configuracion>(entity =>
             {
                 entity.HasKey(e => e.Id)
-                      .HasName("PK_tbElecciones");
+                      .HasName("PK_tbConfiguracion");
 
-                entity.ToTable("elecciones");
+                entity.ToTable("configuracion");
 
                 entity.Property(e => e.Id)
                       .HasColumnName("id")
                       .UseIdentityByDefaultColumn();
 
-                entity.Property(e => e.TipoEleccion)
-                     .HasColumnName("tipoEleccion")
-                     .HasMaxLength(50);
-
-                entity.Property(e => e.Presidente)
-                      .HasColumnName("presidente")
-                      .HasMaxLength(50);
-
-                entity.Property(e => e.Secretario)
-                      .HasColumnName("secretario")
-                      .HasMaxLength(50);
-
-                entity.Property(e => e.PrimerEscrutador)
-                      .HasColumnName("primerEscrutador")
-                      .HasMaxLength(50);
-
-                entity.Property(e => e.SegundoEscrutador)
-                      .HasColumnName("segundoEscrutador")
-                      .HasMaxLength(50);
-
-                entity.Property(e => e.CantidadBoletas)
-                      .HasColumnName("cantidadBoletas")
-                      .HasMaxLength(5);
-
-                entity.Property(e => e.Entidad)
-                      .HasColumnName("entidad")
-                      .HasMaxLength(20);
-
-                entity.Property(e => e.Distrito)
-                      .HasColumnName("distrito")
-                      .HasMaxLength(20);
-
-                entity.Property(e => e.Municipio)
-                      .HasColumnName("municipio")
-                      .HasMaxLength(30);
-
-                entity.Property(e => e.SeccionElectoral)
-                      .HasColumnName("seccionElectoral")
-                      .HasMaxLength(20);
-
-                entity.Property(e => e.TipoCasilla)
-                      .HasColumnName("tipoCasilla")
-                      .HasMaxLength(20);
-
-                entity.Property(e => e.Folio)
-                      .HasColumnName("folio")
-                      .HasMaxLength(20);
+                entity.Property(e => e.Configuraciones)
+                      .HasColumnName("configuracion")
+                      .HasColumnType("jsonb");
             });
 
         }
 
         #region DBSETS
 
-        public virtual DbSet<Eleccion> Eleccions { get; set; }
+        public virtual DbSet<Configuracion> Configuracion { get; set; }
 
         #endregion
     }

@@ -48,27 +48,18 @@ namespace Urna.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "elecciones",
+                name: "configuracion",
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    tipoEleccion = table.Column<string>(maxLength: 50, nullable: true),
-                    presidente = table.Column<string>(maxLength: 50, nullable: true),
-                    secretario = table.Column<string>(maxLength: 50, nullable: true),
-                    primerEscrutador = table.Column<string>(maxLength: 50, nullable: true),
-                    segundoEscrutador = table.Column<string>(maxLength: 50, nullable: true),
-                    cantidadBoletas = table.Column<string>(maxLength: 5, nullable: true),
-                    entidad = table.Column<string>(maxLength: 20, nullable: true),
-                    distrito = table.Column<string>(maxLength: 20, nullable: true),
-                    municipio = table.Column<string>(maxLength: 30, nullable: true),
-                    seccionElectoral = table.Column<string>(maxLength: 20, nullable: true),
-                    tipoCasilla = table.Column<string>(maxLength: 20, nullable: true),
-                    folio = table.Column<string>(maxLength: 20, nullable: true)
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    codigo = table.Column<string>(nullable: true),
+                    configuracion = table.Column<string>(type: "jsonb", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbElecciones", x => x.id);
+                    table.PrimaryKey("PK_tbConfiguracion", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -233,7 +224,7 @@ namespace Urna.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "elecciones");
+                name: "configuracion");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

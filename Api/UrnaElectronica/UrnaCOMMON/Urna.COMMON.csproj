@@ -10,4 +10,12 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOS\Partidos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Urna.DAL\Urna.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
