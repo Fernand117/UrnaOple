@@ -10,11 +10,15 @@ using Urna.DAL.Context;
 namespace Urna.DAL.Migrations
 {
     [DbContext(typeof(UrnaContext))]
+<<<<<<< HEAD:Api/UrnaElectronica/Urna.DAL/Migrations/20221008072215_inicial.Designer.cs
 <<<<<<<< HEAD:Api/UrnaElectronica/Urna.DAL/Migrations/20221008072215_inicial.Designer.cs
     [Migration("20221008072215_inicial")]
 ========
     [Migration("20221006072108_inicial")]
 >>>>>>>> parent of 96503c8 (Operaciones CRUD de elecciones completo):Api/UrnaElectronica/Urna.DAL/Migrations/20221006072108_inicial.Designer.cs
+=======
+    [Migration("20221007062707_inicial")]
+>>>>>>> parent of 9eee83c (Intento de serializacion fallido, se borraron todos los cambios):Api/UrnaElectronica/Urna.DAL/Migrations/20221007062707_inicial.Designer.cs
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -247,16 +251,10 @@ namespace Urna.DAL.Migrations
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<int>("IdPartido")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Municipio")
                         .HasColumnName("municipio")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
-
-                    b.Property<int?>("PartidoNavigationId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Presidente")
                         .HasColumnName("presidente")
@@ -296,52 +294,7 @@ namespace Urna.DAL.Migrations
                     b.HasKey("Id")
                         .HasName("PK_tbElecciones");
 
-                    b.HasIndex("PartidoNavigationId");
-
                     b.ToTable("elecciones");
-                });
-
-            modelBuilder.Entity("Urna.DAL.Entities.Partido", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Cargo")
-                        .HasColumnName("cargo")
-                        .HasColumnType("character varying(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Hipocoristico")
-                        .HasColumnName("hipocoristico")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Logotipo")
-                        .HasColumnName("logotipo")
-                        .HasColumnType("character varying(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Propietario")
-                        .HasColumnName("propietario")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Suplente")
-                        .HasColumnName("suplente")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("TipoCandidatura")
-                        .HasColumnName("tipoCandidatura")
-                        .HasColumnType("character varying(30)")
-                        .HasMaxLength(30);
-
-                    b.HasKey("Id")
-                        .HasName("PK_tbPartidos");
-
-                    b.ToTable("partidos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -393,13 +346,6 @@ namespace Urna.DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Urna.DAL.Entities.Eleccion", b =>
-                {
-                    b.HasOne("Urna.DAL.Entities.Partido", "PartidoNavigation")
-                        .WithMany("Elecciones")
-                        .HasForeignKey("PartidoNavigationId");
                 });
 #pragma warning restore 612, 618
         }
