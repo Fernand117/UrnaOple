@@ -34,10 +34,10 @@ namespace SCU.UWP.Views.Elecciones
             EleccionesRequest eleccionesRequest = new EleccionesRequest()
             {
                 TipoEleccion = "Gubernaturas",
-                Presindente = txtPresidente.Text,
+                Presidente = txtPresidente.Text,
                 Secretario = txtSecretario.Text,
                 PrimerEscrutador = txtPrimerEscrutador.Text,
-                SegundoEscrutado = txtSegundoEscrutador.Text,
+                SegundoEscrutador = txtSegundoEscrutador.Text,
                 CantidadBoletas = txtNumeroBoletas.Text,
                 Partidos = new List<PartidosDTO>()
                 {

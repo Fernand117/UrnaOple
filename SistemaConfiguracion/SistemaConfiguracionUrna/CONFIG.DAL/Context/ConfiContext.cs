@@ -6,7 +6,7 @@ namespace CONFIG.DAL.Context
     {
         public HttpWebRequest configuracionApi(string method)
         {
-            var url = $"http://localhost:8080/item/api";
+            var url = $"http://localhost:8080/api";
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = method;
             request.ContentType = "application/json";

@@ -1,5 +1,7 @@
 ﻿using CONFIG.COMMON.DTOS.Elecciones;
+using Newtonsoft.Json;
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CONFIG.DAO.Elecciones
@@ -29,7 +31,10 @@ namespace CONFIG.DAO.Elecciones
             {
                 Console.WriteLine(ex.StackTrace);
             }*/
-            Console.WriteLine(request);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string result = System.Text.Json.JsonSerializer.Serialize(request, options);
+
+            Console.WriteLine(result);
             return request;
         }
     }

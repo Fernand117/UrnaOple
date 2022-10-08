@@ -15,5 +15,10 @@ namespace CONFIG.COMMON.DTOS.Partidos
         public string Hipocoristico { get; set; }
         public string Cargo { get; set; }
         public string TipoCandidatura { get; set; }
+
+        public static implicit operator PartidosDTO(List<PartidosDTO> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,10 +6,10 @@ namespace CONFIG.DAL.Entitys.Elecciones
     {
         public int Id { get; set; }
         public string TipoEleccion { get; set; }
-        public string Presindente { get; set; }
+        public string Presidente { get; set; }
         public string Secretario { get; set; }
         public string PrimerEscrutador { get; set; }
-        public string SegundoEscrutado { get; set; }
+        public string SegundoEscrutador { get; set; }
         public string CantidadBoletas { get; set; }
         public string Entidad { get; set; }
         public string Distrito { get; set; }
