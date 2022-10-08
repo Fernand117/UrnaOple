@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Urna.COMMON.DTOS.Elecciones;
@@ -42,6 +40,7 @@ namespace Urna.DAO.Elecciones
 			
 			return request;
         }
+<<<<<<< HEAD
 
 		public async Task<List<EleccionDTO>> Read()
 		{
@@ -172,5 +171,7 @@ namespace Urna.DAO.Elecciones
 				IdEleccion = id
 			};
 		}
+=======
+>>>>>>> parent of 96503c8 (Operaciones CRUD de elecciones completo)
     }
 }
