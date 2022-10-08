@@ -241,10 +241,16 @@ namespace Urna.DAL.Migrations
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
+                    b.Property<int>("IdPartido")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Municipio")
                         .HasColumnName("municipio")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
+
+                    b.Property<int?>("PartidoNavigationId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Presidente")
                         .HasColumnName("presidente")
@@ -284,7 +290,52 @@ namespace Urna.DAL.Migrations
                     b.HasKey("Id")
                         .HasName("PK_tbElecciones");
 
+                    b.HasIndex("PartidoNavigationId");
+
                     b.ToTable("elecciones");
+                });
+
+            modelBuilder.Entity("Urna.DAL.Entities.Partido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Cargo")
+                        .HasColumnName("cargo")
+                        .HasColumnType("character varying(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Hipocoristico")
+                        .HasColumnName("hipocoristico")
+                        .HasColumnType("character varying(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Logotipo")
+                        .HasColumnName("logotipo")
+                        .HasColumnType("character varying(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Propietario")
+                        .HasColumnName("propietario")
+                        .HasColumnType("character varying(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Suplente")
+                        .HasColumnName("suplente")
+                        .HasColumnType("character varying(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("TipoCandidatura")
+                        .HasColumnName("tipoCandidatura")
+                        .HasColumnType("character varying(30)")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id")
+                        .HasName("PK_tbPartidos");
+
+                    b.ToTable("partidos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -336,6 +387,13 @@ namespace Urna.DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Urna.DAL.Entities.Eleccion", b =>
+                {
+                    b.HasOne("Urna.DAL.Entities.Partido", "PartidoNavigation")
+                        .WithMany("Elecciones")
+                        .HasForeignKey("PartidoNavigationId");
                 });
 #pragma warning restore 612, 618
         }

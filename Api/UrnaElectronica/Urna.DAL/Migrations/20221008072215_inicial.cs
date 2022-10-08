@@ -48,27 +48,21 @@ namespace Urna.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "elecciones",
+                name: "partidos",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    tipoEleccion = table.Column<string>(maxLength: 50, nullable: true),
-                    presidente = table.Column<string>(maxLength: 50, nullable: true),
-                    secretario = table.Column<string>(maxLength: 50, nullable: true),
-                    primerEscrutador = table.Column<string>(maxLength: 50, nullable: true),
-                    segundoEscrutador = table.Column<string>(maxLength: 50, nullable: true),
-                    cantidadBoletas = table.Column<string>(maxLength: 5, nullable: true),
-                    entidad = table.Column<string>(maxLength: 20, nullable: true),
-                    distrito = table.Column<string>(maxLength: 20, nullable: true),
-                    municipio = table.Column<string>(maxLength: 30, nullable: true),
-                    seccionElectoral = table.Column<string>(maxLength: 20, nullable: true),
-                    tipoCasilla = table.Column<string>(maxLength: 20, nullable: true),
-                    folio = table.Column<string>(maxLength: 20, nullable: true)
+                    logotipo = table.Column<string>(maxLength: 30, nullable: true),
+                    propietario = table.Column<string>(maxLength: 50, nullable: true),
+                    suplente = table.Column<string>(maxLength: 50, nullable: true),
+                    hipocoristico = table.Column<string>(maxLength: 50, nullable: true),
+                    cargo = table.Column<string>(maxLength: 30, nullable: true),
+                    tipoCandidatura = table.Column<string>(maxLength: 30, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbElecciones", x => x.id);
+                    table.PrimaryKey("PK_tbPartidos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,6 +171,38 @@ namespace Urna.DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "elecciones",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    tipoEleccion = table.Column<string>(maxLength: 50, nullable: true),
+                    presidente = table.Column<string>(maxLength: 50, nullable: true),
+                    secretario = table.Column<string>(maxLength: 50, nullable: true),
+                    primerEscrutador = table.Column<string>(maxLength: 50, nullable: true),
+                    segundoEscrutador = table.Column<string>(maxLength: 50, nullable: true),
+                    cantidadBoletas = table.Column<string>(maxLength: 5, nullable: true),
+                    entidad = table.Column<string>(maxLength: 20, nullable: true),
+                    distrito = table.Column<string>(maxLength: 20, nullable: true),
+                    municipio = table.Column<string>(maxLength: 30, nullable: true),
+                    seccionElectoral = table.Column<string>(maxLength: 20, nullable: true),
+                    tipoCasilla = table.Column<string>(maxLength: 20, nullable: true),
+                    folio = table.Column<string>(maxLength: 20, nullable: true),
+                    IdPartido = table.Column<int>(nullable: false),
+                    PartidoNavigationId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbElecciones", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_elecciones_partidos_PartidoNavigationId",
+                        column: x => x.PartidoNavigationId,
+                        principalTable: "partidos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -213,6 +239,11 @@ namespace Urna.DAL.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_elecciones_PartidoNavigationId",
+                table: "elecciones",
+                column: "PartidoNavigationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -240,6 +271,9 @@ namespace Urna.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "partidos");
         }
     }
 }

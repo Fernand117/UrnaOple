@@ -110,7 +110,7 @@ namespace Urna.DAO.Elecciones
 					}
 				}
 			}
-			catch (Exception es) { }
+			catch (Exception ex) { }
 
 			return response;
 		}
