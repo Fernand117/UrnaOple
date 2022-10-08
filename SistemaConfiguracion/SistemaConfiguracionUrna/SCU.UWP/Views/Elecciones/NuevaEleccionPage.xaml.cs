@@ -1,10 +1,9 @@
-﻿using SCU.BL.Elecciones;
-using SCU.COMMON.DTOS.Partidos;
-using SCU.COMMON.Elecciones;
+﻿using CONFIG.BL.Elecciones;
+using CONFIG.COMMON.DTOS.Elecciones;
+using CONFIG.COMMON.DTOS.Partidos;
 using SCU.UWP.Views.Partidos;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -32,7 +31,7 @@ namespace SCU.UWP.Views.Elecciones
         {
             AgregarPartido agregarPartido = new AgregarPartido();
             await agregarPartido.ShowAsync();
-            EleccionesRequest eleccionesRequest = await new EleccionesRequest()
+            EleccionesRequest eleccionesRequest = new EleccionesRequest()
             {
                 TipoEleccion = "Gubernaturas",
                 Presindente = txtPresidente.Text,
@@ -40,7 +39,8 @@ namespace SCU.UWP.Views.Elecciones
                 PrimerEscrutador = txtPrimerEscrutador.Text,
                 SegundoEscrutado = txtSegundoEscrutador.Text,
                 CantidadBoletas = txtNumeroBoletas.Text,
-                Partidos = await new List<PartidosDTO>().Add(
+                Partidos = new List<PartidosDTO>()
+                {
                     new PartidosDTO()
                     {
                         Cargo = "Diputado",
@@ -58,7 +58,8 @@ namespace SCU.UWP.Views.Elecciones
                         Suplente = "Yessi",
                         Hipocoristico = "PAN",
                         TipoCandidatura = "Candidato registrado"
-                    }),
+                    }
+                },
                 Distrito = txtDistrito.Text,
                 Entidad = txtEntidad.Text,
                 Municipio = txtMunicipio.Text,

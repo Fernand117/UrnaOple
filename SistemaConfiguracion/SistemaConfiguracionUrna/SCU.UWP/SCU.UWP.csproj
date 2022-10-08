@@ -252,12 +252,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="SCU.BL">
-      <HintPath>..\SCU.BL\bin\Debug\net6.0\SCU.BL.dll</HintPath>
-    </Reference>
-    <Reference Include="SCU.COMMON">
-      <HintPath>..\SCU.COMMON\bin\Debug\net6.0\SCU.COMMON.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\CONFIG.BL\CONFIG.BL.csproj">
+      <Project>{9DE57705-4822-4F4B-98DB-BB83DC27A2E2}</Project>
+      <Name>CONFIG.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CONFIG.COMMON\CONFIG.COMMON.csproj">
+      <Project>{9DA1E8AB-F016-4270-AE19-4B4EFAD540BB}</Project>
+      <Name>CONFIG.COMMON</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
