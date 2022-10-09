@@ -47,6 +47,17 @@ namespace Urna.DAO.Elecciones
 					var elecciones = await context.Configuracion
 												  .ToListAsync();
 
+					foreach (var e in elecciones)
+					{
+						response.Add(new EleccionDTO()
+						{
+							Id = e.Id,
+							Fecha= e.Fecha,
+							codigo = e.codigo,
+							Configuraciones = JsonSerializer.Serialize(e),
+						});
+					}
+
 				}
 			}
 			catch (Exception) { }
