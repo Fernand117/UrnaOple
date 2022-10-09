@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Urna.DAL.Entities.Partidos;
 
 namespace Urna.COMMON.DTOS.Elecciones
 {
     public class EleccionRequest
     {
-        public int IdEleccion { get; set; }
+        public int Id { get; set; }
         public string TipoEleccion { get; set; }
         public string Presidente { get; set; }
         public string Secretario { get; set; }
@@ -19,5 +20,6 @@ namespace Urna.COMMON.DTOS.Elecciones
         public string SeccionElectoral { get; set; }
         public string TipoCasilla { get; set; }
         public string Folio { get; set; }
+        public List<Partidos> Partidos { get; set; }
     }
 }

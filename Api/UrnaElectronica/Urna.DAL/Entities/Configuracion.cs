@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
-namespace Urna.COMMON.DTOS.Elecciones
+namespace Urna.DAL.Entities
 {
-    public class EleccionDTO
+    public class Configuracion
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
