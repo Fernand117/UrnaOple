@@ -1,4 +1,5 @@
 ﻿using CONFIG.COMMON.DTOS.Elecciones;
+using CONFIG.COMMON.DTOS.Partidos;
 using Newtonsoft.Json;
 using System;
 using System.Text.Json;
@@ -33,6 +34,7 @@ namespace CONFIG.DAO.Elecciones
             }*/
             var options = new JsonSerializerOptions { WriteIndented = true };
             string result = System.Text.Json.JsonSerializer.Serialize(request, options);
+
 
             Console.WriteLine(result);
             return request;

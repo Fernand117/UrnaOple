@@ -4,6 +4,7 @@ using CONFIG.COMMON.DTOS.Partidos;
 using SCU.UWP.Views.Partidos;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Nodes;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -16,6 +17,8 @@ namespace SCU.UWP.Views.Elecciones
     /// </summary>
     public sealed partial class NuevaEleccionPage : Page
     {
+        public static List<PartidosDTO> PartidosList = new List<PartidosDTO>();
+
         public NuevaEleccionPage()
         {
             this.InitializeComponent();
@@ -27,10 +30,14 @@ namespace SCU.UWP.Views.Elecciones
             this.Content = mynewPage;
         }
 
-        private async void btnNuevoPartido_Click(object sender, RoutedEventArgs e)
+        public void agregarPartidoLista(string partido)
         {
-            AgregarPartido agregarPartido = new AgregarPartido();
-            await agregarPartido.ShowAsync();
+            PartidosDTO Partidos = System.Text.Json.JsonSerializer.Deserialize<PartidosDTO>(partido);
+            PartidosList.Add(Partidos);
+            Console.WriteLine(PartidosList);
+        }
+        private async void btnAddConfiguracion_Click(object sender, RoutedEventArgs e)
+        {
             EleccionesRequest eleccionesRequest = new EleccionesRequest()
             {
                 TipoEleccion = "Gubernaturas",
@@ -39,27 +46,7 @@ namespace SCU.UWP.Views.Elecciones
                 PrimerEscrutador = txtPrimerEscrutador.Text,
                 SegundoEscrutador = txtSegundoEscrutador.Text,
                 CantidadBoletas = txtNumeroBoletas.Text,
-                Partidos = new List<PartidosDTO>()
-                {
-                    new PartidosDTO()
-                    {
-                        Cargo = "Diputado",
-                        Logotipo = "fmg",
-                        Propietario = "Juan",
-                        Suplente = "Yessi",
-                        Hipocoristico = "PAN",
-                        TipoCandidatura = "Candidato registrado"
-                    },
-                    new PartidosDTO()
-                    {
-                        Cargo = "Diputado",
-                        Logotipo = "fmg",
-                        Propietario = "Fernando",
-                        Suplente = "Yessi",
-                        Hipocoristico = "PAN",
-                        TipoCandidatura = "Candidato registrado"
-                    }
-                },
+                Partidos = PartidosList,
                 Distrito = txtDistrito.Text,
                 Entidad = txtEntidad.Text,
                 Municipio = txtMunicipio.Text,
@@ -67,7 +54,14 @@ namespace SCU.UWP.Views.Elecciones
                 TipoCasilla = txtTipoCasilla.Text,
                 Folio = txtFolio.Text
             };
+
             await new EleccionesBLO().Create(eleccionesRequest);
         }
+        private async void btnNuevoPartido_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPartido agregarPartido = new AgregarPartido();
+            await agregarPartido.ShowAsync();
+        }
+        
     }
 }
