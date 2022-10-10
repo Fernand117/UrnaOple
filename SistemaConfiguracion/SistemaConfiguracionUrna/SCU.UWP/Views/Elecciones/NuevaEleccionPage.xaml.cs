@@ -5,6 +5,7 @@ using SCU.UWP.Lists;
 using SCU.UWP.Views.Partidos;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.Json.Nodes;
 using Windows.UI.Xaml;
@@ -21,6 +22,7 @@ namespace SCU.UWP.Views.Elecciones
     {
 
         public List<PartidosDTO> PartidosList;
+        public ObservableCollection<PartidosDTO> Customers = new ObservableCollection<PartidosDTO>();
 
         public NuevaEleccionPage()
         {
@@ -36,15 +38,19 @@ namespace SCU.UWP.Views.Elecciones
             this.Content = mynewPage;
         }
 
-        public void agregarPartidoLista(string partido)
+        public void agregarPartidoLista(PartidosDTO partidos, ObservableCollection<PartidosDTO> partidosColl)
         {
             //ListaPartidosUI = new ListView();
             PartidosList = new List<PartidosDTO>();
-            PartidosDTO Partidos = System.Text.Json.JsonSerializer.Deserialize<PartidosDTO>(partido);
+            
+            PartidosDTO Partidos = partidos;
+            
             PartidosList.Add(Partidos);
-            Console.WriteLine(PartidosList);
+            Customers = partidosColl;
+            Console.WriteLine(Customers);
 
-            //ListaPartidosUI.ItemsSource = PartidosList;
+            //Customers.Add(Partidos);
+            //ListaPartidosUI.ItemsSource = Customers;
         }
 
         private async void btnAddConfiguracion_Click(object sender, RoutedEventArgs e)

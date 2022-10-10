@@ -2,10 +2,11 @@
     x:Class="SCU.UWP.Views.Elecciones.NuevaEleccionPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:localVM="using:CONFIG.COMMON.DTOS.Partidos"
+    xmlns:local="using:CONFIG.COMMON.DTOS.Partidos"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local1="using:CONFIG.COMMON.DTOS.Partidos"
     mc:Ignorable="d"
+    DataContext="{x:Bind PartidosList}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -93,21 +94,15 @@
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
 
-            <ListView x:Name="ListaPartidosUI" Grid.Column="0" ItemsSource="{x:Bind PartidosList}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="localVM:PartidosDTO">
-                        <StackPanel>
+            <Grid Grid.Column="0">
+                <ListView x:Name="ListaPartidosUI" Background="Azure" ItemsSource="{Binding Customers}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
                             <TextBlock Text="{Binding Cargo}" Foreground="Black"/>
-                            <TextBlock Text="{x:Bind Propietario}" Foreground="Black"/>
-                            <TextBlock Text="{x:Bind Suplente}" Foreground="Black"/>
-                            <TextBlock Text="{x:Bind Hipocoristico}" Foreground="Black"/>
-                            <TextBlock Text="{x:Bind Cargo}" Foreground="Black"/>
-                            <TextBlock Text="{x:Bind TipoCandidatura}" Foreground="Black"/>
-                            <TextBlock Text="{x:Bind Logotipo}" Foreground="Black"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
             <Button x:Name="btnNuevoPartido" Content="Nuevo partido" Grid.Column="1" VerticalAlignment="Top" Width="150" Click="btnNuevoPartido_Click"/>
             <Button x:Name="btnAddConfiguracion" Content="AGREGAR TODO" Grid.Column="1"  Width="150" Click="btnAddConfiguracion_Click"/>
         </Grid>
