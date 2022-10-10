@@ -140,6 +140,10 @@
       <Project>{9DA1E8AB-F016-4270-AE19-4B4EFAD540BB}</Project>
       <Name>CONFIG.COMMON</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CONFIG.DAL\CONFIG.DAL.csproj">
+      <Project>{490C97C4-8188-4C5F-BB52-24AC0CD7215C}</Project>
+      <Name>CONFIG.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
