@@ -95,7 +95,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <ListView x:Name="ListaPartidosUI" Background="Azure" ItemsSource="{Binding Customers}">
+                <ListView x:Name="ListaPartidosUI" Background="Azure">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Cargo}" Foreground="Black"/>

@@ -26,6 +26,7 @@ namespace SCU.UWP.Views.Partidos
     public sealed partial class AgregarPartido : ContentDialog
     {
         public ObservableCollection<PartidosDTO> Customers = new ObservableCollection<PartidosDTO>();
+
         public AgregarPartido()
         {
             this.InitializeComponent();

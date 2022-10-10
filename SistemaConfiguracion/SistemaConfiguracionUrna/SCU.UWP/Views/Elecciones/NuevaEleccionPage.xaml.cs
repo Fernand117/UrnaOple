@@ -22,6 +22,7 @@ namespace SCU.UWP.Views.Elecciones
     {
 
         public List<PartidosDTO> PartidosList;
+        public PartidosDTO partidos;
         public ObservableCollection<PartidosDTO> Customers = new ObservableCollection<PartidosDTO>();
 
         public NuevaEleccionPage()
@@ -30,6 +31,12 @@ namespace SCU.UWP.Views.Elecciones
             this.InitializeComponent();
             //ListaPartidosUI = new ListView();
             //ListaPartidosUI.ItemsSource = PartidosList;
+            Customers.Add(new PartidosDTO()
+            {
+                Cargo = "Prueba"
+            });
+
+            ListaPartidosUI.ItemsSource = Customers;
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)
@@ -38,19 +45,18 @@ namespace SCU.UWP.Views.Elecciones
             this.Content = mynewPage;
         }
 
-        public void agregarPartidoLista(PartidosDTO partidos, ObservableCollection<PartidosDTO> partidosColl)
+        public void agregarPartidoLista(PartidosDTO _partidos, ObservableCollection<PartidosDTO> _Customers)
         {
-            //ListaPartidosUI = new ListView();
+            partidos = _partidos;
             PartidosList = new List<PartidosDTO>();
-            
-            PartidosDTO Partidos = partidos;
-            
-            PartidosList.Add(Partidos);
-            Customers = partidosColl;
-            Console.WriteLine(Customers);
 
-            //Customers.Add(Partidos);
-            //ListaPartidosUI.ItemsSource = Customers;
+            PartidosDTO Partidos = _partidos;
+
+            PartidosList.Add(Partidos);
+
+            Customers.Add(Partidos);
+
+            ListaPartidosUI.ItemsSource = _Customers;
         }
 
         private async void btnAddConfiguracion_Click(object sender, RoutedEventArgs e)
