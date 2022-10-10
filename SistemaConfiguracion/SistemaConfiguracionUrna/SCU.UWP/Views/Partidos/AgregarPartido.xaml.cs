@@ -51,11 +51,6 @@ namespace SCU.UWP.Views.Partidos
             page.agregarPartidoLista(result);
 
         }
-
-        public void imprimir()
-        {
-            Console.WriteLine("holis");
-        }
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
 

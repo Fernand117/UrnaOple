@@ -1,6 +1,7 @@
 ﻿using CONFIG.BL.Elecciones;
 using CONFIG.COMMON.DTOS.Elecciones;
 using CONFIG.COMMON.DTOS.Partidos;
+using SCU.UWP.Lists;
 using SCU.UWP.Views.Partidos;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,13 @@ namespace SCU.UWP.Views.Elecciones
     /// </summary>
     public sealed partial class NuevaEleccionPage : Page
     {
-        public static List<PartidosDTO> PartidosList = new List<PartidosDTO>();
+        public List<PartidosDTO> PartidosList;
 
         public NuevaEleccionPage()
         {
             this.InitializeComponent();
+            ListaPartidosUI = new ListView();
+            PartidosList = new List<PartidosDTO>();
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)
@@ -35,7 +38,10 @@ namespace SCU.UWP.Views.Elecciones
             PartidosDTO Partidos = System.Text.Json.JsonSerializer.Deserialize<PartidosDTO>(partido);
             PartidosList.Add(Partidos);
             Console.WriteLine(PartidosList);
+            ListaPartidosUI.ItemsSource = PartidosList;
+
         }
+
         private async void btnAddConfiguracion_Click(object sender, RoutedEventArgs e)
         {
             EleccionesRequest eleccionesRequest = new EleccionesRequest()
