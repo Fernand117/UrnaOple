@@ -1,5 +1,6 @@
 ﻿using CONFIG.COMMON.DTOS.Elecciones;
 using CONFIG.COMMON.DTOS.Partidos;
+using CONFIG.DAL.Context;
 using Newtonsoft.Json;
 using System;
 using System.Text.Json;
@@ -11,7 +12,9 @@ namespace CONFIG.DAO.Elecciones
     {
         public async Task<EleccionesRequest> Create(EleccionesRequest request)
         {
-            /*ConfigContext config = new ConfigContext();
+            ConfiContext config = new ConfigContext();
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string result = System.Text.Json.JsonSerializer.Serialize(request, options);
             try
             {
                 using (WebResponse response = config.configuracionApi("POST").GetResponse())
@@ -31,10 +34,7 @@ namespace CONFIG.DAO.Elecciones
             catch (WebException ex)
             {
                 Console.WriteLine(ex.StackTrace);
-            }*/
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string result = System.Text.Json.JsonSerializer.Serialize(request, options);
-
+            }
 
             Console.WriteLine(result);
             return request;
