@@ -5,6 +5,7 @@ using SCU.UWP.Lists;
 using SCU.UWP.Views.Partidos;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text.Json.Nodes;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,13 +19,15 @@ namespace SCU.UWP.Views.Elecciones
     /// </summary>
     public sealed partial class NuevaEleccionPage : Page
     {
+
         public List<PartidosDTO> PartidosList;
 
         public NuevaEleccionPage()
         {
+            //ListaPartidosUI = new ListView();
             this.InitializeComponent();
-            ListaPartidosUI = new ListView();
-            PartidosList = new List<PartidosDTO>();
+            //ListaPartidosUI = new ListView();
+            //ListaPartidosUI.ItemsSource = PartidosList;
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)
@@ -35,11 +38,13 @@ namespace SCU.UWP.Views.Elecciones
 
         public void agregarPartidoLista(string partido)
         {
+            //ListaPartidosUI = new ListView();
+            PartidosList = new List<PartidosDTO>();
             PartidosDTO Partidos = System.Text.Json.JsonSerializer.Deserialize<PartidosDTO>(partido);
             PartidosList.Add(Partidos);
             Console.WriteLine(PartidosList);
-            ListaPartidosUI.ItemsSource = PartidosList;
 
+            //ListaPartidosUI.ItemsSource = PartidosList;
         }
 
         private async void btnAddConfiguracion_Click(object sender, RoutedEventArgs e)
