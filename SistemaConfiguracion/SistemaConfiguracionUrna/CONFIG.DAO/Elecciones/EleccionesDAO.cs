@@ -15,10 +15,11 @@ namespace CONFIG.DAO.Elecciones
         public async Task<EleccionesRequest> Create(EleccionesRequest request)
         {
             ConfiContext config = new ConfiContext();
+            var requestElecciones = config.configuracionApi("POST");
             var options = new JsonSerializerOptions { WriteIndented = true };
             string result = System.Text.Json.JsonSerializer.Serialize(request, options);
 
-            using (StreamWriter streamWriter = new StreamWriter(config.configuracionApi("POST").GetRequestStream()))
+            using (StreamWriter streamWriter = new StreamWriter(requestElecciones.GetRequestStream()))
             {
                 streamWriter.Write(result);
                 streamWriter.Flush();
@@ -27,7 +28,7 @@ namespace CONFIG.DAO.Elecciones
 
             try
             {
-                using (WebResponse response = config.configuracionApi("POST").GetResponse())
+                using (WebResponse response = requestElecciones.GetResponse())
                 {
                     using (Stream stream = response.GetResponseStream())
                     {
