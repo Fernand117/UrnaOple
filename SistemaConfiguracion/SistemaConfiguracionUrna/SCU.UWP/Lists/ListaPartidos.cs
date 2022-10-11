@@ -9,11 +9,29 @@ namespace SCU.UWP.Lists
 {
     public class ListaPartidos
     {
-        public List<PartidosDTO> partidos;
+        private PartidosDTO partidos;
+        private ListaPartidos() { }
 
-        public void SetPartidos()
+        private static ListaPartidos _listaPartidos;
+
+
+        public static ListaPartidos getInstance()
         {
-            partidos = new List<PartidosDTO>();
+            if (_listaPartidos == null)
+            {
+                _listaPartidos = new ListaPartidos();
+            }
+            return _listaPartidos;
+        }
+
+        public void agregarPartido(PartidosDTO partidosDTO)
+        {
+            partidos = partidosDTO;
+        }
+
+        public PartidosDTO getPartido()
+        {
+            return partidos;
         }
     }
 }

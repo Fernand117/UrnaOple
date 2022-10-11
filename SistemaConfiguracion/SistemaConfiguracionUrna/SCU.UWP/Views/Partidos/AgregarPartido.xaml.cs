@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using SCU.UWP.Views.Elecciones;
 using System.Text.Json;
 using System.Collections.ObjectModel;
+using SCU.UWP.Lists;
 
 
 // La plantilla de elemento del cuadro de diálogo de contenido está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
@@ -25,7 +26,6 @@ namespace SCU.UWP.Views.Partidos
 {
     public sealed partial class AgregarPartido : ContentDialog
     {
-        public ObservableCollection<PartidosDTO> Customers = new ObservableCollection<PartidosDTO>();
 
         public AgregarPartido()
         {
@@ -48,19 +48,8 @@ namespace SCU.UWP.Views.Partidos
                 TipoCandidatura = txt_tipo.Text
             };
 
-            Customers.Add(new PartidosDTO()
-            {
-                Cargo = txt_cargo.Text,
-                Logotipo = txt_logotipo.Text,
-                Propietario = txt_propietario.Text,
-                Suplente = txt_suplente.Text,
-                Hipocoristico = txt_hipocoristico.Text,
-                TipoCandidatura = txt_tipo.Text
-            });
-
-            NuevaEleccionPage page = new NuevaEleccionPage();
-            page.agregarPartidoLista(partidos, Customers);
-
+            ListaPartidos listaPartidos = ListaPartidos.getInstance();
+            listaPartidos.agregarPartido(partidos);
         }
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {

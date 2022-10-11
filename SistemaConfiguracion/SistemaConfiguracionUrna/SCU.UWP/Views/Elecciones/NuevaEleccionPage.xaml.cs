@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.Json.Nodes;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -21,42 +22,19 @@ namespace SCU.UWP.Views.Elecciones
     public sealed partial class NuevaEleccionPage : Page
     {
 
-        public List<PartidosDTO> PartidosList;
+        public List<PartidosDTO> PartidosList = new List<PartidosDTO>();
         public PartidosDTO partidos;
         public ObservableCollection<PartidosDTO> Customers = new ObservableCollection<PartidosDTO>();
 
         public NuevaEleccionPage()
         {
-            //ListaPartidosUI = new ListView();
             this.InitializeComponent();
-            //ListaPartidosUI = new ListView();
-            //ListaPartidosUI.ItemsSource = PartidosList;
-            Customers.Add(new PartidosDTO()
-            {
-                Cargo = "Prueba"
-            });
-
-            ListaPartidosUI.ItemsSource = Customers;
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
             EleccionesPage mynewPage = new EleccionesPage();
             this.Content = mynewPage;
-        }
-
-        public void agregarPartidoLista(PartidosDTO _partidos, ObservableCollection<PartidosDTO> _Customers)
-        {
-            partidos = _partidos;
-            PartidosList = new List<PartidosDTO>();
-
-            PartidosDTO Partidos = _partidos;
-
-            PartidosList.Add(Partidos);
-
-            Customers.Add(Partidos);
-
-            ListaPartidosUI.ItemsSource = _Customers;
         }
 
         private async void btnAddConfiguracion_Click(object sender, RoutedEventArgs e)
@@ -84,7 +62,13 @@ namespace SCU.UWP.Views.Elecciones
         {
             AgregarPartido agregarPartido = new AgregarPartido();
             await agregarPartido.ShowAsync();
+
+            ListaPartidos listaPartidos = ListaPartidos.getInstance();
+            PartidosDTO Partidos = listaPartidos.getPartido();
+            PartidosList.Add(Partidos);
+            Customers.Add(Partidos);
+            listViewPartidos.ItemsSource = Customers;
         }
-        
+
     }
 }
