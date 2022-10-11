@@ -132,8 +132,10 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-            <Button x:Name="btnNuevoPartido" Content="Nuevo partido" Grid.Column="1" VerticalAlignment="Top" Width="150" Click="btnNuevoPartido_Click"/>
-            <Button x:Name="btnAddConfiguracion" Content="AGREGAR TODO" Grid.Column="1"  Width="150" Click="btnAddConfiguracion_Click"/>
+            <StackPanel Grid.Column="1">
+                <Button x:Name="btnNuevoPartido" Content="Nuevo partido"  Width="150" Click="btnNuevoPartido_Click"/>
+                <Button x:Name="btnAddConfiguracion" Content="AGREGAR TODO" Margin="0, 10, 0, 0" Width="150" Click="btnAddConfiguracion_Click"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
