@@ -1,0 +1,24 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<div class="contenedor">
+    <div class="contoptions">
+        <div class="cont">
+            <div class="elecciones" [routerLink]="['/elecciones/procesos']">
+                <h3>Procesos electorales locales</h3>
+            </div>
+        </div>
+        <div class="cont">
+            <div class="participacion" [routerLink]="['/elecciones/participacion']">
+                <h3>Mecanismos de participación ciudadana</h3>
+            </div>
+        </div>
+        <div class="contf">
+            <div class="contff">
+                <div class="escolares" [routerLink]="['/elecciones/escolares']">
+                    <h3>Elecciones escolares</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

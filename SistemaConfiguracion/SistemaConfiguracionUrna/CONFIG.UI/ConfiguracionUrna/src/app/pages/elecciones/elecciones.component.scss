@@ -1,0 +1,60 @@
+.contoptions {
+    //background-color: rosybrown;
+    width: 100%;
+    height: 600px;
+    .cont {
+        width: 50%;
+        height: 300px;
+        //background-color: cadetblue;
+        float: left;
+        padding: 10px;
+        .elecciones,
+        .participacion {
+            width: 90%;
+            height: 290px;
+            margin: 0 auto;
+            background-color: #E5E5E5;
+            border-radius: 10px;
+            text-align: center;
+            padding-top: 20%;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        .elecciones:hover {
+            background-color: #E33889;
+            color: white;
+        }
+        .participacion:hover {
+            background-color: #E33889;
+            color: white;
+        }
+    }
+    .contf {
+        width: 100%;
+        height: 300px;
+        //background-color: rebeccapurple;
+        float: left;
+        .contff {
+            width: 50%;
+            height: 300px;
+            margin: 0 auto;
+            //background-color: cadetblue;
+            padding: 10px;
+            .escolares {
+                width: 90%;
+                height: 290px;
+                margin: 0 auto;
+                background-color: #E5E5E5;
+                border-radius: 10px;
+                text-align: center;
+                padding-top: 25%;
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+            .escolares:hover {
+                background-color: #E33889;
+                color: white;
+            }
+        }
+    }
+}
