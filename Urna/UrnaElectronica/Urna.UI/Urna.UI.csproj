@@ -126,6 +126,24 @@
     <Compile Include="Views\Mensajes\Inicio\bienvenidaUrnaPage.xaml.cs">
       <DependentUpon>bienvenidaUrnaPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Votaciones\EleccionPage.xaml.cs">
+      <DependentUpon>EleccionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Votaciones\MensajesModales\CandidatoSeleccion\SeleccionModal.xaml.cs">
+      <DependentUpon>SeleccionModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Votaciones\MensajesModales\VotoNulo\VotoNuloModal.xaml.cs">
+      <DependentUpon>VotoNuloModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Votaciones\TiposVotaciones\Ayuntamiento\AyuntamientoPage.xaml.cs">
+      <DependentUpon>AyuntamientoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Votaciones\TiposVotaciones\Diputaciones\DiputacionesPage.xaml.cs">
+      <DependentUpon>DiputacionesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Votaciones\TiposVotaciones\Gubernatura\GubernaturaPage.xaml.cs">
+      <DependentUpon>GubernaturaPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -156,13 +174,40 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Votaciones\EleccionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Votaciones\MensajesModales\CandidatoSeleccion\SeleccionModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Votaciones\MensajesModales\VotoNulo\VotoNuloModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Votaciones\TiposVotaciones\Ayuntamiento\AyuntamientoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Votaciones\TiposVotaciones\Diputaciones\DiputacionesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Votaciones\TiposVotaciones\Gubernatura\GubernaturaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.13</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Inicializacion\" />
+    <Folder Include="Views\Votaciones\MensajesModales\CandidatoNoRegistrado\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

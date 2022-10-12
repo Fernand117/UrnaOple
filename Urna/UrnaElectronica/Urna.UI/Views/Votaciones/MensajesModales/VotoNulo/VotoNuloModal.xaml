@@ -1,0 +1,15 @@
+﻿<ContentDialog
+    x:Class="Urna.UI.Views.Votaciones.MensajesModales.VotoNulo.VotoNuloModal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Urna.UI.Views.Votaciones.MensajesModales.VotoNulo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonText="Si, Confirmar"
+    SecondaryButtonText="No, Cancelar"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick" Width="2000" Height="2000">
+
+    <Grid Background="#FFD4C1A7" RenderTransformOrigin="0.495,0.506" AutomationProperties.LiveSetting="Off" Padding="-7,0,0,0" UseLayoutRounding="False" Height="146" VerticalAlignment="Center" HorizontalAlignment="Left" Width="342" Margin="-32,0,0,0"/>
+</ContentDialog>
