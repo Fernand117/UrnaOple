@@ -40,7 +40,52 @@
         <input type="number" name="folio" id="folio" placeholder="Foliio" class="form-control" [(ngModel)]="elecciones.folio">
     </div>
 
-    <div class="partidos"></div>
+    <div class="partidos">
+        <h5>Lista de partidos</h5>
+
+        <!--<div class="pat">
+            <div class="logo"> <img src="../../../../assets/img/LogoOple.png" alt="" class="imgLogo"> </div>
+            <div class="propietario">
+                <h6>Propietario</h6>
+                <p>Lusi Fernando Leyva Luna</p>
+            </div>
+            <div class="suplente">
+                <h6>Suplente</h6>
+                <p>Samira Guadalupe Hernandez Garcia</p>
+            </div>
+            <div class="partido">
+                <h6>Partido</h6>
+                <p>Vamos por México</p>
+            </div>
+            <div class="opciones">
+                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
+                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
+                <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
+            </div>
+        </div>-->
+
+
+        <div class="pat" *ngFor="let item of partidosList">
+            <div class="logo"> <img src="{{item.Logotipo}}" alt="" class="imgLogo"> </div>
+            <div class="propietario">
+                <h6>Propietario</h6>
+                <p>{{item.Propietario}}</p>
+            </div>
+            <div class="suplente">
+                <h6>Suplente</h6>
+                <p>{{item.Suplente}}</p>
+            </div>
+            <div class="partido">
+                <h6>Partido</h6>
+                <p>{{item.Hipocoristico}}</p>
+            </div>
+            <div class="opciones">
+                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
+                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
+                <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
+            </div>
+        </div>
+    </div>
     <div class="extraPartidos">
         <button class="btn btn-success" (click)="addPartido()">Añadir partido</button>
     </div>

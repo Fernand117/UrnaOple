@@ -14,6 +14,8 @@ import { EscolaresComponent } from './pages/escolares/escolares.component';
 import { AdminComponent } from './pages/procesos/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+import { CloudinaryModule } from '@cloudinary/ng';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CloudinaryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

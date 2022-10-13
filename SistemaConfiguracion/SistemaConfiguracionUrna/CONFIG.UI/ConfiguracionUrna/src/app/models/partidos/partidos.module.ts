@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class PartidosModule {
-  public Logotipo: Object;
+  public Id: number;
+  public Logotipo: string;
   public Propietario: string;
   public Suplente: string;
   public Hipocoristico: string;
