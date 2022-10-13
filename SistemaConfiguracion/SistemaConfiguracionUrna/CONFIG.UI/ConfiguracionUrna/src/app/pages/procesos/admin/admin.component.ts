@@ -1,5 +1,7 @@
+import { EleccionesModule } from './../../../models/elecciones/elecciones.module';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { PartidosModule } from 'src/app/models/partidos/partidos.module';
 
 @Component({
   selector: 'app-admin',
@@ -8,9 +10,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 
+  public partidos: PartidosModule = new PartidosModule();
+  public elecciones: EleccionesModule = new EleccionesModule();
+
   public imagePath: any;
   imgURL: any;
   public message: string;
+  public partidosList: any[] = [];
   //myForm: FormGroup;
 
   constructor(
@@ -46,6 +52,34 @@ export class AdminComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     }
+  }
+
+
+  agregarPartidos(){
+    this.partidosList.push(this.partidos);
+    console.log(this.partidosList);
+  }
+
+  guardarConfiguracion() {
+    const datos = {
+      "TipoEleccion": this.elecciones.tipoEleccion,
+      "Presidente": this.elecciones.presidente,
+      "Secretario": this.elecciones.secretario,
+      "PrimerEscrutador": this.elecciones.primerEscrutador,
+      "SegundoEscrutador": this.elecciones.segundoEscrutador,
+      "CantidadBoletas": this.elecciones.nBoletas,
+      "Entidad": this.elecciones.entidad,
+      "Distrito": this.elecciones.distrito,
+      "Municipio": this.elecciones.municipio,
+      "SeccionElectoral": this.elecciones.seccion,
+      "TipoCasilla": this.elecciones.tipoCasilla,
+      "Folio": this.elecciones.folio,
+      "Partidos": this.partidosList
+    }
+
+    let json = JSON.stringify(datos);
+    console.log(datos)
+    console.log(json)
   }
 
 }

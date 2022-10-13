@@ -12,7 +12,8 @@ import { ProcesosComponent } from './pages/procesos/procesos.component';
 import { ParticipacionComponent } from './pages/participacion/participacion.component';
 import { EscolaresComponent } from './pages/escolares/escolares.component';
 import { AdminComponent } from './pages/procesos/admin/admin.component';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,9 @@ import { AdminComponent } from './pages/procesos/admin/admin.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
