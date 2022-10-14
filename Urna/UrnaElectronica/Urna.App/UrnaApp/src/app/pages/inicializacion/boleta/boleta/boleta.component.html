@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="row">
+    <div class="col-4">
+        <div class="datos_urna">
+            <p>Municipio: Xalapa</p>
+            <p>Entidad: Veracruz</p>
+            <p>Distrito: Xalapa</p>
+            <p>Fecha: 13/10/2022</p>
+        </div>
+    </div>
+    <div class="col-8" id="boleta">
+        <h2>Elección y boleta</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Número</th>
+                <th scope="col">Candidato</th>
+                <th scope="col">Cantidad de botos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let boleta of boleta">
+                <td>{{boleta.id}}</td>
+                <td>{{boleta.Candidato}}</td>
+                <td>{{boleta.Num_votos}}</td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="botones">
+            <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
+            <button type="button" class="btn btn-primary" id="btn2" (click)="continuar()">Continuar</button>
+        </div>
+    </div>
+  </div>
+<app-footer></app-footer>

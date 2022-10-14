@@ -1,0 +1,103 @@
+<!-- TARJETAS -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 margen" *ngFor="let c of info" >
+      <div class="row no-gutters" (click)="openModalRegistrado(c)">
+        <div class="imagen col-md-4">
+          <img class="img-fluid" src="../../../assets/img/logoOPLE.png">
+         </div>
+        <div class="col-md-8">
+        <div class="card-body">
+        <h5 class="card-title">{{c.Candidato}}</h5>
+        <p class="card-text">Propietario</p>
+        <p class="card-text"><small class="text-muted">{{c.Propietario}}</small></p>
+        <p class="card-text">Suplente</p>
+        <p class="card-text"><small class="text-muted">{{c.Suplente}}</small></p>
+      </div>
+    </div>
+     </div>
+   </div>
+   <div class="col-md-3 margen nulo">
+    <div class="row no-gutters" (click)="openModalNulo()">
+    <div class="card-body">
+      <h5>VOTO NULO</h5>
+    </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 margen nulo">
+    <div class="row no-gutters" (click)="openModalNoRegistrado()" data-target="#ejemplo">
+    <div class="card-body ">
+      <h5>CANDIDATO NO REGISTRADO
+      </h5>
+    </div>
+    </div>
+  </div><div class="footer-nulo"></div>
+  </div> 
+</div>
+
+<!-- MODALES -->
+
+<!-- MODAL CANDIDATO REGISTRADO SELECCIONADO -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayRegistrado}" id="ejemplo">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <h4>Seleccionaste</h4>
+        <p>{{candidatoSeleccionado.Candidato}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closePopup()">Si, Confirmar</button>
+        <button type="button" class="btn btn-danger" (click)="closePopup()">No, Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!-- MODAL VOTO NULO -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayVotoNulo}" id="ejemplo">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <h4>Está usted anulando su voto</h4>
+        <h4>¿Es correcto?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closePopup()">Si, Confirmar</button>
+        <button type="button" class="btn btn-danger" (click)="closePopup()">No, Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!-- MODAL CANDIDATO NO REGISTRADO -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayNoRegistrado}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <h4>NO REGISTRADO</h4>
+        <p>Escriba el nombre del candidato por el que desea votar</p>
+        <form action="/votaciones" method="GET">
+          <app-keyboard></app-keyboard>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Votar</button>
+            <button type="button" class="btn btn-danger" (click)="closePopup()">Regresar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ 
+
+
+
