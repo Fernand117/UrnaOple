@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PartidosModule } from 'src/app/models/partidos/partidos.module';
 import { ApiServiceService } from '../../../services/api-service.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -24,11 +25,13 @@ export class AdminComponent implements OnInit {
   private resData: any;
 
   constructor(
-    private apiService: ApiServiceService
+    private apiService: ApiServiceService,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
+    this.imgURL = "https://www.oplever.org.mx/wp-content/uploads/2018/08/logo-ople.jpg";
   }
 
   addPartido() {
@@ -117,6 +120,7 @@ export class AdminComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.router.navigateByUrl('/elecciones')
       }
     );
   }

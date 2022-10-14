@@ -15,6 +15,7 @@ import { AdminComponent } from './pages/procesos/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { CloudinaryModule } from '@cloudinary/ng';
+import { MecanismosadminComponent } from './pages/mecanismosadmin/mecanismosadmin.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CloudinaryModule } from '@cloudinary/ng';
     ProcesosComponent,
     ParticipacionComponent,
     EscolaresComponent,
-    AdminComponent
+    AdminComponent,
+    MecanismosadminComponent
   ],
   imports: [
     BrowserModule,

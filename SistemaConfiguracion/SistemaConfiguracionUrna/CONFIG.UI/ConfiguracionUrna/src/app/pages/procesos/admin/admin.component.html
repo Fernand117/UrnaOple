@@ -3,13 +3,18 @@
 
 <div class="contenedor">
     <div class="title">
+        <button class="btn btnBack" [routerLink]="['/elecciones']">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+          </svg>
+        </button>
         <h3>Crear una nueva configuración.</h3>
         <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar</button>
     </div>
     <div class="form">
 
         <h5>Seleccione el tipo de proceso electoral</h5>
-        <select name="tipo" id="tipo" class="form-control" [(ngModel)]="elecciones.tipoEleccion">
+        <select name="tipo" id="tipo" class="form-select" [(ngModel)]="elecciones.tipoEleccion">
           <option value="gubernatura">Gubernatura</option>
           <option value="diputaciones">Diputacioes</option>
           <option value="ayuntamientos">Ayuntamientos</option>
@@ -25,7 +30,7 @@
     </div>
     <div class="form">
         <h5>Tipo de casilla</h5>
-        <select name="tipo" id="tipo" class="form-control" [(ngModel)]="elecciones.tipoCasilla">
+        <select name="tipo" id="tipo" class="form-select" [(ngModel)]="elecciones.tipoCasilla">
           <option value="basica">Basica</option>
           <option value="contigua">Contigua</option>
           <option value="Extraordinaria">Extraordinaria</option>
@@ -104,7 +109,7 @@
                 <input type="text" name="suplente" id="suplente" placeholder="Suplente" class="form-control" [(ngModel)]="partidos.Suplente">
                 <input type="text" name="hipocoristico" id="hipocoristico" placeholder="Hipocorístico" class="form-control" [(ngModel)]="partidos.Hipocoristico">
                 <input type="text" name="cargo" id="cargo" placeholder="Cargo" class="form-control" [(ngModel)]="partidos.Cargo">
-                <select name="tipo" id="tipo" class="form-control" [(ngModel)]="partidos.TipoCandidatura">
+                <select name="tipo" id="tipo" class="form-select" [(ngModel)]="partidos.TipoCandidatura">
                   <option value="Candidatura registrada">Candidatura registrada</option>
                   <option value="No Registrado">No registrado</option>
                   <option value="Coalición">Coalición</option>
@@ -113,7 +118,7 @@
             </div>
             <div class="formLogo">
                 <input #file type="file" accept='image/*' (change)="preview(file.files)" name="logo" id="logo" class="form-control">
-                <img [src]="imgURL" alt="" class="imgLogo" width="350px" height="200px">
+                <img [src]="imgURL" alt="" class="imgLogo" id="imgLogoOple" width="350px" height="200px">
             </div>
         </div>
         <div class="cb">

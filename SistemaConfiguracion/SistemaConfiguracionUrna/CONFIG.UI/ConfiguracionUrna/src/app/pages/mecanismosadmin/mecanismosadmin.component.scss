@@ -18,7 +18,7 @@
 
 .form {
     width: 50%;
-    height: 250px;
+    height: 400px;
     //background-color: royalblue;
     float: left;
     padding: 3%;
@@ -28,58 +28,26 @@
     }
 }
 
-.candidatos {
+.preguntas {
     width: 80%;
-    height: auto;
-    //background-color: maroon;
+    height: 100px;
+    //background-color: brown;
     float: left;
     padding: 3%;
-    .pat {
+    .listpreguntas {
         width: 100%;
-        height: 100px;
+        height: 50px;
         border-radius: 10px;
         background-color: #E5E5E5;
+        padding: 1.5%;
         margin-bottom: 10px;
-        .logo {
-            width: 12%;
-            height: 100px;
-            //background-color: royalblue;
-            float: left;
-            padding-top: 10px;
-            text-align: center;
-            .imgLogo {
-                width: 100px;
-            }
-        }
-        .propietario,
-        .suplente,
-        .partido {
-            width: 22%;
-            height: 100px;
-            //background-color: rosybrown;
-            float: left;
-            padding: 10px;
-            text-align: center;
-        }
-        .opciones {
-            width: 20%;
-            height: 100px;
-            //background-color: rebeccapurple;
-            float: left;
-            text-align: center;
-            padding-top: 2%;
-            .imgBtn {
-                width: 50px;
-                padding: 5px;
-            }
-        }
     }
 }
 
-.btnListCandidatos {
+.btnGPreguntas {
     width: 20%;
-    height: auto;
-    //background-color: rebeccapurple;
+    height: 100px;
+    //background-color: cadetblue;
     float: left;
     padding: 3%;
     text-align: center;
@@ -90,10 +58,10 @@
 
 .formPartidos {
     display: none;
-    width: 70%;
-    height: 450px;
-    margin-top: -8%;
-    margin-left: 0%;
+    width: 45%;
+    height: 350px;
+    margin-top: -5%;
+    margin-left: 10%;
     background-color: #E5E5E5;
     position: fixed;
     z-index: 1;
@@ -119,24 +87,11 @@
     }
     .cf {
         width: 100%;
-        height: 300px;
+        height: 200px;
         //background-color: blue;
         padding: 3%;
-        .formDatos {
-            width: 60%;
-            height: auto;
-            float: left;
-            //background-color: burlywood;
-        }
-        .formLogo {
-            width: 40%;
-            height: auto;
-            float: left;
-            //background-color: crimson;
-            padding: 5px;
-            text-align: center;
-        }
         .form-control {
+            margin-top: 5%;
             margin-bottom: 5px;
         }
     }
