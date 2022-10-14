@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { KeyboardComponent } from '../keyboard/keyboard.component';
 
 @Component({
   selector: 'app-card',
@@ -14,6 +15,8 @@ export class CardComponent implements OnInit {
   displayVotoNulo = "none"
   displayNoRegistrado = "none";
   candidatoSeleccionado: any = "";
+  @ViewChild(KeyboardComponent)
+  hijo: KeyboardComponent = new KeyboardComponent;
 
   ngOnInit(): void {
   }
@@ -37,5 +40,10 @@ export class CardComponent implements OnInit {
     this.displayNoRegistrado = "none"
   }
 
+
+  votar() {
+    console.log("voto por: ",this.hijo.value);
+    this.closePopup();
+  }
 
 }

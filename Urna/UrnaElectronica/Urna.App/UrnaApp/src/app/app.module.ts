@@ -17,6 +17,7 @@ import { BoletaComponent } from './pages/inicializacion/boleta/boleta/boleta.com
 import { KeyboardComponent } from './components/keyboard/keyboard.component';
 import { ConfiguracionComponent } from './pages/inicializacion/configuracion/configuracion/configuracion.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
