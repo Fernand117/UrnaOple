@@ -1,0 +1,151 @@
+.title {
+    width: 100%;
+    height: 100px;
+    //background-color: rosybrown;
+    padding: 3%;
+    h3 {
+        float: left;
+    }
+    .btn {
+        width: 100px;
+        float: right;
+    }
+    .btnBack {
+        width: auto;
+        float: left;
+    }
+}
+
+.form {
+    width: 50%;
+    height: 400px;
+    //background-color: rebeccapurple;
+    float: left;
+    padding: 3%;
+    .form-control {
+        margin-bottom: 5px;
+    }
+}
+
+.partidos {
+    width: 80%;
+    height: auto;
+    //background-color: maroon;
+    float: left;
+    padding: 3%;
+    .pat {
+        width: 100%;
+        height: 100px;
+        border-radius: 10px;
+        background-color: #E5E5E5;
+        margin-bottom: 10px;
+        .logo {
+            width: 12%;
+            height: 100px;
+            //background-color: royalblue;
+            float: left;
+            padding-top: 10px;
+            text-align: center;
+            .imgLogo {
+                width: 100px;
+            }
+        }
+        .propietario,
+        .suplente,
+        .partido {
+            width: 22%;
+            height: 100px;
+            //background-color: rosybrown;
+            float: left;
+            padding: 10px;
+            text-align: center;
+        }
+        .opciones {
+            width: 20%;
+            height: 100px;
+            //background-color: rebeccapurple;
+            float: left;
+            text-align: center;
+            padding-top: 2%;
+            .imgBtn {
+                width: 50px;
+                padding: 5px;
+            }
+        }
+    }
+}
+
+.extraPartidos {
+    width: 20%;
+    height: auto;
+    //background-color: mediumaquamarine;
+    float: left;
+    padding: 3%;
+    .btn {
+        width: 100%;
+    }
+}
+
+.formPartidos {
+    display: none;
+    width: 70%;
+    height: 450px;
+    margin-top: -8%;
+    margin-left: 0%;
+    background-color: #E5E5E5;
+    position: fixed;
+    z-index: 1;
+    overflow: auto;
+    border-radius: 10px;
+    box-shadow: 10px 11px 14px -5px rgba(0, 0, 0, 0.41);
+    -webkit-box-shadow: 10px 11px 14px -5px rgba(0, 0, 0, 0.41);
+    -moz-box-shadow: 10px 11px 14px -5px rgba(0, 0, 0, 0.41);
+    .tp {
+        width: 100%;
+        height: 90px;
+        //background-color: aqua;
+        padding: 1%;
+        text-align: center;
+        .logoOple {
+            width: 100px;
+            float: left;
+        }
+        h5 {
+            float: inline-end;
+            margin-top: 2%;
+        }
+    }
+    .cf {
+        width: 100%;
+        height: 300px;
+        //background-color: blue;
+        padding: 3%;
+        .formDatos {
+            width: 60%;
+            height: auto;
+            float: left;
+            //background-color: burlywood;
+        }
+        .formLogo {
+            width: 40%;
+            height: auto;
+            float: left;
+            //background-color: crimson;
+            padding: 5px;
+            text-align: center;
+        }
+        .form-control {
+            margin-bottom: 5px;
+        }
+    }
+    .cb {
+        width: 100%;
+        height: 60px;
+        //background-color: brown;
+        text-align: center;
+        .btn {
+            width: 150px;
+            margin: 1%;
+        }
+    }
+}

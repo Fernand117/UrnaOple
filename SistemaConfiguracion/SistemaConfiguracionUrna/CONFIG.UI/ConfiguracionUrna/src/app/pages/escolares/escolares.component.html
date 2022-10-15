@@ -1,0 +1,83 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<div class="contenedor">
+    <div class="title">
+        <button class="btn btnBack" [routerLink]="['/elecciones']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+      </button>
+        <h3>Crear una nueva configuración.</h3>
+        <button class="btn btn-primary">Guardar</button>
+    </div>
+    <div class="form">
+        <h5>Funcionariado de mesa directiva</h5>
+        <input type="text" name="presidente" id="presidente" class="form-control" placeholder="Presidente">
+        <input type="text" name="secretario" id="secretario" class="form-control" placeholder="Secretario">
+        <input type="text" name="primero" id="primero" class="form-control" placeholder="Primer escrutador">
+        <input type="text" name="segundo" id="segundo" class="form-control" placeholder="Segundo escrutador">
+    </div>
+    <div class="form">
+        <h5>Datos generales</h5>
+        <input type="text" name="institucion" id="institucion" class="form-control" placeholder="Nombre de la institución educativa">
+        <input type="number" name="boletas" id="boletas" class="form-control" placeholder="Cantidad de boletas">
+    </div>
+    <div class="candidatos">
+        <h5>Lista de candidatos</h5>
+        <div class="pat" *ngFor="let item of partidosList">
+            <div class="logo"> <img src="{{item.Logotipo}}" alt="" class="imgLogo"> </div>
+            <div class="propietario">
+                <h6>Propietario</h6>
+                <p>{{item.Propietario}}</p>
+            </div>
+            <div class="suplente">
+                <h6>Suplente</h6>
+                <p>{{item.Suplente}}</p>
+            </div>
+            <div class="partido">
+                <h6>Partido</h6>
+                <p>{{item.Hipocoristico}}</p>
+            </div>
+            <div class="opciones">
+                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
+                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
+                <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
+            </div>
+        </div>
+    </div>
+    <div class="btnListCandidatos">
+        <button class="btn btn-primary" (click)="addPartido()">Agregar</button>
+    </div>
+
+    <!--Modal para añadir partidos-->
+    <div class="formPartidos" id="formPartidos">
+        <div class="tp">
+            <img src="../../../../assets/img/LogoOple.png" alt="" class="logoOple">
+            <h5>Añadir un nuevo partido</h5>
+        </div>
+        <div class="cf">
+            <div class="formDatos">
+                <h5>Datos de los partidos</h5>
+                <input type="text" name="propietario" id="propietario" placeholder="Propietario" class="form-control" [(ngModel)]="partidos.Propietario">
+                <input type="text" name="suplente" id="suplente" placeholder="Suplente" class="form-control" [(ngModel)]="partidos.Suplente">
+                <input type="text" name="hipocoristico" id="hipocoristico" placeholder="Hipocorístico" class="form-control" [(ngModel)]="partidos.Hipocoristico">
+                <input type="text" name="cargo" id="cargo" placeholder="Cargo" class="form-control" [(ngModel)]="partidos.Cargo">
+                <select name="tipo" id="tipo" class="form-select" [(ngModel)]="partidos.TipoCandidatura">
+                <option value="Candidatura registrada">Candidatura registrada</option>
+                <option value="No Registrado">No registrado</option>
+                <option value="Coalición">Coalición</option>
+                <option value="Candidatura Independiente">Candidatura independiente</option>
+              </select>
+            </div>
+            <div class="formLogo">
+                <input #file type="file" accept='image/*' (change)="preview(file.files)" name="logo" id="logo" class="form-control">
+                <img [src]="imgURL" alt="" class="imgLogo" id="imgLogoOple" width="350px" height="200px">
+            </div>
+        </div>
+        <div class="cb">
+            <button class="btn btn-primary" (click)="closeModal()">Cancelar</button>
+            <button class="btn btn-danger" (click)="agregarPartidos()">Agregar</button>
+        </div>
+    </div>
+</div>

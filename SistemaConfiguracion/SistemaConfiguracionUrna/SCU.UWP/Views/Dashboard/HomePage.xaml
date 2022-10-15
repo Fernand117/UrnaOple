@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="SCU.UWP.Views.Dashboard.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SCU.UWP.Views.Dashboard"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView x:Name="navView" Loaded="NavigationView_Loaded" SelectionChanged="navView_SelectionChanged" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
+            <NavigationView.MenuItems>
+                <NavigationViewItemHeader Content="Menú" Foreground="#E33889"/>
+                <NavigationViewItem Icon="Home" Content="Inicio" Tag="Inicio"/>
+                <NavigationViewItem Icon="Accept" Content="Casillas" Tag="Casillas"/>
+                <NavigationViewItem Icon="OtherUser" Content="Partidos" Tag="Partidos"/>
+                <NavigationViewItem Icon="Bullets" Content="Elecciones" Tag="Elecciones"/>
+            </NavigationView.MenuItems>
+
+            <NavigationView.PaneFooter>
+                <NavigationViewItem Icon="SetLockScreen" Content="Cerrar sesión" Tag="Cerrar" Tapped="NavigationViewItem_Tapped"/>
+            </NavigationView.PaneFooter>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Padding="0, 5, 0, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="../../Assets/Img/icons8-user-96 1.png"/>
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,5">
+                            <TextBlock Text="Usuario" FontWeight="Bold"/>
+                            <TextBlock Text="Conectado" Foreground="#6F3CC6" FontWeight="Bold"/>
+                        </StackPanel>
+                        
+                    </Grid>
+                    <Image Source="../../Assets/Img/LogoOple.png"/>
+                  
+                </Grid>
+                <Image Source="../../Assets/Img/background.png" Grid.Row="1" Stretch="Uniform"/>
+
+                <ScrollViewer Grid.Row="1">
+
+                    <Frame x:Name="ContentFrame"/>
+                </ScrollViewer>
+            </Grid>
+            
+        </NavigationView>
+    </Grid>
+</Page>
