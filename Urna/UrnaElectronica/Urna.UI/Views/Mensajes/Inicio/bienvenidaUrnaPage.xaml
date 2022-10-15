@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="Urna.UI.Views.Mensajes.Inicio.bienvenidaUrnaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Urna.UI.Views.Mensajes.Inicio"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="#E33889"></Grid>
+        <StackPanel VerticalAlignment="Center" >
+            <TextBlock FontSize="90" FontWeight="Bold" HorizontalTextAlignment="Center"  Foreground="black" VerticalAlignment="Top" HorizontalAlignment="Center">Bienvenido</TextBlock>
+            <Image HorizontalAlignment="Center" Height="400" VerticalAlignment="Center" Width="500" x:Name="myXAMLImageElement" Source="ms-appx:///Assets/Img/image 1.png"/>
+        </StackPanel>
+        <Border Height="500" Width="500" BorderBrush="LightGray" BorderThickness="2" Grid.Column="1">
+            <StackPanel  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock FontSize="40" Foreground="black">Número de urna: 01</TextBlock>
+                <TextBlock FontSize="40" Foreground="black">Distrito: 01</TextBlock>
+                <TextBlock FontSize="40" Foreground="black">Municipio: Cuitláhuac</TextBlock>
+                <TextBlock FontSize="40" Foreground="black">Casilla: 0570C07</TextBlock>
+
+
+
+            </StackPanel>
+        </Border>
+ 
+    </Grid>
+</Page>
