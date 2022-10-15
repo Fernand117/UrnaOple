@@ -10,7 +10,7 @@ export class CardComponent implements OnInit {
 
   constructor() { }
 
-  @Input() info: any;
+  @Input() partidos: any;
   displayRegistrado = "none";
   displayVotoNulo = "none"
   displayNoRegistrado = "none";
@@ -18,8 +18,7 @@ export class CardComponent implements OnInit {
   @ViewChild(KeyboardComponent)
   hijo: KeyboardComponent = new KeyboardComponent;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   openModalRegistrado(c: any) {
     this.displayRegistrado = "block"; 
@@ -39,7 +38,6 @@ export class CardComponent implements OnInit {
     this.displayVotoNulo = "none";
     this.displayNoRegistrado = "none"
   }
-
 
   votar() {
     console.log("voto por: ",this.hijo.value);

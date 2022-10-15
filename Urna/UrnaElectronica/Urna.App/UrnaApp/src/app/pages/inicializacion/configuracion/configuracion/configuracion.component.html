@@ -7,7 +7,7 @@
         </div>
       <div class="col form">
         <form [formGroup]="form"> 
-            <input formControlName="codigo_configuracion" class="form-control" type="text">
+            <input formControlName="codigo_configuracion" class="form-control" type="text" required>
         </form>
         <button type="button" class="btn btn-primary" (click)="enviar()">ENVIAR</button>
       </div>

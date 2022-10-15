@@ -2,9 +2,9 @@
 <div class="row">
     <div class="col-4">
         <div class="datos_urna">
-            <p>Municipio: Xalapa</p>
-            <p>Entidad: Veracruz</p>
-            <p>Distrito: Xalapa</p>
+            <p>Municipio: {{configuracion?.Municipio}} </p>
+            <p>Entidad: {{configuracion?.Entidad}}</p>
+            <p>Distrito: {{configuracion?.Distrito}}</p>
             <p>Fecha: 13/10/2022</p>
         </div>
     </div>
@@ -19,10 +19,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let boleta of boleta">
-                <td>{{boleta.id}}</td>
-                <td>{{boleta.Candidato}}</td>
-                <td>{{boleta.Num_votos}}</td>
+              <tr *ngFor="let boleta of configuracion?.Partidos">
+                <td>{{boleta.Id}}</td>
+                <td>{{boleta.Cargo}}</td>
+                <td>0</td>
               </tr>
             </tbody>
         </table>

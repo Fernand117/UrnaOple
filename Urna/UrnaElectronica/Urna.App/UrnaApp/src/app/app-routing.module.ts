@@ -9,9 +9,9 @@ import { VotacionesComponent } from './pages/votaciones/votaciones.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/bienvenido', pathMatch: 'full' },
-  { path: 'votaciones', component: VotacionesComponent },
+  { path: ':code/votaciones', component: VotacionesComponent },
   { path: 'bienvenido', component: BienvenidoComponent },
-  { path: 'boleta-inicializacion', component: BoletaComponent},
+  { path: ':code/boleta-inicializacion', component: BoletaComponent},
   { path: 'tarjetas', component: TarjetasComponent},
   { path: 'clausura', component: ClausuraComponent},
   { path: 'configuracion', component: ConfiguracionComponent}

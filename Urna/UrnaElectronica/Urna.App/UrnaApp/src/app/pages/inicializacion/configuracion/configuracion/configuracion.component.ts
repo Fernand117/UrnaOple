@@ -13,6 +13,7 @@ export class ConfiguracionComponent implements OnInit {
   form: any;
   respuesta: any;
   configuracion: any;
+  code :any;
 
   constructor(private formBuilder: FormBuilder, private route:Router, private service: ConfiguracionApiService) { }
 
@@ -26,16 +27,12 @@ export class ConfiguracionComponent implements OnInit {
     })
   }
 
-  serializar(){
-    return JSON.parse(this.respuesta);
-  }
-
   enviar() {
     this.service.getConfiguracion(this.form.get('codigo_configuracion').value).subscribe((resp) => {
       this.respuesta = resp;
-      this.configuracion = this.respuesta.data.configuraciones;
-      this.configuracion = JSON.parse(this.configuracion);
-      this.route.navigate(['/boleta-inicializacion']); 
+      console.log(this.respuesta);
+      this.code = this.respuesta.data.codigo; 
+      this.route.navigate([`/${this.code}/boleta-inicializacion`]);
     });
   }
 }

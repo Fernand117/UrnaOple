@@ -1,48 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute } from '@angular/router';
+import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
 
 @Component({
   selector: 'app-boleta',
   templateUrl: './boleta.component.html',
   styleUrls: ['./boleta.component.scss']
 })
+
 export class BoletaComponent implements OnInit {
 
-  constructor(private route:Router) { }
+  codigo_configuracion: any;
+  configuracion: any;
 
-  boleta = [
-    {
-      "id": 1,
-      "Candidato": "Jessica Denisse",
-      "Num_votos": 0
-    },
-    {
-      "id": 2,
-      "Candidato": "María del Rosario",
-      "Num_votos": 0
-    },
-    {
-      "id": 3,
-      "Candidato": "Fernando Leyva",
-      "Num_votos": 0
-    },
-    {
-      "id": 4,
-      "Candidato": "Abdiel Labrado",
-      "Num_votos": 0
-    },
-    {
-      "id": 5,
-      "Candidato": "Oscar Galvan",
-      "Num_votos": 0
-    }
-  ]
+  constructor(private route:Router, private rutaActiva: ActivatedRoute, private service: ConfiguracionApiService) {
+    this.codigo_configuracion = this.rutaActiva.snapshot.paramMap.get('code');
+   }
 
   ngOnInit(): void {
+    this.obtenerConfiguracion();
+  }
+
+  obtenerConfiguracion() {
+    this.service.getConfiguracion(this.codigo_configuracion).subscribe((resp) => {
+      this.configuracion = resp;
+      this.configuracion = this.configuracion.data.configuraciones;
+      this.configuracion = JSON.parse(this.configuracion);    
+    });
   }
 
   continuar() {
-    this.route.navigate(['/votaciones']);
+    this.route.navigate([`/${this.codigo_configuracion}/votaciones`]);
   }
 
 }
