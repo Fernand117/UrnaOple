@@ -18,6 +18,8 @@ import { KeyboardComponent } from './components/keyboard/keyboard.component';
 import { ConfiguracionComponent } from './pages/inicializacion/configuracion/configuracion/configuracion.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EsperaElectorComponent } from './pages/votaciones/mensajes/espera-elector/espera-elector.component';
+import { GraciasComponent } from './pages/votaciones/mensajes/gracias/gracias.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ClausuraComponent,
     BoletaComponent,
     KeyboardComponent,
-    ConfiguracionComponent
+    ConfiguracionComponent,
+    EsperaElectorComponent,
+    GraciasComponent
   ],
   imports: [
     BrowserModule,
