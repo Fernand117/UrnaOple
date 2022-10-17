@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-configuracion',
@@ -33,6 +34,12 @@ export class ConfiguracionComponent implements OnInit {
       console.log(this.respuesta);
       this.code = this.respuesta.data.codigo; 
       this.route.navigate([`/${this.code}/boleta-inicializacion`]);
+    }, error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Código de configuración no valido'
+      })
     });
   }
 }

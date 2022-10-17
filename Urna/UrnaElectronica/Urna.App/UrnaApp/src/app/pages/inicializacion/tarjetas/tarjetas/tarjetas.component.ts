@@ -19,6 +19,6 @@ export class TarjetasComponent implements OnInit {
       } else {
         this.route.navigate(['/configuracion']);
       }
-    }, 5000);
+    }, 1000);
   }
 }

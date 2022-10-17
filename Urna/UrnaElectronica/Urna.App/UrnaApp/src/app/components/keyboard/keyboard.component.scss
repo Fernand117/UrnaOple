@@ -10,3 +10,23 @@ ul {
   .simple-keyboard {
     max-width: 850px;
   }
+
+  .buttonMayus {
+    box-shadow: 40px;
+    border-color: rgb(206, 203, 203);
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+    font-size: 18px;
+    width: 90px;
+    height: 42px;
+    margin-left: 5px;
+    border-radius: 5px;
+  }
+
+  .boton {
+    background-color: #ececec;
+    width: 100px;
+    height: 45px;
+    align-items: center;
+  }
