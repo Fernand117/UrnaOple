@@ -5,13 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="RESOURCES\UrnaResources.resx">
-      <Generator></Generator>
-    </EmbeddedResource>
+    <Compile Remove="DTOS\Partidos\**" />
+    <EmbeddedResource Remove="DTOS\Partidos\**" />
+    <None Remove="DTOS\Partidos\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOS\Partidos\" />
+    <EmbeddedResource Update="RESOURCES\UrnaResources.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
