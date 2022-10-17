@@ -20,6 +20,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EsperaElectorComponent } from './pages/votaciones/mensajes/espera-elector/espera-elector.component';
 import { GraciasComponent } from './pages/votaciones/mensajes/gracias/gracias.component';
+import { EleccionesEscolaresComponent } from './pages/votaciones/elecciones-escolares/elecciones-escolares.component';
+import { ParticipacionCiudadanaComponent } from './pages/votaciones/participacion-ciudadana/participacion-ciudadana.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { GraciasComponent } from './pages/votaciones/mensajes/gracias/gracias.co
     KeyboardComponent,
     ConfiguracionComponent,
     EsperaElectorComponent,
-    GraciasComponent
+    GraciasComponent,
+    EleccionesEscolaresComponent,
+    ParticipacionCiudadanaComponent
   ],
   imports: [
     BrowserModule,

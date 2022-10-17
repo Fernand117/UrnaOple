@@ -5,6 +5,10 @@ import { BienvenidoComponent } from './pages/inicializacion/bienvenido/bienvenid
 import { BoletaComponent } from './pages/inicializacion/boleta/boleta/boleta.component';
 import { ConfiguracionComponent } from './pages/inicializacion/configuracion/configuracion/configuracion.component';
 import { TarjetasComponent } from './pages/inicializacion/tarjetas/tarjetas/tarjetas.component';
+import { EleccionesEscolaresComponent } from './pages/votaciones/elecciones-escolares/elecciones-escolares.component';
+import { EsperaElectorComponent } from './pages/votaciones/mensajes/espera-elector/espera-elector.component';
+import { GraciasComponent } from './pages/votaciones/mensajes/gracias/gracias.component';
+import { ParticipacionCiudadanaComponent } from './pages/votaciones/participacion-ciudadana/participacion-ciudadana.component';
 import { VotacionesComponent } from './pages/votaciones/votaciones.component';
 
 const routes: Routes = [
@@ -14,7 +18,11 @@ const routes: Routes = [
   { path: ':code/boleta-inicializacion', component: BoletaComponent},
   { path: 'tarjetas', component: TarjetasComponent},
   { path: 'clausura', component: ClausuraComponent},
-  { path: 'configuracion', component: ConfiguracionComponent}
+  { path: 'configuracion', component: ConfiguracionComponent},
+  { path: 'en-espera', component: EsperaElectorComponent},
+  { path: 'gracias-votar', component: GraciasComponent},
+  { path: 'elecciones-escolares', component: EleccionesEscolaresComponent},
+  { path: 'participacion-ciudadana', component: ParticipacionCiudadanaComponent}
 ];
 
 @NgModule({
