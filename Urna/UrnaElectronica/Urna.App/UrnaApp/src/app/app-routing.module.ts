@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'clausura', component: ClausuraComponent},
   { path: 'configuracion', component: ConfiguracionComponent},
   { path: 'en-espera', component: EsperaElectorComponent},
-  { path: 'gracias-votar', component: GraciasComponent},
+  { path: 'gracias', component: GraciasComponent},
   { path: 'elecciones-escolares', component: EleccionesEscolaresComponent},
   { path: 'participacion-ciudadana', component: ParticipacionCiudadanaComponent}
 ];

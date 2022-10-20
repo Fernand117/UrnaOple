@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-diputaciones',
@@ -6,6 +6,8 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./diputaciones.component.scss']
 })
 export class DiputacionesComponent implements OnInit {
+
+  @Input() partidos: any;
 
   constructor() { }
 
