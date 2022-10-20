@@ -22,9 +22,9 @@ namespace Urna.DAO.Elecciones
 					Configuracion configuracion = new Configuracion()
 					{
 						Fecha = DateTime.Now,
-						Configuraciones = JsonSerializer.Serialize(request),
-						codigo = codigo
-						
+						Codigo = codigo,
+						Categoria = request.Categoria,
+						Configuraciones = JsonSerializer.Serialize(request)
 					};
 
 					await context.AddAsync(configuracion);
@@ -36,9 +36,9 @@ namespace Urna.DAO.Elecciones
 			return request;
 		}
 
-		public async Task<List<EleccionDTO>> Read()
+		public async Task<List<ConfiguracionesDTO>> Read()
 		{
-			List<EleccionDTO> response = new List<EleccionDTO>();
+			List<ConfiguracionesDTO> response = new List<ConfiguracionesDTO>();
 
 			try
 			{
@@ -49,11 +49,12 @@ namespace Urna.DAO.Elecciones
 
 					foreach (var e in elecciones)
 					{
-						response.Add(new EleccionDTO()
+						response.Add(new ConfiguracionesDTO()
 						{
 							Id = e.Id,
 							Fecha= e.Fecha,
-							codigo = e.codigo,
+							Codigo = e.Codigo,
+							Categoria = e.Categoria,
 							Configuraciones = JsonSerializer.Serialize(e),
 						});
 					}
@@ -65,25 +66,22 @@ namespace Urna.DAO.Elecciones
 			return response;
 		}
 
-		public async Task<EleccionDTO> Read(string codigo)
+		public async Task<ConfiguracionesDTO> Read(string codigo)
 		{
-			EleccionDTO response = new EleccionDTO();
+			ConfiguracionesDTO response = new ConfiguracionesDTO();
 
 			try
 			{
 				using (UrnaContext context = new UrnaContext())
 				{
 					var eleccion = await context.Configuracion
-												.Where(e => e.codigo.Trim() == codigo.Trim())
+												.Where(e => e.Codigo.Trim() == codigo.Trim())
 												
 												.FirstOrDefaultAsync();
 					response.Fecha = eleccion.Fecha;
-					response.codigo = eleccion.codigo;
+					response.Codigo = eleccion.Codigo;
+					response.Categoria = eleccion.Categoria;
 					response.Configuraciones = eleccion.Configuraciones;
-
-
-
-
 				}
 			}
 			catch (Exception es) { }
@@ -104,10 +102,7 @@ namespace Urna.DAO.Elecciones
 					config.Configuraciones = JsonSerializer.Serialize(request);
 
 					await context.SaveChangesAsync();
-				
-
-
-                }
+				}
 			}
 			catch (Exception ex) { }
 
