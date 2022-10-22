@@ -8,6 +8,7 @@ import { Component, Input, OnInit} from '@angular/core';
 export class DiputacionesComponent implements OnInit {
 
   @Input() partidos: any;
+  app_name: string = "diputaciones";
 
   constructor() { }
 

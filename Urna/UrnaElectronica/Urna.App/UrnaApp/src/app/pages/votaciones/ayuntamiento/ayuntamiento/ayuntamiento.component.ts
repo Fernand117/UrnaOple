@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AyuntamientoComponent implements OnInit {
 
   @Input() partidos: any;
+  app_name: string = "ayuntamiento";
 
   constructor() { }
 

@@ -10,6 +10,7 @@ export class GubernaturaComponent implements OnInit {
   constructor() { }
 
   @Input() partidos: any;
+  app_name: string = "gubernatura";
 
   ngOnInit(): void {    
   }

@@ -13,11 +13,12 @@ export class CardComponent implements OnInit {
   constructor(private route:Router) { }
 
   @Input() partidos: any;
+  @Input() name: any;
+
   candidatoSeleccionado: any = "";
   @ViewChild(KeyboardComponent)
   hijo: KeyboardComponent = new KeyboardComponent;
   voto: boolean = false;
-
 
   ngOnInit(): void { }
 
@@ -31,8 +32,7 @@ export class CardComponent implements OnInit {
       this.voto = true;
     } else {
       this.mostrar_msjError();
-      // this.route.navigate(['/en-espera']);
-
+      this.route.navigate(['/en-espera']);
     }
   }
 
