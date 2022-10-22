@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Output, EventEmitter} from '@angular/core';
+import { Component, ViewEncapsulation, Output, EventEmitter, Input} from '@angular/core';
 import Keyboard from "simple-keyboard";
 
 @Component({
@@ -10,10 +10,11 @@ import Keyboard from "simple-keyboard";
 export class KeyboardComponent  {
   value = "";
   keyboard: any = Keyboard ;
+  @Input() name : any;
   @Output() miEvento = new EventEmitter<string>();
   
   ngAfterViewInit() {
-    this.keyboard = new Keyboard({
+    this.keyboard = new Keyboard(this.name+"_keyboard", {
       onChange: input => this.onChange(input),
       layout: {
         default: [

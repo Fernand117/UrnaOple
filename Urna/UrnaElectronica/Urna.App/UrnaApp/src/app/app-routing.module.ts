@@ -13,14 +13,14 @@ import { VotacionesComponent } from './pages/votaciones/votaciones.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/bienvenido', pathMatch: 'full' },
-  { path: ':code/votaciones', component: VotacionesComponent },
+  { path: 'votaciones', component: VotacionesComponent },
   { path: 'bienvenido', component: BienvenidoComponent },
-  { path: ':code/boleta-inicializacion', component: BoletaComponent},
+  { path: 'boleta-inicializacion', component: BoletaComponent},
   { path: 'tarjetas', component: TarjetasComponent},
   { path: 'clausura', component: ClausuraComponent},
   { path: 'configuracion', component: ConfiguracionComponent},
   { path: 'en-espera', component: EsperaElectorComponent},
-  { path: 'gracias-votar', component: GraciasComponent},
+  { path: 'gracias', component: GraciasComponent},
   { path: 'elecciones-escolares', component: EleccionesEscolaresComponent},
   { path: 'participacion-ciudadana', component: ParticipacionCiudadanaComponent}
 ];

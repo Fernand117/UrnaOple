@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 margen" *ngFor="let c of partidos?.Partidos">
-      <div class="row no-gutters" data-bs-toggle="modal" data-bs-target="#seleccionado"
+      <div class="row no-gutters" data-bs-toggle="modal" [attr.data-bs-target]="'#seleccionado'+ name"
         (click)="openModalRegistrado(c)">
         <div class="imagen col-md-4">
           <img class="img-fluid" src="{{c.Logotipo}}">
@@ -20,14 +20,14 @@
       </div>
     </div>
     <div class="col-md-3 margen nulo">
-      <div class="row no-gutters" data-bs-toggle="modal" data-bs-target="#nulo">
+      <div class="row no-gutters" data-bs-toggle="modal" [attr.data-bs-target]="'#nulo'+ name">
         <div class="card-body">
           <h5>VOTO NULO</h5>
         </div>
       </div>
     </div>
     <div class="col-md-3 margen nulo">
-      <div class="row no-gutters" data-bs-toggle="modal" data-bs-target="#noRegistrado">
+      <div class="row no-gutters" data-bs-toggle="modal" [attr.data-bs-target]="'#noRegistrado' + name">
         <div class="card-body ">
           <h5>CANDIDATO NO REGISTRADO
           </h5>
@@ -41,7 +41,7 @@
 <!-- MODALES -->
 
 <!-- MODAL CANDIDATO NO REGISTRADO -->
-<div class="modal fade" id="noRegistrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="noRegistrado{{name}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -50,10 +50,10 @@
       <div class="modal-body">
         <h4>NO REGISTRADO</h4>
         <p>Escriba el nombre del candidato por el que desea votar</p>
-        <form action="/votaciones" method="GET">
-          <app-keyboard></app-keyboard>
+        <form>
+          <app-keyboard [name]="name"></app-keyboard>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="votar()">Votar</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="votar_noRegistrado()">Votar</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Regresar</button>
           </div>
         </form>
@@ -63,7 +63,7 @@
 </div>
 
 <!-- MODAL VOTO NULO -->
-<div class="modal fade" id="nulo" tabindex="-1" role="dialog" aria-labelledby="nulo" aria-hidden="true">
+<div class="modal fade" id="nulo{{name}}" tabindex="-1" role="dialog" aria-labelledby="nulo" aria-hidden="true">
   <div class="modal-dialog modal-md modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -73,7 +73,7 @@
         <h4>¿Es correcto?</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Si, Confirmar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="anularVoto()">Si, Confirmar</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cancelar</button>
       </div>
     </div>
@@ -81,7 +81,7 @@
 </div>
 
 <!-- MODAL CANDIDATO REGISTRADO SELECCIONADO -->
-<div class="modal fade" id="seleccionado" tabindex="-1" role="dialog" aria-labelledby="seleccionado" aria-hidden="true">
+<div class="modal fade" id="seleccionado{{name}}" tabindex="-1" role="dialog" aria-labelledby="seleccionado" aria-hidden="true">
   <div class="modal-dialog modal-md modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -102,7 +102,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Si, Confirmar</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="votar_registrado()">Si, Confirmar</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cancelar</button>
           </div>
         </div>
