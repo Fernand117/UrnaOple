@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row bienvenido">
+    <div class="col">
+      <div class="col_1">
+        <h1>En espera de elector</h1>
+        <img src="./assets/img/espera.png">
+      </div>
+      <div class="col">
+        <div class="card-body card">
+          <p>Distrito: <span> {{configuracion.Distrito}} </span></p>
+          <p>Municipio: <span> {{configuracion.Municipio}} </span></p>
+          <p>Entidad: <span> {{configuracion.Entidad}} </span></p>
+          <p>Fecha: <span> {{date | date:'shortDate'}} </span></p>
+        </div>
+        <button class="btn btn-primary" (click)="siguiente_elector()">Siguiente elector</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
