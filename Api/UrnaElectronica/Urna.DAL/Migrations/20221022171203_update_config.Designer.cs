@@ -10,8 +10,8 @@ using Urna.DAL.Context;
 namespace Urna.DAL.Migrations
 {
     [DbContext(typeof(UrnaContext))]
-    [Migration("20221020213028_update_dbOple")]
-    partial class update_dbOple
+    [Migration("20221022171203_update_config")]
+    partial class update_config
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
