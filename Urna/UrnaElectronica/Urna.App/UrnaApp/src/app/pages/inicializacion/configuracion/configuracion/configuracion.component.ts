@@ -27,14 +27,14 @@ export class ConfiguracionComponent implements OnInit {
     })
   }
 
-  configuracion_eleccioneslocales() {
+  configuracion_eleccioneslocales() {    
     let info = this.confi.Elecciones;
     for (let i = 0; i < info.length; i++) {
       if(info[i].TipoEleccion === 'Diputaciones') {
       localStorage.setItem('diputacion', JSON.stringify(info[i]));
-    } else if(info[i].TipoEleccion === 'Gubernaturas') {
+    } else if(info[i].TipoEleccion === 'Gubernatura') {
       localStorage.setItem('gubernatura', JSON.stringify(info[i]));
-      } else if(info[i].TipoEleccion === 'ayuntamientos') {
+      } else if(info[i].TipoEleccion === 'Ayuntamientos') {
         localStorage.setItem('ayuntamiento', JSON.stringify(info[i]));
       } 
     }
@@ -45,8 +45,10 @@ export class ConfiguracionComponent implements OnInit {
       this.respuesta = resp;
       this.confi = this.respuesta.data.configuraciones;
       this.confi = JSON.parse(this.confi);
+      console.log(this.confi);
+
       localStorage.setItem('categoria', this.confi.Categoria);
-      if(this.confi.Categoria === 'Elecciones locales') {
+      if(this.confi.Categoria === 'Procesos locales electorales') {
         this.configuracion_eleccioneslocales();
         this.route.navigate(['/boleta-inicializacion']);
       } else if (this.confi.Categoria === "Elecciones escolares") {
