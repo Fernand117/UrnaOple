@@ -24,8 +24,9 @@ namespace Urna.DAO.Mecanismos
 					Configuracion configuracion = new Configuracion()
 					{
 						Fecha = DateTime.Now,
-						Configuraciones = JsonSerializer.Serialize(request),
-						codigo = codigo
+						Codigo = codigo,
+						Categoria = request.Categoria,
+						Configuraciones = JsonSerializer.Serialize(request)
 					};
 
 					await context.AddAsync(configuracion);
@@ -37,9 +38,9 @@ namespace Urna.DAO.Mecanismos
 			return request;
         }
 
-		public async Task<List<EleccionDTO>> Read()
+		public async Task<List<ConfiguracionesDTO>> Read()
 		{
-			List<EleccionDTO> response = new List<EleccionDTO>();
+			List<ConfiguracionesDTO> response = new List<ConfiguracionesDTO>();
 
 			try
 			{
@@ -50,11 +51,12 @@ namespace Urna.DAO.Mecanismos
 
 					foreach (var m in mecanismos)
 					{
-						response.Add(new EleccionDTO()
+						response.Add(new ConfiguracionesDTO()
 						{
 							Id = m.Id,
 							Fecha = m.Fecha,
-							codigo = m.codigo,
+							Codigo = m.Codigo,
+							Categoria = m.Categoria,
 							Configuraciones = JsonSerializer.Serialize(m)
 						});
 					}
@@ -65,20 +67,21 @@ namespace Urna.DAO.Mecanismos
 			return response;
 		}
 
-		public async Task<EleccionDTO> Read(string codigo)
+		public async Task<ConfiguracionesDTO> Read(string codigo)
 		{
-			EleccionDTO response = new EleccionDTO();
+			ConfiguracionesDTO response = new ConfiguracionesDTO();
 
 			try
 			{
 				using (UrnaContext context = new UrnaContext())
 				{
 					var mecanismo = await context.Configuracion
-												 .Where(m => m.codigo.Trim() == codigo.Trim())
+												 .Where(m => m.Codigo.Trim() == codigo.Trim())
 												 .FirstOrDefaultAsync();
 
 					response.Fecha = mecanismo.Fecha;
-					response.codigo = mecanismo.codigo;
+					response.Codigo = mecanismo.Codigo;
+					response.Categoria = mecanismo.Categoria;
 					response.Configuraciones = mecanismo.Configuraciones;
 				}
 			}
