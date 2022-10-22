@@ -1,0 +1,33 @@
+.menu {
+    width: 230px;
+    height: 100vh;
+    float: left;
+    padding: 10px;
+    //background-color: rosybrown;
+    .title {
+        width: 100%;
+        height: 60px;
+        text-align: center;
+        border-radius: 10px 10px 0px 0px;
+        background-color: #E5E5E5;
+        padding-top: 8%;
+        h3 {
+            margin: 0 auto;
+        }
+    }
+    .contMenu {
+        width: 100%;
+        padding: 10px;
+        .btn {
+            width: 100%;
+            background-color: #E33889;
+            border: none;
+            margin-bottom: 5px;
+        }
+    }
+    .bar {
+        width: 100%;
+        height: 10px;
+        background-color: #E33889;
+    }
+}

@@ -1,0 +1,40 @@
+.col_1 {
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  h1 {
+      font-weight: bold;
+      font-size: 65px;
+  }
+
+img {
+  width: 70%;
+  padding-top: 30px;
+}
+}
+
+.card {
+  border-bottom: 5px solid #eee !important;
+  border-right: 5px solid #eee!important;
+  border-radius: 0px;
+  border: 2px solid #eee;
+  padding: 15px;
+  margin: 15px;
+  text-align: center;
+}
+
+.bienvenido {
+padding: 5% 30% ;
+text-align: center;
+}
+
+span {
+font-weight: bold;
+}
+
+.btn {
+  background-color: #E33889;
+  border-color: #E33889;
+  margin-top: 60px;
+  width: 80%;
+}

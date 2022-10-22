@@ -1,0 +1,18 @@
+header {
+    width: 100%;
+    height: 100px;
+    //background-color: royalblue;
+    padding: 10px;
+    .logo {
+        img {
+            width: 100px;
+        }
+        float: left;
+    }
+    .usuario {
+        img {
+            width: 50px;
+        }
+        float: right;
+    }
+}

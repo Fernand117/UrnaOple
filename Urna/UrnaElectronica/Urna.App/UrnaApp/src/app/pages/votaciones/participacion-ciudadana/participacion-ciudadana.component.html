@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="container">
+    <div class="titulo">
+        <h1>Nombre del mecanismo de participación ciudadana</h1>
+        <p>Objeto del mecanismo de participación ciudadana: Los mecanismos de participación ciudadana son los medios a través de los cuales se materializa el derecho fundamental a la participación democrática, y permiten la intervención de los ciudadanos en la conformación, ejercicio y control del poder político.</p>
+    </div>
+    <div *ngFor="let pregunta of preguntas; index as i">
+        <p>{{pregunta.pregunta}}</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radio" id="default1{{i}}">
+            <label class="form-check-label" for="default1{{i}}">
+              Si
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radio2" id="default2{{i}}">
+            <label class="form-check-label" for="default2{{i}}">
+              No
+            </label>
+          </div>
+    </div>
+</div>
+<app-footer></app-footer>

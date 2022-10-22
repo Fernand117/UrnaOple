@@ -1,0 +1,110 @@
+<!-- TARJETAS -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 margen" *ngFor="let c of partidos?.Partidos">
+      <div class="row no-gutters" data-bs-toggle="modal" [attr.data-bs-target]="'#seleccionado'+ name"
+        (click)="openModalRegistrado(c)">
+        <div class="imagen col-md-4">
+          <img class="img-fluid" src="{{c.Logotipo}}">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{c.Propietario}}</h5>
+            <p class="card-text">Propietario</p>
+            <p class="card-text"><small class="text-muted">{{c.Propietario}}</small></p>
+            <p class="card-text">Suplente</p>
+            <p class="card-text"><small class="text-muted">{{c.Suplente}}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 margen nulo">
+      <div class="row no-gutters" data-bs-toggle="modal" [attr.data-bs-target]="'#nulo'+ name">
+        <div class="card-body">
+          <h5>VOTO NULO</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 margen nulo">
+      <div class="row no-gutters" data-bs-toggle="modal" [attr.data-bs-target]="'#noRegistrado' + name">
+        <div class="card-body ">
+          <h5>CANDIDATO NO REGISTRADO
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="footer-nulo"></div>
+  </div>
+</div>
+
+<!-- MODALES -->
+
+<!-- MODAL CANDIDATO NO REGISTRADO -->
+<div class="modal fade" id="noRegistrado{{name}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <h4>NO REGISTRADO</h4>
+        <p>Escriba el nombre del candidato por el que desea votar</p>
+        <form>
+          <app-keyboard [name]="name"></app-keyboard>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="votar_noRegistrado()">Votar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Regresar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL VOTO NULO -->
+<div class="modal fade" id="nulo{{name}}" tabindex="-1" role="dialog" aria-labelledby="nulo" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <h4>Está usted anulando su voto</h4>
+        <h4>¿Es correcto?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="anularVoto()">Si, Confirmar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CANDIDATO REGISTRADO SELECCIONADO -->
+<div class="modal fade" id="seleccionado{{name}}" tabindex="-1" role="dialog" aria-labelledby="seleccionado" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Seleccionaste</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row no-gutters">
+          <div class="imagen col-md-4">
+            <img class="img-fluid" src="{{candidatoSeleccionado.Logotipo}}">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{candidatoSeleccionado.Propietario}}</h5>
+              <p class="card-text">Propietario</p>
+              <p class="card-text"><small class="text-muted">{{candidatoSeleccionado.Propietario}}</small></p>
+              <p class="card-text">Suplente</p>
+              <p class="card-text"><small class="text-muted">{{candidatoSeleccionado.Suplente}}</small></p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="votar_registrado()">Si, Confirmar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
