@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
   public imgURL: any;
   public message: string;
   public partidosList: any[] = [];
+  public eleccionesList: any[] = [];
   private resData: any;
 
   constructor(
@@ -87,7 +88,7 @@ export class AdminComponent implements OnInit {
     this.closeModal();
   }
 
-  guardarConfiguracion() {
+  agregarConfiguracion() {
     const datos = {
       "Id": 0,
       "TipoEleccion": this.elecciones.tipoEleccion,
@@ -104,9 +105,23 @@ export class AdminComponent implements OnInit {
       "Folio": this.elecciones.folio.toString(),
       "Partidos": this.partidosList
     }
+    this.eleccionesList.push(datos);
+    let jsonRes = JSON.stringify(this.eleccionesList);
+    console.log(jsonRes);
+
+    this.elecciones = new EleccionesModule();
+    this.partidos = new PartidosModule();
+    this.partidosList = [];
+  }
+
+  guardarConfiguracion() {
+    const datos = {
+      "Id": 0,
+      "Categoria": "Procesos locales electorales",
+      "Elecciones": this.eleccionesList
+    }
 
     let json = JSON.stringify(datos);
-    console.log(datos)
     console.log(json)
 
     this.apiService.guardarConfiguracion(json).subscribe(
