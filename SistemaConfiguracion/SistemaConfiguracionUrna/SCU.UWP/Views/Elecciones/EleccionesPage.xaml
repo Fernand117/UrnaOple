@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="SCU.UWP.Views.Elecciones.EleccionesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SCU.UWP.Views.Elecciones"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Click="Button_Click" CornerRadius="15" Background="#E5E5E5E5" Grid.Column="0" Content="Procesos electorales locales" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" Width="500" Height="300" />
+        <Button Click="Button_Participacion_Ciudadana" CornerRadius="15" Background="#E5E5E5E5" Grid.Column="1" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" Width="500" Height="300">
+            <StackPanel>
+                <TextBlock Text="Mecanismos de" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="participación ciudadana"></TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Click="Button_Elecciones_escolares" CornerRadius="15" Background="#E5E5E5E5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Elecciones escolares" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" Width="500" Height="300" />
+    </Grid>
+</Page>

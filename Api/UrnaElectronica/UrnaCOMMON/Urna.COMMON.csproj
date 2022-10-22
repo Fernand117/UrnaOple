@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DTOS\Partidos\**" />
+    <EmbeddedResource Remove="DTOS\Partidos\**" />
+    <None Remove="DTOS\Partidos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="RESOURCES\UrnaResources.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Urna.DAL\Urna.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
