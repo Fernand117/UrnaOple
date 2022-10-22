@@ -21,13 +21,13 @@
 <!-- CONTENIDO -->
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-gubernatura" role="tabpanel" aria-labelledby="pills-home-tab">
-    <app-gubernatura [partidos]="configuracion"></app-gubernatura>
+    <app-gubernatura [partidos]="config_gubernatura"></app-gubernatura>
   </div>
   <div class="tab-pane fade" id="pills-diputaciones" role="tabpanel" aria-labelledby="pills-profile-tab">
-    <app-diputaciones [partidos]="configuracion"></app-diputaciones>
+    <app-diputaciones [partidos]="config_diputacion"></app-diputaciones>
   </div>
   <div class="tab-pane fade" id="pills-ayuntamiento" role="tabpanel" aria-labelledby="pills-contact-tab">
-    <app-ayuntamiento [partidos]="configuracion"></app-ayuntamiento>
+    <app-ayuntamiento [partidos]="config_ayuntamiento"></app-ayuntamiento>
   </div>
 </div>
 <app-footer></app-footer>
