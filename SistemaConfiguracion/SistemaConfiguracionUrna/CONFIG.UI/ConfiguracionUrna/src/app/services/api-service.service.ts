@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiServiceService {
 
-  private url = "http://localhost:5000/api/eleccion";
+  private url = "http://localhost:5000/api";
 
   constructor(
     private http: HttpClient
@@ -17,7 +17,15 @@ export class ApiServiceService {
     return this.http.post('https://api.cloudinary.com/v1_1/ddwh8eqlw/upload',data)
   }
 
+  listaConfiguraciones() {
+    return this.http.get(`${this.url}/eleccion`);
+  }
+
   guardarConfiguracion(datos: any) {
-    return this.http.post(this.url, datos, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })});
+    return this.http.post(`${this.url}/eleccion`, datos, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })});
+  }
+
+  guardarMecanismo(datos: any) {
+    return this.http.post(`${this.url}/mecanismo`, datos, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })});
   }
 }

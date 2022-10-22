@@ -39,13 +39,58 @@
         <input type="text" name="nboletas" id="nboletas" placeholder="Cantidad de boletas" class="form-control" [(ngModel)]="mecanismos.CantidadBoletas">
     </div>
     <div class="preguntas">
-        <h5>Lista de preguntas</h5>
-        <div class="listpreguntas" *ngFor="let item of listaPreguntas">
-            {{item.pregunta}}
+        <h5>Lista de configuraciones.</h5>
+
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Lista de preguntas
+              </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="listpreguntas" *ngFor="let item of listaPreguntas">
+                            {{item.pregunta}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                Lista de configuración de mecanismos
+              </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="pat" *ngFor="let item of listaMecanismos">
+                            <div class="propietario">
+                                <h6>Tipo de mecanismo</h6>
+                                <p>{{item.TipoMecanismo}}</p>
+                            </div>
+                            <div class="suplente">
+                                <h6>Nombre del mecanismo</h6>
+                                <p>{{item.NombreMecanismo}}</p>
+                            </div>
+                            <div class="partido">
+                                <h6>Folio</h6>
+                                <p>{{item.Folio}}</p>
+                            </div>
+                            <div class="opciones">
+                                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
+                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
+                                <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="btnGPreguntas">
         <button class="btn btn-success" (click)="addPartido()">Agregar pregunta</button>
+        <button class="btn btn-success" (click)="agregarMecanismo()">Agregar mecanismo</button>
     </div>
 
 

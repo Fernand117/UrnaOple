@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MecanismosModule } from '../../models/mecanismos/mecanismos.module';
 import { PreguntasModule } from '../../models/preguntas/preguntas.module';
+import { ApiServiceService } from '../../services/api-service.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mecanismosadmin',
@@ -10,10 +13,17 @@ import { PreguntasModule } from '../../models/preguntas/preguntas.module';
 export class MecanismosadminComponent implements OnInit {
 
   public mecanismos: MecanismosModule = new MecanismosModule();
-  public listaPreguntas: any[] = [];
   public pregunta: PreguntasModule;
 
-  constructor() { }
+  public listaPreguntas: any[] = [];
+  public listaMecanismos: any[] = [];
+
+  private resData: any;
+
+  constructor(
+    private apiService: ApiServiceService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -34,11 +44,11 @@ export class MecanismosadminComponent implements OnInit {
     this.closeModal();
   }
 
-  guardarConfiguracion() {
+  agregarMecanismo() {
     const datos = {
       "TipoMecanismo": this.mecanismos.TipoMecanismo,
-      "NombreMecanismo": this.mecanismos.Nombre,
-      "ObjetoMecanismo": this.mecanismos.Objeto,
+      "Nombre": this.mecanismos.Nombre,
+      "Objeto": this.mecanismos.Objeto,
       "Preguntas": this.listaPreguntas,
       "CantidadBoletas": this.mecanismos.CantidadBoletas,
       "Presidente": this.mecanismos.Presidente,
@@ -48,12 +58,43 @@ export class MecanismosadminComponent implements OnInit {
       "Entidad": this.mecanismos.Entidad,
       "Distrito": this.mecanismos.Distrito,
       "Municipio": this.mecanismos.Municipio,
-      "Seccion": this.mecanismos.Seccion,
+      "SeccionElectoral": this.mecanismos.Seccion.toString(),
       "Firmas": this.mecanismos.Firmas,
-      "Folio": this.mecanismos.Folio
+      "Folio": this.mecanismos.Folio.toString()
     }
 
-    let json = JSON.stringify(datos)
+    this.listaMecanismos.push(datos);
+    let json = JSON.stringify(this.listaMecanismos);
     console.log(json)
+
+    this.mecanismos = new MecanismosModule();
+    this.pregunta = new PreguntasModule();
+    this.listaPreguntas = [];
+  }
+
+  guardarConfiguracion() {
+    const datos = {
+      "Id": 0,
+      "Categoria": "Mecanismos de participación ciudadana",
+      "Mecanismos": this.listaMecanismos
+    }
+
+    let json = JSON.stringify(datos);
+    console.log(json)
+
+    this.apiService.guardarMecanismo(json).subscribe(
+      res => {
+        this.resData = res
+        console.log(res)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: this.resData["ResponseText"],
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.router.navigateByUrl('/elecciones')
+      }
+    );
   }
 }
