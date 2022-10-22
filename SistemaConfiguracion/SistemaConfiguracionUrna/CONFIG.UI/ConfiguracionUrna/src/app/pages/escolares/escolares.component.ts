@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PartidosModule } from 'src/app/models/partidos/partidos.module';
 import { ApiServiceService } from 'src/app/services/api-service.service';
+import { EscolaresModule } from '../../models/escolares/escolares.module';
 
 @Component({
   selector: 'app-escolares',
@@ -11,6 +12,7 @@ import { ApiServiceService } from 'src/app/services/api-service.service';
 export class EscolaresComponent implements OnInit {
 
   public partidos: PartidosModule;
+  public escolares: EscolaresModule;
   private formData: FormData;
 
   private resPic: any;
@@ -83,5 +85,5 @@ export class EscolaresComponent implements OnInit {
     this.closeModal();
   }
 
-  
+
 }
