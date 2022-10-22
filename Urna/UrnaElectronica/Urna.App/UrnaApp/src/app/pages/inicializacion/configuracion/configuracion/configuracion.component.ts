@@ -13,7 +13,6 @@ export class ConfiguracionComponent implements OnInit {
 
   form: any;
   respuesta: any;
-  configuracion: any;
   confi :any;
 
   constructor(private formBuilder: FormBuilder, private route:Router, private service: ConfiguracionApiService) { }
@@ -28,12 +27,33 @@ export class ConfiguracionComponent implements OnInit {
     })
   }
 
+  configuracion_eleccioneslocales() {
+    let info = this.confi.Elecciones;
+    for (let i = 0; i < info.length; i++) {
+      if(info[i].TipoEleccion === 'Diputaciones') {
+      localStorage.setItem('diputacion', JSON.stringify(info[i]));
+    } else if(info[i].TipoEleccion === 'Gubernaturas') {
+      localStorage.setItem('gubernatura', JSON.stringify(info[i]));
+      } else if(info[i].TipoEleccion === 'ayuntamientos') {
+        localStorage.setItem('ayuntamiento', JSON.stringify(info[i]));
+      } 
+    }
+  }
+
   enviar() {
     this.service.getConfiguracion(this.form.get('codigo_configuracion').value).subscribe((resp) => {
       this.respuesta = resp;
       this.confi = this.respuesta.data.configuraciones;
-      localStorage.setItem('config', this.confi);
-      this.route.navigate(['/boleta-inicializacion']);
+      this.confi = JSON.parse(this.confi);
+      localStorage.setItem('categoria', this.confi.Categoria);
+      if(this.confi.Categoria === 'Elecciones locales') {
+        this.configuracion_eleccioneslocales();
+        this.route.navigate(['/boleta-inicializacion']);
+      } else if (this.confi.Categoria === "Elecciones escolares") {
+        console.log("configurar escolares");
+      } else if (this.confi.Categoria === "Mecanismos") {
+        console.log("Configurar mecanismos");
+      }
     }, error => {
       Swal.fire({
         icon: 'error',
