@@ -15,9 +15,9 @@
 
         <h5>Seleccione el tipo de proceso electoral</h5>
         <select name="tipo" id="tipo" class="form-select" [(ngModel)]="elecciones.tipoEleccion">
-          <option value="gubernatura">Gubernatura</option>
-          <option value="diputaciones">Diputacioes</option>
-          <option value="ayuntamientos">Ayuntamientos</option>
+          <option value="Gubernatura">Gubernatura</option>
+          <option value="Diputaciones">Diputacioes</option>
+          <option value="Ayuntamientos">Ayuntamientos</option>
         </select>
 
         <h5>Funcionariado de mesas directivas de casilla.</h5>
@@ -31,10 +31,10 @@
     <div class="form">
         <h5>Tipo de casilla</h5>
         <select name="tipo" id="tipo" class="form-select" [(ngModel)]="elecciones.tipoCasilla">
-          <option value="basica">Basica</option>
-          <option value="contigua">Contigua</option>
+          <option value="Basica">Basica</option>
+          <option value="Contigua">Contigua</option>
           <option value="Extraordinaria">Extraordinaria</option>
-          <option value="especial">Especial</option>
+          <option value="Especial">Especial</option>
         </select>
 
         <h5>Datos generales de la boleta</h5>
@@ -46,53 +46,74 @@
     </div>
 
     <div class="partidos">
-        <h5>Lista de partidos</h5>
-
-        <!--<div class="pat">
-            <div class="logo"> <img src="../../../../assets/img/LogoOple.png" alt="" class="imgLogo"> </div>
-            <div class="propietario">
-                <h6>Propietario</h6>
-                <p>Lusi Fernando Leyva Luna</p>
+        <h5>Listas de configuración</h5>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                      Lista de partidos
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="pat" *ngFor="let item of partidosList">
+                            <div class="logo"> <img src="{{item.Logotipo}}" alt="" class="imgLogo"> </div>
+                            <div class="propietario">
+                                <h6>Propietario</h6>
+                                <p>{{item.Propietario}}</p>
+                            </div>
+                            <div class="suplente">
+                                <h6>Suplente</h6>
+                                <p>{{item.Suplente}}</p>
+                            </div>
+                            <div class="partido">
+                                <h6>Partido</h6>
+                                <p>{{item.Hipocoristico}}</p>
+                            </div>
+                            <div class="opciones">
+                                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
+                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
+                                <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="suplente">
-                <h6>Suplente</h6>
-                <p>Samira Guadalupe Hernandez Garcia</p>
-            </div>
-            <div class="partido">
-                <h6>Partido</h6>
-                <p>Vamos por México</p>
-            </div>
-            <div class="opciones">
-                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
-                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
-                <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
-            </div>
-        </div>-->
-
-
-        <div class="pat" *ngFor="let item of partidosList">
-            <div class="logo"> <img src="{{item.Logotipo}}" alt="" class="imgLogo"> </div>
-            <div class="propietario">
-                <h6>Propietario</h6>
-                <p>{{item.Propietario}}</p>
-            </div>
-            <div class="suplente">
-                <h6>Suplente</h6>
-                <p>{{item.Suplente}}</p>
-            </div>
-            <div class="partido">
-                <h6>Partido</h6>
-                <p>{{item.Hipocoristico}}</p>
-            </div>
-            <div class="opciones">
-                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
-                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
-                <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                      Lista de elecciones configuradas
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="pat" *ngFor="let item of eleccionesList">
+                            <div class="propietario">
+                                <h6>Tipo de proceso electoral</h6>
+                                <p>{{item.TipoEleccion}}</p>
+                            </div>
+                            <div class="suplente">
+                                <h6>Tipo Casilla</h6>
+                                <p>{{item.TipoCasilla}}</p>
+                            </div>
+                            <div class="partido">
+                                <h6>Folio</h6>
+                                <p>{{item.Folio}}</p>
+                            </div>
+                            <div class="opciones">
+                                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
+                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
+                                <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="extraPartidos">
         <button class="btn btn-success" (click)="addPartido()">Añadir partido</button>
+        <button class="btn btn-success" (click)="agregarConfiguracion()">Añadir elección</button>
     </div>
 
 
