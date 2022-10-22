@@ -7,7 +7,7 @@ using Urna.DAL.Entities;
 
 namespace Urna.DAL.Context
 {
-    public class UrnaContext : IdentityDbContext
+    public class UrnaContext : DbContext
     {
         public UrnaContext()
         {
