@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute } from '@angular/router';
-import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
+import {Router } from '@angular/router';
 
 @Component({
   selector: 'app-boleta',
@@ -10,27 +9,21 @@ import { ConfiguracionApiService } from 'src/app/services/configuracion-api.serv
 
 export class BoletaComponent implements OnInit {
 
-  codigo_configuracion: any;
   configuracion: any;
+  date: Date = new Date();
 
-  constructor(private route:Router, private rutaActiva: ActivatedRoute, private service: ConfiguracionApiService) {
-    this.codigo_configuracion = this.rutaActiva.snapshot.paramMap.get('code');
-   }
+  constructor(private route:Router) { }
 
   ngOnInit(): void {
     this.obtenerConfiguracion();
   }
 
   obtenerConfiguracion() {
-    this.service.getConfiguracion(this.codigo_configuracion).subscribe((resp) => {
-      this.configuracion = resp;
-      this.configuracion = this.configuracion.data.configuraciones;
-      this.configuracion = JSON.parse(this.configuracion);    
-    });
+    this.configuracion =localStorage.getItem('config');
+    this.configuracion = JSON.parse(this.configuracion);
   }
 
   continuar() {
-    this.route.navigate([`/${this.codigo_configuracion}/votaciones`]);
+    this.route.navigate(['/votaciones']);
   }
-
 }

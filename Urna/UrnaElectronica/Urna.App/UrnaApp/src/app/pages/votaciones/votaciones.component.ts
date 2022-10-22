@@ -1,6 +1,4 @@
-import { Component, OnInit,  ViewChild} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-votaciones',
@@ -12,22 +10,14 @@ export class VotacionesComponent implements OnInit {
   codigo_configuracion: any;
   configuracion: any;
 
-  constructor(private rutaActiva: ActivatedRoute, private service: ConfiguracionApiService) { 
-    this.codigo_configuracion = this.rutaActiva.snapshot.paramMap.get('code');
-  }
-
-  @ViewChild('content') content: any;
+  constructor() { }
 
   ngOnInit(): void {
     this.obtenerConfiguracion();
   }
 
   obtenerConfiguracion() {
-    this.service.getConfiguracion(this.codigo_configuracion).subscribe((resp) => {
-      this.configuracion = resp;
-      this.configuracion = this.configuracion.data.configuraciones;
-      this.configuracion = JSON.parse(this.configuracion);
-    });
+    this.configuracion =localStorage.getItem('config');
+    this.configuracion = JSON.parse(this.configuracion);
   }  
-
 }

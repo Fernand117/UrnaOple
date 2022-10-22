@@ -1,16 +1,17 @@
 <app-header></app-header>
 <div class="container">
-    <div class="row bienvenido">
-      <div class="col">
-        <div class="col_1">
-            <h1>Ingrese el código de configuración</h1>
-        </div>
+  <div class="row bienvenido">
+    <div class="col">
+      <div class="col_1">
+        <h1>Ingrese el código de configuración</h1>
+      </div>
       <div class="col form">
-        <form [formGroup]="form"> 
-            <input formControlName="codigo_configuracion" class="form-control" type="text" required>
+        <form [formGroup]="form">
+          <input formControlName="codigo_configuracion" class="form-control" type="text" required>
         </form>
         <button type="submit" class="btn btn-primary" (click)="enviar()">ENVIAR</button>
       </div>
     </div>
-  </div></div>
-  <app-footer></app-footer>
+  </div>
+</div>
+<app-footer></app-footer>

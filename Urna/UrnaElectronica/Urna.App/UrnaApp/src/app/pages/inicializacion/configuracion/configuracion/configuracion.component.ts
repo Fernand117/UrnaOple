@@ -14,7 +14,7 @@ export class ConfiguracionComponent implements OnInit {
   form: any;
   respuesta: any;
   configuracion: any;
-  code :any;
+  confi :any;
 
   constructor(private formBuilder: FormBuilder, private route:Router, private service: ConfiguracionApiService) { }
 
@@ -31,9 +31,9 @@ export class ConfiguracionComponent implements OnInit {
   enviar() {
     this.service.getConfiguracion(this.form.get('codigo_configuracion').value).subscribe((resp) => {
       this.respuesta = resp;
-      console.log(this.respuesta);
-      this.code = this.respuesta.data.codigo; 
-      this.route.navigate([`/${this.code}/boleta-inicializacion`]);
+      this.confi = this.respuesta.data.configuraciones;
+      localStorage.setItem('config', this.confi);
+      this.route.navigate(['/boleta-inicializacion']);
     }, error => {
       Swal.fire({
         icon: 'error',
