@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PartidosModule } from 'src/app/models/partidos/partidos.module';
-import { ApiServiceService } from 'src/app/services/api-service.service';
-import { EscolaresModule } from '../../models/escolares/escolares.module';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {PartidosModule} from 'src/app/models/partidos/partidos.module';
+import {ApiServiceService} from 'src/app/services/api-service.service';
+import {EscolaresModule} from '../../models/escolares/escolares.module';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-escolares',
@@ -12,7 +13,7 @@ import { EscolaresModule } from '../../models/escolares/escolares.module';
 export class EscolaresComponent implements OnInit {
 
   public partidos: PartidosModule;
-  public escolares: EscolaresModule;
+  public escolares: EscolaresModule = new EscolaresModule();
   private formData: FormData;
 
   private resPic: any;
@@ -21,12 +22,14 @@ export class EscolaresComponent implements OnInit {
   public imgURL: any;
   public message: string;
   public partidosList: any[] = [];
+  public escolaresList: any[] = [];
   private resData: any;
 
   constructor(
     private apiService: ApiServiceService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.imgURL = "https://www.oplever.org.mx/wp-content/uploads/2018/08/logo-ople.jpg";
@@ -62,7 +65,7 @@ export class EscolaresComponent implements OnInit {
 
     this.formData = new FormData();
     this.formData.append('file', files[0]);
-    this.formData.append('public_id', files[0].name+"696242651689144");
+    this.formData.append('public_id', files[0].name + "696242651689144");
     this.formData.append('upload_preset', 'filesOple');
     this.apiService.uploadSignature(this.formData).subscribe(
       res => {
@@ -72,7 +75,7 @@ export class EscolaresComponent implements OnInit {
     );
   }
 
-  agregarPartidos(){
+  agregarPartidos() {
     this.partidos.Id = 0;
     if (this.resPic) {
       this.partidos.Logotipo = this.resPic["url"];
@@ -85,5 +88,48 @@ export class EscolaresComponent implements OnInit {
     this.closeModal();
   }
 
+  agregarConfiguracion() {
+    const datos = {
+      "Presidente": this.escolares.presidente,
+      "Secretario": this.escolares.secretario,
+      "PrimerEscrutador": this.escolares.primerEscrutador,
+      "SegundoEscrutador": this.escolares.segundoEscrutador,
+      "NombreInstitucion": this.escolares.nombreInstitucion,
+      "CantidadBoletas": this.escolares.nBoletas.toString(),
+      "Partidos": this.partidosList
+    };
+    this.escolaresList.push(datos);
+    let jsonRes = JSON.stringify(this.escolaresList);
+    console.log(jsonRes)
+    this.escolares = new EscolaresModule();
+    this.partidos = new PartidosModule();
+    this.partidosList = [];
+  }
+
+  guardarConfiguracion() {
+    const datos = {
+      "Id": 0,
+      "Categoria": "Elecciones escolares",
+      "Escolares": this.escolaresList
+    };
+
+    let json = JSON.stringify(datos);
+
+    console.log(json)
+
+    this.apiService.guardarEscolares(json).subscribe(
+      res => {
+        this.resData = res;
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: this.resData["ResponseText"],
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.router.navigateByUrl('/elecciones')
+      }
+    );
+  }
 
 }
