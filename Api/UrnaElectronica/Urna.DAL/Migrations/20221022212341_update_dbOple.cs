@@ -2,7 +2,7 @@
 
 namespace Urna.DAL.Migrations
 {
-    public partial class update_config : Migration
+    public partial class update_dbOple : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiServiceService {
 
-  private url = "http://localhost:32042/api/eleccion";
+  private url = "http://localhost:32042/api";
 
   constructor(
     private http: HttpClient

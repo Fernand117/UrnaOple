@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-gubernatura',
@@ -7,12 +7,19 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class GubernaturaComponent implements OnInit {
 
-  constructor() { }
+  @Output() miEvento = new EventEmitter<boolean>();
+  voto: boolean = false;
 
   @Input() partidos: any;
   app_name: string = "gubernatura";
 
-  ngOnInit(): void {    
-  }
+  constructor() { }
 
+  ngOnInit(): void { }
+
+  getVoto(e: any) {
+    this.voto = e;
+    this.miEvento.emit(this.voto);
+  }
+  
 }

@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter} from '@angular/core';
 import Swal from 'sweetalert2';
 import { KeyboardComponent } from '../keyboard/keyboard.component';
 
@@ -10,16 +9,17 @@ import { KeyboardComponent } from '../keyboard/keyboard.component';
 })
 export class CardComponent implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor() { }
 
   @Input() partidos: any;
   @Input() name: any;
+  @Output() miEvento = new EventEmitter<boolean>();
 
   candidatoSeleccionado: any = "";
   @ViewChild(KeyboardComponent)
   hijo: KeyboardComponent = new KeyboardComponent;
   voto: boolean = false;
-
+ 
   ngOnInit(): void { }
 
   openModalRegistrado(c: any) {
@@ -29,10 +29,11 @@ export class CardComponent implements OnInit {
   votar_registrado() {
     if (!this.voto) {
       // SERVICIO
-      this.voto = true;
+      this.voto = true;            
+      this.miEvento.emit(this.voto);
+      this.msjSuccess();
     } else {
       this.mostrar_msjError();
-      this.route.navigate(['/en-espera']);
     }
   }
 
@@ -40,6 +41,7 @@ export class CardComponent implements OnInit {
     if (!this.voto) {
       // SERVICIO
       this.voto = true;
+      this.miEvento.emit(this.voto);
     } else {
       this.mostrar_msjError();
     }
@@ -51,11 +53,11 @@ export class CardComponent implements OnInit {
     if (!this.voto) {
       // SERVICIO
       this.voto = true;
+      this.miEvento.emit(this.voto);
     } else {
       this.mostrar_msjError();
     }
   }
-
 
   mostrar_msjError() {
     Swal.fire({
@@ -63,5 +65,13 @@ export class CardComponent implements OnInit {
       title: 'Lo sentimos',
       text: 'Ya has realizado tu voto para este tipo de elección.'
     });
+  }
+
+  msjSuccess() {
+    Swal.fire(
+      '¡Tu voto ha sido registrado con éxito!',
+      'Te direccionaremos a la siguiente categoría de votaciones para que puedas seguir efectuando tus votos.',
+      'success'
+    );
   }
 }
