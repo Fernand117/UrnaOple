@@ -18,15 +18,29 @@ namespace Votos.DAO.Ayuntamientos
 			{
 				using (VotoContext context = new VotoContext())
 				{
-					Ayuntamiento ayuntamiento = new Ayuntamiento()
-					{
-						Id = request.Id,
-						Partido = request.Partido,
-						Voto = request.Voto
-					};
+					var voto = await context.Ayuntamientos
+						.Where(v => v.Partido == request.Partido)
+						.FirstOrDefaultAsync();
 
-					await context.AddAsync(ayuntamiento);
-					await context.SaveChangesAsync();
+					if (voto == null)
+					{
+						Ayuntamiento ayuntamiento = new Ayuntamiento()
+						{
+							Id = request.Id,
+							Partido = request.Partido,
+							Voto = request.Voto
+						};
+
+						await context.AddAsync(ayuntamiento);
+						await context.SaveChangesAsync();
+					}
+					else
+					{
+						int votoActual = int.Parse(voto.Voto);
+						votoActual++;
+						voto.Voto = votoActual.ToString();
+						await context.SaveChangesAsync();
+					}
 				}
 			}
 			catch (Exception) { }
