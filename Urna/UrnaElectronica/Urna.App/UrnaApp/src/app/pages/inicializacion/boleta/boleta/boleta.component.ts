@@ -11,6 +11,9 @@ export class BoletaComponent implements OnInit {
 
   configuracion: any;
   date: Date = new Date();
+  config_gubernatura: any;
+  config_ayuntamiento: any;
+  config_diputacion: any;
 
   constructor(private route:Router) { }
 
@@ -19,9 +22,15 @@ export class BoletaComponent implements OnInit {
   }
 
   obtenerConfiguracion() {
-    this.configuracion =localStorage.getItem('config');
-    this.configuracion = JSON.parse(this.configuracion);
-  }
+    this.config_gubernatura =localStorage.getItem('gubernatura');
+    this.config_gubernatura = JSON.parse(this.config_gubernatura);    
+
+    this.config_ayuntamiento =localStorage.getItem('ayuntamiento');
+    this.config_ayuntamiento = JSON.parse(this.config_ayuntamiento);
+
+    this.config_diputacion =localStorage.getItem('diputacion');
+    this.config_diputacion = JSON.parse(this.config_diputacion);
+  }  
 
   continuar() {
     this.route.navigate(['/votaciones']);

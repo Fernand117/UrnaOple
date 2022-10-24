@@ -24,6 +24,7 @@ import { EleccionesEscolaresComponent } from './pages/votaciones/elecciones-esco
 import { ParticipacionCiudadanaComponent } from './pages/votaciones/participacion-ciudadana/participacion-ciudadana.component';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { ReferendumComponent } from './pages/votaciones/participacion-ciudadana/referendum/referendum.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(localeEs, 'es');
     EsperaElectorComponent,
     GraciasComponent,
     EleccionesEscolaresComponent,
-    ParticipacionCiudadanaComponent
+    ParticipacionCiudadanaComponent,
+    ReferendumComponent
   ],
   imports: [
     BrowserModule,

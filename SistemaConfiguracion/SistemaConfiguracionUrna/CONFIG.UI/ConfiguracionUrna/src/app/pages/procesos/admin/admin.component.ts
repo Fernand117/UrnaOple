@@ -1,9 +1,9 @@
-import { EleccionesModule } from './../../../models/elecciones/elecciones.module';
-import { Component, OnInit } from '@angular/core';
-import { PartidosModule } from 'src/app/models/partidos/partidos.module';
-import { ApiServiceService } from '../../../services/api-service.service';
+import {EleccionesModule} from './../../../models/elecciones/elecciones.module';
+import {Component, OnInit} from '@angular/core';
+import {PartidosModule} from 'src/app/models/partidos/partidos.module';
+import {ApiServiceService} from '../../../services/api-service.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -65,7 +65,7 @@ export class AdminComponent implements OnInit {
 
     this.formData = new FormData();
     this.formData.append('file', files[0]);
-    this.formData.append('public_id', files[0].name+"696242651689144");
+    this.formData.append('public_id', files[0].name + "696242651689144");
     this.formData.append('upload_preset', 'filesOple');
     this.apiService.uploadSignature(this.formData).subscribe(
       res => {
@@ -75,7 +75,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
-  agregarPartidos(){
+  agregarPartidos() {
     this.partidos.Id = 0;
     if (this.resPic) {
       this.partidos.Logotipo = this.resPic["url"];

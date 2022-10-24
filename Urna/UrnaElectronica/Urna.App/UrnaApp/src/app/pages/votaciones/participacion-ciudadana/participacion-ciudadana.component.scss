@@ -1,0 +1,22 @@
+.nav-link {
+    color: #000;
+    background: rgba(111, 60, 198, 0.22);
+    border: 0;
+    font-size: 18px;
+    border-radius: 0%;
+  }
+
+.nav-link.active {
+    color: #6F3CC6;
+    background-color: rgba(111, 60, 198, 0.22);
+    border-radius: 0%;
+    font-weight: 650;
+}
+
+.titulo {
+  font-size: 25px;
+  text-align: center;
+  margin-top: 30px;
+  font-weight: 350;
+  margin-bottom: 20px;
+}

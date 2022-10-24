@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-ayuntamiento',
@@ -7,12 +7,19 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AyuntamientoComponent implements OnInit {
 
+  @Output() miEvento = new EventEmitter<boolean>();
+  voto: boolean = false;
+
   @Input() partidos: any;
   app_name: string = "ayuntamiento";
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  getVoto(e: any) {
+    this.voto = e;
+    this.miEvento.emit(this.voto);
   }
 
 }

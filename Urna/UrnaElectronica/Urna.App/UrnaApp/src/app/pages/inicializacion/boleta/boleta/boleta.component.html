@@ -1,35 +1,79 @@
 <app-header></app-header>
-<div class="row">
-  <div class="col-4">
-    <div class="datos_urna">
-      <p>Municipio: {{configuracion?.Municipio}} </p>
-      <p>Entidad: {{configuracion?.Entidad}} </p>
-      <p>Distrito: {{configuracion?.Distrito}} </p>
-      <p>Fecha: {{date | date:'shortDate'}} </p>
+<div class="container">
+  <h1>Boleta de inicialización</h1> 
+  <div class="row">
+
+    <!-- BOLETA GUBERNATURAS -->
+    <div class="col-sm">
+      <h2>Gubernaturas</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Candidato</th>
+            <th scope="col">Votos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let boleta of config_gubernatura?.Partidos">
+            <td>{{boleta.Propietario}}</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="botones">
+        <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
+      </div>
     </div>
+
+    <!-- BOLETA DIPUTACIONES -->
+    <div class="col-sm">
+      <h2>Diputaciones</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Candidato</th>
+            <th scope="col">Votos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let boleta of config_diputacion?.Partidos">
+            <td>{{boleta.Propietario}}</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="botones">
+        <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
+      </div>
+    </div>
+
+    <!-- BOLETA AYUNTAMIENTOS -->
+    <div class="col-sm">
+      <h2>Ayuntamientos</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Candidato</th>
+            <th scope="col">Votos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let boleta of config_ayuntamiento?.Partidos">
+            <td>{{boleta.Propietario}}</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="botones">
+        <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
+      </div>
+    </div>
+
   </div>
-  <div class="col-8" id="boleta">
-    <h2>Elección y boleta</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Número</th>
-          <th scope="col">Candidato</th>
-          <th scope="col">Cantidad de botos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let boleta of configuracion?.Partidos">
-          <td>{{boleta.Id}}</td>
-          <td>{{boleta.Propietario}}</td>
-          <td>0</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="botones">
-      <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
-      <button type="button" class="btn btn-primary" id="btn2" (click)="continuar()">Continuar</button>
-    </div>
+  <div class="btn-continuar">
+    <button type="button" class="btn btn-primary btn"  (click)="continuar()">Continuar</button>
   </div>
 </div>
+
+
 <app-footer></app-footer>
