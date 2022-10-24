@@ -415,3 +415,5 @@ SistemaConfiguracion/SistemaConfiguracionUrna/CONFIG.UI/ConfiguracionUrna/.angul
 *.pack
 *.old
 *.json
+Urna/UrnaElectronica/Votos.DAL/Migrations/20221024212026_dbVotos.Designer.cs
+Urna/UrnaElectronica/Votos.DAL/Migrations/20221024212026_dbVotos.cs

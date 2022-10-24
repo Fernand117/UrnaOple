@@ -16,27 +16,15 @@ namespace Votos.DAO.Gubernaturas
             {
                 using (VotoContext context = new VotoContext())
                 {
-                    var votoActual = await context.Gubernaturas
-                        .Where(v => v.Partido == request.Partido)
-                        .FirstOrDefaultAsync();
-
-                    if (int.Parse(votoActual.Voto) > 0)
+                    Gubernatura gubernatura = new Gubernatura()
                     {
-                        votoActual.Voto += 1;
-                        await context.SaveChangesAsync();
-                    }
-                    else
-                    {
-                        Gubernatura gubernatura = new Gubernatura()
-                        {
-                            Id = request.Id,
-                            Partido = request.Partido,
-                            Voto = request.Voto
-                        };
+                        Id = request.Id,
+                        Partido = request.Partido,
+                        Voto = request.Voto
+                    };
 
-                        await context.AddAsync(gubernatura);
-                        await context.SaveChangesAsync();
-                    }
+                    await context.AddAsync(gubernatura);
+                    await context.SaveChangesAsync();
                 }
             }
             catch (Exception e)

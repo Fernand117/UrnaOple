@@ -16,27 +16,15 @@ namespace Votos.DAO.Diputaciones
             {
                 using (VotoContext context = new VotoContext())
                 {
-                    var votoActual = await context.Diputaciones
-                        .Where(v => v.Partido == request.Partido)
-                        .FirstOrDefaultAsync();
-
-                    if (int.Parse(votoActual.Voto) > 0)
+                    Diputacion diputacion = new Diputacion()
                     {
-                        votoActual.Voto += 1;
-                        await context.SaveChangesAsync();
-                    }
-                    else
-                    {
-                        Diputacion diputacion = new Diputacion()
-                        {
-                            Id = request.Id,
-                            Partido = request.Partido,
-                            Voto = request.Voto
-                        };
+                        Id = request.Id,
+                        Partido = request.Partido,
+                        Voto = request.Voto
+                    };
 
-                        await context.AddAsync(diputacion);
-                        await context.SaveChangesAsync();
-                    }
+                    await context.AddAsync(diputacion);
+                    await context.SaveChangesAsync();
                 }
             }
             catch (Exception e)
