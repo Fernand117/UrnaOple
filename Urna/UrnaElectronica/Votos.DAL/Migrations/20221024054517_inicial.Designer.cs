@@ -9,7 +9,7 @@ using Votos.DAL.Context;
 namespace Votos.DAL.Migrations
 {
     [DbContext(typeof(VotoContext))]
-    [Migration("20221023011711_inicial")]
+    [Migration("20221024054517_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
