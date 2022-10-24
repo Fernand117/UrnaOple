@@ -8,8 +8,8 @@ import { TarjetasComponent } from './pages/inicializacion/tarjetas/tarjetas/tarj
 import { EleccionesEscolaresComponent } from './pages/votaciones/elecciones-escolares/elecciones-escolares.component';
 import { EsperaElectorComponent } from './pages/votaciones/mensajes/espera-elector/espera-elector.component';
 import { GraciasComponent } from './pages/votaciones/mensajes/gracias/gracias.component';
-import { ParticipacionCiudadanaComponent } from './pages/votaciones/participacion-ciudadana/participacion-ciudadana.component';
 import { VotacionesComponent } from './pages/votaciones/votaciones.component';
+import { ParticipacionCiudadanaComponent } from './pages/votaciones/participacion-ciudadana/participacion-ciudadana.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/bienvenido', pathMatch: 'full' },

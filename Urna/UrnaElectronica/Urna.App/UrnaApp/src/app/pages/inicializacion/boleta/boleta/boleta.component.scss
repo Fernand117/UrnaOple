@@ -1,5 +1,6 @@
 h2 {
     font-weight: 350;
+    margin-top: 10%;
 }
 
 .table {
@@ -13,9 +14,15 @@ h2 {
     margin-right: 20%;
 }
 
-#btn2 {
-    background-color: #6F3CC6;
-    border-color: #6F3CC6;
+.btn-continuar {
+    display: flex;
+    justify-content: center;
+
+    .btn {
+        margin-top: 5%;
+        background-color: #6F3CC6;
+        border-color: #6F3CC6;
+    }
 }
 
 .datos_urna {
