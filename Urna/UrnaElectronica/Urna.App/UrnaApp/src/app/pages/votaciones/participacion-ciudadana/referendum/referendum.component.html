@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="titulo">
+        <h1>{{configuracion.Nombre}}</h1>
+        <p>{{configuracion.Objeto}}</p>
+    </div>
+    <div *ngFor="let pregunta of configuracion.Preguntas">
+        <p>{{pregunta.Pregunta}}</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radio" id="default1">
+            <label class="form-check-label" for="default1">
+                Si
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radio2" id="default2">
+            <label class="form-check-label" for="default2">
+                No
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-primary" (click)="enviar()">Confirmar</button>
+</div>

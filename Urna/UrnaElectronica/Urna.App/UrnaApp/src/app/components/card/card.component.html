@@ -19,15 +19,15 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3 margen nulo">
-      <div class="row no-gutters" data-bs-toggle="modal" [attr.data-bs-target]="'#nulo'+ name">
+    <div class="col-md-3 margen nulo" data-bs-toggle="modal" [attr.data-bs-target]="'#nulo'+ name">
+      <div class="row no-gutters">
         <div class="card-body">
           <h5>VOTO NULO</h5>
         </div>
       </div>
     </div>
-    <div class="col-md-3 margen nulo">
-      <div class="row no-gutters" data-bs-toggle="modal" [attr.data-bs-target]="'#noRegistrado' + name">
+    <div class="col-md-3 margen nulo" data-bs-toggle="modal" [attr.data-bs-target]="'#noRegistrado' + name">
+      <div class="row no-gutters">
         <div class="card-body ">
           <h5>CANDIDATO NO REGISTRADO
           </h5>
@@ -53,7 +53,8 @@
         <form>
           <app-keyboard [name]="name"></app-keyboard>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="votar_noRegistrado()">Votar</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+              (click)="votar_noRegistrado()">Votar</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Regresar</button>
           </div>
         </form>
@@ -73,7 +74,8 @@
         <h4>¿Es correcto?</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="anularVoto()">Si, Confirmar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="anularVoto()">Si,
+          Confirmar</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cancelar</button>
       </div>
     </div>
@@ -81,7 +83,8 @@
 </div>
 
 <!-- MODAL CANDIDATO REGISTRADO SELECCIONADO -->
-<div class="modal fade" id="seleccionado{{name}}" tabindex="-1" role="dialog" aria-labelledby="seleccionado" aria-hidden="true">
+<div class="modal fade" id="seleccionado{{name}}" tabindex="-1" role="dialog" aria-labelledby="seleccionado"
+  aria-hidden="true">
   <div class="modal-dialog modal-md modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -102,9 +105,12 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="votar_registrado()">Si, Confirmar</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="votar_registrado()">Si,
+              Confirmar</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No, Cancelar</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>

@@ -9,6 +9,9 @@ export class ParticipacionCiudadanaComponent implements OnInit {
 
   constructor() { }
 
+  app_name: any ;
+
+
   preguntas = [
     {
       pregunta: "¿Estas de acuerdo con el mecanismo de participación ciudadana?"

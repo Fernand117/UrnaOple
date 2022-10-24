@@ -27,7 +27,8 @@ export class ConfiguracionComponent implements OnInit {
     })
   }
 
-  configuracion_eleccioneslocales() {    
+  configuracion_eleccioneslocales() {   
+    localStorage.setItem('categoria', this.confi.Categoria);       
     let info = this.confi.Elecciones;
     for (let i = 0; i < info.length; i++) {
       if(info[i].TipoEleccion === 'Diputaciones') {
@@ -40,21 +41,43 @@ export class ConfiguracionComponent implements OnInit {
     }
   }
 
+  configuracion_eleccionesEscolares() {
+    localStorage.setItem('categoria', this.confi.Categoria);       
+    let info = this.confi.Elecciones;
+    localStorage.setItem('escolares', JSON.stringify(info));
+  }
+
+  configuracion_mecanismos_ciudadania() {
+    localStorage.setItem('categoria', this.confi.Categoria);       
+    let info = this.confi.Mecanismos;
+    for (let i = 0; i < info.length; i++) {
+      if(info[i].TipoMecanismo === 'Referéndum') {
+      localStorage.setItem('referendum', JSON.stringify(info[i]));
+    } else if(info[i].TipoMecanismo === 'Plebiscito') {
+      localStorage.setItem('plebiscito', JSON.stringify(info[i]));
+      } else if(info[i].TipoMecanismo === 'Consulta Popular') {
+        localStorage.setItem('consulta_popular', JSON.stringify(info[i]));
+      } 
+    }
+  }
+
   enviar() {
     this.service.getConfiguracion(this.form.get('codigo_configuracion').value).subscribe((resp) => {
       this.respuesta = resp;
       this.confi = this.respuesta.data.configuraciones;
       this.confi = JSON.parse(this.confi);
-      console.log(this.confi);
-
-      localStorage.setItem('categoria', this.confi.Categoria);
+      localStorage.setItem('categoria', this.confi.Categoria);      
       if(this.confi.Categoria === 'Procesos locales electorales') {
+        localStorage.clear();
         this.configuracion_eleccioneslocales();
         this.route.navigate(['/boleta-inicializacion']);
       } else if (this.confi.Categoria === "Elecciones escolares") {
-        console.log("configurar escolares");
-      } else if (this.confi.Categoria === "Mecanismos") {
-        console.log("Configurar mecanismos");
+        localStorage.clear();
+        this.configuracion_eleccionesEscolares();
+      } else if (this.confi.Categoria === "Mecanismos de participación ciudadana") {
+        localStorage.clear();
+        this.configuracion_mecanismos_ciudadania();
+        this.route.navigate(['/participacion-ciudadana']);
       }
     }, error => {
       Swal.fire({
