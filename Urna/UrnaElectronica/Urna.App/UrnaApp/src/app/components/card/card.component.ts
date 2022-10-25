@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import Swal from 'sweetalert2';
 import { KeyboardComponent } from '../keyboard/keyboard.component';
+import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
 
 @Component({
   selector: 'app-card',
@@ -9,18 +10,21 @@ import { KeyboardComponent } from '../keyboard/keyboard.component';
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: ConfiguracionApiService) { }
 
+  //VARIABLES
   @Input() partidos: any;
   @Input() name: any;
   @Output() miEvento = new EventEmitter<boolean>();
-
-  candidatoSeleccionado: any = "";
   @ViewChild(KeyboardComponent)
   hijo: KeyboardComponent = new KeyboardComponent;
+  candidatoSeleccionado: any = "";
   voto: boolean = false;
- 
-  ngOnInit(): void { }
+
+  ngOnInit(): void { 
+    console.log(this.voto, this.name);
+    
+  }
 
   openModalRegistrado(c: any) {
     this.candidatoSeleccionado = c;
@@ -28,10 +32,21 @@ export class CardComponent implements OnInit {
 
   votar_registrado() {
     if (!this.voto) {
-      // SERVICIO
-      this.voto = true;            
+      const request = {
+        "Id": 0,
+        "Partido": this.candidatoSeleccionado.Hipocoristico.toString(),
+        "Voto": "1"
+      }
+      this.voto = true;
       this.miEvento.emit(this.voto);
       this.msjSuccess();
+      // this.service.setVoto(request).subscribe((resp) => {
+      //   this.voto = true;
+      //   this.miEvento.emit(this.voto);
+      //   this.msjSuccess();
+      // }, error => {
+      //   this.mostrar_msjError();
+      // });
     } else {
       this.mostrar_msjError();
     }
@@ -39,21 +54,43 @@ export class CardComponent implements OnInit {
 
   votar_noRegistrado() {
     if (!this.voto) {
-      // SERVICIO
-      this.voto = true;
-      this.miEvento.emit(this.voto);
+      const request = {
+        "Id": 0,
+        "Partido": this.hijo.value,
+        "Voto": "1"
+      }
+
+      this.service.setVoto(request).subscribe((resp) => {
+        this.voto = true;
+        this.miEvento.emit(this.voto);
+        this.msjSuccess();
+        this.hijo.value = "";
+      }, error => {
+        console.log(error);
+        this.mostrar_msjError();
+      });
     } else {
       this.mostrar_msjError();
     }
-    // console.log("voto por: ", this.hijo.value);
-    // this.hijo.value = "";
   }
 
   anularVoto() {
     if (!this.voto) {
-      // SERVICIO
-      this.voto = true;
-      this.miEvento.emit(this.voto);
+      const request = {
+        "Id": 0,
+        "Partido": "Voto nulo",
+        "Voto": "1"
+      }
+
+      this.service.setVoto(request).subscribe((resp) => {
+        this.voto = true;
+        this.miEvento.emit(this.voto);
+        this.msjSuccess();
+        this.hijo.value = "";
+      }, error => {
+        console.log(error);
+        this.mostrar_msjError();
+      });
     } else {
       this.mostrar_msjError();
     }

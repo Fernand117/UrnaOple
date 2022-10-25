@@ -43,7 +43,7 @@ export class ConfiguracionComponent implements OnInit {
 
   configuracion_eleccionesEscolares() {
     localStorage.setItem('categoria', this.confi.Categoria);       
-    let info = this.confi.Elecciones;
+    let info = this.confi.Escolares;
     localStorage.setItem('escolares', JSON.stringify(info));
   }
 
@@ -66,6 +66,8 @@ export class ConfiguracionComponent implements OnInit {
       this.respuesta = resp;
       this.confi = this.respuesta.data.configuraciones;
       this.confi = JSON.parse(this.confi);
+      console.log(this.confi);
+      
       localStorage.setItem('categoria', this.confi.Categoria);      
       if(this.confi.Categoria === 'Procesos locales electorales') {
         localStorage.clear();
@@ -73,6 +75,7 @@ export class ConfiguracionComponent implements OnInit {
         this.route.navigate(['/boleta-inicializacion']);
       } else if (this.confi.Categoria === "Elecciones escolares") {
         localStorage.clear();
+        this.route.navigate(['/boleta-inicializacion']);  
         this.configuracion_eleccionesEscolares();
       } else if (this.confi.Categoria === "Mecanismos de participación ciudadana") {
         localStorage.clear();

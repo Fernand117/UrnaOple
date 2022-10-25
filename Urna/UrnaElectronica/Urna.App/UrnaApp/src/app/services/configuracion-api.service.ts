@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const apiUrl = environment.apiUrl;
+const apiUrl_local = environment.apiUrl_local;
 
 @Injectable({
   providedIn: 'root'
@@ -14,4 +15,9 @@ export class ConfiguracionApiService {
   getConfiguracion(code: any) {
     return this.http.get(`${apiUrl}eleccion/code/${code}`);
   }
+
+  setVoto(voto: any) {
+    return this.http.post(`${apiUrl_local}gubernatura`, voto);
+  }
+  
 }

@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EleccionesEscolaresComponent implements OnInit {
 
+  configuracion: any;
+  app_name: string = "escolares";
+
   constructor() { }
 
   ngOnInit(): void {
+    this.obtenerConfiguracion();
   }
-
+    
+  obtenerConfiguracion() {
+    this.configuracion =localStorage.getItem('escolares');
+    this.configuracion = JSON.parse(this.configuracion);   
+    console.log(this.configuracion);
+    
+  }  
 }

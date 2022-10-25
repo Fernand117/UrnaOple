@@ -33,6 +33,11 @@ export class BoletaComponent implements OnInit {
   }  
 
   continuar() {
-    this.route.navigate(['/votaciones']);
+    let categoria = localStorage.getItem('categoria');
+    if (categoria === 'Elecciones escolares') {
+      this.route.navigate(['/elecciones-escolares']);
+    } else {
+      this.route.navigate(['/votaciones']);
+    }
   }
 }

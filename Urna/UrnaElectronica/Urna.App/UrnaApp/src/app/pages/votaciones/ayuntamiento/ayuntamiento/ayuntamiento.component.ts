@@ -7,9 +7,8 @@ import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class AyuntamientoComponent implements OnInit {
 
+  //VARIABLES
   @Output() miEvento = new EventEmitter<boolean>();
-  voto: boolean = false;
-
   @Input() partidos: any;
   app_name: string = "ayuntamiento";
 
@@ -18,8 +17,6 @@ export class AyuntamientoComponent implements OnInit {
   ngOnInit(): void { }
 
   getVoto(e: any) {
-    this.voto = e;
-    this.miEvento.emit(this.voto);
+    this.miEvento.emit(e);
   }
-
 }

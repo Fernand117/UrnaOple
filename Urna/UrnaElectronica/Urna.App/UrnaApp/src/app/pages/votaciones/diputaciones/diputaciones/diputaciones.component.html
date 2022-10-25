@@ -1,2 +1,2 @@
 <h1 class="titulo">Selecciona el candidato de Diputaciones por el que deseas votar</h1>
-<app-card [partidos]="partidos" [name]="app_name"></app-card>
+<app-card [partidos]="partidos" [name]="app_name" (miEvento)="getVoto($event)"></app-card>
