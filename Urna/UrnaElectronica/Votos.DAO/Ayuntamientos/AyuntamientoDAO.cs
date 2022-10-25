@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Votos.COMMON.DTOS.Ayuntamientos;
 using Votos.DAL.Context;
@@ -48,9 +47,9 @@ namespace Votos.DAO.Ayuntamientos
 			return request;
         }
 
-        public async Task<List<Ayuntamiento>> Read()
+        public async Task<List<AyuntamientoDTO>> Read()
         {
-	        List<Ayuntamiento> response = new List<Ayuntamiento>();
+	        List<AyuntamientoDTO> response = new List<AyuntamientoDTO>();
 	        try
 	        {
 		        using (VotoContext context = new VotoContext())
@@ -59,7 +58,7 @@ namespace Votos.DAO.Ayuntamientos
 
 			        foreach (var v in votos)
 			        {
-				        response.Add(new Ayuntamiento()
+				        response.Add(new AyuntamientoDTO()
 				        {
 					        Id = v.Id,
 					        Partido = v.Partido,
