@@ -3,8 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Votos.DAL.Entities.Ayuntamientos;
+using Votos.DAL.Entities.ConsultaPopular;
 using Votos.DAL.Entities.Diputaciones;
+using Votos.DAL.Entities.Escolares;
 using Votos.DAL.Entities.Gubernaturas;
+using Votos.DAL.Entities.Presbicito;
+using Votos.DAL.Entities.Referendum;
 
 namespace Votos.DAL.Context
 {
@@ -79,6 +83,88 @@ namespace Votos.DAL.Context
                 entity.Property(d => d.Voto)
                       .HasColumnName("votos");
             });
+
+            modelBuilder.Entity<ConsultaPopular>(entity =>
+            {
+                  entity.HasKey(c => c.Id)
+                        .HasName("PK_tbConsulta");
+
+                  //TODO: Continuar aquí programando los modelos
+                  entity.ToTable("consulta");
+                  
+                  entity.Property(c => c.Id)
+                        .HasColumnName("id")
+                        .UseIdentityByDefaultColumn();
+
+                  entity.Property(c => c.Pregunta)
+                        .HasColumnName("pregunta");
+
+                  entity.Property(c => c.RespuestaSi)
+                        .HasColumnName("si");
+
+                  entity.Property(c => c.RespuestaNo)
+                        .HasColumnName("no");
+            });
+
+            modelBuilder.Entity<Presbicito>(entity =>
+            {
+                  entity.HasKey(p => p.Id)
+                        .HasName("PK_tbPresbicito");
+
+                  entity.ToTable("presbicito");
+
+                  entity.Property(p => p.Id)
+                        .HasColumnName("id")
+                        .UseIdentityByDefaultColumn();
+
+                  entity.Property(p => p.Pregunta)
+                        .HasColumnName("pregunta");
+
+                  entity.Property(p => p.RespuestaSi)
+                        .HasColumnName("si");
+
+                  entity.Property(p => p.RespuestaNo)
+                        .HasColumnName("no");
+            });
+
+            modelBuilder.Entity<Referendum>(entity =>
+            {
+                  entity.HasKey(r => r.Id)
+                        .HasName("PK_tbReferendum");
+
+                  entity.ToTable("referendum");
+
+                  entity.Property(r => r.Id)
+                        .HasColumnName("id")
+                        .UseIdentityByDefaultColumn();
+
+                  entity.Property(r => r.Pregunta)
+                        .HasColumnName("pregunta");
+
+                  entity.Property(r => r.RespuestaSi)
+                        .HasColumnName("si");
+
+                  entity.Property(r => r.RespuestaNo)
+                        .HasColumnName("no");
+            });
+
+            modelBuilder.Entity<Escolares>(entity =>
+            {
+                  entity.HasKey(e => e.Id)
+                        .HasName("PK_tbEscolares");
+
+                  entity.ToTable("escolares");
+
+                  entity.Property(e => e.Id)
+                        .HasColumnName("id")
+                        .UseIdentityByDefaultColumn();
+
+                  entity.Property(e => e.Partido)
+                        .HasColumnName("partido");
+
+                  entity.Property(e => e.Voto)
+                        .HasColumnName("voto");
+            });
         }
 
       #region DBSETS
@@ -88,6 +174,14 @@ namespace Votos.DAL.Context
         public virtual DbSet<Gubernatura> Gubernaturas { get; set; }
 
         public virtual DbSet<Diputacion> Diputaciones { get; set; }
+        
+        public virtual DbSet<ConsultaPopular> ConsultasPopulares { get; set; }
+        
+        public virtual DbSet<Presbicito> Presbicitos { get; set; }
+        
+        public virtual DbSet<Referendum> Referendums { get; set; }
+        
+        public virtual DbSet<Escolares> Escolares { get; set; }
 
         #endregion
     }
