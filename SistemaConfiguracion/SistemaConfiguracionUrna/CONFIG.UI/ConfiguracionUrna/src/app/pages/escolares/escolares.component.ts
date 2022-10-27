@@ -107,6 +107,7 @@ export class EscolaresComponent implements OnInit {
   }
 
   guardarConfiguracion() {
+    this.agregarConfiguracion();
     const datos = {
       "Id": 0,
       "Categoria": "Elecciones escolares",
