@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,33 @@ namespace Votos.DAO.Escolares
                 throw;
             }
             return request;
+        }
+
+        public async Task<List<EscolaresDTO>> Read()
+        {
+            List<EscolaresDTO> response = new List<EscolaresDTO>();
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var votos = await context.Escolares.ToListAsync();
+                    foreach (var v in votos)
+                    {
+                        response.Add(new EscolaresDTO()
+                        {
+                            Id = v.Id,
+                            Partido = v.Partido,
+                            Voto = v.Voto
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return response;
         }
     }
 }

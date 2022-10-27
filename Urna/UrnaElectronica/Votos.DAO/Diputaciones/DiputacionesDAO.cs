@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -48,5 +49,33 @@ namespace Votos.DAO.Diputaciones
             }
             return request;
         }
+
+        public async Task<List<DiputacionDTO>> Read()
+        {
+            List<DiputacionDTO> response = new List<DiputacionDTO>();
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var votos = await context.Diputaciones.ToListAsync();
+                    foreach (var v in votos)
+                    {
+                        response.Add(new DiputacionDTO()
+                        {
+                            Id = v.Id,
+                            Partido = v.Partido,
+                            Voto = v.Voto
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return response;
+        }
+
     }
 }

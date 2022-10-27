@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,33 @@ namespace Votos.DAO.Gubernaturas
                 throw;
             }
             return request;
+        }
+
+        public async Task<List<GubernaturaDTO>> Read()
+        {
+            List<GubernaturaDTO> response = new List<GubernaturaDTO>();
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var votos = await context.Gubernaturas.ToListAsync();
+                    foreach (var v in votos)
+                    {
+                        response.Add(new GubernaturaDTO()
+                        {
+                            Id = v.Id,
+                            Partido = v.Partido,
+                            Voto = v.Voto
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return response;
         }
     }
 }

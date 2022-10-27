@@ -13,7 +13,7 @@ namespace Votos.Api.Controllers.Ayuntamiento
         [HttpPost]
         public async Task<ActionResult<ApiResponse>> Post([FromBody] AyuntamientoRequest request) => await new AyuntamientoBLO().Create(request);
 
-        //[HttpPut]
-        //public async Task<ActionResult<ApiResponse>> Put([FromBody] AyuntamientoRequest request) => await new AyuntamientoBLO().Update(request);
+        [HttpGet]
+        public async Task<ActionResult<ApiResponse>> Read() => await new AyuntamientoBLO().Read();
     }
 }

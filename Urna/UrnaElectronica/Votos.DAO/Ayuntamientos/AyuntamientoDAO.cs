@@ -74,36 +74,5 @@ namespace Votos.DAO.Ayuntamientos
 	        }
 	        return response;
         }
-
-		//Este metodo esta en periodo de prueba NO SE ECUENTRA FUNCIONAL
-		//Gracias por informar acerca de este método, estaremos verificando el funcionamiento del mismo, tqm :')
-
-		//public async Task<AyuntamientoRequest> Update(AyuntamientoRequest request)
-		//{
-		//	try
-		//	{
-		//		using (VotoContext context = new VotoContext())
-		//		{
-
-		//			var nombre = await context.Ayuntamientos
-		//									  .Include(a => a.Voto == request.Voto)
-		//									  .Where(a => a.Id == request.Id)
-		//									  .AnyAsync(a => a.Partido == request.Partido);
-
-		//			if (nombre)
-		//			{
-		//				request.Partido = nombre.ToString();
-		//				await context.SaveChangesAsync();
-		//			}
-		//			else
-		//			{
-		//				request.Voto = request.Voto;
-		//			}
-		//		}
-		//	}
-		//	catch (Exception ex) { }
-
-		//	return request;
-		//}
     }
 }

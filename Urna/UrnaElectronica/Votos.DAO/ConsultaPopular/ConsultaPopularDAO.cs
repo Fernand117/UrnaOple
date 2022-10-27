@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +60,34 @@ namespace Votos.DAO.ConsultaPopular
                 throw;
             }
             return request;
+        }
+
+        public async Task<List<ConsultaPopularDTO>> Read()
+        {
+            List<ConsultaPopularDTO> response = new List<ConsultaPopularDTO>();
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var votos = await context.ConsultasPopulares.ToListAsync();
+                    foreach (var v in votos)
+                    {
+                        response.Add(new ConsultaPopularDTO()
+                        {
+                            Id = v.Id,
+                            Pregunta = v.Pregunta,
+                            RespuestaSi = v.RespuestaSi,
+                            RespuestaNo = v.RespuestaNo
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return response;
         }
     }
 }

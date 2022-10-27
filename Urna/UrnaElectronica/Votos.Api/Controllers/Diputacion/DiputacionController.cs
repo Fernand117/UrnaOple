@@ -11,7 +11,9 @@ namespace Votos.Api.Controllers.Diputacion
     public class DiputacionController : ControllerBase
     {
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>> Post([FromBody] DiputacionRequest request) =>
-            await new DiputacionesBLO().Create(request);
+        public async Task<ActionResult<ApiResponse>> Post([FromBody] DiputacionRequest request) => await new DiputacionesBLO().Create(request);
+
+        [HttpGet]
+        public async Task<ActionResult<ApiResponse>> Read() => await new DiputacionesBLO().Read();
     }
 }

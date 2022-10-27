@@ -26,5 +26,23 @@ namespace Votos.BLO.Referendums
             }
             return apiResponse;
         }
+
+        public async Task<ApiResponse> Read()
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new ReferendumDAO().Read();
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
     }
 }

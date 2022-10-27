@@ -11,7 +11,9 @@ namespace Votos.Api.Controllers.Escolar
     public class EscolarController : ControllerBase
     {
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>> Post([FromBody] EscolaresRequest request) =>
-            await new EscolaresBLO().Create(request);
+        public async Task<ActionResult<ApiResponse>> Post([FromBody] EscolaresRequest request) => await new EscolaresBLO().Create(request);
+
+        [HttpGet]
+        public async Task<ActionResult<ApiResponse>> Read() => await new EscolaresBLO().Read();
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +60,34 @@ namespace Votos.DAO.Presbicito
                 throw;
             }
             return request;
+        }
+
+        public async Task<List<PresbicitoDTO>> Read()
+        {
+            List<PresbicitoDTO> response = new List<PresbicitoDTO>();
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var votos = await context.Presbicitos.ToListAsync();
+                    foreach (var v in votos)
+                    {
+                        response.Add(new PresbicitoDTO()
+                        {
+                            Id = v.Id,
+                            Pregunta = v.Pregunta,
+                            RespuestaSi = v.RespuestaSi,
+                            RespuestaNo = v.RespuestaNo
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return response;
         }
     }
 }

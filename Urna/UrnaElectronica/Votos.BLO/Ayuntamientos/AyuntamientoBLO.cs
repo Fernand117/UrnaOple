@@ -30,23 +30,22 @@ namespace Votos.BLO.Ayuntamientos
             return apiResponse;
         }
 
-        //public async Task<ApiResponse> Update(AyuntamientoRequest request)
-        //{
-        //    ApiResponse apiResponse = new ApiResponse();
-        //    try
-        //    {
-        //        apiResponse.ResponseCode = Response.Success;
-        //        apiResponse.ResponseText = Resources.MensajeOk;
-        //        apiResponse.Data = await new AyuntamientoDAO().Update(request);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        apiResponse.ResponseCode = Response.Error;
-        //        apiResponse.ResponseText = Resources.MensajeError;
-        //        apiResponse.Data = null;
-        //    }
-
-        //    return apiResponse;
-        //}
+        public async Task<ApiResponse> Read()
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new AyuntamientoDAO().Read();
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
     }
 }

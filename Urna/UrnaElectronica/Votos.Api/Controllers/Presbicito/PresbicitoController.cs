@@ -11,7 +11,9 @@ namespace Votos.Api.Controllers.Presbicito
     public class PresbicitoController
     {
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>> Post([FromBody] PresbicitoRequest request) =>
-            await new PresbicitosBLO().Create(request);
+        public async Task<ActionResult<ApiResponse>> Post([FromBody] PresbicitoRequest request) => await new PresbicitosBLO().Create(request);
+
+        [HttpGet]
+        public async Task<ActionResult<ApiResponse>> Read() => await new PresbicitosBLO().Read();
     }
 }
