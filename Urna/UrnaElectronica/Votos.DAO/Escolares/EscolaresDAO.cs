@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Votos.COMMON.DTOS.Escolares;
 using Votos.DAL.Context;
+using Votos.DAL.Entities.Escolares;
 
 namespace Votos.DAO.Escolares
 {
@@ -22,7 +23,7 @@ namespace Votos.DAO.Escolares
 
                     if (voto == null)
                     {
-                        DAL.Entities.Escolares.Escolares escolaresDto = new DAL.Entities.Escolares.Escolares()
+                        Escolar escolaresDto = new Escolar()
                         {
                             Id = request.Id,
                             Partido = request.Partido,

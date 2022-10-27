@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Votos.COMMON.DTOS.ConsultaPopular;
 using Votos.DAL.Context;
+using Votos.DAL.Entities.ConsultasPopulares;
 
 namespace Votos.DAO.ConsultaPopular
 {
@@ -22,7 +23,7 @@ namespace Votos.DAO.ConsultaPopular
 
                     if (voto == null)
                     {
-                        DAL.Entities.ConsultaPopular.ConsultaPopular consultaPopular = new DAL.Entities.ConsultaPopular.ConsultaPopular()
+                        Consulta consultaPopular = new Consulta()
                         {
                             Id = request.Id,
                             Pregunta = request.Pregunta,
