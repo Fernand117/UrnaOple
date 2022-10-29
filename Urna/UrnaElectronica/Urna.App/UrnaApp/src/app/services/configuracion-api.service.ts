@@ -16,8 +16,11 @@ export class ConfiguracionApiService {
     return this.http.get(`${apiUrl}eleccion/code/${code}`);
   }
 
-  setVoto(voto: any) {
-    return this.http.post(`${apiUrl_local}gubernatura`, voto);
+  setVoto(voto: any, ruta: string) {
+    return this.http.post(`${apiUrl_local}${ruta}`, voto);
   }
   
+  setR(voto: any) {
+    return this.http.post(`${apiUrl_local}referendum`, voto);
+  }
 }

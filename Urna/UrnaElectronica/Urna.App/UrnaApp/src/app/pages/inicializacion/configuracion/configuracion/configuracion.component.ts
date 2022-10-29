@@ -54,14 +54,14 @@ export class ConfiguracionComponent implements OnInit {
       if(info[i].TipoMecanismo === 'Referéndum') {
       localStorage.setItem('referendum', JSON.stringify(info[i]));
     } else if(info[i].TipoMecanismo === 'Plebiscito') {
-      localStorage.setItem('plebiscito', JSON.stringify(info[i]));
-      } else if(info[i].TipoMecanismo === 'Consulta Popular') {
-        localStorage.setItem('consulta_popular', JSON.stringify(info[i]));
+      localStorage.setItem('presbicito', JSON.stringify(info[i]));
+      } else if(info[i].TipoMecanismo === 'Consulta Popular ') {
+        localStorage.setItem('consulta', JSON.stringify(info[i]));
       } 
     }
   }
 
-  enviar() {
+  descargarConfiguracion() {
     this.service.getConfiguracion(this.form.get('codigo_configuracion').value).subscribe((resp) => {
       this.respuesta = resp;
       this.confi = this.respuesta.data.configuraciones;
@@ -80,7 +80,7 @@ export class ConfiguracionComponent implements OnInit {
       } else if (this.confi.Categoria === "Mecanismos de participación ciudadana") {
         localStorage.clear();
         this.configuracion_mecanismos_ciudadania();
-        this.route.navigate(['/participacion-ciudadana']);
+        this.route.navigate(['/boleta-inicializacion']);
       }
     }, error => {
       Swal.fire({

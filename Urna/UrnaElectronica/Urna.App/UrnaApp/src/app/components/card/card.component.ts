@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angu
 import Swal from 'sweetalert2';
 import { KeyboardComponent } from '../keyboard/keyboard.component';
 import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -10,21 +11,18 @@ import { ConfiguracionApiService } from 'src/app/services/configuracion-api.serv
 })
 export class CardComponent implements OnInit {
 
-  constructor(private service: ConfiguracionApiService) { }
+  constructor(private service: ConfiguracionApiService, private route: Router) { }
 
   //VARIABLES
   @Input() partidos: any;
-  @Input() name: any;
+  @Input() name: string = "";
   @Output() miEvento = new EventEmitter<boolean>();
   @ViewChild(KeyboardComponent)
   hijo: KeyboardComponent = new KeyboardComponent;
   candidatoSeleccionado: any = "";
   voto: boolean = false;
 
-  ngOnInit(): void { 
-    console.log(this.voto, this.name);
-    
-  }
+  ngOnInit(): void { }
 
   openModalRegistrado(c: any) {
     this.candidatoSeleccionado = c;
@@ -40,13 +38,13 @@ export class CardComponent implements OnInit {
       this.voto = true;
       this.miEvento.emit(this.voto);
       this.msjSuccess();
-      // this.service.setVoto(request).subscribe((resp) => {
-      //   this.voto = true;
-      //   this.miEvento.emit(this.voto);
-      //   this.msjSuccess();
-      // }, error => {
-      //   this.mostrar_msjError();
-      // });
+      this.service.setVoto(request, this.name).subscribe((resp) => {
+        this.voto = true;
+        this.miEvento.emit(this.voto);
+        this.msjSuccess();
+      }, error => {
+        // this.mostrar_msjError();
+      });
     } else {
       this.mostrar_msjError();
     }
@@ -60,7 +58,7 @@ export class CardComponent implements OnInit {
         "Voto": "1"
       }
 
-      this.service.setVoto(request).subscribe((resp) => {
+      this.service.setVoto(request, this.name).subscribe((resp) => {
         this.voto = true;
         this.miEvento.emit(this.voto);
         this.msjSuccess();
@@ -82,7 +80,7 @@ export class CardComponent implements OnInit {
         "Voto": "1"
       }
 
-      this.service.setVoto(request).subscribe((resp) => {
+      this.service.setVoto(request, this.name).subscribe((resp) => {
         this.voto = true;
         this.miEvento.emit(this.voto);
         this.msjSuccess();
@@ -105,10 +103,17 @@ export class CardComponent implements OnInit {
   }
 
   msjSuccess() {
+    let x = this.name;
+    let ruta = this.route;
     Swal.fire(
       '¡Tu voto ha sido registrado con éxito!',
       'Te direccionaremos a la siguiente categoría de votaciones para que puedas seguir efectuando tus votos.',
       'success'
+    ).then(function () {
+      if (x === 'escolar') {
+        ruta.navigate(['/gracias']);
+      }
+    }
     );
   }
 }

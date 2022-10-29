@@ -11,22 +11,6 @@ export class ParticipacionCiudadanaComponent implements OnInit {
 
   app_name: any ;
 
-
-  preguntas = [
-    {
-      pregunta: "¿Estas de acuerdo con el mecanismo de participación ciudadana?"
-    },
-    {
-      pregunta: "¿Estas de acuerdo con el mecanismo de participación ciudadana?"
-    },
-    {
-      pregunta: "¿Estas de acuerdo con el mecanismo de participación ciudadana?"
-    },
-    {
-      pregunta: "¿Estas de acuerdo con el mecanismo de participación ciudadana?"
-    }
-  ]
-
   ngOnInit(): void {
   }
 

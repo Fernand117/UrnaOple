@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-elecciones-escolares',
@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class EleccionesEscolaresComponent implements OnInit {
 
   configuracion: any;
-  app_name: string = "escolares";
+  app_name: string = "escolar";
+  @Output() miEvento = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -17,9 +18,8 @@ export class EleccionesEscolaresComponent implements OnInit {
   }
     
   obtenerConfiguracion() {
-    this.configuracion =localStorage.getItem('escolares');
+    this.configuracion =localStorage.getItem('escolares');    
     this.configuracion = JSON.parse(this.configuracion);   
-    console.log(this.configuracion);
-    
+    this.configuracion = this.configuracion[0];
   }  
 }

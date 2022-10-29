@@ -10,6 +10,7 @@ import { EsperaElectorComponent } from './pages/votaciones/mensajes/espera-elect
 import { GraciasComponent } from './pages/votaciones/mensajes/gracias/gracias.component';
 import { VotacionesComponent } from './pages/votaciones/votaciones.component';
 import { ParticipacionCiudadanaComponent } from './pages/votaciones/participacion-ciudadana/participacion-ciudadana.component';
+import { ActaCierreComponent } from './pages/clausura/acta-cierre/acta-cierre.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/bienvenido', pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'en-espera', component: EsperaElectorComponent},
   { path: 'gracias', component: GraciasComponent},
   { path: 'elecciones-escolares', component: EleccionesEscolaresComponent},
-  { path: 'participacion-ciudadana', component: ParticipacionCiudadanaComponent}
+  { path: 'participacion-ciudadana', component: ParticipacionCiudadanaComponent},
+  { path: 'acta-cierre', component: ActaCierreComponent}
 ];
 
 @NgModule({

@@ -10,7 +10,7 @@ export class DiputacionesComponent implements OnInit {
   //VARIABLES
   @Output() miEvento = new EventEmitter<boolean>();
   @Input() partidos: any;
-  app_name: string = "diputaciones";
+  app_name: string = "diputacion";
 
   constructor() { }
 

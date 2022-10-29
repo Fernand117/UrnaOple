@@ -19,33 +19,62 @@ export class VotacionesComponent implements OnInit, DoCheck {
   voto2 : boolean = false;
   voto3 : boolean = false;
 
-  active_tab : string = 'gubernatura';
+  active_tab : string = "gubernatura";
 
   classTab = 'nav-link active'
 
   constructor(private route:Router) { }
 
   ngOnInit(): void {
-    this.obtenerConfiguracion();
+    this.obtenerConfiguracion();   
   }
 
   ngDoCheck() {
-    if (this.voto1 === true) {
-      this.cambiar2();
-    }
-    if (this.voto2 === true) {
-      this.cambiar3();
-    }
-    if (this.voto1 === true && this.voto2 === true && this.voto3 === true) {
-      setTimeout(()=>{    
-        this.route.navigate(['/gracias'])
-      }, 2000);
+
+    if(this.config_ayuntamiento && this.config_diputacion && this.config_gubernatura) {
+      if (this.voto1 === true) {
+        this.cambiar2();
+      }
+      if (this.voto2 === true) {
+        this.cambiar3();
+      }
+      if (this.voto1 === true && this.voto2 === true && this.voto3 === true) {
+        this.salir();
+      }
+    } else if(this.config_ayuntamiento && this.config_diputacion) {
+      if(this.voto2 === true) {
+        this.cambiar3();
+      } 
+      if (this.voto3 === true) {
+        this.salir();
+      }
+    } else if(this.config_ayuntamiento && this.config_gubernatura) {
+      if (this.voto1 === true ) {
+        this.cambiar3();
+      }
+      if(this.voto3 === true) {
+        this.salir();
+      }
+    } else if(this.config_diputacion && this.config_gubernatura) {
+      if (this.voto1 === true) {
+        this.cambiar2();
+      }
+      if (this.voto3 === true) {
+        this.salir();
+      }
+    } else if(this.config_ayuntamiento || this.config_diputacion || this.config_gubernatura) {
+      if(this.voto1 === true || this.voto2 === true || this.voto3 === true) {
+        this.salir();
+      }
     }
   }
 
-  cambiar1() {
-    this.active_tab = "gubernatura";    
-  } 
+  salir() {
+    setTimeout(()=>{    
+      this.route.navigate(['/gracias'])
+    }, 2000);
+  }
+
   cambiar2() {
     this.active_tab = "diputaciones";    
   }

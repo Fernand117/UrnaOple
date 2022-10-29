@@ -1,10 +1,11 @@
 <app-header></app-header>
 <div class="container">
-  <h1>Boleta de inicialización</h1> 
+  <h1>Boleta de inicialización</h1>
   <div class="row">
 
+
     <!-- BOLETA GUBERNATURAS -->
-    <div class="col-sm">
+    <div class="col-sm" *ngIf="config_gubernatura">
       <h2>Gubernaturas</h2>
       <table class="table">
         <thead>
@@ -26,7 +27,7 @@
     </div>
 
     <!-- BOLETA DIPUTACIONES -->
-    <div class="col-sm">
+    <div class="col-sm" *ngIf="config_diputacion">
       <h2>Diputaciones</h2>
       <table class="table">
         <thead>
@@ -48,7 +49,7 @@
     </div>
 
     <!-- BOLETA AYUNTAMIENTOS -->
-    <div class="col-sm">
+    <div class="col-sm" *ngIf="config_ayuntamiento">
       <h2>Ayuntamientos</h2>
       <table class="table">
         <thead>
@@ -69,11 +70,104 @@
       </div>
     </div>
 
+    <!-- BOLETA ESCOLARES -->
+    <div *ngIf="config_escolares">
+      <h2>Candidatos escolares</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Candidato</th>
+            <th scope="col">Votos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let boleta of config_escolares[0]?.Partidos">
+            <td>{{boleta.Propietario}}</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="botones">
+        <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
+      </div>
+    </div>
+
+    <!-- BOLETA REFERENDUM -->
+    <div class="col-sm" *ngIf="config_referendum">
+      <h2>Referendum</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Pregunta(s)</th>
+            <th scope="col">Votos Si</th>
+            <th scope="col">Votos No</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let boleta of config_referendum?.Preguntas">
+            <td>{{boleta.Pregunta}}</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="botones">
+        <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
+      </div>
+    </div>
+
+    <!-- BOLETA PLEBISCITO -->
+    <div class="col-sm" *ngIf="config_plebiscito">
+      <h2>Plebiscito</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Pregunta(s)</th>
+            <th scope="col">Votos Si</th>
+            <th scope="col">Votos No</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let boleta of config_plebiscito?.Preguntas">
+            <td>{{boleta.Pregunta}}</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="botones">
+        <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
+      </div>
+    </div>
+
+    <!-- BOLETA MECANISMOS DE PARTICIPACIÓN CIUDADANA -->
+    <div class="col-sm" *ngIf="config_consulta">
+      <h2>Consulta popular</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Pregunta(s)</th>
+            <th scope="col">Votos Si</th>
+            <th scope="col">Votos No</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let boleta of config_consulta?.Preguntas">
+            <td>{{boleta.Pregunta}}</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="botones">
+        <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
+      </div>
+    </div>
+
   </div>
   <div class="btn-continuar">
-    <button type="button" class="btn btn-primary btn"  (click)="continuar()">Continuar</button>
+    <button type="button" class="btn btn-primary btn" (click)="continuar()">Continuar</button>
   </div>
 </div>
-
 
 <app-footer></app-footer>
