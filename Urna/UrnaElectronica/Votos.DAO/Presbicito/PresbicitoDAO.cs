@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Votos.COMMON.DTOS.Presbicito;
 using Votos.DAL.Context;
+using Votos.DAL.Entities.MecanismoPresbicito;
 
 namespace Votos.DAO.Presbicito
 {
@@ -22,7 +23,7 @@ namespace Votos.DAO.Presbicito
 
                     if (voto == null)
                     {
-                        DAL.Entities.Presbicito.Presbicito presbicito = new DAL.Entities.Presbicito.Presbicito()
+                        Presbicitos presbicito = new Presbicitos()
                         {
                             Id = request.Id,
                             Pregunta = request.Pregunta,

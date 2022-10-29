@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Votos.COMMON.DTOS.Referendum;
 using Votos.DAL.Context;
+using Votos.DAL.Entities.MecanismoReferendum;
 
 namespace Votos.DAO.Referendum
 {
@@ -22,7 +23,7 @@ namespace Votos.DAO.Referendum
 
                     if (voto == null)
                     {
-                        DAL.Entities.Referendum.Referendum referendum = new DAL.Entities.Referendum.Referendum()
+                        Referendums referendum = new Referendums()
                         {
                             Id = request.Id,
                             Pregunta = request.Pregunta,

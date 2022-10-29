@@ -1,6 +1,6 @@
-namespace Votos.DAL.Entities.Referendum
+namespace Votos.DAL.Entities.MecanismoReferendum
 {
-    public class Referendum
+    public class Referendums
     {
         public int Id { get; set; }
         public string Pregunta { get; set; }

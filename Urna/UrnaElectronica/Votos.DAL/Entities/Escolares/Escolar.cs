@@ -1,6 +1,6 @@
 namespace Votos.DAL.Entities.Escolares
 {
-    public class Escolares
+    public class Escolar
     {
         public int Id { get; set; }
         public string Partido { get; set; }

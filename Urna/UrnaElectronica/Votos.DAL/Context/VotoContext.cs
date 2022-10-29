@@ -1,14 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Votos.DAL.Entities.Ayuntamientos;
-using Votos.DAL.Entities.ConsultaPopular;
+using Votos.DAL.Entities.ConsultasPopulares;
 using Votos.DAL.Entities.Diputaciones;
 using Votos.DAL.Entities.Escolares;
 using Votos.DAL.Entities.Gubernaturas;
-using Votos.DAL.Entities.Presbicito;
-using Votos.DAL.Entities.Referendum;
+using Votos.DAL.Entities.MecanismoPresbicito;
+using Votos.DAL.Entities.MecanismoReferendum;
 
 namespace Votos.DAL.Context
 {
@@ -84,7 +81,7 @@ namespace Votos.DAL.Context
                       .HasColumnName("votos");
             });
 
-            modelBuilder.Entity<ConsultaPopular>(entity =>
+            modelBuilder.Entity<Consulta>(entity =>
             {
                   entity.HasKey(c => c.Id)
                         .HasName("PK_tbConsulta");
@@ -106,7 +103,7 @@ namespace Votos.DAL.Context
                         .HasColumnName("no");
             });
 
-            modelBuilder.Entity<Presbicito>(entity =>
+            modelBuilder.Entity<Presbicitos>(entity =>
             {
                   entity.HasKey(p => p.Id)
                         .HasName("PK_tbPresbicito");
@@ -127,7 +124,7 @@ namespace Votos.DAL.Context
                         .HasColumnName("no");
             });
 
-            modelBuilder.Entity<Referendum>(entity =>
+            modelBuilder.Entity<Referendums>(entity =>
             {
                   entity.HasKey(r => r.Id)
                         .HasName("PK_tbReferendum");
@@ -148,7 +145,7 @@ namespace Votos.DAL.Context
                         .HasColumnName("no");
             });
 
-            modelBuilder.Entity<Escolares>(entity =>
+            modelBuilder.Entity<Escolar>(entity =>
             {
                   entity.HasKey(e => e.Id)
                         .HasName("PK_tbEscolares");
@@ -175,13 +172,13 @@ namespace Votos.DAL.Context
 
         public virtual DbSet<Diputacion> Diputaciones { get; set; }
         
-        public virtual DbSet<ConsultaPopular> ConsultasPopulares { get; set; }
+        public virtual DbSet<Consulta> ConsultasPopulares { get; set; }
         
-        public virtual DbSet<Presbicito> Presbicitos { get; set; }
+        public virtual DbSet<Presbicitos> Presbicitos { get; set; }
         
-        public virtual DbSet<Referendum> Referendums { get; set; }
+        public virtual DbSet<Referendums> Referendums { get; set; }
         
-        public virtual DbSet<Escolares> Escolares { get; set; }
+        public virtual DbSet<Escolar> Escolares { get; set; }
 
         #endregion
     }

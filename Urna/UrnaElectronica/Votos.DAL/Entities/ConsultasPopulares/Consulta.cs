@@ -1,6 +1,6 @@
-namespace Votos.DAL.Entities.Presbicito
+namespace Votos.DAL.Entities.ConsultasPopulares
 {
-    public class Presbicito
+    public class Consulta
     {
         public int Id { get; set; }
         public string Pregunta { get; set; }
