@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
+import { KeyboardComponent } from 'src/app/components/keyboard/keyboard.component';
 import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
 import Swal from 'sweetalert2';
 
@@ -14,18 +15,13 @@ export class ConfiguracionComponent implements OnInit {
   form: any;
   respuesta: any;
   confi :any;
+  name = 'configuracion';
+  @ViewChild(KeyboardComponent)
+  keyboard: KeyboardComponent = new KeyboardComponent;
 
   constructor(private formBuilder: FormBuilder, private route:Router, private service: ConfiguracionApiService) { }
 
-  ngOnInit(): void {
-    this.buildForm();
-  }
-
-  private buildForm() {
-    this.form = this.formBuilder.group({
-      codigo_configuracion: ['',[Validators.required]]
-    })
-  }
+  ngOnInit(): void { }
 
   configuracion_eleccioneslocales() {   
     localStorage.setItem('categoria', this.confi.Categoria);       
@@ -62,11 +58,10 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   descargarConfiguracion() {
-    this.service.getConfiguracion(this.form.get('codigo_configuracion').value).subscribe((resp) => {
+    this.service.getConfiguracion(this.keyboard.value).subscribe((resp) => {
       this.respuesta = resp;
       this.confi = this.respuesta.data.configuraciones;
       this.confi = JSON.parse(this.confi);
-      console.log(this.confi);
       
       localStorage.setItem('categoria', this.confi.Categoria);      
       if(this.confi.Categoria === 'Procesos locales electorales') {

@@ -7,7 +7,9 @@ createWindow = () => {
         width: 1920,
         height: 1080,
         title: "Angular and Electron",
+        autoHideMenuBar: true,
         resizable: false,
+        fullscreen: true,
         webPreferences: {
             contextIsolation: false,
             nodeIntegration: true

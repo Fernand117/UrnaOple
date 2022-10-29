@@ -18,7 +18,7 @@ export class CardComponent implements OnInit {
   @Input() name: string = "";
   @Output() miEvento = new EventEmitter<boolean>();
   @ViewChild(KeyboardComponent)
-  hijo: KeyboardComponent = new KeyboardComponent;
+  keyboard: KeyboardComponent = new KeyboardComponent;
   candidatoSeleccionado: any = "";
   voto: boolean = false;
 
@@ -54,7 +54,7 @@ export class CardComponent implements OnInit {
     if (!this.voto) {
       const request = {
         "Id": 0,
-        "Partido": this.hijo.value,
+        "Partido": this.keyboard.value,
         "Voto": "1"
       }
 
@@ -62,7 +62,7 @@ export class CardComponent implements OnInit {
         this.voto = true;
         this.miEvento.emit(this.voto);
         this.msjSuccess();
-        this.hijo.value = "";
+        this.keyboard.value = "";
       }, error => {
         console.log(error);
         this.mostrar_msjError();
@@ -84,7 +84,7 @@ export class CardComponent implements OnInit {
         this.voto = true;
         this.miEvento.emit(this.voto);
         this.msjSuccess();
-        this.hijo.value = "";
+        this.keyboard.value = "";
       }, error => {
         console.log(error);
         this.mostrar_msjError();

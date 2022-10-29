@@ -6,8 +6,8 @@
         <h1>Ingrese el código de configuración</h1>
       </div>
       <div class="col form">
-        <form [formGroup]="form">
-          <input formControlName="codigo_configuracion" class="form-control" type="text" required>
+        <form>
+          <app-keyboard [name]="name"></app-keyboard>
         </form>
         <button type="submit" class="btn btn-primary" (click)="descargarConfiguracion()">ENVIAR</button>
       </div>
