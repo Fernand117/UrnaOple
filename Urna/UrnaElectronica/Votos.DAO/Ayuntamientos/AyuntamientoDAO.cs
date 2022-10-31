@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Votos.COMMON.DTHW;
 using Votos.COMMON.DTOS.Ayuntamientos;
 using Votos.DAL.Context;
 using Votos.DAL.Entities.Ayuntamientos;
@@ -20,6 +21,9 @@ namespace Votos.DAO.Ayuntamientos
 					var voto = await context.Ayuntamientos
 						.Where(v => v.Partido == request.Partido)
 						.FirstOrDefaultAsync();
+
+					ImprimirTickets imprimirTickets = new ImprimirTickets();
+					imprimirTickets.imprimirComprobante("Votaste por : " + request.Partido);
 
 					if (voto == null)
 					{

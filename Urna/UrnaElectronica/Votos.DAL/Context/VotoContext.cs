@@ -19,7 +19,7 @@ namespace Votos.DAL.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connection = "host=localhost;port=5432;database=urnaVotos;username=postgres;password=12345";
+                var connection = "host=localhost;port=5432;database=urnaVotos;username=postgres;password=Master117+";
                 optionsBuilder.UseNpgsql(connection);
             }
         }
