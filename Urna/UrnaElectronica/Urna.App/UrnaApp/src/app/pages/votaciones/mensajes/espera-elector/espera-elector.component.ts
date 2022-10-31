@@ -15,10 +15,16 @@ export class EsperaElectorComponent implements OnInit {
   ngOnInit(): void { }
 
   siguiente_elector() {
-    if(this.categoria === 'Elecciones escolares') {
-      this.route.navigate(['/elecciones-escolares']);
-    } else {
+    switch (this.categoria) {
+      case 'Elecciones escolares':
+        this.route.navigate(['/elecciones-escolares']);
+        break;
+      case 'Mecanismos de participación ciudadana':
+        this.route.navigate(['/participacion-ciudadana']);
+        break;
+      default: 
       this.route.navigate(['/votaciones']);
+        break;
     }
   }
 }

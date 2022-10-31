@@ -41,9 +41,9 @@ export class BoletaComponent implements OnInit {
 
     this.config_referendum =localStorage.getItem('referendum');
     this.config_referendum = JSON.parse(this.config_referendum);
-    this.config_plebiscito =localStorage.getItem('plebiscito');
+    this.config_plebiscito =localStorage.getItem('presbicito');
     this.config_plebiscito = JSON.parse(this.config_plebiscito);
-    this.config_consulta =localStorage.getItem('consulta_popular');
+    this.config_consulta =localStorage.getItem('consulta');
     this.config_consulta = JSON.parse(this.config_consulta);
   }  
 

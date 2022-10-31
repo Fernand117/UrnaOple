@@ -45,7 +45,7 @@ namespace Votos.DAO.Referendum
                             voto.RespuestaSi = votoActualSi.ToString();
                         }
 
-                        if (int.Parse(request.RespuestaNo) > 0)
+                        else
                         {
                             votoActualNo++;
                             voto.RespuestaNo = votoActualNo.ToString();

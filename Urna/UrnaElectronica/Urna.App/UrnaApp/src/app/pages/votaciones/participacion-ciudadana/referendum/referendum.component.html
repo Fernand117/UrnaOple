@@ -8,15 +8,15 @@
         <form [formGroup]="form">
             <div>
                 <p>{{pregunta.Pregunta}}</p>
-                <input formControlName="respuesta" class="form-control" type="text" required>
-                <!-- <label>
-                    <input [(ngModel)]="RespuestaSi[i]" type="checkbox" class="input_checkbox">
+                <!-- <input formControlName="respuesta" class="form-control" type="text" required>  -->
+                <label>
+                    <input formControlName="{{pregunta.Pregunta}}" type="radio" class="input_checkbox" value="1">
                     Si
                 </label>
                 <label>
-                    <input [(ngModel)]="RespuestaNo[i]" type="checkbox" class="input_checkbox">
+                    <input formControlName="{{pregunta.Pregunta}}" type="radio" class="input_checkbox" value="0">
                     No
-                </label> -->
+                </label>
             </div>
         </form>
 

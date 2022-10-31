@@ -45,7 +45,7 @@ namespace Votos.DAO.ConsultaPopular
                             voto.RespuestaSi = votoSiActual.ToString();
                         }
 
-                        if (int.Parse(request.RespuestaNo) > 0)
+                        else
                         {
                             votoNoActual++;
                             voto.RespuestaNo = votoNoActual.ToString();

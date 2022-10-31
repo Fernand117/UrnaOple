@@ -51,7 +51,7 @@ export class ConfiguracionComponent implements OnInit {
       localStorage.setItem('referendum', JSON.stringify(info[i]));
     } else if(info[i].TipoMecanismo === 'Plebiscito') {
       localStorage.setItem('presbicito', JSON.stringify(info[i]));
-      } else if(info[i].TipoMecanismo === 'Consulta Popular ') {
+      } else if(info[i].TipoMecanismo === 'Consulta Popular') {
         localStorage.setItem('consulta', JSON.stringify(info[i]));
       } 
     }
