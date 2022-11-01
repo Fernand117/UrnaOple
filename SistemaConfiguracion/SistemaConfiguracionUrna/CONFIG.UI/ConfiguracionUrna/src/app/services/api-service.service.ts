@@ -7,9 +7,10 @@ import { Injectable } from '@angular/core';
 export class ApiServiceService {
 
 
-  // private url = "http://localhost:32042/api";
+  //TODO: CAMBIO DE URL DEL LOCALHOST AL DE PRUEBAS DE FERNANDO
+  private url = "http://localhost:32042/api";
 
-  private url = "http://localhost:5000/api";
+  //private url = "http://localhost:5000/api";
 
 
   constructor(

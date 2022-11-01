@@ -31,7 +31,10 @@ namespace Urna.DAO.Elecciones
 					await context.SaveChangesAsync();
 				}
 			}
-			catch (Exception ex) { }
+			catch (Exception ex) 
+			{
+				request.Categoria = ex.Message;
+			}
 
 			return request;
 		}
