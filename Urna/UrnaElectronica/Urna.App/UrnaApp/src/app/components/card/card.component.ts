@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { KeyboardComponent } from '../keyboard/keyboard.component';
 import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
 import { Router } from '@angular/router';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 @Component({
   selector: 'app-card',
@@ -22,6 +23,7 @@ export class CardComponent implements OnInit {
   candidatoSeleccionado: any = "";
   voto: boolean = false;
 
+
   ngOnInit(): void { }
 
   openModalRegistrado(c: any) {
@@ -29,6 +31,7 @@ export class CardComponent implements OnInit {
   }
 
   votar_registrado() {
+
     if (!this.voto) {
       const request = {
         "Id": 0,
@@ -37,8 +40,14 @@ export class CardComponent implements OnInit {
       }
       this.voto = true;
       this.miEvento.emit(this.voto);
-      this.msjSuccess();
-      this.service.setVoto(request, this.name).subscribe((resp) => {
+      this.service.setVoto(request, this.name).subscribe((resp) => {      
+          
+        const mywindow = document.getElementById("prueba")?.innerHTML;
+        var contenidoOriginak = document.body.innerHTML;
+        window.print();
+        document.body.innerHTML = contenidoOriginak;
+
+
         this.voto = true;
         this.miEvento.emit(this.voto);
         this.msjSuccess();

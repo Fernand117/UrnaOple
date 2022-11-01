@@ -25,6 +25,9 @@ createWindow = () => {
     appWin.on("closed", () => {
         appWin = null;
     });
+
+    // let win = new BrowserWindow()
+    // win.webContents.print({silent: true})
 }
 
 app.on("ready", createWindow);

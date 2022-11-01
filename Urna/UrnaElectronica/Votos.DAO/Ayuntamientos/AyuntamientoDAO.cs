@@ -14,8 +14,9 @@ namespace Votos.DAO.Ayuntamientos
     {
         public async Task<AyuntamientoRequest> Create(AyuntamientoRequest request)
         {
-			try
-			{
+
+            try
+            {
 				using (VotoContext context = new VotoContext())
 				{
 					var voto = await context.Ayuntamientos
@@ -24,6 +25,9 @@ namespace Votos.DAO.Ayuntamientos
 
 					ImprimirTickets imprimirTickets = new ImprimirTickets();
 					imprimirTickets.imprimirComprobante("Votaste por : " + request.Partido);
+
+                    MensajesLCD mensajesLCD = new MensajesLCD();
+                    mensajesLCD.sendMensaje("Votando");
 
 					if (voto == null)
 					{
@@ -44,11 +48,13 @@ namespace Votos.DAO.Ayuntamientos
 						voto.Voto = votoActual.ToString();
 						await context.SaveChangesAsync();
 					}
-				}
+                }
+            }
+			catch (Exception e) {
+				request.Partido = e.Message;
 			}
-			catch (Exception) { }
 
-			return request;
+            return request;
         }
 
         public async Task<List<AyuntamientoDTO>> Read()

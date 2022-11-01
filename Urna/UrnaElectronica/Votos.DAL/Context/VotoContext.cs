@@ -19,8 +19,12 @@ namespace Votos.DAL.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
+
                 //TODO: CAMBIE LA CONTRASEÑA DEL CONTEXT A LA DE MI DB FERNANDO
-                var connection = "host=localhost;port=5432;database=urnaVotos;username=postgres;password=Master117+";
+                //var connection = "host=localhost;port=5432;database=urnaVotos;username=postgres;password=Master117+";
+
+                var connection = "host=localhost;port=5432;database=urnaVotos;username=postgres;password=12345";
+
                 optionsBuilder.UseNpgsql(connection);
             }
         }
