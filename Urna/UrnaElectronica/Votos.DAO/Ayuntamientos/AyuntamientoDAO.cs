@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Votos.COMMON.DTHW;
 using Votos.COMMON.DTOS.Ayuntamientos;
+using Votos.COMMON.DTOS.Boletas;
 using Votos.DAL.Context;
 using Votos.DAL.Entities.Ayuntamientos;
 
@@ -23,8 +24,13 @@ namespace Votos.DAO.Ayuntamientos
 						.Where(v => v.Partido == request.Partido)
 						.FirstOrDefaultAsync();
 
+					BoletasDTO boletasDto = new BoletasDTO()
+					{
+						Partido = request.Partido
+					};
+
 					ImprimirTickets imprimirTickets = new ImprimirTickets();
-					imprimirTickets.imprimirComprobante("Votaste por : " + request.Partido);
+					imprimirTickets.ImprimirComprobante(boletasDto);
 
                     MensajesLCD mensajesLCD = new MensajesLCD();
                     mensajesLCD.sendMensaje("Votando");
