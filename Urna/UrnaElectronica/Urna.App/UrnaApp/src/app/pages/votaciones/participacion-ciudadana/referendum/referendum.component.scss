@@ -1,3 +1,43 @@
 .titulo {
-    margin-top: 50px;
+    margin-top: 20px;
+
+    h1 {
+        font-weight: 350;
+    }
+
+    h6 {
+        font-size: 20px;
+        font-weight: 350;
+        margin-bottom: 30px;
+    }
+}
+
+p {
+    margin: 5px;
+    font-weight: 200;
+    font-size: 25px;
+}
+
+.indicacion {
+    margin-bottom: 30px;
+}
+
+.respuestas {
+    margin-left: 40px;
+    font-size: 20px;
+
+    input {
+        transform: scale(2);
+     }
+
+    #r0 {
+        margin-right: 30px;
+    }
+}
+
+button {
+    background-color: #E33889;
+    border-color: #E33889;
+    margin-top: 30px;
+    margin-bottom: 100px;
 }

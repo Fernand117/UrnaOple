@@ -1,26 +1,28 @@
 <div class="container">
-    <!-- <div class="titulo">
+    <div class="titulo">
         <h1>{{configuracion.Nombre}}</h1>
-        <p>{{configuracion.Objeto}}</p>
-    </div> -->
+        <h6>{{configuracion.Objeto}}</h6>
+    </div>
+    <p class="indicacion">Por favor responde las siguientes preguntas, indicando si esta de acuerdo(Si) o en desacuerdo (No).</p>
     <div *ngFor="let pregunta of configuracion?.Preguntas ; let i = index">
 
         <form [formGroup]="form">
             <div>
-                <p>{{pregunta.Pregunta}}</p>
+                <p>{{i+1 + ". " + pregunta.Pregunta}}</p>
                 <!-- <input formControlName="respuesta" class="form-control" type="text" required>  -->
-                <label>
-                    <input formControlName="{{pregunta.Pregunta}}" type="radio" class="input_checkbox" value="1">
-                    Si
-                </label>
-                <label>
-                    <input formControlName="{{pregunta.Pregunta}}" type="radio" class="input_checkbox" value="0">
-                    No
-                </label>
+                <div class="respuestas">
+                    <label id="r0">
+                        <input id="radio_si" formControlName="{{pregunta.Pregunta}}" type="radio" class="input_checkbox" value="1">
+                        Si
+                    </label>
+                    <label>
+                        <input formControlName="{{pregunta.Pregunta}}" type="radio" class="input_checkbox" value="0">
+                        No
+                    </label>
+                </div>
             </div>
         </form>
 
     </div>
-    <button class="btn btn-primary" (click)="votar_registrado()">Confirmar</button>
-
+    <button class="btn btn-primary" (click)="votar_registrado()">Enviar respuestas</button>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
@@ -12,6 +12,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class ReferendumComponent implements OnInit {
 
   @Input() app_name: any;
+  @Output() miEvento = new EventEmitter<boolean>();
   voto: boolean = false;
   form: any = [];
   configuracion: any;
@@ -59,16 +60,20 @@ export class ReferendumComponent implements OnInit {
   }
 
   msjSuccess() {
+    this.voto = true;
+    let voto = this.voto;
+    let evento = this.miEvento;
     let ruta = this.route;
     Swal.fire(
       '¡Tu voto ha sido registrado con éxito!',
       'Gracias',
       'success'
     )
-    // .then(function () {
-    //   ruta.navigate(['/gracias']);
-    // }
-    // );
+    .then(function () {
+      evento.emit(voto);
+      // ruta.navigate(['/gracias']);
+    }
+    );
   }
 
 }

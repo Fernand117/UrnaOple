@@ -2,30 +2,30 @@
 
 <!-- MENU TABS -->
 <div class="nav nav-tabs nav-fill" id="pills-tab" role="tablist">
-  <li class="nav-item">
-    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-gubernatura"
-      type="button" role="tab" aria-controls="pills-home" aria-selected="true">Referéndum</button>
+  <li class="nav-item" *ngIf="confi_referendum">
+    <button class="nav-link active" [disabled]="disabled[1]" [ngClass]="{ 'active': active_tab == 'referendum'}" id="referendum-tab" data-bs-toggle="pill" data-bs-target="#pills-gubernatura"
+      type="button" role="tab" [attr.aria-selected]="active_tab">Referéndum</button>
   </li>
-  <li class="nav-item">
-    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-diputaciones"
-      type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Plebiscito</button>
-  </li>
-  <li class="nav-item">
-    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-ayuntamiento"
-      type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Consulta Popular</button>
+  <li class="nav-item" *ngIf="confi_presbicito">
+    <button class="nav-link" [disabled]="disabled[2]" [ngClass]="{ 'active': active_tab == 'presbicito'}" id="presbicito-tab" data-bs-toggle="pill" data-bs-target="#pills-presbicito"
+      type="button" role="tab" [attr.aria-selected]="active_tab">Plebiscito</button>
+  </li> 
+  <li class="nav-item" *ngIf="confi_consulta">
+    <button class="nav-link" [disabled]="disabled[3]" [ngClass]="{ 'active': active_tab == 'consulta'}"  id="consulta-tab" data-bs-toggle="pill" data-bs-target="#pills-consulta"
+      type="button" role="tab" [attr.aria-selected]="active_tab">Consulta Popular</button>
   </li>
 </div>
 
 <!-- CONTENIDO -->
 <div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-gubernatura" role="tabpanel" aria-labelledby="pills-home-tab">
-    <app-referendum [app_name]="'referendum'"></app-referendum>
+  <div class="tab-pane fade" *ngIf="confi_referendum" [ngClass]="{ 'active': active_tab == 'referendum', 'show': active_tab == 'referendum'}" id="pills-referendum" role="tabpanel">
+    <app-referendum [app_name]="'referendum'" (miEvento)="statusVotoReferendum($event)"></app-referendum>
   </div>
-  <div class="tab-pane fade" id="pills-diputaciones" role="tabpanel" aria-labelledby="pills-profile-tab">
-    <app-referendum [app_name]="'presbicito'"></app-referendum>
+  <div class="tab-pane fade" *ngIf="confi_presbicito" id="pills-presbicito" [ngClass]="{ 'active': active_tab == 'presbicito', 'show': active_tab == 'presbicito'}" role="tabpanel">
+    <app-referendum [app_name]="'presbicito'" (miEvento)="statusVotoPresbicito($event)"></app-referendum>
   </div>
-  <div class="tab-pane fade" id="pills-ayuntamiento" role="tabpanel" aria-labelledby="pills-contact-tab">
-    <app-referendum [app_name]="'consulta'"></app-referendum>
+  <div class="tab-pane fade" *ngIf="confi_consulta" id="pills-consulta" [ngClass]="{ 'active': active_tab == 'consulta', 'show': active_tab == 'consulta'}" role="tabpanel">
+    <app-referendum [app_name]="'consulta'" (miEvento)="statusVotoConsulta($event)"></app-referendum>
   </div>
 </div>
 <app-footer></app-footer>
