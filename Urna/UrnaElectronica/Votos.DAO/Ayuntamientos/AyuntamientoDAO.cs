@@ -30,10 +30,10 @@ namespace Votos.DAO.Ayuntamientos
 					};
 
 					ImprimirTickets imprimirTickets = new ImprimirTickets();
-					imprimirTickets.ImprimirComprobante(boletasDto);
+					imprimirTickets.imprimirComprobante(boletasDto);
 
-                    MensajesLCD mensajesLCD = new MensajesLCD();
-                    mensajesLCD.sendMensaje("Votando");
+					/*MensajesLCD mensajesLCD = new MensajesLCD();
+                    mensajesLCD.sendMensaje("Votando");*/
 
 					if (voto == null)
 					{
@@ -54,13 +54,13 @@ namespace Votos.DAO.Ayuntamientos
 						voto.Voto = votoActual.ToString();
 						await context.SaveChangesAsync();
 					}
-                }
-            }
+				}
+			}
 			catch (Exception e) {
-				request.Partido = e.Message;
+				request.Partido = "Erro: " + e.ToString();
 			}
 
-            return request;
+			return request;
         }
 
         public async Task<List<AyuntamientoDTO>> Read()

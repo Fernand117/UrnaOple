@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Text;
 using Votos.COMMON.DTOS.Boletas;
 
 namespace Votos.COMMON.DTHW
@@ -18,8 +16,8 @@ namespace Votos.COMMON.DTHW
         private string seccion { get; set; }
         private string casilla { get; set; }
         private string folio { get; set; }
-        
-        public string ImprimirComprobante(BoletasDTO request)
+
+        public void imprimirComprobante(BoletasDTO request)
         {
             tipoEleccion = request.TipoEleccion;
             partido = request.Partido;
@@ -29,42 +27,38 @@ namespace Votos.COMMON.DTHW
             seccion = request.Seccion;
             casilla = request.Casilla;
             folio = request.Folio;
+
+            string cabezera = "     OPLE VERACRUZ           \n";
+            string mensajeHead = "  Comprobante de votación    \n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "hrs." + "\n";
+            string eleccion = "Tipo elección: " + tipoEleccion + "\n";
+            string separadorUno = "-------------------------------------\n";
+            string datosUno = "Entidad: " + entidad + "  Distrito: " + distrito + "  Municipio: " + municipio + "\n";
+            string datosDos = "Sección: " + seccion + "  Casilla: " + casilla + "  Folio: " + folio + "\n";
+            string partidos = "  Votaste por el partido     \n";
+            string partidoNombre = "     " + partido + "         \n";
+            string corte = "\x1B" + "m";
+            string avance = "\x1B" + "d" + "\x09";
+
+            mensaje = cabezera + mensajeHead + fechaHora + eleccion + separadorUno
+                      + datosUno + datosDos + partidos + partidoNombre + corte + avance;
+
             PrintDocument pf = new PrintDocument();
             pf.PrintPage += Pf_PrintPage;
             pf.Print();
-            return "Voto impreso.";
         }
 
         private void Pf_PrintPage(object sender, PrintPageEventArgs e)
         {
-            //Get the Graphics object  
             Graphics g = e.Graphics;
-            //Create a font Arial with size 12  
+
             Font font = new Font("Arial", 12);
-            //Create a solid brush with black color  
+
             SolidBrush brush = new SolidBrush(Color.Black);
-            //Draw "Hello Printer!";  
-            g.DrawString(MensajeVotacion(),
+
+            g.DrawString(mensaje,
             font, brush,
-            new Rectangle(5, 5, Int32.MaxValue, Int32.MaxValue));
-        }
-
-        private string MensajeVotacion()
-        {
-            string cabezera      = "     OPLE VERACRUZ           \n";
-            string mensajeHead   = "  Comprobante de votación    \n";
-            string fechaHora     = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "      " + "Hora: " + DateTime.Now.Hour + "hrs." + "\n";
-            string eleccion      = "Tipo elección: " + tipoEleccion + "\n";
-            string separadorUno  = "-------------------------------------\n";
-            string datosUno      = "Entidad: " + entidad + "  Distrito: " + distrito + "  Municipio: " + municipio;
-            string datosDos      = "Sección: " + seccion + "  Casilla: " + casilla + "  Folio: " + folio;
-            string partido       = "  Votaste por el partido     \n";
-            string partidoNombre = "     " + partido + "         \n";
-
-            mensaje = cabezera + mensajeHead + fechaHora + eleccion + separadorUno 
-                      + datosUno + datosDos + partido + partidoNombre;
-            
-            return mensaje;
+            new Rectangle(5, 5, 200, 400));
         }
     }
 }
