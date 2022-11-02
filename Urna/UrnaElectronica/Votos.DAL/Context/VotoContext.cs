@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Votos.DAL.Entities.Ayuntamientos;
 using Votos.DAL.Entities.ConsultasPopulares;
+using Votos.DAL.Entities.ContadorBoletas;
 using Votos.DAL.Entities.Diputaciones;
 using Votos.DAL.Entities.Escolares;
 using Votos.DAL.Entities.Gubernaturas;
@@ -11,19 +12,16 @@ namespace Votos.DAL.Context
 {
     public class VotoContext : DbContext
     {
-        public VotoContext()
-        {
-
-        }
+        public VotoContext(){}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 
                 //TODO: CAMBIE LA CONTRASEÑA DEL CONTEXT A LA DE MI DB FERNANDO
-                //var connection = "host=localhost;port=5432;database=urnaVotos;username=postgres;password=Master117+";
+                var connection = "host=localhost;port=5432;database=urnaVotos;username=postgres;password=Master117+";
 
-                var connection = "host=localhost;port=5432;database=urnaVotos;username=postgres;password=12345";
+                //var connection = "host=localhost;port=5432;database=urnaVotos;username=postgres;password=12345";
 
                 optionsBuilder.UseNpgsql(connection);
             }
@@ -167,6 +165,24 @@ namespace Votos.DAL.Context
                   entity.Property(e => e.Voto)
                         .HasColumnName("voto");
             });
+
+            modelBuilder.Entity<BoletasContador>(entity =>
+            {
+                  entity.HasKey(b => b.Id)
+                        .HasName("PK_tbBoletas");
+
+                  entity.ToTable("boletas");
+
+                  entity.Property(b => b.Id)
+                        .HasColumnName("id")
+                        .UseIdentityByDefaultColumn();
+
+                  entity.Property(b => b.TipoEleccion)
+                        .HasColumnName("tipoeleccion");
+
+                  entity.Property(b => b.CantidadBoletas)
+                        .HasColumnName("cantidadboletas");
+            });
         }
 
       #region DBSETS
@@ -184,6 +200,8 @@ namespace Votos.DAL.Context
         public virtual DbSet<Referendums> Referendums { get; set; }
         
         public virtual DbSet<Escolar> Escolares { get; set; }
+        
+        public virtual DbSet<BoletasContador> Boletas { get; set; }
 
         #endregion
     }

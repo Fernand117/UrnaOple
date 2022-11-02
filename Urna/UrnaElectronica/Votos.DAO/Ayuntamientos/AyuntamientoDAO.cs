@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Votos.COMMON.DTHW;
 using Votos.COMMON.DTOS.Ayuntamientos;
+using Votos.COMMON.DTOS.Boletas;
 using Votos.DAL.Context;
 using Votos.DAL.Entities.Ayuntamientos;
 
@@ -23,11 +24,16 @@ namespace Votos.DAO.Ayuntamientos
 						.Where(v => v.Partido == request.Partido)
 						.FirstOrDefaultAsync();
 
-					ImprimirTickets imprimirTickets = new ImprimirTickets();
-					imprimirTickets.imprimirComprobante("Votaste por : " + request.Partido);
+					BoletasDTO boletasDto = new BoletasDTO()
+					{
+						Partido = request.Partido
+					};
 
-                    MensajesLCD mensajesLCD = new MensajesLCD();
-                    mensajesLCD.sendMensaje("Votando");
+					ImprimirTickets imprimirTickets = new ImprimirTickets();
+					imprimirTickets.imprimirComprobante(boletasDto);
+
+					/*MensajesLCD mensajesLCD = new MensajesLCD();
+                    mensajesLCD.sendMensaje("Votando");*/
 
 					if (voto == null)
 					{
@@ -48,13 +54,13 @@ namespace Votos.DAO.Ayuntamientos
 						voto.Voto = votoActual.ToString();
 						await context.SaveChangesAsync();
 					}
-                }
-            }
+				}
+			}
 			catch (Exception e) {
-				request.Partido = e.Message;
+				request.Partido = "Erro: " + e.ToString();
 			}
 
-            return request;
+			return request;
         }
 
         public async Task<List<AyuntamientoDTO>> Read()
