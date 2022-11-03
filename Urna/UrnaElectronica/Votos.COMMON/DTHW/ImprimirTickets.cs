@@ -63,5 +63,20 @@ namespace Votos.COMMON.DTHW
             
             return mensajeEstructura;
         }
+
+        public string estructuraBoletaCeros(BoletasDTO boletasDTO)
+        {
+            BoletasDTO boleta = new BoletasDTO()
+            {
+                Entidad = boletasDTO.Entidad,
+                CantidadBoletas = boletasDTO.CantidadBoletas
+            };
+
+            string ople = "     OPLE VERACRUZ\n";
+            string cabezera = "     Procesos locales electorales\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day;
+
+            return mensaje;
+        }
     }
 }
