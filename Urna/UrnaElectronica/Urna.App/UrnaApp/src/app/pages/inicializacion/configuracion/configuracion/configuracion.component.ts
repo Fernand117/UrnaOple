@@ -19,14 +19,34 @@ export class ConfiguracionComponent implements OnInit {
   @ViewChild(KeyboardComponent)
   keyboard: KeyboardComponent = new KeyboardComponent;
 
-  constructor(private formBuilder: FormBuilder, private route:Router, private service: ConfiguracionApiService) { }
+  constructor(private route:Router, private service: ConfiguracionApiService) { }
 
   ngOnInit(): void { }
+
+  setContadorBoletas(info: any) {
+    let request = {
+      CantidadBoletas: info.CantidadBoletas,
+      TipoEleccion: info.TipoEleccion
+    }
+
+    if (this.confi.Categoria === "Mecanismos de participación ciudadana") {
+      request = {
+        CantidadBoletas: info.CantidadBoletas,
+        TipoEleccion: info.TipoMecanismo
+      }
+    }
+
+    this.service.contadorBoletas(request).subscribe((resp) => {
+    }, error => {
+      console.log(error);
+    });
+  }
 
   configuracion_eleccioneslocales() {   
     localStorage.setItem('categoria', this.confi.Categoria);       
     let info = this.confi.Elecciones;
     for (let i = 0; i < info.length; i++) {
+      this.setContadorBoletas(info[i]);
       if(info[i].TipoEleccion === 'Diputaciones') {
       localStorage.setItem('diputacion', JSON.stringify(info[i]));
     } else if(info[i].TipoEleccion === 'Gubernatura') {
@@ -38,16 +58,25 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   configuracion_eleccionesEscolares() {
-    localStorage.setItem('categoria', this.confi.Categoria);       
+    localStorage.setItem('categoria', this.confi.Categoria);           
     let info = this.confi.Escolares;
-    localStorage.setItem('escolares', JSON.stringify(info));
+    localStorage.setItem('escolares', JSON.stringify(info));    
+    let request = {
+      CantidadBoletas: info[0].CantidadBoletas,
+      TipoEleccion: "Escolares"
+    }
+    this.service.contadorBoletas(request).subscribe((resp) => {
+    }, error => {
+      console.log(error);
+    });    
   }
 
   configuracion_mecanismos_ciudadania() {
     localStorage.setItem('categoria', this.confi.Categoria);       
     let info = this.confi.Mecanismos;
     for (let i = 0; i < info.length; i++) {
-      if(info[i].TipoMecanismo === 'Referéndum') {
+      this.setContadorBoletas(info[i]);
+      if(info[i].TipoMecanismo === 'Referéndum') {        
       localStorage.setItem('referendum', JSON.stringify(info[i]));
     } else if(info[i].TipoMecanismo === 'Plebiscito') {
       localStorage.setItem('presbicito', JSON.stringify(info[i]));

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 const apiUrl = environment.apiUrl;
 const apiUrl_local = environment.apiUrl_local;
@@ -19,8 +19,13 @@ export class ConfiguracionApiService {
   setVoto(voto: any, ruta: string) {
     return this.http.post(`${apiUrl_local}${ruta}`, voto);
   }
-  
-  setR(voto: any) {
-    return this.http.post(`${apiUrl_local}referendum`, voto);
+
+  contadorBoletas(boleta: any) {
+    return this.http.post(`${apiUrl_local}boletas/`, boleta);
   }
+
+  updateContadorBoletas(boleta: any) {
+    return this.http.put(`${apiUrl_local}boletas/`, boleta);
+  }
+  
 }

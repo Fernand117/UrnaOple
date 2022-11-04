@@ -21,8 +21,13 @@ export class CardComponent implements OnInit {
   keyboard: KeyboardComponent = new KeyboardComponent;
   candidatoSeleccionado: any = "";
   voto: boolean = false;
+  num_boletas: number = 10;
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if (this.num_boletas = 0) {
+      this.route.navigate(['/clausura']);
+    }
+  }
 
   openModalRegistrado(c: any) {
     this.candidatoSeleccionado = c;
@@ -36,6 +41,7 @@ export class CardComponent implements OnInit {
         "Voto": "1"
       }
       this.service.setVoto(request, this.name).subscribe((resp) => {
+        this.updateCantidadBoletas();
         this.msjSuccess();
       }, error => {
         this.error();
@@ -53,6 +59,7 @@ export class CardComponent implements OnInit {
         "Voto": "1"
       }
       this.service.setVoto(request, this.name).subscribe((resp) => {
+        this.updateCantidadBoletas();
         this.msjSuccess();
         this.keyboard.value = "";
       }, error => {
@@ -72,6 +79,7 @@ export class CardComponent implements OnInit {
         "Voto": "1"
       }
       this.service.setVoto(request, this.name).subscribe((resp) => {
+        this.updateCantidadBoletas();
         this.msjSuccess();
         this.keyboard.value = "";
       }, error => {
@@ -80,6 +88,26 @@ export class CardComponent implements OnInit {
     } else {
       this.mostrar_msjError();
     }
+  }
+
+  updateCantidadBoletas() {
+    let TipoEleccion: string = "";
+    if (this.name === "gubernatura") {
+      TipoEleccion = "Gubernatura"
+    } else if (this.name === "diputacion") {
+      TipoEleccion = "Diputaciones"
+    } else if (this.name === "ayuntamiento") {
+      TipoEleccion = "Ayuntamientos"
+    }
+
+    let request = {
+      TipoEleccion: TipoEleccion
+    }
+    this.service.updateContadorBoletas(request).subscribe((resp) => {
+      console.log(resp);
+    }, error => {
+      console.log(error);
+    });
   }
 
   mostrar_msjError() {

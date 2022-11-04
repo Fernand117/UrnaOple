@@ -49,6 +49,27 @@ export class ReferendumComponent implements OnInit {
         this.mostrar_msjError
       });
     }
+    this.updateCantidadBoletas();
+  }
+
+  updateCantidadBoletas() {
+    let TipoEleccion: string = "";
+    if (this.app_name === "referendum") {
+      TipoEleccion = "Referéndum"
+    } else if (this.app_name === "presbicito") {
+      TipoEleccion = "Plebiscito"
+    } else if (this.app_name === "consulta") {
+      TipoEleccion = "Consulta Popular"
+    }
+
+    let request = {
+      TipoEleccion: TipoEleccion
+    }
+    this.service.updateContadorBoletas(request).subscribe((resp) => {
+      console.log(resp);
+    }, error => {
+      console.log(error);
+    });
   }
 
   mostrar_msjError() {

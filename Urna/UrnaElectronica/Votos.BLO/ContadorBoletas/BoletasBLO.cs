@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Votos.COMMON.DTOS;
 using Votos.COMMON.DTOS.Boletas;
 using Votos.COMMON.RESOURCES;
+using Votos.DAO.Ayuntamientos;
 using Votos.DAO.Boletas;
 
 namespace Votos.BLO.ContadorBoletas
@@ -44,5 +45,24 @@ namespace Votos.BLO.ContadorBoletas
             }
             return apiResponse;
         }
+
+        public async Task<ApiResponse> Read()
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new BoletasDAO().Read();
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
+
     }
 }
