@@ -63,17 +63,28 @@ namespace Votos.COMMON.DTHW
             return mensajeEstructura;
         }
 
-        public string estructuraBoletaCeros(BoletasDTO boletasDTO)
+        public string estructuraBoletaCeros(BoletasDTO _boletas)
         {
-            BoletasDTO boleta = new BoletasDTO()
+            BoletasDTO boletaDto = new BoletasDTO()
             {
-                Entidad = boletasDTO.Entidad,
-                CantidadBoletas = boletasDTO.CantidadBoletas
+                CantidadBoletas = _boletas.CantidadBoletas,
+                Casilla = _boletas.Casilla,
+                Distrito = _boletas.Distrito,
+                Entidad = _boletas.Entidad,
+                Folio = _boletas.Folio,
+                Municipio = _boletas.Municipio,
+                Partido = _boletas.Partido,
+                Seccion = _boletas.Seccion,
+                TipoEleccion = _boletas.TipoEleccion
             };
 
-            string ople = "     OPLE VERACRUZ\n";
-            string cabezera = "     Procesos locales electorales\n";
-            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day;
+            string cabezera = "           OPLE VERACRUZ\n";
+            string mensajeHead = "      Comprobante de votación\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "hrs." + "\n";
+            string eleccion = "Tipo elección: " + boletaDto.TipoEleccion + "\n";
+            string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "  Municipio: " + boletaDto.Municipio + "\n";
+            string datosDos = "Sección: " + boletaDto.Seccion + "  Casilla: " + boletaDto.Casilla + "\n";
+            string separadorUno = "------------------------------------------------\n";
 
             return mensaje;
         }
