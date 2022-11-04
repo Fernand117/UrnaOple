@@ -26,7 +26,14 @@ namespace Votos.DAO.Ayuntamientos
 
 					BoletasDTO boletasDto = new BoletasDTO()
 					{
-						Partido = request.Partido
+						Partido = request.Partido,
+						TipoEleccion = request.TipoEleccion,
+						Entidad = request.Entidad,
+						Distrito = request.Distrito,
+						Municipio = request.Municipio,
+						Seccion = request.Seccion,
+						Casilla = request.Casilla,
+						Folio = request.Folio
 					};
 
 					ImprimirTickets imprimirTickets = new ImprimirTickets();

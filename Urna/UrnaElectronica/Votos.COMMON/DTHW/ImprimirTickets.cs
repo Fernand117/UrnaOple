@@ -28,7 +28,7 @@ namespace Votos.COMMON.DTHW
 
             g.DrawString(mensaje,
             font, brush,
-            new Rectangle(5, 5, 200, 400));
+            new Rectangle(0, 0, 300, 400));
         }
 
         public string estructuraTicket(BoletasDTO _boletas)
@@ -50,16 +50,15 @@ namespace Votos.COMMON.DTHW
             string mensajeHead = "      Comprobante de votación\n";
             string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "hrs." + "\n";
             string eleccion = "Tipo elección: " + boletaDto.TipoEleccion + "\n";
-            string separadorUno = "-------------------------------------\n";
+            string separadorUno = "------------------------------------------------\n";
             string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "  Municipio: " + boletaDto.Municipio + "\n";
-            string datosDos = "Sección: " + boletaDto.Seccion + "  Casilla: " + boletaDto.Casilla + "   Folio: " + boletaDto.Folio + "\n";
-            string partidos = "      Votaste por el partido\n";
+            string datosDos = "Sección: " + boletaDto.Seccion + "  Casilla: " + boletaDto.Casilla + "\n";
+            string folio = "Folio: " + boletaDto.Folio + "\n\n";
+            string partidos = "      Votaste por el partido\n\n";
             string partidoNombre = "     " + boletaDto.Partido + "\n";
-            string corte = "\x1B" + "m";
-            string avance = "\x1B" + "d" + "\x09";
 
             string mensajeEstructura = cabezera + mensajeHead + fechaHora + eleccion + separadorUno
-                      + datosUno + datosDos + partidos + partidoNombre + corte + avance;
+                      + datosUno + datosDos + folio + partidos + partidoNombre;
             
             return mensajeEstructura;
         }
