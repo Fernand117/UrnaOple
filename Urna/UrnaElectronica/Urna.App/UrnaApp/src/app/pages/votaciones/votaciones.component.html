@@ -2,15 +2,15 @@
 
 <!-- MENU TABS -->
 <div class="nav nav-tabs nav-fill" id="pills-tab" role="tablist">
-  <li class="nav-item" *ngIf="config_gubernatura">
+  <li class="nav-item" *ngIf="config_gubernatura && boletas_gubernatura > 0">
     <button class="nav-link active" [disabled]="disabled[1]" [ngClass]="{ 'active': active_tab == 'gubernatura'}" id="gubernatura-tab" data-bs-toggle="pill" data-bs-target="#pills-gubernatura"
       type="button" role="tab" [attr.aria-selected]="active_tab">Gubernatura</button>
   </li>
-  <li class="nav-item" *ngIf="config_diputacion">
+  <li class="nav-item" *ngIf="config_diputacion && boletas_diputacion > 0">
     <button class="nav-link" [disabled]="disabled[2]" [ngClass]="{ 'active': active_tab == 'diputaciones'}" id="diputaciones_tab" data-bs-toggle="pill" data-bs-target="#pills-diputaciones"
       type="button" role="tab" [attr.aria-selected]="active_tab">Diputaciones</button>
   </li>
-  <li class="nav-item" *ngIf="config_ayuntamiento">
+  <li class="nav-item" *ngIf="config_ayuntamiento && boletas_ayuntamiento > 0">
     <button class="nav-link" [disabled]="disabled[3]" [ngClass]="{ 'active': active_tab == 'ayuntamiento'}" id="ayuntamiento-tab" data-bs-toggle="pill" data-bs-target="#pills-ayuntamiento"
       type="button" role="tab" [attr.aria-selected]="active_tab">Ayuntamiento</button>
   </li>
@@ -18,13 +18,13 @@
 
 <!-- CONTENIDO -->
 <div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade" *ngIf="config_gubernatura" [ngClass]="{ 'active': active_tab == 'gubernatura', 'show': active_tab == 'gubernatura'}" id="pills-gubernatura" role="tabpanel" aria-labelledby="pills-home-tab">
+  <div class="tab-pane fade" *ngIf="config_gubernatura && boletas_gubernatura > 0" [ngClass]="{ 'active': active_tab == 'gubernatura', 'show': active_tab == 'gubernatura'}" id="pills-gubernatura" role="tabpanel" aria-labelledby="pills-home-tab">
     <app-gubernatura [partidos]="config_gubernatura" (miEvento)="statusVotoGub($event)"></app-gubernatura>
   </div>
-  <div class="tab-pane fade" *ngIf="config_diputacion" id="pills-diputaciones"  [ngClass]="{ 'active': active_tab == 'diputaciones', 'show': active_tab == 'diputaciones'}" role="tabpanel" aria-labelledby="pills-profile-tab">
+  <div class="tab-pane fade" *ngIf="config_diputacion && boletas_diputacion > 0" id="pills-diputaciones"  [ngClass]="{ 'active': active_tab == 'diputaciones', 'show': active_tab == 'diputaciones'}" role="tabpanel" aria-labelledby="pills-profile-tab">
     <app-diputaciones [partidos]="config_diputacion" (miEvento)="statusVotoDip($event)"></app-diputaciones>
   </div>
-  <div class="tab-pane fade" *ngIf="config_ayuntamiento" id="pills-ayuntamiento" [ngClass]="{ 'active': active_tab == 'ayuntamiento',  'show': active_tab == 'ayuntamiento'}" role="tabpanel" aria-labelledby="pills-contact-tab">
+  <div class="tab-pane fade" *ngIf="config_ayuntamiento && boletas_ayuntamiento > 0" id="pills-ayuntamiento" [ngClass]="{ 'active': active_tab == 'ayuntamiento',  'show': active_tab == 'ayuntamiento'}" role="tabpanel" aria-labelledby="pills-contact-tab">
     <app-ayuntamiento [partidos]="config_ayuntamiento" (miEvento)="statusVotoAyu($event)"></app-ayuntamiento>
   </div>
 </div>

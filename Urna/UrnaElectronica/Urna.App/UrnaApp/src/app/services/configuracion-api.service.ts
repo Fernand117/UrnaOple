@@ -27,5 +27,9 @@ export class ConfiguracionApiService {
   updateContadorBoletas(boleta: any) {
     return this.http.put(`${apiUrl_local}boletas/`, boleta);
   }
+
+  getContadorBoletas() {
+    return this.http.get(`${apiUrl_local}boletas`)
+  }
   
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
 
 @Component({
   selector: 'app-votaciones',
@@ -12,41 +13,45 @@ export class VotacionesComponent implements OnInit, DoCheck {
   config_gubernatura: any;
   config_ayuntamiento: any;
   config_diputacion: any;
+  boletas_gubernatura: any;
+  boletas_ayuntamiento: any;
+  boletas_diputacion: any;
 
   voto1: boolean = false;
   voto2: boolean = false;
   voto3: boolean = false;
-  disabled = {1:true, 2:true, 3:true}
+  disabled = { 1: true, 2: true, 3: true };
 
   active_tab: string = "gubernatura";
 
   classTab = 'nav-link active'
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private service: ConfiguracionApiService) { }
 
   ngOnInit(): void {
     this.obtenerConfiguracion();
+    this.num_boletas();
   }
 
   ngDoCheck() {
     if (this.config_ayuntamiento && this.config_diputacion && this.config_gubernatura) {
       if (this.voto1 === true) {
         this.cambiar2();
-        this.disabled = {1:true, 2:false, 3:true}
+        this.disabled = { 1: true, 2: false, 3: true }
       }
       if (this.voto2 === true) {
         this.cambiar3();
-        this.disabled = {1:true, 2:true, 3:false}
+        this.disabled = { 1: true, 2: true, 3: false }
       }
       if (this.voto1 === true && this.voto2 === true && this.voto3 === true) {
         this.salir();
       }
     } else if (this.config_ayuntamiento && this.config_diputacion) {
-      this.disabled = {1:true, 2:false, 3:true}
+      this.disabled = { 1: true, 2: false, 3: true }
       this.active_tab = 'diputaciones';
       if (this.voto2 === true) {
         this.cambiar3();
-        this.disabled = {1:true, 2:true, 3:false}
+        this.disabled = { 1: true, 2: true, 3: false }
       }
       if (this.voto3 === true) {
         this.salir();
@@ -54,7 +59,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
     } else if (this.config_ayuntamiento && this.config_gubernatura) {
       if (this.voto1 === true) {
         this.cambiar3();
-        this.disabled = {1:true, 2:true, 3:false}
+        this.disabled = { 1: true, 2: true, 3: false }
       }
       if (this.voto3 === true) {
         this.salir();
@@ -62,7 +67,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
     } else if (this.config_diputacion && this.config_gubernatura) {
       if (this.voto1 === true) {
         this.cambiar2();
-        this.disabled = {1:true, 2:false, 3:true}
+        this.disabled = { 1: true, 2: false, 3: true }
       }
       if (this.voto2 === true) {
         this.salir();
@@ -70,7 +75,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
     } else if (this.config_ayuntamiento || this.config_diputacion || this.config_gubernatura) {
       if (this.config_ayuntamiento) {
         this.active_tab = 'ayuntamiento';
-      } else if (this.config_diputacion){
+      } else if (this.config_diputacion) {
         this.active_tab = 'diputaciones';
       } else {
         this.active_tab = 'gubernatura';
@@ -92,6 +97,22 @@ export class VotacionesComponent implements OnInit, DoCheck {
   }
   cambiar3() {
     this.active_tab = "ayuntamiento";
+  }
+
+  num_boletas() {
+    this.service.getContadorBoletas().subscribe((resp) => {
+      let info: any = resp;
+      info = info.data;
+      for (let i = 0; i < info.length; i++) {
+        if (info[i].tipoEleccion === this.config_gubernatura.TipoEleccion) {
+          this.boletas_gubernatura = info[i].cantidadBoletas;
+        } else if (info[i].tipoEleccion === this.config_diputacion.TipoEleccion) {
+          this.boletas_diputacion = info[i].cantidadBoletas;
+        } else if (info[i].tipoEleccion === this.config_ayuntamiento.TipoEleccion) {
+          this.boletas_ayuntamiento = info[i].cantidadBoletas;
+        }
+      }
+    });
   }
 
   obtenerConfiguracion() {

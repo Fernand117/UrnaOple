@@ -35,10 +35,18 @@ export class CardComponent implements OnInit {
 
   votar_registrado() {
     if (!this.voto) {
+      console.log(this.partidos);
+      
       const request = {
-        "Id": 0,
         "Partido": this.candidatoSeleccionado.Hipocoristico.toString(),
-        "Voto": "1"
+        "Voto": "1",
+        "TipoEleccion": this.partidos.TipoEleccion,
+        "Entidad": this.partidos.Entidad,
+        "Distrito": this.partidos.Distrito,
+        "Municipio": this.partidos.Municipio,
+        "Seccion": this.partidos.SeccionElectoral,
+        "Casilla": this.partidos.TipoCasilla,
+        "Folio": this.partidos.Folio
       }
       this.service.setVoto(request, this.name).subscribe((resp) => {
         this.updateCantidadBoletas();
