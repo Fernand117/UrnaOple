@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Votos.COMMON.DTHW;
+using Votos.COMMON.DTOS.Boletas;
 using Votos.COMMON.DTOS.Diputaciones;
 using Votos.DAL.Context;
 using Votos.DAL.Entities.Diputaciones;
@@ -20,6 +22,24 @@ namespace Votos.DAO.Diputaciones
                     var voto = await context.Diputaciones
                         .Where(v => v.Partido == request.Partido)
                         .FirstOrDefaultAsync();
+
+                    BoletasDTO boletasDto = new BoletasDTO()
+                    {
+                        Partido = request.Partido,
+                        TipoEleccion = request.TipoEleccion,
+                        Entidad = request.Entidad,
+                        Distrito = request.Distrito,
+                        Municipio = request.Municipio,
+                        Seccion = request.Seccion,
+                        Casilla = request.Casilla,
+                        Folio = request.Folio
+                    };
+
+                    MensajesLCD mensajesLCD = new MensajesLCD();
+                    mensajesLCD.sendMensaje("Votando.");
+
+                    ImprimirTickets imprimirTickets = new ImprimirTickets();
+                    imprimirTickets.imprimirComprobante(boletasDto);
 
                     if (voto == null)
                     {
