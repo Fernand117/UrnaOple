@@ -63,9 +63,9 @@ namespace Votos.COMMON.DTHW
             return mensajeEstructura;
         }
 
-        public string estructuraBoletaCeros(BoletasDTO _boletas)
+        public string estructuraBoletaCeros(BoletaInicialRequest _boletas)
         {
-            BoletasDTO boletaDto = new BoletasDTO()
+            BoletaInicialRequest boletaDto = new BoletaInicialRequest()
             {
                 CantidadBoletas = _boletas.CantidadBoletas,
                 Casilla = _boletas.Casilla,
@@ -73,7 +73,7 @@ namespace Votos.COMMON.DTHW
                 Entidad = _boletas.Entidad,
                 Folio = _boletas.Folio,
                 Municipio = _boletas.Municipio,
-                Partido = _boletas.Partido,
+                Partidos = _boletas.Partidos,
                 Seccion = _boletas.Seccion,
                 TipoEleccion = _boletas.TipoEleccion
             };
