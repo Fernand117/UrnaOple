@@ -101,12 +101,12 @@ namespace Votos.DAO.Boletas
                 BoletaInicialRequest boletaInicialRequest = new BoletaInicialRequest()
                 {
                     CantidadBoletas = request.CantidadBoletas,
-                    Casilla = request.Casilla,
+                    TipoCasilla = request.TipoCasilla,
                     Distrito = request.Distrito,
                     Entidad = request.Entidad,
                     Folio = request.Folio,
                     Municipio = request.Municipio,
-                    Seccion = request.Seccion,
+                    SeccionElectoral = request.SeccionElectoral,
                     TipoEleccion = request.TipoEleccion,
                     Presidente = request.Presidente,
                     Secretario = request.Secretario,

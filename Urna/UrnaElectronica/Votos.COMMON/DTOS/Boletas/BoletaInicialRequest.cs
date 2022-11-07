@@ -12,8 +12,8 @@ namespace Votos.COMMON.DTOS.Boletas
         public string Entidad { get; set; }
         public string Distrito { get; set; }
         public string Municipio { get; set; }
-        public string Seccion { get; set; }
-        public string Casilla { get; set; }
+        public string SeccionElectoral { get; set; }
+        public string TipoCasilla { get; set; }
         public string Folio { get; set; }
         
         //Datos de los representantes de las mesas directivas de casillas

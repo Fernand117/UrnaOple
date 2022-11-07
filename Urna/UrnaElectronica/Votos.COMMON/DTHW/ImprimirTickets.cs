@@ -23,8 +23,20 @@ namespace Votos.COMMON.DTHW
             mensaje = estructuraBoletaCeros(request);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
-            pd.PrintPage += Pf_PrintPage;
+            pd.PrintPage += Pd_PrintPage;
             pd.Print();
+        }
+
+        private void Pd_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            Font font = new Font("Arial", 12);
+
+            SolidBrush brush = new SolidBrush(Color.Black);
+
+            //g.DrawString(mensaje, font, brush, new Rectangle(0, 0));
+            g.DrawString(mensaje, font, brush, 0, 0);
         }
 
         private void Pf_PrintPage(object sender, PrintPageEventArgs e)
@@ -77,13 +89,13 @@ namespace Votos.COMMON.DTHW
             BoletaInicialRequest boletaDto = new BoletaInicialRequest()
             {
                 CantidadBoletas = _boletas.CantidadBoletas,
-                Casilla = _boletas.Casilla,
+                TipoCasilla = _boletas.TipoCasilla,
                 Distrito = _boletas.Distrito,
                 Entidad = _boletas.Entidad,
                 Folio = _boletas.Folio,
                 Municipio = _boletas.Municipio,
                 Partidos = _boletas.Partidos,
-                Seccion = _boletas.Seccion,
+                SeccionElectoral = _boletas.SeccionElectoral,
                 TipoEleccion = _boletas.TipoEleccion
             };
 
@@ -95,7 +107,7 @@ namespace Votos.COMMON.DTHW
             string eleccion = "Tipo elección: " + boletaDto.TipoEleccion + "\n";
             string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "  Municipio: " +
                               boletaDto.Municipio + "\n";
-            string datosDos = "Sección: " + boletaDto.Seccion + "  Casilla: " + boletaDto.Casilla + "\n";
+            string datosDos = "Sección: " + boletaDto.SeccionElectoral + "  Casilla: " + boletaDto.TipoCasilla + "\n";
             string separadorUno = "------------------------------------------------\n";
             string partidos = boletaDto.Partidos.ToString() + "\n" + separadorUno;
             string presidente = separadorUno + "\n      Funcionariado de Mesa Directiva de Casilla\n" +
