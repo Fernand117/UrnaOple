@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
@@ -31,23 +32,25 @@ namespace Votos.COMMON.DTHW
         private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
-
+            //Image image = Image.FromFile("LOGOTIPO_OPLE.png");
             Font font = new Font("Arial", 12);
 
             SolidBrush brush = new SolidBrush(Color.Black);
 
             //g.DrawString(mensaje, font, brush, new Rectangle(0, 0));
+            //g.DrawImage(image, 100, 5);
             g.DrawString(mensaje, font, brush, 0, 0);
         }
 
         private void Pf_PrintPage(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
-
+            //Image image = Image.FromFile("LOGOTIPO_OPLE.png");
             Font font = new Font("Arial", 12);
 
             SolidBrush brush = new SolidBrush(Color.Black);
 
+            //g.DrawImage(image, 5, 5);
             g.DrawString(mensaje,
             font, brush,
             new Rectangle(0, 0, 300, 400));
@@ -97,31 +100,49 @@ namespace Votos.COMMON.DTHW
                 Municipio = _boletas.Municipio,
                 Partidos = _boletas.Partidos,
                 SeccionElectoral = _boletas.SeccionElectoral,
-                TipoEleccion = _boletas.TipoEleccion
+                TipoEleccion = _boletas.TipoEleccion,
+                Presidente = _boletas.Presidente,
+                Secretario = _boletas.Secretario,
+                PrimerEscrutador = _boletas.PrimerEscrutador,
+                SegundoEscrutador = _boletas.SegundoEscrutador
             };
 
-            string cabezera = "           OPLE VERACRUZ\n";
-            string mensajeHead = "      Comprobante de votación\n";
+            string cabezera = "             OPLE VERACRUZ\n";
+            string mensajeHead = "ACTA DE INSTALACIÓN DE CASILLA\n\n";
             string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day +
                                "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" +
                                DateTime.Now.Second + "hrs." + "\n";
             string eleccion = "Tipo elección: " + boletaDto.TipoEleccion + "\n";
-            string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "  Municipio: " +
+            string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "\nMunicipio: " +
                               boletaDto.Municipio + "\n";
             string datosDos = "Sección: " + boletaDto.SeccionElectoral + "  Casilla: " + boletaDto.TipoCasilla + "\n";
             string separadorUno = "------------------------------------------------\n";
-            string partidos = boletaDto.Partidos.ToList() + "\n" + separadorUno;
-            string presidente = separadorUno + "\n      Funcionariado de Mesa Directiva de Casilla\n" +
-                                boletaDto.Presidente + "\n" + separadorUno + "        Presidente(a): Nombre y Firma\n";
-            string secretario = boletaDto.Secretario + "\n" + separadorUno + "\n      Secretario(a): Nombre y Firma\n";
-            string escrutadorUno = boletaDto.PrimerEscrutador + "\n" + separadorUno +
-                                   "\n      Escrutador(a) 1: Nombre y Firma\n";
-            string escrutadorDos = boletaDto.SegundoEscrutador + "\n" + separadorUno +
-                                   "\n      Escrutador(a) 2: Nombre y Firma \n" + separadorUno +
-                                   "\n     Representantes de Partidos Políticos\n";
+            string headPartidos = "Que en presencia del Funcionariado\nde Mesa Directiva de Casilla\ny representaciones de los partidos\npolíticos se inicializó y verificó\nque el sistema se encuentra en\nceros, así como el contenedor de\ntestigos de votos se encuentra vacío.\n" + separadorUno+ "\tPartidos Políticos";
+            var lp = boletaDto.Partidos.ToList();
+            string partidos = "";
+            string partidosFirmas = "";
+            foreach (var p in lp)
+            {
+                if (p.Voto == null)
+                {
+                    partidos = partidos + "\n" + "Partido: " + p.Hipocoristico + "\n" + "Votos: 0\n";
+                }
 
-            mensaje = cabezera + mensajeHead + fechaHora + eleccion + datosUno + datosDos + separadorUno + partidos +
-                      presidente + secretario + escrutadorUno + escrutadorDos;
+                partidosFirmas += p.Propietario + "\n" + separadorUno + "       RPP: " + p.Hipocoristico +
+                                  ": Nombre y Firma\n\n\n";
+            }
+
+            string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +
+                                boletaDto.Presidente + "\n" + separadorUno + "        Presidente(a): Nombre y Firma\n\n\n";
+            string secretario = boletaDto.Secretario + "\n" + separadorUno + "      Secretario(a): Nombre y Firma\n\n\n";
+            string escrutadorUno = boletaDto.PrimerEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 1: Nombre y Firma\n\n\n";
+            string escrutadorDos = boletaDto.SegundoEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 2: Nombre y Firma \n\n\n" + separadorUno +
+                                   "Representantes de Partidos Políticos\n\n\n";
+
+            mensaje = cabezera + mensajeHead + fechaHora + eleccion + datosUno + datosDos + separadorUno + headPartidos + partidos +
+                      presidente + secretario + escrutadorUno + escrutadorDos + partidosFirmas;
 
             return mensaje;
         }
