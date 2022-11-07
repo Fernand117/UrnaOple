@@ -15,6 +15,10 @@ namespace Votos.Api.Controllers.BoletasContador
         public async Task<ActionResult<ApiResponse>> Post([FromBody] BoletasRequest request) =>
             await new BoletasBLO().Create(request);
 
+        [HttpPost("imprimir/boletainicial")]
+        public async Task<ActionResult<ApiResponse>>
+            PostImprimirBoletaInicial([FromBody] BoletaInicialRequest request) => await new BoletasBLO().Print(request);
+
         [HttpPut]
         public async Task<ActionResult<ApiResponse>> Update([FromBody] BoletasRequest request) =>
             await new BoletasBLO().Update(request);

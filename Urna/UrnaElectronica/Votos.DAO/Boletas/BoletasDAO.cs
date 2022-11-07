@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Votos.COMMON.DTHW;
 using Votos.COMMON.DTOS.Ayuntamientos;
 using Votos.COMMON.DTOS.Boletas;
 using Votos.DAL.Context;
@@ -91,6 +92,36 @@ namespace Votos.DAO.Boletas
                 throw;
             }
             return response;
+        }
+
+        public async Task<BoletaInicialRequest> ImprimirBoletaInicial(BoletaInicialRequest request)
+        {
+            try
+            {
+                BoletaInicialRequest boletaInicialRequest = new BoletaInicialRequest()
+                {
+                    CantidadBoletas = request.CantidadBoletas,
+                    Casilla = request.Casilla,
+                    Distrito = request.Distrito,
+                    Entidad = request.Entidad,
+                    Folio = request.Folio,
+                    Municipio = request.Municipio,
+                    Seccion = request.Seccion,
+                    TipoEleccion = request.TipoEleccion,
+                    Partidos = request.Partidos
+                };
+
+                ImprimirTickets imprimirTickets = new ImprimirTickets();
+                imprimirTickets.estructuraBoletaCeros(boletaInicialRequest);
+
+                MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo voleta inicial");
+            }
+            catch (Exception e)
+            {
+                request.TipoEleccion = e.Message;
+            }
+            return request;
         }
     }
 }
