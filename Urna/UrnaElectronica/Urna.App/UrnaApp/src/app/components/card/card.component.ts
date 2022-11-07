@@ -62,9 +62,15 @@ export class CardComponent implements OnInit {
   votar_noRegistrado() {
     if (!this.voto) {
       const request = {
-        "Id": 0,
         "Partido": this.keyboard.value,
-        "Voto": "1"
+        "Voto": "1",
+        "TipoEleccion": this.partidos.TipoEleccion,
+        "Entidad": this.partidos.Entidad,
+        "Distrito": this.partidos.Distrito,
+        "Municipio": this.partidos.Municipio,
+        "Seccion": this.partidos.SeccionElectoral,
+        "Casilla": this.partidos.TipoCasilla,
+        "Folio": this.partidos.Folio
       }
       this.service.setVoto(request, this.name).subscribe((resp) => {
         this.updateCantidadBoletas();
@@ -82,9 +88,15 @@ export class CardComponent implements OnInit {
   anularVoto() {
     if (!this.voto) {
       const request = {
-        "Id": 0,
         "Partido": "Voto nulo",
-        "Voto": "1"
+        "Voto": "1",
+        "TipoEleccion": this.partidos.TipoEleccion,
+        "Entidad": this.partidos.Entidad,
+        "Distrito": this.partidos.Distrito,
+        "Municipio": this.partidos.Municipio,
+        "Seccion": this.partidos.SeccionElectoral,
+        "Casilla": this.partidos.TipoCasilla,
+        "Folio": this.partidos.Folio
       }
       this.service.setVoto(request, this.name).subscribe((resp) => {
         this.updateCantidadBoletas();

@@ -92,7 +92,6 @@ export class ReferendumComponent implements OnInit {
     )
     .then(function () {
       evento.emit(voto);
-      // ruta.navigate(['/gracias']);
     }
     );
   }

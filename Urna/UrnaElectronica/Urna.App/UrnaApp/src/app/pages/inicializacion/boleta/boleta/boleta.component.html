@@ -3,7 +3,6 @@
   <h1>Boleta de inicialización</h1>
   <div class="row">
 
-
     <!-- BOLETA GUBERNATURAS -->
     <div class="col-sm" *ngIf="config_gubernatura">
       <h2>Gubernaturas</h2>
@@ -22,7 +21,7 @@
         </tbody>
       </table>
       <div class="botones">
-        <button type="button" class="btn btn-primary" id="btn1">Imprimir</button>
+        <button type="button" class="btn btn-primary" id="btn1" (click)="imprimirBoleta(config_gubernatura)">Imprimir</button>
       </div>
     </div>
 

@@ -24,6 +24,10 @@ export class BoletaComponent implements OnInit {
     this.obtenerConfiguracion();
   }
 
+  imprimirBoleta(configuracion: any) {
+    console.log(configuracion);
+  }
+
   obtenerConfiguracion() {
     //CONFIGURACIONES PARA ELECCIONALES LOCALES
     this.config_gubernatura =localStorage.getItem('gubernatura');
