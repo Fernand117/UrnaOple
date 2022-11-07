@@ -18,6 +18,15 @@ namespace Votos.COMMON.DTHW
             pf.Print();
         }
 
+        public void imprimirBoletaCeros(BoletaInicialRequest request)
+        {
+            mensaje = estructuraBoletaCeros(request);
+            Console.WriteLine(mensaje);
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += Pf_PrintPage;
+            pd.Print();
+        }
+
         private void Pf_PrintPage(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -80,11 +89,26 @@ namespace Votos.COMMON.DTHW
 
             string cabezera = "           OPLE VERACRUZ\n";
             string mensajeHead = "      Comprobante de votación\n";
-            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "hrs." + "\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day +
+                               "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" +
+                               DateTime.Now.Second + "hrs." + "\n";
             string eleccion = "Tipo elección: " + boletaDto.TipoEleccion + "\n";
-            string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "  Municipio: " + boletaDto.Municipio + "\n";
+            string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "  Municipio: " +
+                              boletaDto.Municipio + "\n";
             string datosDos = "Sección: " + boletaDto.Seccion + "  Casilla: " + boletaDto.Casilla + "\n";
             string separadorUno = "------------------------------------------------\n";
+            string partidos = boletaDto.Partidos.ToString() + "\n" + separadorUno;
+            string presidente = separadorUno + "\n      Funcionariado de Mesa Directiva de Casilla\n" +
+                                boletaDto.Presidente + "\n" + separadorUno + "        Presidente(a): Nombre y Firma\n";
+            string secretario = boletaDto.Secretario + "\n" + separadorUno + "\n      Secretario(a): Nombre y Firma\n";
+            string escrutadorUno = boletaDto.PrimerEscrutador + "\n" + separadorUno +
+                                   "\n      Escrutador(a) 1: Nombre y Firma\n";
+            string escrutadorDos = boletaDto.SegundoEscrutador + "\n" + separadorUno +
+                                   "\n      Escrutador(a) 2: Nombre y Firma \n" + separadorUno +
+                                   "\n     Representantes de Partidos Políticos\n";
+
+            mensaje = cabezera + mensajeHead + fechaHora + eleccion + datosUno + datosDos + separadorUno + partidos +
+                      presidente + secretario + escrutadorUno + escrutadorDos;
 
             return mensaje;
         }

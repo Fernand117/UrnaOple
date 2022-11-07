@@ -15,6 +15,14 @@ namespace Votos.COMMON.DTOS.Boletas
         public string Seccion { get; set; }
         public string Casilla { get; set; }
         public string Folio { get; set; }
+        
+        //Datos de los representantes de las mesas directivas de casillas
+        public string Presidente { get; set; }
+        public string Secretario { get; set; }
+        public string PrimerEscrutador { get; set; }
+        public string SegundoEscrutador { get; set; }
+        
+        //Lista de partidos registrados
         public virtual List<PartidosDTO> Partidos { get; set; }
     }
 }

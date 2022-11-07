@@ -108,11 +108,15 @@ namespace Votos.DAO.Boletas
                     Municipio = request.Municipio,
                     Seccion = request.Seccion,
                     TipoEleccion = request.TipoEleccion,
+                    Presidente = request.Presidente,
+                    Secretario = request.Secretario,
+                    PrimerEscrutador = request.PrimerEscrutador,
+                    SegundoEscrutador = request.SegundoEscrutador,
                     Partidos = request.Partidos
                 };
 
                 ImprimirTickets imprimirTickets = new ImprimirTickets();
-                imprimirTickets.estructuraBoletaCeros(boletaInicialRequest);
+                imprimirTickets.imprimirBoletaCeros(boletaInicialRequest);
 
                 MensajesLCD mensajesLcd = new MensajesLCD();
                 mensajesLcd.sendMensaje("Imprimiendo voleta inicial");
