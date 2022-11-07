@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Linq;
 using Votos.COMMON.DTOS.Boletas;
 
 namespace Votos.COMMON.DTHW
@@ -109,7 +110,7 @@ namespace Votos.COMMON.DTHW
                               boletaDto.Municipio + "\n";
             string datosDos = "Sección: " + boletaDto.SeccionElectoral + "  Casilla: " + boletaDto.TipoCasilla + "\n";
             string separadorUno = "------------------------------------------------\n";
-            string partidos = boletaDto.Partidos.ToString() + "\n" + separadorUno;
+            string partidos = boletaDto.Partidos.ToList() + "\n" + separadorUno;
             string presidente = separadorUno + "\n      Funcionariado de Mesa Directiva de Casilla\n" +
                                 boletaDto.Presidente + "\n" + separadorUno + "        Presidente(a): Nombre y Firma\n";
             string secretario = boletaDto.Secretario + "\n" + separadorUno + "\n      Secretario(a): Nombre y Firma\n";
