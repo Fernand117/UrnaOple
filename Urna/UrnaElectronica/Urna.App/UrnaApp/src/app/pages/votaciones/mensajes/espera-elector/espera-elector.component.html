@@ -4,7 +4,12 @@
     <div class="col_1">
       <h1>En espera de elector</h1>
       <img src="./assets/img/espera.png">
-      <button class="btn btn-primary" (click)="siguiente_elector()">Siguiente elector</button>
+    </div>
+    <div class="col">
+      <div class="card-body card">
+        <p>Ingrese la tarjeta para continuar</p>
+        <input class="form-control" type="password" [(ngModel)]="code" (change)="validar()" autofocus>
+      </div>
     </div>
   </div>
 </div>

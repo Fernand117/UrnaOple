@@ -21,7 +21,7 @@ export class ConfiguracionComponent implements OnInit {
 
   constructor(private route:Router, private service: ConfiguracionApiService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   setContadorBoletas(info: any) {
     let request = {
@@ -94,7 +94,6 @@ export class ConfiguracionComponent implements OnInit {
       
       localStorage.setItem('categoria', this.confi.Categoria);      
       if(this.confi.Categoria === 'Procesos locales electorales') {
-        localStorage.clear();
         this.configuracion_eleccioneslocales();
         this.route.navigate(['/boleta-inicializacion']);
       } else if (this.confi.Categoria === "Elecciones escolares") {

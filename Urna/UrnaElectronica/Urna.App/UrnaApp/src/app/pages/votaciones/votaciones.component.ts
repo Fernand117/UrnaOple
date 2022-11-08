@@ -33,17 +33,16 @@ export class VotacionesComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.obtenerConfiguracion();
-    this.num_boletas();
+    this.num_boletas();    
   }
 
   // *********************** METODO PARA DETECTAR CAMBIOS DENTRO DE LA PÁGINA DE VOTACIONES ***********************
-  ngDoCheck() {
+  ngDoCheck() {    
     //CASO: EXISTEN LOS TRES TIPOS DE ELECCIONES
     if (this.config_ayuntamiento && this.config_diputacion && this.config_gubernatura) {
-      switch (this.boletas_gubernatura) {
-        case 0:
-          this.voto1 = true; this.cambioDeTres(); break;
-        default: this.cambioDeTres(); break;
+      this.cambioDeTres();
+      if(this.boletas_gubernatura == 0) {
+        this.voto1 = true; this.cambioDeTres();
       }
       if (this.boletas_diputacion ==  0) {
         this.Gub_Ayu();
@@ -51,7 +50,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
         this.Gub_Dip();
       } 
       if (this.boletas_ayuntamiento == 0 && this.boletas_diputacion == 0 && this.boletas_gubernatura == 0){
-        this.route.navigate(['/clausura']);
+        this.route.navigate(['/no-boletas']);
       }
     } 
 
@@ -67,7 +66,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
         }
       }
       if (this.boletas_gubernatura == 0 && this.boletas_diputacion == 0) {
-        this.route.navigate(['/clausura']);
+        this.route.navigate(['/no-boletas']);
       }
     }
 
@@ -84,7 +83,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
         }
       }
       if (this.boletas_gubernatura == 0 && this.boletas_ayuntamiento == 0) {
-        this.route.navigate(['/clausura']);
+        this.route.navigate(['/no-boletas']);
       }
     }
 
@@ -100,7 +99,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
         }
       } 
       if (this.boletas_diputacion == 0 && this.boletas_ayuntamiento == 0) {
-        this.route.navigate(['/clausura']);
+        this.route.navigate(['/no-boletas']);
       }
     } 
     
@@ -117,7 +116,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
         this.salir();
       }
       if (this.boletas_ayuntamiento === 0 || this.boletas_diputacion === 0 || this.boletas_gubernatura === 0) {
-        this.route.navigate(['/clausura']);
+        this.route.navigate(['/no-boletas']);
       }
     }
   }
@@ -195,13 +194,15 @@ export class VotacionesComponent implements OnInit, DoCheck {
       for (let i = 0; i < info.length; i++) {
         if (info[i].tipoEleccion === this.config_gubernatura.TipoEleccion) {
           this.boletas_gubernatura = info[i].cantidadBoletas;
+          console.log(this.boletas_gubernatura);
+          
         } else if (info[i].tipoEleccion === this.config_diputacion.TipoEleccion) {
           this.boletas_diputacion = info[i].cantidadBoletas;
         } else if (info[i].tipoEleccion === this.config_ayuntamiento.TipoEleccion) {
           this.boletas_ayuntamiento = info[i].cantidadBoletas;
         }
       }
-    });
+    });   
   }
 
   //OBTENER LAS CONFIGURACIONES
