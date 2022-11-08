@@ -8,7 +8,7 @@ export class ApiServiceService {
 
 
   //TODO: CAMBIO DE URL DEL LOCALHOST AL DE PRUEBAS DE FERNANDO
-  private url = "http://localhost:32042/api";
+  private url = "http://4263-189-240-194-242.ngrok.io/api";
 
   //private url = "http://localhost:5000/api";
 
