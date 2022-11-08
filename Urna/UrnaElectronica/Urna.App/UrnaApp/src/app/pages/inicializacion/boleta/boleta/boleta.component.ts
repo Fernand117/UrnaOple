@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import {Router } from '@angular/router';
+import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
 
 @Component({
   selector: 'app-boleta',
@@ -9,7 +10,6 @@ import {Router } from '@angular/router';
 
 export class BoletaComponent implements OnInit {
 
-  configuracion: any;
   config_gubernatura?: any;
   config_ayuntamiento?: any;
   config_diputacion?: any;
@@ -18,14 +18,16 @@ export class BoletaComponent implements OnInit {
   config_plebiscito?: any;
   config_consulta?: any;
 
-  constructor(private route:Router) { }
+  constructor(private route:Router, private service: ConfiguracionApiService) { }
 
   ngOnInit(): void {
     this.obtenerConfiguracion();
   }
 
   imprimirBoleta(configuracion: any) {
-    console.log(configuracion);
+    this.service.imprimirBoleta(configuracion).subscribe(resp => {
+      console.log(resp);
+    });
   }
 
   obtenerConfiguracion() {

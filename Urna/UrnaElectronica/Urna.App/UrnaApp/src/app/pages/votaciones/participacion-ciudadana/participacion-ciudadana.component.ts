@@ -10,9 +10,9 @@ import { ConfiguracionApiService } from 'src/app/services/configuracion-api.serv
 export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
 
   //VARIABLES DONDE SE ALMACENAN LAS CONFIGURACIONES PARA CADA TIPO DE ELECCIÓN
-  confi_referendum: any = localStorage.getItem('referendum');
-  confi_presbicito: any = localStorage.getItem('presbicito');
-  confi_consulta: any = localStorage.getItem('consulta');
+  confi_referendum: any;
+  confi_presbicito: any;
+  confi_consulta: any;
 
   //VARIABLES DONDE SE ALMACENAN LA CANTIDAD DE BOLETAS DISPONIBLES PARA CADA TIPO DE ELECCIÓN
   boletas_referendum: any;
@@ -192,16 +192,28 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
     this.service.getContadorBoletas().subscribe((resp) => {
       let info: any = resp;
       info = info.data;
+      console.log(this.confi_referendum);
+      
       for (let i = 0; i < info.length; i++) {
         if (info[i].tipoEleccion === this.confi_referendum.TipoMecanismo) {
-          this.boletas_referendum = info[i].cantidadBoletas;
+          this.boletas_referendum = info[i].cantidadBoletas;          
         } else if (info[i].tipoEleccion === this.confi_presbicito.TipoMecanismo) {
           this.boletas_plesbicito = info[i].cantidadBoletas;
         } else if (info[i].tipoEleccion === this.confi_consulta.TipoMecanismo) {
           this.boletas_consulta = info[i].cantidadBoletas;
         }
       }
-    });
+    });      
+  }
+
+  //OBTENER LAS CONFIGURACIONES
+  obtenerConfiguracion() {
+    this.confi_referendum = localStorage.getItem('referendum');
+    this.confi_referendum = JSON.parse(this.confi_referendum);
+    this.confi_presbicito = localStorage.getItem('presbicito');
+    this.confi_presbicito = JSON.parse(this.confi_presbicito);
+    this.confi_consulta = localStorage.getItem('consulta');
+    this.confi_consulta = JSON.parse(this.confi_consulta);
   }
 
   //OBTENER EL ESTADO DEL VOTO 1

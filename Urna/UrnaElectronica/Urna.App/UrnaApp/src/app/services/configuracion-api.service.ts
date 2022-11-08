@@ -31,5 +31,9 @@ export class ConfiguracionApiService {
   getContadorBoletas() {
     return this.http.get(`${apiUrl_local}boletas`)
   }
+
+  imprimirBoleta(boleta: any) {
+    return this.http.post(`${apiUrl_local}boletas/imprimir/boletainicial`, boleta);
+  }
   
 }
