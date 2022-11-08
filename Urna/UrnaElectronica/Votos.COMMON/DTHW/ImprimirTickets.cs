@@ -123,10 +123,7 @@ namespace Votos.COMMON.DTHW
             string partidosFirmas = "";
             foreach (var p in lp)
             {
-                if (p.Voto == null)
-                {
-                    partidos = partidos + "\n" + "Partido: " + p.Hipocoristico + "\n" + "Votos: 0\n";
-                }
+                partidos = partidos + "\n" + "Partido: " + p.Hipocoristico + "\n" + "Votos: 0\n";
 
                 partidosFirmas += p.Propietario + "\n" + separadorUno + "       RPP: " + p.Hipocoristico +
                                   ": Nombre y Firma\n\n\n";
