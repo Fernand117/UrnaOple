@@ -21,7 +21,15 @@ export class ConfiguracionComponent implements OnInit {
 
   constructor(private route:Router, private service: ConfiguracionApiService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.deleteBoletas();
+  }
+
+  deleteBoletas() {
+    this.service.deleteDataBoletas().subscribe(resp => {
+      console.log(resp);
+    });
+  }
 
   setContadorBoletas(info: any) {
     let request = {

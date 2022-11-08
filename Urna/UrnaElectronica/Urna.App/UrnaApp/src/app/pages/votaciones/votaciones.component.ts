@@ -193,9 +193,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
       info = info.data;
       for (let i = 0; i < info.length; i++) {
         if (info[i].tipoEleccion === this.config_gubernatura.TipoEleccion) {
-          this.boletas_gubernatura = info[i].cantidadBoletas;
-          console.log(this.boletas_gubernatura);
-          
+          this.boletas_gubernatura = info[i].cantidadBoletas;          
         } else if (info[i].tipoEleccion === this.config_diputacion.TipoEleccion) {
           this.boletas_diputacion = info[i].cantidadBoletas;
         } else if (info[i].tipoEleccion === this.config_ayuntamiento.TipoEleccion) {
