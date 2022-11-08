@@ -81,5 +81,24 @@ namespace Votos.BLO.ContadorBoletas
             }
             return apiResponse;
         }
+
+        public async Task<ApiResponse> Delete()
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new BoletasDAO().Delete();
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+
+            return apiResponse;
+        }
     }
 }

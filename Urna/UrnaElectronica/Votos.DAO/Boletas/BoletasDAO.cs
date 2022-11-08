@@ -127,5 +127,43 @@ namespace Votos.DAO.Boletas
             }
             return request;
         }
+
+        public async Task<BoletasRequest> Delete()
+        {
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var boletas = await context.Boletas.ToListAsync();
+                    var ayuntamientos = await context.Ayuntamientos.ToListAsync();
+                    var consulta = await context.ConsultasPopulares.ToListAsync();
+                    var diputacion = await context.Diputaciones.ToListAsync();
+                    var escolares = await context.Escolares.ToListAsync();
+                    var gubernatura = await context.Gubernaturas.ToListAsync();
+                    var presbicito = await context.Presbicitos.ToListAsync();
+                    var referendum = await context.Referendums.ToListAsync();
+                    
+                    context.Boletas.RemoveRange(boletas);
+                    context.Ayuntamientos.RemoveRange(ayuntamientos);
+                    context.ConsultasPopulares.RemoveRange(consulta);
+                    context.Diputaciones.RemoveRange(diputacion);
+                    context.Escolares.RemoveRange(escolares);
+                    context.Gubernaturas.RemoveRange(gubernatura);
+                    context.Presbicitos.RemoveRange(presbicito);
+                    context.Referendums.RemoveRange(referendum);
+
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return new BoletasRequest()
+            {
+                Id = 0
+            };
+        }
     }
 }

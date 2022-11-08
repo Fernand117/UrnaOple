@@ -21,5 +21,8 @@ namespace Votos.Api.Controllers.BoletasContador
 
         [HttpGet]
         public async Task<ActionResult<ApiResponse>> Read() => await new BoletasBLO().Read();
+
+        [HttpDelete]
+        public async Task<ActionResult<ApiResponse>> Delete() => await new BoletasBLO().Delete();
     }
 }
