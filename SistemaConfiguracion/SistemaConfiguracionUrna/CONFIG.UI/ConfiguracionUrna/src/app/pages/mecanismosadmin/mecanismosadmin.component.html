@@ -52,8 +52,16 @@
                         <div *ngIf="listaPreguntas.length === 0 || listaPreguntas === null">
                             <p>Aún no hay preguntas añadidas.</p>
                         </div>
-                        <div class="listpreguntas" *ngFor="let item of listaPreguntas">
-                            {{item.pregunta}}
+                        <div class="pat" *ngFor="let item of listaPreguntas">
+                            <div class="propietario">
+                              {{item.pregunta}}
+                            </div>
+                            <div class="suplente"></div>
+                            <div class="partido"></div>
+                            <div class="opciones">
+                              <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn" (click)="eliminarPreguntaActual(item.pregunta)">
+                              <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" (click)="editarPreguntaActual(item.pregunta)">
+                            </div>
                         </div>
                         <button class="btn btn-success" (click)="addPartido()">Agregar pregunta</button>
                     </div>
@@ -77,16 +85,15 @@
                             </div>
                             <div class="suplente">
                                 <h6>Nombre del mecanismo</h6>
-                                <p>{{item.NombreMecanismo}}</p>
+                                <p>{{item.Nombre}}</p>
                             </div>
                             <div class="partido">
                                 <h6>Folio</h6>
                                 <p>{{item.Folio}}</p>
                             </div>
                             <div class="opciones">
-                                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
-                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
-                                <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
+                                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn" (click)="eliminarConfiguracion(item.Nombre)">
+                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" (click)="editarConfiguracion(item.Nombre)">
                             </div>
                         </div>
                         <button class="btn btn-success" (click)="agregarMecanismo()">Agregar mecanismo</button>
@@ -113,5 +120,86 @@
             <button class="btn btn-primary" (click)="closeModal()">Cancelar</button>
             <button class="btn btn-danger" (click)="agregarPregunta()">Agregar</button>
         </div>
+    </div>
+
+    <!--Modal para editar preguntas-->
+    <div class="formPartidos" id="formPartidosU">
+      <div class="tp">
+        <img src="../../../../assets/img/LogoOple.png" alt="" class="logoOple">
+        <h5>Editar pregunta actual</h5>
+      </div>
+      <div class="cf">
+        <input type="text" name="pregunta" id="preguntaU" placeholder="Ingrese la pregunta para el mecanismo." class="form-control" [(ngModel)]="preguntaUpdate.pregunta">
+      </div>
+      <div class="cb">
+        <button class="btn btn-primary" (click)="closeModalEditPregunta()">Cancelar</button>
+        <button class="btn btn-danger" (click)="guardarPreguntaActual()">Agregar</button>
+      </div>
+    </div>
+
+    <!-- Modal para editar la configuración actual -->
+    <div class="formPartidos" id="formPartidosUpdate">
+      <div class="form">
+        <h5>Tipo de mecanismo de participación ciudadana.</h5>
+        <select name="tipo" id="tipoU" class="form-select" [(ngModel)]="mecanismosUpdate.TipoMecanismo">
+          <option value="Referéndum">Referéndum</option>
+          <option value="Plebiscito">Plebiscito</option>
+          <option value="Consulta Popular">Consulta Popular</option>
+        </select>
+
+        <input type="text" name="nombre" id="nombreU" placeholder="Nombre del mecanismo de participación ciudadana" class="form-control" [(ngModel)]="mecanismosUpdate.Nombre">
+        <input type="text" name="objeto" id="objetoU" placeholder="Objeto del mecanismo de participación" class="form-control" [(ngModel)]="mecanismosUpdate.Objeto">
+
+        <h5>Funcionariado de mesa directiva de casilla</h5>
+        <input type="text" name="presidente" id="presidenteU" placeholder="Presidente" class="form-control" [(ngModel)]="mecanismosUpdate.Presidente">
+        <input type="text" name="secretario" id="secretarioU" placeholder="Secretario" class="form-control" [(ngModel)]="mecanismosUpdate.Secretario">
+        <input type="text" name="primero" id="primeroU" placeholder="Primer escrutador" class="form-control" [(ngModel)]="mecanismosUpdate.PrimerEscrutador">
+        <input type="text" name="segundo" id="segundoU" placeholder="Segundo escrutador" class="form-control" [(ngModel)]="mecanismosUpdate.SegundoEscrutador">
+      </div>
+      <div class="form">
+        <h5>Datos generales y diseño de la boleta</h5>
+        <input type="text" name="entidad" id="entidadU" placeholder="Entidad" class="form-control" [(ngModel)]="mecanismosUpdate.Entidad">
+        <input type="text" name="distrito" id="distritoU" placeholder="Distrito" class="form-control" [(ngModel)]="mecanismosUpdate.Distrito">
+        <input type="text" name="municipio" id="municipioU" placeholder="Municipio" class="form-control" [(ngModel)]="mecanismosUpdate.Municipio">
+        <input type="number" name="seccion" id="seccionU" placeholder="Sección" class="form-control" [(ngModel)]="mecanismosUpdate.Seccion">
+        <input type="number" name="folio" id="foliioU" placeholder="Folio" class="form-control" [(ngModel)]="mecanismosUpdate.Folio">
+        <h5>Cantidad de boletas</h5>
+        <input type="text" name="nboletas" id="nboletasU" placeholder="Cantidad de boletas" class="form-control" [(ngModel)]="mecanismosUpdate.CantidadBoletas">
+      </div>
+      <div class="preguntas">
+        <h5>Lista de configuraciones.</h5>
+
+        <div class="accordion accordion-flushU" id="accordionFlushExampleU">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOneU">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOneU" aria-expanded="false" aria-controls="flush-collapseOneU">
+                Lista de preguntas
+              </button>
+            </h2>
+            <div id="flush-collapseOneU" class="accordion-collapse collapse" aria-labelledby="flush-headingOneU" data-bs-parent="#accordionFlushExampleU">
+              <div class="accordion-body">
+                <div *ngIf="listaPreguntasUpdate.length === 0 || listaPreguntasUpdate === null">
+                  <p>Aún no hay preguntas añadidas.</p>
+                </div>
+                <div class="listpreguntas pat" *ngFor="let item of listaPreguntasUpdate">
+                  <div class="propietario">
+                    {{item.pregunta}}
+                  </div>
+                  <div class="suplente"></div>
+                  <div class="partido"></div>
+                  <div class="opciones">
+                    <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn" (click)="eliminarPreguntaUpdate(item.pregunta)">
+                    <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" (click)="editarPreguntaUpdate(item.pregunta)">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cb">
+        <button class="btn btn-primary" (click)="closeModalEditMecanismos()">Cancelar</button>
+        <button class="btn btn-danger" (click)="guardarConfiguracionActualizada()">Guardar</button>
+      </div>
     </div>
 </div>
