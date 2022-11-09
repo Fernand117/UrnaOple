@@ -25,4 +25,21 @@ export class MecanismosModule {
   public Folio: string;
   public Firmas: any[];
   public Preguntas: any[];
+
+  constructor() {
+    this.TipoMecanismo = "";
+    this.Nombre = "";
+    this.Objeto = "";
+    this.CantidadBoletas = "";
+    this.Presidente = "";
+    this.Secretario = "";
+    this.PrimerEscrutador = "";
+    this.SegundoEscrutador = "";
+    this.Entidad = "";
+    this.Distrito = "";
+    this.Municipio = "";
+    this.Seccion = "";
+    this.Folio = "";
+    this.Preguntas = [];
+  }
 }

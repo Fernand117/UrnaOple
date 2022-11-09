@@ -17,4 +17,14 @@ export class PartidosModule {
   public Hipocoristico: string;
   public Cargo: string;
   public TipoCandidatura: string;
+
+  constructor() {
+    this.Id = 0;
+    this.Logotipo = "";
+    this.Propietario = "";
+    this.Suplente = "";
+    this.Hipocoristico = "";
+    this.Cargo = "";
+    this.TipoCandidatura = "";
+  }
 }

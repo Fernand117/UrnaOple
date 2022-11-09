@@ -8,15 +8,14 @@
             <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
           </svg>
         </button>
-        <h3>Crear una nueva configuración.</h3>
-        <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar</button>
+        <h3 id="lbMensaje">Crear una nueva configuración.</h3>
     </div>
     <div class="form">
 
         <h5>Seleccione el tipo de proceso electoral</h5>
-        <select name="tipo" id="tipo" class="form-select" [(ngModel)]="elecciones.tipoEleccion">
+        <select name="tipo" id="tipoEleccion" class="form-select" [(ngModel)]="elecciones.tipoEleccion">
           <option value="Gubernatura">Gubernatura</option>
-          <option value="Diputaciones">Diputacioes</option>
+          <option value="Diputaciones">Diputaciones</option>
           <option value="Ayuntamientos">Ayuntamientos</option>
         </select>
 
@@ -25,12 +24,12 @@
         <input type="text" name="secretario" id="secretario" placeholder="Secretario" class="form-control" [(ngModel)]="elecciones.secretario">
         <input type="text" name="primero" id="primero" placeholder="Primer escrutador" class="form-control" [(ngModel)]="elecciones.primerEscrutador">
         <input type="text" name="segundo" id="segundo" placeholder="Segundo escrutador" class="form-control" [(ngModel)]="elecciones.segundoEscrutador">
-        <input type="number" name="boletas" id="boletas" placeholder="Cantidad de boletas" class="form-control" [(ngModel)]="elecciones.nBoletas">
+        <input type="number" name="boletas" id="boletas" min="0" placeholder="Cantidad de boletas" class="form-control" [(ngModel)]="elecciones.nBoletas">
 
     </div>
     <div class="form">
         <h5>Tipo de casilla</h5>
-        <select name="tipo" id="tipo" class="form-select" [(ngModel)]="elecciones.tipoCasilla">
+        <select name="tipo" id="tipoCasilla" class="form-select" [(ngModel)]="elecciones.tipoCasilla">
           <option value="Basica">Basica</option>
           <option value="Contigua">Contigua</option>
           <option value="Extraordinaria">Extraordinaria</option>
@@ -41,21 +40,24 @@
         <input type="text" name="entidad" id="entidad" placeholder="Entidad" class="form-control" [(ngModel)]="elecciones.entidad">
         <input type="text" name="distrito" id="distrito" placeholder="Distrito" class="form-control" [(ngModel)]="elecciones.distrito">
         <input type="text" name="municipio" id="municipio" placeholder="Municipio" class="form-control" [(ngModel)]="elecciones.municipio">
-        <input type="number" name="seccion" id="seccion" placeholder="Sección electoral" class="form-control" [(ngModel)]="elecciones.seccion">
-        <input type="number" name="folio" id="folio" placeholder="Foliio" class="form-control" [(ngModel)]="elecciones.folio">
+        <input type="number" name="seccion" id="seccion" min="0" placeholder="Sección electoral" class="form-control" [(ngModel)]="elecciones.seccion">
+        <input type="number" name="folio" id="folio" min="0" placeholder="Folio" class="form-control" [(ngModel)]="elecciones.folio">
     </div>
 
     <div class="partidos">
-        <h5>Listas de configuración</h5>
+        <h5>Lista de configuraciones.</h5>
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                      Lista de partidos
+                      Lista de partidos configurados.
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
+                        <div class="mensajePar" *ngIf="partidosList === [] || partidosList.length === 0">
+                          <p>Aún no hay partidos registrados.</p>
+                        </div>
                         <div class="pat" *ngFor="let item of partidosList">
                             <div class="logo"> <img src="{{item.Logotipo}}" alt="" class="imgLogo"> </div>
                             <div class="propietario">
@@ -71,22 +73,26 @@
                                 <p>{{item.Hipocoristico}}</p>
                             </div>
                             <div class="opciones">
-                                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
-                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
+                                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn" (click)="deletePartidoActual(item.Propietario)">
+                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" (click)="editPartidoActual(item.Propietario)">
                                 <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
                             </div>
                         </div>
+                        <button class="btn btn-success" (click)="addPartido()">Añadir partido</button>
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                      Lista de elecciones configuradas
+                      Lista de procesos electorales configurados.
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
+                        <div class="mensajePar" *ngIf="eleccionesList === [] || eleccionesList.length === 0">
+                          <p>Aún no hay ningún tipo de proceso electoral configurado.</p>
+                        </div>
                         <div class="pat" *ngFor="let item of eleccionesList">
                             <div class="propietario">
                                 <h6>Tipo de proceso electoral</h6>
@@ -102,18 +108,18 @@
                             </div>
                             <div class="opciones">
                                 <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn">
-                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn">
+                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" (click)="editEleccion(item.TipoEleccion)">
                                 <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
                             </div>
                         </div>
+                        <button class="btn btn-success" (click)="agregarConfiguracion()">Añadir proceso electoral.</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="extraPartidos">
-        <button class="btn btn-success" (click)="addPartido()">Añadir partido</button>
-        <button class="btn btn-success" (click)="agregarConfiguracion()">Añadir elección</button>
+        <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar configuración.</button>
     </div>
 
 
@@ -147,4 +153,123 @@
             <button class="btn btn-danger" (click)="agregarPartidos()">Agregar</button>
         </div>
     </div>
+
+  <!--Modal para actualizar partidos-->
+  <div class="formPartidos" id="formPartidosU">
+    <div class="tp">
+      <img src="../../../../assets/img/LogoOple.png" alt="" class="logoOple">
+      <h5>Actualizar partido</h5>
+    </div>
+    <div class="cf">
+      <div class="formDatos">
+        <h5>Datos de los partidos</h5>
+        <input type="text" name="propietario" id="propietariou" placeholder="Propietario" class="form-control" [(ngModel)]="partidosUpdate.Propietario">
+        <input type="text" name="suplente" id="suplenteu" placeholder="Suplente" class="form-control" [(ngModel)]="partidosUpdate.Suplente">
+        <input type="text" name="hipocoristico" id="hipocoristicou" placeholder="Hipocorístico" class="form-control" [(ngModel)]="partidosUpdate.Hipocoristico">
+        <input type="text" name="cargo" id="cargou" placeholder="Cargo" class="form-control" [(ngModel)]="partidosUpdate.Cargo">
+        <select name="tipo" id="tipou" class="form-select" [(ngModel)]="partidosUpdate.TipoCandidatura">
+        <option value="Candidatura registrada">Candidatura registrada</option>
+          <option value="No Registrado">No registrado</option>
+          <option value="Coalición">Coalición</option>
+          <option value="Candidatura Independiente">Candidatura independiente</option>
+        </select>
+      </div>
+      <div class="formLogo">
+        <input #file type="file" accept='image/*' (change)="preview(file.files)" name="logo" id="logou" class="form-control">
+        <img [src]="imgURL" alt="" class="imgLogo" id="imgLogoOpleu" width="350px" height="200px">
+      </div>
+    </div>
+    <div class="cb">
+      <button class="btn btn-primary" (click)="closePartidoModal()">Cancelar</button>
+      <button class="btn btn-danger" (click)="agregarPartidos()">Agregar</button>
+    </div>
+  </div>
+
+    <!-- MODAL PARA EDITAR LA CONFIGURACIÓN DE LAS ELECCIONES -->
+    <div class="formPartidos formELecciones" id="formElecciones">
+      <div class="tp">
+        <img src="../../../../assets/img/LogoOple.png" alt="" class="logoOple">
+        <h5>Editar proceso electoral</h5>
+      </div>
+      <div class="cf">
+          <div class="form">
+
+            <h5>Seleccione el tipo de proceso electoral</h5>
+            <select name="tipo" id="tipoEleccionM" class="form-select" [(ngModel)]="eleccionesUpdate.tipoEleccion">
+              <option value="Gubernatura">Gubernatura</option>
+              <option value="Diputaciones">Diputaciones</option>
+              <option value="Ayuntamientos">Ayuntamientos</option>
+            </select>
+
+            <h5>Funcionariado de mesas directivas de casilla.</h5>
+            <input type="text" name="presidente" id="presidenteM" placeholder="Presidente" class="form-control" [(ngModel)]="eleccionesUpdate.presidente">
+            <input type="text" name="secretario" id="secretarioM" placeholder="Secretario" class="form-control" [(ngModel)]="eleccionesUpdate.secretario">
+            <input type="text" name="primero" id="primeroM" placeholder="Primer escrutador" class="form-control" [(ngModel)]="eleccionesUpdate.primerEscrutador">
+            <input type="text" name="segundo" id="segundoM" placeholder="Segundo escrutador" class="form-control" [(ngModel)]="eleccionesUpdate.segundoEscrutador">
+            <input type="number" name="boletas" id="boletasM" min="0" placeholder="Cantidad de boletas" class="form-control" [(ngModel)]="eleccionesUpdate.nBoletas">
+
+          </div>
+          <div class="form">
+            <h5>Tipo de casilla</h5>
+            <select name="tipo" id="tipoCasillaM" class="form-select" [(ngModel)]="eleccionesUpdate.tipoCasilla">
+              <option value="Basica">Basica</option>
+              <option value="Contigua">Contigua</option>
+              <option value="Extraordinaria">Extraordinaria</option>
+              <option value="Especial">Especial</option>
+            </select>
+
+            <h5>Datos generales de la boleta</h5>
+            <input type="text" name="entidad" id="entidadM" placeholder="Entidad" class="form-control" [(ngModel)]="eleccionesUpdate.entidad">
+            <input type="text" name="distrito" id="distritoM" placeholder="Distrito" class="form-control" [(ngModel)]="eleccionesUpdate.distrito">
+            <input type="text" name="municipio" id="municipioM" placeholder="Municipio" class="form-control" [(ngModel)]="eleccionesUpdate.municipio">
+            <input type="number" name="seccion" id="seccionM" min="0" placeholder="Sección electoral" class="form-control" [(ngModel)]="eleccionesUpdate.seccion">
+            <input type="number" name="folio" id="folioM" min="0" placeholder="Folio" class="form-control" [(ngModel)]="eleccionesUpdate.folio">
+          </div>
+        <div class="partidos">
+          <h5>Lista de configuraciones.</h5>
+          <div class="accordion accordion-flush" id="accordionFlushExamplem">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOnem">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOnem" aria-expanded="false" aria-controls="flush-collapseOnem">
+                  Lista de partidos configurados.
+                </button>
+              </h2>
+              <div id="flush-collapseOnem" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExamplem">
+                <div class="accordion-body">
+                  <div class="mensajePar" *ngIf="partidosListUpdate === [] || partidosListUpdate.length === 0">
+                    <p>Aún no hay partidos registrados.</p>
+                  </div>
+                  <div class="pat" *ngFor="let item of partidosListUpdate">
+                    <div class="logo"> <img src="{{item.Logotipo}}" alt="" class="imgLogo"> </div>
+                    <div class="propietario">
+                      <h6>Propietario</h6>
+                      <p>{{item.Propietario}}</p>
+                    </div>
+                    <div class="suplente">
+                      <h6>Suplente</h6>
+                      <p>{{item.Suplente}}</p>
+                    </div>
+                    <div class="partido">
+                      <h6>Partido</h6>
+                      <p>{{item.Hipocoristico}}</p>
+                    </div>
+                    <div class="opciones">
+                      <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn" (click)="deletePartidoEdit(item.Propietario)">
+                      <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" (click)="editPartido(item.Propietario)">
+                      <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
+                    </div>
+                  </div>
+                  <button class="btn btn-success" (click)="addPartido()">Añadir partido</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cb">
+        <button class="btn btn-primary" (click)="closeEleccionModal()">Cancelar</button>
+        <button class="btn btn-danger" (click)="agregarConfiguracion()">Guardar</button>
+      </div>
+    </div>
+
 </div>

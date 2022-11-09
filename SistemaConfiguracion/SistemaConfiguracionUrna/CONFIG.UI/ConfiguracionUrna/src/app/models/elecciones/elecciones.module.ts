@@ -23,4 +23,20 @@ export class EleccionesModule {
   public tipoCasilla: string;
   public folio: string;
   public partidos: any[];
+
+  constructor() {
+    this.presidente = "";
+    this.secretario = "";
+    this.primerEscrutador = "";
+    this.segundoEscrutador = "";
+    this.nBoletas = "";
+    this.entidad = "";
+    this.tipoEleccion = "";
+    this.distrito = "";
+    this.municipio = "";
+    this.seccion = "";
+    this.tipoCasilla = "";
+    this.folio = "";
+    this.partidos = [];
+  }
 }
