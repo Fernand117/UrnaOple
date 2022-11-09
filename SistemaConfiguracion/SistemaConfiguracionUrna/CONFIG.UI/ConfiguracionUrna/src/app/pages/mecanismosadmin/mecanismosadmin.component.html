@@ -9,7 +9,6 @@
         </svg>
       </button>
         <h3>Crear una nueva configuración.</h3>
-        <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar</button>
     </div>
     <div class="form">
         <h5>Tipo de mecanismo de participación ciudadana.</h5>
@@ -50,9 +49,13 @@
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
+                        <div *ngIf="listaPreguntas.length === 0 || listaPreguntas === null">
+                            <p>Aún no hay preguntas añadidas.</p>
+                        </div>
                         <div class="listpreguntas" *ngFor="let item of listaPreguntas">
                             {{item.pregunta}}
                         </div>
+                        <button class="btn btn-success" (click)="addPartido()">Agregar pregunta</button>
                     </div>
                 </div>
             </div>
@@ -64,6 +67,9 @@
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
+                      <div *ngIf="listaMecanismos.length === 0 || listaMecanismos === null">
+                        <p>Aún no hay ningún mecanismo configurado.</p>
+                      </div>
                         <div class="pat" *ngFor="let item of listaMecanismos">
                             <div class="propietario">
                                 <h6>Tipo de mecanismo</h6>
@@ -83,14 +89,14 @@
                                 <img src="../../../../assets/img/icons8-eye-90.png" alt="" class="imgBtn">
                             </div>
                         </div>
+                        <button class="btn btn-success" (click)="agregarMecanismo()">Agregar mecanismo</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="btnGPreguntas">
-        <button class="btn btn-success" (click)="addPartido()">Agregar pregunta</button>
-        <button class="btn btn-success" (click)="agregarMecanismo()">Agregar mecanismo</button>
+      <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar configuración.</button>
     </div>
 
 
