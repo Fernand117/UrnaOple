@@ -38,4 +38,8 @@ export class ApiServiceService {
   guardarEscolares(datos: any) {
     return this.http.post(`${this.url}/escolar`, datos, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
+
+  getOneConfiguracion(code:any) {
+    return this.http.get(`${this.url}/eleccion/code/${code}`);
+  }
 }
