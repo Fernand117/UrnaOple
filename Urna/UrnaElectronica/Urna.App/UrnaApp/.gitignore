@@ -6,8 +6,6 @@
 /out-tsc
 /bazel-out
 /urna-app-win32-x64
-urna-app-win32-x64.rar
-
 # Node
 /node_modules
 npm-debug.log

@@ -10,6 +10,7 @@ export class ApiServiceService {
   //TODO: CAMBIO DE URL DEL LOCALHOST AL DE PRUEBAS DE FERNANDO
   //private url = "http://localhost:32042/api";
 
+
   private url = "http://localhost:5000/api";
 
 
@@ -37,5 +38,9 @@ export class ApiServiceService {
 
   guardarEscolares(datos: any) {
     return this.http.post(`${this.url}/escolar`, datos, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+  }
+
+  getOneConfiguracion(code:any) {
+    return this.http.get(`${this.url}/eleccion/code/${code}`);
   }
 }

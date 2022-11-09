@@ -41,10 +41,9 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
   ngDoCheck() {
     //CASO: EXISTEN LOS TRES TIPOS DE ELECCIONES
     if (this.confi_referendum && this.confi_presbicito && this.confi_consulta) {
-      switch (this.boletas_referendum) {
-        case 0:
-          this.voto1 = true; this.cambioDeTres(); break;
-        default: this.cambioDeTres(); break;
+      this.cambioDeTres();
+      if(this.boletas_referendum == 0) {
+        this.voto1 = true; this.cambioDeTres();
       }
       if (this.boletas_plesbicito ==  0) {
         this.Ref_Con();
@@ -52,7 +51,7 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
         this.Ref_Ples();
       } 
       if (this.boletas_referendum == 0 && this.boletas_plesbicito == 0 && this.boletas_consulta == 0){
-        this.route.navigate(['/clausura']);
+        this.route.navigate(['/no-boletas']);
       }
     }
     
@@ -68,7 +67,7 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
         }
       }
       if (this.boletas_referendum == 0 && this.boletas_plesbicito == 0) {
-        this.route.navigate(['/clausura']);
+        this.route.navigate(['/no-boletas']);
       }
     }
     
@@ -85,7 +84,7 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
         }
       }
       if (this.boletas_referendum == 0 && this.boletas_consulta == 0) {
-        this.route.navigate(['/clausura']);
+        this.route.navigate(['/no-boletas']);
       }
     }
     
@@ -101,7 +100,7 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
       }
     } 
     if (this.boletas_plesbicito == 0 && this.boletas_consulta == 0) {
-      this.route.navigate(['/clausura']);
+      this.route.navigate(['/no-boletas']);
     }
     }
     
@@ -117,7 +116,7 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
         this.salir();
       }
       if (this.boletas_referendum === 0 || this.boletas_plesbicito === 0 || this.boletas_consulta === 0) {
-        this.route.navigate(['/clausura']);
+        this.route.navigate(['/no-boletas']);
       }
     }
   }

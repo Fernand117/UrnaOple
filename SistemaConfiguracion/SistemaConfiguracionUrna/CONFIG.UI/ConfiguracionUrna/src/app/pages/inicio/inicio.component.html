@@ -1,3 +1,257 @@
 <app-header></app-header>
 <app-menu></app-menu>
-<p>inicio works!</p>
+<div class="contenedor">
+    <div class="partidos">
+        <h1>Lista de configuraciones</h1>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Configuraciones para Procesos electorales locales
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div>
+                            <div class="pat" *ngFor="let item of listaConfiguracionesLocales">
+                                <div class="codigo">
+                                    <h6>Código de configuración</h6>
+                                    <p>{{item.codigo}}</p>
+                                </div>
+                                <div class="fecha">
+                                    <h6>Fecha</h6>
+                                    <p>{{item.fecha | date: 'short'}}</p>
+                                </div>
+                                <div class="opciones">
+                                    <img src="../../../../assets/img/icons8-eye-90.png" data-bs-toggle="modal"
+                                        data-bs-target="#configuracionView" (click)="viewItem(item.codigo)" alt=""
+                                        class="imgBtn">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Configuraciones para Mecanismos de participación ciudadana
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="pat" *ngFor="let item of listaConfiguracionesMecanismos">
+                            <div class="codigo">
+                                <h6>Código de configuración</h6>
+                                <p>{{item.codigo}}</p>
+                            </div>
+                            <div class="fecha">
+                                <h6>Fecha</h6>
+                                <p>{{item.fecha | date: 'short'}}</p>
+                            </div>
+                            <div class="opciones">
+                                <img src="../../../../assets/img/icons8-eye-90.png" data-bs-toggle="modal"
+                                    data-bs-target="#configuracionMecanismosView" (click)="viewItem(item.codigo)" alt=""
+                                    class="imgBtn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Configuraciones para Elecciones escolares
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="pat" *ngFor="let item of listaConfiguracionesEscolares">
+                            <div class="codigo">
+                                <h6>Código de configuración</h6>
+                                <p>{{item.codigo}}</p>
+                            </div>
+                            <div class="fecha">
+                                <h6>Fecha</h6>
+                                <p>{{item.fecha | date: 'short'}}</p>
+                            </div>
+                            <div class="opciones">
+                                <img src="../../../../assets/img/icons8-eye-90.png" data-bs-toggle="modal"
+                                    data-bs-target="#configuracionEscolaresView" (click)="viewItem(item.codigo)" alt=""
+                                    class="imgBtn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONFIGURACIÓN -->
+<div class="modal fade" id="configuracionView" tabindex="-1" role="dialog" aria-labelledby="nulo" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let item of config?.Elecciones">
+                    <br>
+                    <h4>Configuraciones para {{item.TipoEleccion}}</h4>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Distrito</th>
+                                <th scope="col">Entidad</th>
+                                <th scope="col">Municipio</th>
+                                <th scope="col">Cantidad de boletas</th>
+                                <th scope="col">Tipo de casilla</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{item.Distrito}}</td>
+                                <td>{{item.Entidad}}</td>
+                                <td>{{item.Municipio}}</td>
+                                <td>{{item.CantidadBoletas}}</td>
+                                <td>{{item.TipoCasilla}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Escrutador 1</th>
+                                <th scope="col">Escrutador 2</th>
+                                <th scope="col">Presidente</th>
+                                <th scope="col">Secretario</th>
+                                <th scope="col">Folio</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{item.PrimerEscrutador}}</td>
+                                <td>{{item.SegundoEscrutador}}</td>
+                                <td>{{item.Presidente}}</td>
+                                <td>{{item.Secretario}}</td>
+                                <td>{{item.Folio}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5>Lista de partidos</h5>
+                    <div *ngFor="let pregunta of item.Partidos">
+                        <p>{{pregunta.Hipocoristico}}</p>
+                    </div>
+                    <hr class="solid">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONFIGURACIÓN MECANISMOS -->
+<div class="modal fade" id="configuracionMecanismosView" tabindex="-1" role="dialog" aria-labelledby="nulo" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let item of config?.Mecanismos">
+                    <br>
+                    <h2>Configuraciones para {{item.TipoMecanismo}}</h2>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Distrito</th>
+                                <th scope="col">Entidad</th>
+                                <th scope="col">Municipio</th>
+                                <th scope="col">Cantidad de boletas</th>
+                                <th scope="col">Sección electoral</th>
+                                <th scope="col">Folio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{item.Distrito}}</td>
+                                <td>{{item.Entidad}}</td>
+                                <td>{{item.Municipio}}</td>
+                                <td>{{item.CantidadBoletas}}</td>
+                                <td>{{item.SeccionElectoral}}</td>
+                                <td>{{item.Folio}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Escrutador 1</th>
+                                <th scope="col">Escrutador 2</th>
+                                <th scope="col">Presidente</th>
+                                <th scope="col">Secretario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{item.PrimerEscrutador}}</td>
+                                <td>{{item.SegundoEscrutador}}</td>
+                                <td>{{item.Presidente}}</td>
+                                <td>{{item.Secretario}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5>Lista de preguntas</h5>
+                    <div *ngFor="let pregunta of item.Preguntas">
+                        <p>{{pregunta.Pregunta}}</p>
+                    </div>
+                    <hr class="solid">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONFIGURACIÓN ESCOLARES-->
+<div class="modal fade" id="configuracionEscolaresView" tabindex="-1" role="dialog" aria-labelledby="nulo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let item of config?.Escolares" class="escolares">
+                   <p>Nombre de la institución: <span>{{item.NombreInstitucion}}</span></p>
+                   <p>Presidente: <span>{{item.Presidente}}</span></p>
+                   <p>Secretario: <span>{{item.Secretario}}</span></p>
+                   <p>Primer escrutador: <span>{{item.PrimerEscrutador}}</span></p>
+                   <p>Segundo escrutador: <span>{{item.SegundoEscrutador}}</span> </p>
+                   <hr class="solid-escolares">
+                   <h5>Lista de partidos</h5>
+                   <div *ngFor="let partido of item.Partidos">
+                       <p>{{partido.Hipocoristico}}</p>
+                   </div>
+                </div>
+             
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

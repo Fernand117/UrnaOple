@@ -35,5 +35,9 @@ export class ConfiguracionApiService {
   imprimirBoleta(boleta: any) {
     return this.http.post(`${apiUrl_local}boletas/imprimir/boletainicial`, boleta);
   }
+
+  deleteDataBoletas() {
+    return this.http.delete(`${apiUrl_local}boletas`);
+  }
   
 }
