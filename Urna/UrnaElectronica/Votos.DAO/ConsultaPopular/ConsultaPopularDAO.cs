@@ -43,16 +43,31 @@ namespace Votos.DAO.ConsultaPopular
 
                     if (voto == null)
                     {
-                        Consulta consultaPopular = new Consulta()
+                        if (int.Parse(request.RespuestaSi) > 0)
                         {
-                            Id = request.Id,
-                            Pregunta = request.Pregunta,
-                            RespuestaSi = request.RespuestaSi,
-                            RespuestaNo = request.RespuestaNo
-                        };
+                            Consulta consultaPopular = new Consulta()
+                            {
+                                Id = request.Id,
+                                Pregunta = request.Pregunta,
+                                RespuestaSi = "1",
+                                RespuestaNo = "0"
+                            };
+                            await context.AddAsync(consultaPopular);
+                            await context.SaveChangesAsync();
+                        }
 
-                        await context.AddAsync(consultaPopular);
-                        await context.SaveChangesAsync();
+                        else
+                        {
+                            Consulta consultaPopular = new Consulta()
+                            {
+                                Id = request.Id,
+                                Pregunta = request.Pregunta,
+                                RespuestaSi = "0",
+                                RespuestaNo = "1"
+                            };
+                            await context.AddAsync(consultaPopular);
+                            await context.SaveChangesAsync();
+                        }
                     }
                     else
                     {

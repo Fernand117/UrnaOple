@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
+import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
 
 @Component({
   selector: 'app-acta-cierre',
@@ -15,12 +16,71 @@ export class ActaCierreComponent implements OnInit {
   config_referendum?: any;
   config_plebiscito?: any;
   config_consulta?: any;
+  votosgub: any;
+  votosayu: any;
+  votosdip: any;
 
-  constructor(private route:Router) { }
+  votosref: any;
+  votosples: any;
+  votoscons: any;
+
+  constructor(private route:Router, private service: ConfiguracionApiService) { }
 
   ngOnInit(): void {  
     this.obtenerConfiguracion();
+    this.votosAyu();
+    this.votosDip();
+    this.votosGub();
+    this.votosPlesbicito();
+    this.votosConsulta();
+    this.votosReferendum();
   }
+
+  votosGub() {
+    this.service.getVotosGubernatura().subscribe(resp => {
+      this.votosgub = resp;
+      this.votosgub = this.votosgub.data;
+    });
+  }
+
+  votosDip() {
+    this.service.getVotosDiputacion().subscribe(resp => {
+      this.votosdip = resp;
+      this.votosdip = this.votosdip.data;
+    });
+  }
+
+  votosAyu() {
+    this.service.getVotosAyuntamiento().subscribe(resp => {
+      this.votosayu = resp;
+      
+      this.votosayu = this.votosayu.data;
+    });
+  }
+
+  votosPlesbicito() {
+    this.service.getVotosByTipo("presbicito").subscribe(resp => {
+      this.votosples = resp;
+      console.log(resp);
+      
+      this.votosples = this.votosples.data;
+    });
+  }
+
+  votosConsulta() {
+    this.service.getVotosByTipo("consulta").subscribe(resp => {
+      this.votoscons = resp;
+      this.votoscons = this.votoscons.data;
+    });
+  }
+
+  votosReferendum() {
+    this.service.getVotosByTipo("referendum").subscribe(resp => {
+      this.votosref = resp;
+      this.votosref = this.votosref.data;
+    });
+  }
+
 
   obtenerConfiguracion() {
     //CONFIGURACIONES PARA ELECCIONALES LOCALES

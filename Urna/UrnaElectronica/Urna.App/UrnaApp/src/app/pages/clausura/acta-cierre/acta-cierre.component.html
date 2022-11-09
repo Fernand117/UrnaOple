@@ -14,9 +14,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of config_gubernatura?.Partidos">
-            <td>{{boleta.Propietario}}</td>
-            <td>0</td>
+          <tr *ngFor="let boleta of votosgub">
+            <td>{{boleta.partido}}</td>
+            <td>{{boleta.voto}}</td>
           </tr>
         </tbody>
       </table>
@@ -36,9 +36,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of config_diputacion?.Partidos">
-            <td>{{boleta.Propietario}}</td>
-            <td>0</td>
+          <tr *ngFor="let boleta of votosdip">
+            <td>{{boleta.partido}}</td>
+            <td>{{boleta.voto}}</td>
           </tr>
         </tbody>
       </table>
@@ -58,9 +58,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of config_ayuntamiento?.Partidos">
-            <td>{{boleta.Propietario}}</td>
-            <td>0</td>
+          <tr *ngFor="let boleta of votosayu">
+            <td>{{boleta.partido}}</td>
+            <td>{{boleta.voto}}</td>
           </tr>
         </tbody>
       </table>
@@ -103,10 +103,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of config_referendum?.Preguntas">
+          <tr *ngFor="let boleta of votosref">
             <td>{{boleta.Pregunta}}</td>
-            <td>0</td>
-            <td>0</td>
+            <td>{{boleta.RespuestaSi}}</td>
+            <td>{{boleta.RespuestaNo}}</td>
           </tr>
         </tbody>
       </table>
@@ -127,10 +127,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of config_plebiscito?.Preguntas">
+          <tr *ngFor="let boleta of votosples">
             <td>{{boleta.Pregunta}}</td>
-            <td>0</td>
-            <td>0</td>
+            <td>{{boleta.RespuestaSi}}</td>
+            <td>{{boleta.RespuestaNo}}</td>
           </tr>
         </tbody>
       </table>
@@ -151,10 +151,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of config_consulta?.Preguntas">
+          <tr *ngFor="let boleta of votoscons">
             <td>{{boleta.Pregunta}}</td>
-            <td>0</td>
-            <td>0</td>
+            <td>{{boleta.RespuestaSi}}</td>
+            <td>{{boleta.RespuestaNo}}</td>
           </tr>
         </tbody>
       </table>

@@ -15,13 +15,13 @@ export class CardComponent implements OnInit {
 
   //VARIABLES
   @Input() partidos: any;
+  @Input() num_boletas: any;
   @Input() name: string = "";
   @Output() miEvento = new EventEmitter<boolean>();
   @ViewChild(KeyboardComponent)
   keyboard: KeyboardComponent = new KeyboardComponent;
   candidatoSeleccionado: any = "";
   voto: boolean = false;
-  num_boletas: number = 10;
 
   ngOnInit(): void {
     if (this.num_boletas = 0) {
@@ -118,6 +118,8 @@ export class CardComponent implements OnInit {
       TipoEleccion = "Diputaciones"
     } else if (this.name === "ayuntamiento") {
       TipoEleccion = "Ayuntamientos"
+    } else {
+      TipoEleccion = "Escolares"
     }
 
     let request = {
@@ -144,13 +146,14 @@ export class CardComponent implements OnInit {
       title: 'Lo sentimos',
       text: 'No se ha podido registrar tu voto, intentalo de nuevo'
     });
-  }
+  }  
 
   msjSuccess() {
     let app = this.name;
     let ruta = this.route;
     this.voto = true;
     let voto = this.voto;
+    let boletas = this.num_boletas;
     let evento = this.miEvento;
     Swal.fire(
       '¡Tu voto ha sido registrado con éxito!',
@@ -160,6 +163,9 @@ export class CardComponent implements OnInit {
       evento.emit(voto);
       if (app === 'escolar') {
         ruta.navigate(['/gracias']);
+      } 
+      if(boletas == 1) {
+        ruta.navigate(['/no-boletas']);
       }
     }
     );

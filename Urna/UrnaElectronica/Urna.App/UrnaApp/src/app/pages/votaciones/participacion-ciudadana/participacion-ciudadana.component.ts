@@ -34,6 +34,7 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
   constructor(private route: Router, private service: ConfiguracionApiService) { }
 
   ngOnInit(): void {
+    this.obtenerConfiguracion();
     this.num_boletas();
    }
 

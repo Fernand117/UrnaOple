@@ -8,6 +8,7 @@ using Votos.COMMON.DTOS.Boletas;
 using Votos.COMMON.DTOS.Presbicito;
 using Votos.DAL.Context;
 using Votos.DAL.Entities.MecanismoPresbicito;
+using Votos.DAL.Entities.MecanismoReferendum;
 
 namespace Votos.DAO.Presbicito
 {
@@ -43,16 +44,30 @@ namespace Votos.DAO.Presbicito
 
                     if (voto == null)
                     {
-                        Presbicitos presbicito = new Presbicitos()
+                        if (int.Parse(request.RespuestaSi) > 0)
                         {
-                            Id = request.Id,
-                            Pregunta = request.Pregunta,
-                            RespuestaSi = request.RespuestaSi,
-                            RespuestaNo = request.RespuestaNo
-                        };
-
-                        await context.AddAsync(presbicito);
-                        await context.SaveChangesAsync();
+                            Presbicitos presbicito = new Presbicitos()
+                            {
+                                Id = request.Id,
+                                Pregunta = request.Pregunta,
+                                RespuestaSi = "1",
+                                RespuestaNo = "0"
+                            };
+                            await context.AddAsync(presbicito);
+                            await context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            Presbicitos presbicito = new Presbicitos()
+                            {
+                                Id = request.Id,
+                                Pregunta = request.Pregunta,
+                                RespuestaSi = "0",
+                                RespuestaNo = "1"
+                            };
+                            await context.AddAsync(presbicito);
+                            await context.SaveChangesAsync();
+                        }
                     }
                     else
                     {

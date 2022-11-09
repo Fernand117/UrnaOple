@@ -41,8 +41,7 @@ export class ReferendumComponent implements OnInit {
       {
         Pregunta: prop,
         RespuestaSi: this.form.value[prop],
-        RespuestaNo: this.form.value[prop],
-      }
+      }      
       this.service.setVoto(request, this.app_name).subscribe((resp) => {
         this.msjSuccess();
       }, error => {

@@ -7,6 +7,7 @@ using Votos.COMMON.DTHW;
 using Votos.COMMON.DTOS.Boletas;
 using Votos.COMMON.DTOS.Referendum;
 using Votos.DAL.Context;
+using Votos.DAL.Entities.ConsultasPopulares;
 using Votos.DAL.Entities.MecanismoReferendum;
 
 namespace Votos.DAO.Referendum
@@ -43,17 +44,32 @@ namespace Votos.DAO.Referendum
 
                     if (voto == null)
                     {
-                        Referendums referendum = new Referendums()
+                        if (int.Parse(request.RespuestaSi) > 0)
                         {
-                            Id = request.Id,
-                            Pregunta = request.Pregunta,
-                            RespuestaSi = request.RespuestaSi,
-                            RespuestaNo = request.RespuestaNo
-                        };
-
-                        await context.AddAsync(referendum);
-                        await context.SaveChangesAsync();
+                            Referendums referendum = new Referendums()
+                            {
+                                Id = request.Id,
+                                Pregunta = request.Pregunta,
+                                RespuestaSi = "1",
+                                RespuestaNo = "0"
+                            };
+                            await context.AddAsync(referendum);
+                            await context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            Referendums referendum = new Referendums()
+                            {
+                                Id = request.Id,
+                                Pregunta = request.Pregunta,
+                                RespuestaSi = "0",
+                                RespuestaNo = "1"
+                            };
+                            await context.AddAsync(referendum);
+                            await context.SaveChangesAsync();
+                        }
                     }
+
                     else
                     {
                         int votoActualSi = int.Parse(voto.RespuestaSi);
