@@ -4,7 +4,7 @@
 /tmp
 /out-tsc
 /bazel-out
-/urna-app-win32-x64
+
 # Node
 /node_modules
 npm-debug.log
@@ -39,3 +39,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Electron
+/urna-app-win32-x64
+
