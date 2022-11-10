@@ -2,204 +2,229 @@
 <app-menu></app-menu>
 
 <div class="contenedor">
-    <div class="title">
-        <button class="btn btnBack" [routerLink]="['/elecciones']">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-        </svg>
-      </button>
-        <h3>Crear una nueva configuración.</h3>
+  <div class="title">
+    <button class="btn btnBack" [routerLink]="['/elecciones']">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+           viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </button>
+    <h3>Crear una nueva configuración.</h3>
+    <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar configuración.</button>
+  </div>
+  <div class="form">
+    <h5>Tipo de mecanismo de participación ciudadana.</h5>
+    <select name="tipo" id="tipo" class="form-select" [(ngModel)]="mecanismos.TipoMecanismo">
+      <option value="Referéndum">Referéndum</option>
+      <option value="Plebiscito">Plebiscito</option>
+      <option value="Consulta Popular">Consulta Popular</option>
+    </select>
+
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre del mecanismo de participación ciudadana"
+           class="form-control" [(ngModel)]="mecanismos.Nombre">
+    <input type="text" name="objeto" id="objeto" placeholder="Objeto del mecanismo de participación"
+           class="form-control" [(ngModel)]="mecanismos.Objeto">
+
+    <h5>Funcionariado de mesa directiva de casilla</h5>
+    <input type="text" name="presidente" id="presidente" placeholder="Presidente" class="form-control"
+           [(ngModel)]="mecanismos.Presidente">
+    <input type="text" name="secretario" id="secretario" placeholder="Secretario" class="form-control"
+           [(ngModel)]="mecanismos.Secretario">
+    <input type="text" name="primero" id="primero" placeholder="Primer escrutador" class="form-control"
+           [(ngModel)]="mecanismos.PrimerEscrutador">
+    <input type="text" name="segundo" id="segundo" placeholder="Segundo escrutador" class="form-control"
+           [(ngModel)]="mecanismos.SegundoEscrutador">
+  </div>
+  <div class="form">
+    <h5>Datos generales y diseño de la boleta</h5>
+    <input type="text" name="entidad" id="entidad" placeholder="Entidad" class="form-control"
+           [(ngModel)]="mecanismos.Entidad">
+    <input type="text" name="distrito" id="distrito" placeholder="Distrito" class="form-control"
+           [(ngModel)]="mecanismos.Distrito">
+    <input type="text" name="municipio" id="municipio" placeholder="Municipio" class="form-control"
+           [(ngModel)]="mecanismos.Municipio">
+    <input type="number" name="seccion" id="seccion" placeholder="Sección" class="form-control"
+           [(ngModel)]="mecanismos.Seccion">
+    <input type="number" name="folio" id="foliio" placeholder="Folio" class="form-control"
+           [(ngModel)]="mecanismos.Folio">
+    <h5>Cantidad de boletas</h5>
+    <input type="text" name="nboletas" id="nboletas" placeholder="Cantidad de boletas" class="form-control"
+           [(ngModel)]="mecanismos.CantidadBoletas">
+  </div>
+  <div class="preguntas">
+
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+                role="tab" aria-controls="nav-home" aria-selected="true">Lista de preguntas
+        </button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+                role="tab" aria-controls="nav-profile" aria-selected="false">Lista de mecanismos configurados.
+        </button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+        <div *ngIf="listaPreguntas.length === 0 || listaPreguntas === null">
+          <p>Aún no hay preguntas añadidas.</p>
+        </div>
+        <div class="pat" *ngFor="let item of listaPreguntas">
+          <div class="propietario">
+            {{item.pregunta}}
+          </div>
+          <div class="suplente"></div>
+          <div class="partido"></div>
+          <div class="opciones">
+            <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn"
+                 (click)="eliminarPreguntaActual(item.pregunta)">
+            <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn"
+                 (click)="editarPreguntaActual(item.pregunta)">
+          </div>
+        </div>
+        <button class="btn btn-success" (click)="addPartido()">Agregar pregunta</button>
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+        <div *ngIf="listaMecanismos.length === 0 || listaMecanismos === null">
+          <p>Aún no hay ningún mecanismo configurado.</p>
+        </div>
+        <div class="pat" *ngFor="let item of listaMecanismos">
+          <div class="propietario">
+            <h6>Tipo de mecanismo</h6>
+            <p>{{item.TipoMecanismo}}</p>
+          </div>
+          <div class="suplente">
+            <h6>Nombre del mecanismo</h6>
+            <p>{{item.Nombre}}</p>
+          </div>
+          <div class="partido">
+            <h6>Folio</h6>
+            <p>{{item.Folio}}</p>
+          </div>
+          <div class="opciones">
+            <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn"
+                 (click)="eliminarConfiguracion(item.Nombre)">
+            <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn"
+                 (click)="editarConfiguracion(item.Nombre)">
+          </div>
+        </div>
+        <button class="btn btn-success" (click)="agregarMecanismo()">Agregar mecanismo</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!--Modal para añadir preguntas-->
+  <div class="formPartidos" id="formPartidos">
+    <div class="tp">
+      <img src="../../../../assets/img/LogoOple.png" alt="" class="logoOple">
+      <h5>Añadir nueva pregunta</h5>
+    </div>
+    <div class="cf">
+      <input type="text" name="pregunta" id="pregunta" placeholder="Ingrese la pregunta para el mecanismo."
+             class="form-control" [(ngModel)]="pregunta.pregunta">
+    </div>
+    <div class="cb">
+      <button class="btn btn-primary" (click)="closeModal()">Cancelar</button>
+      <button class="btn btn-danger" (click)="agregarPregunta()">Agregar</button>
+    </div>
+  </div>
+
+  <!--Modal para editar preguntas-->
+  <div class="formPartidos" id="formPartidosU">
+    <div class="tp">
+      <img src="../../../../assets/img/LogoOple.png" alt="" class="logoOple">
+      <h5>Editar pregunta actual</h5>
+    </div>
+    <div class="cf">
+      <input type="text" name="pregunta" id="preguntaU" placeholder="Ingrese la pregunta para el mecanismo."
+             class="form-control" [(ngModel)]="preguntaUpdate.pregunta">
+    </div>
+    <div class="cb">
+      <button class="btn btn-primary" (click)="closeModalEditPregunta()">Cancelar</button>
+      <button class="btn btn-danger" (click)="guardarPreguntaActual()">Agregar</button>
+    </div>
+  </div>
+
+  <!-- Modal para editar la configuración actual -->
+  <div class="formPartidos" id="formPartidosUpdate">
+    <div class="form">
+      <h5>Tipo de mecanismo de participación ciudadana.</h5>
+      <select name="tipo" id="tipoU" class="form-select" [(ngModel)]="mecanismosUpdate.TipoMecanismo">
+        <option value="Referéndum">Referéndum</option>
+        <option value="Plebiscito">Plebiscito</option>
+        <option value="Consulta Popular">Consulta Popular</option>
+      </select>
+
+      <input type="text" name="nombre" id="nombreU" placeholder="Nombre del mecanismo de participación ciudadana"
+             class="form-control" [(ngModel)]="mecanismosUpdate.Nombre">
+      <input type="text" name="objeto" id="objetoU" placeholder="Objeto del mecanismo de participación"
+             class="form-control" [(ngModel)]="mecanismosUpdate.Objeto">
+
+      <h5>Funcionariado de mesa directiva de casilla</h5>
+      <input type="text" name="presidente" id="presidenteU" placeholder="Presidente" class="form-control"
+             [(ngModel)]="mecanismosUpdate.Presidente">
+      <input type="text" name="secretario" id="secretarioU" placeholder="Secretario" class="form-control"
+             [(ngModel)]="mecanismosUpdate.Secretario">
+      <input type="text" name="primero" id="primeroU" placeholder="Primer escrutador" class="form-control"
+             [(ngModel)]="mecanismosUpdate.PrimerEscrutador">
+      <input type="text" name="segundo" id="segundoU" placeholder="Segundo escrutador" class="form-control"
+             [(ngModel)]="mecanismosUpdate.SegundoEscrutador">
     </div>
     <div class="form">
-        <h5>Tipo de mecanismo de participación ciudadana.</h5>
-        <select name="tipo" id="tipo" class="form-select" [(ngModel)]="mecanismos.TipoMecanismo">
-          <option value="Referéndum">Referéndum</option>
-          <option value="Plebiscito">Plebiscito</option>
-          <option value="Consulta Popular">Consulta Popular</option>
-        </select>
-
-        <input type="text" name="nombre" id="nombre" placeholder="Nombre del mecanismo de participación ciudadana" class="form-control" [(ngModel)]="mecanismos.Nombre">
-        <input type="text" name="objeto" id="objeto" placeholder="Objeto del mecanismo de participación" class="form-control" [(ngModel)]="mecanismos.Objeto">
-
-        <h5>Funcionariado de mesa directiva de casilla</h5>
-        <input type="text" name="presidente" id="presidente" placeholder="Presidente" class="form-control" [(ngModel)]="mecanismos.Presidente">
-        <input type="text" name="secretario" id="secretario" placeholder="Secretario" class="form-control" [(ngModel)]="mecanismos.Secretario">
-        <input type="text" name="primero" id="primero" placeholder="Primer escrutador" class="form-control" [(ngModel)]="mecanismos.PrimerEscrutador">
-        <input type="text" name="segundo" id="segundo" placeholder="Segundo escrutador" class="form-control" [(ngModel)]="mecanismos.SegundoEscrutador">
-    </div>
-    <div class="form">
-        <h5>Datos generales y diseño de la boleta</h5>
-        <input type="text" name="entidad" id="entidad" placeholder="Entidad" class="form-control" [(ngModel)]="mecanismos.Entidad">
-        <input type="text" name="distrito" id="distrito" placeholder="Distrito" class="form-control" [(ngModel)]="mecanismos.Distrito">
-        <input type="text" name="municipio" id="municipio" placeholder="Municipio" class="form-control" [(ngModel)]="mecanismos.Municipio">
-        <input type="number" name="seccion" id="seccion" placeholder="Sección" class="form-control" [(ngModel)]="mecanismos.Seccion">
-        <input type="number" name="folio" id="foliio" placeholder="Folio" class="form-control" [(ngModel)]="mecanismos.Folio">
-        <h5>Cantidad de boletas</h5>
-        <input type="text" name="nboletas" id="nboletas" placeholder="Cantidad de boletas" class="form-control" [(ngModel)]="mecanismos.CantidadBoletas">
+      <h5>Datos generales y diseño de la boleta</h5>
+      <input type="text" name="entidad" id="entidadU" placeholder="Entidad" class="form-control"
+             [(ngModel)]="mecanismosUpdate.Entidad">
+      <input type="text" name="distrito" id="distritoU" placeholder="Distrito" class="form-control"
+             [(ngModel)]="mecanismosUpdate.Distrito">
+      <input type="text" name="municipio" id="municipioU" placeholder="Municipio" class="form-control"
+             [(ngModel)]="mecanismosUpdate.Municipio">
+      <input type="number" name="seccion" id="seccionU" placeholder="Sección" class="form-control"
+             [(ngModel)]="mecanismosUpdate.Seccion">
+      <input type="number" name="folio" id="foliioU" placeholder="Folio" class="form-control"
+             [(ngModel)]="mecanismosUpdate.Folio">
+      <h5>Cantidad de boletas</h5>
+      <input type="text" name="nboletas" id="nboletasU" placeholder="Cantidad de boletas" class="form-control"
+             [(ngModel)]="mecanismosUpdate.CantidadBoletas">
     </div>
     <div class="preguntas">
-        <h5>Lista de configuraciones.</h5>
+      <h5>Lista de configuraciones.</h5>
 
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                Lista de preguntas
-              </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        <div *ngIf="listaPreguntas.length === 0 || listaPreguntas === null">
-                            <p>Aún no hay preguntas añadidas.</p>
-                        </div>
-                        <div class="pat" *ngFor="let item of listaPreguntas">
-                            <div class="propietario">
-                              {{item.pregunta}}
-                            </div>
-                            <div class="suplente"></div>
-                            <div class="partido"></div>
-                            <div class="opciones">
-                              <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn" (click)="eliminarPreguntaActual(item.pregunta)">
-                              <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" (click)="editarPreguntaActual(item.pregunta)">
-                            </div>
-                        </div>
-                        <button class="btn btn-success" (click)="addPartido()">Agregar pregunta</button>
-                    </div>
+      <div class="accordion accordion-flushU" id="accordionFlushExampleU">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOneU">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOneU" aria-expanded="false" aria-controls="flush-collapseOneU">
+              Lista de preguntas
+            </button>
+          </h2>
+          <div id="flush-collapseOneU" class="accordion-collapse collapse" aria-labelledby="flush-headingOneU"
+               data-bs-parent="#accordionFlushExampleU">
+            <div class="accordion-body">
+              <div *ngIf="listaPreguntasUpdate.length === 0 || listaPreguntasUpdate === null">
+                <p>Aún no hay preguntas añadidas.</p>
+              </div>
+              <div class="listpreguntas pat" *ngFor="let item of listaPreguntasUpdate">
+                <div class="propietario">
+                  {{item.pregunta}}
                 </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Lista de configuración de mecanismos
-              </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                      <div *ngIf="listaMecanismos.length === 0 || listaMecanismos === null">
-                        <p>Aún no hay ningún mecanismo configurado.</p>
-                      </div>
-                        <div class="pat" *ngFor="let item of listaMecanismos">
-                            <div class="propietario">
-                                <h6>Tipo de mecanismo</h6>
-                                <p>{{item.TipoMecanismo}}</p>
-                            </div>
-                            <div class="suplente">
-                                <h6>Nombre del mecanismo</h6>
-                                <p>{{item.Nombre}}</p>
-                            </div>
-                            <div class="partido">
-                                <h6>Folio</h6>
-                                <p>{{item.Folio}}</p>
-                            </div>
-                            <div class="opciones">
-                                <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn" (click)="eliminarConfiguracion(item.Nombre)">
-                                <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" (click)="editarConfiguracion(item.Nombre)">
-                            </div>
-                        </div>
-                        <button class="btn btn-success" (click)="agregarMecanismo()">Agregar mecanismo</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="btnGPreguntas">
-      <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar configuración.</button>
-    </div>
-
-
-    <!--Modal para añadir preguntas-->
-    <div class="formPartidos" id="formPartidos">
-        <div class="tp">
-            <img src="../../../../assets/img/LogoOple.png" alt="" class="logoOple">
-            <h5>Añadir nueva pregunta</h5>
-        </div>
-        <div class="cf">
-            <input type="text" name="pregunta" id="pregunta" placeholder="Ingrese la pregunta para el mecanismo." class="form-control" [(ngModel)]="pregunta.pregunta">
-        </div>
-        <div class="cb">
-            <button class="btn btn-primary" (click)="closeModal()">Cancelar</button>
-            <button class="btn btn-danger" (click)="agregarPregunta()">Agregar</button>
-        </div>
-    </div>
-
-    <!--Modal para editar preguntas-->
-    <div class="formPartidos" id="formPartidosU">
-      <div class="tp">
-        <img src="../../../../assets/img/LogoOple.png" alt="" class="logoOple">
-        <h5>Editar pregunta actual</h5>
-      </div>
-      <div class="cf">
-        <input type="text" name="pregunta" id="preguntaU" placeholder="Ingrese la pregunta para el mecanismo." class="form-control" [(ngModel)]="preguntaUpdate.pregunta">
-      </div>
-      <div class="cb">
-        <button class="btn btn-primary" (click)="closeModalEditPregunta()">Cancelar</button>
-        <button class="btn btn-danger" (click)="guardarPreguntaActual()">Agregar</button>
-      </div>
-    </div>
-
-    <!-- Modal para editar la configuración actual -->
-    <div class="formPartidos" id="formPartidosUpdate">
-      <div class="form">
-        <h5>Tipo de mecanismo de participación ciudadana.</h5>
-        <select name="tipo" id="tipoU" class="form-select" [(ngModel)]="mecanismosUpdate.TipoMecanismo">
-          <option value="Referéndum">Referéndum</option>
-          <option value="Plebiscito">Plebiscito</option>
-          <option value="Consulta Popular">Consulta Popular</option>
-        </select>
-
-        <input type="text" name="nombre" id="nombreU" placeholder="Nombre del mecanismo de participación ciudadana" class="form-control" [(ngModel)]="mecanismosUpdate.Nombre">
-        <input type="text" name="objeto" id="objetoU" placeholder="Objeto del mecanismo de participación" class="form-control" [(ngModel)]="mecanismosUpdate.Objeto">
-
-        <h5>Funcionariado de mesa directiva de casilla</h5>
-        <input type="text" name="presidente" id="presidenteU" placeholder="Presidente" class="form-control" [(ngModel)]="mecanismosUpdate.Presidente">
-        <input type="text" name="secretario" id="secretarioU" placeholder="Secretario" class="form-control" [(ngModel)]="mecanismosUpdate.Secretario">
-        <input type="text" name="primero" id="primeroU" placeholder="Primer escrutador" class="form-control" [(ngModel)]="mecanismosUpdate.PrimerEscrutador">
-        <input type="text" name="segundo" id="segundoU" placeholder="Segundo escrutador" class="form-control" [(ngModel)]="mecanismosUpdate.SegundoEscrutador">
-      </div>
-      <div class="form">
-        <h5>Datos generales y diseño de la boleta</h5>
-        <input type="text" name="entidad" id="entidadU" placeholder="Entidad" class="form-control" [(ngModel)]="mecanismosUpdate.Entidad">
-        <input type="text" name="distrito" id="distritoU" placeholder="Distrito" class="form-control" [(ngModel)]="mecanismosUpdate.Distrito">
-        <input type="text" name="municipio" id="municipioU" placeholder="Municipio" class="form-control" [(ngModel)]="mecanismosUpdate.Municipio">
-        <input type="number" name="seccion" id="seccionU" placeholder="Sección" class="form-control" [(ngModel)]="mecanismosUpdate.Seccion">
-        <input type="number" name="folio" id="foliioU" placeholder="Folio" class="form-control" [(ngModel)]="mecanismosUpdate.Folio">
-        <h5>Cantidad de boletas</h5>
-        <input type="text" name="nboletas" id="nboletasU" placeholder="Cantidad de boletas" class="form-control" [(ngModel)]="mecanismosUpdate.CantidadBoletas">
-      </div>
-      <div class="preguntas">
-        <h5>Lista de configuraciones.</h5>
-
-        <div class="accordion accordion-flushU" id="accordionFlushExampleU">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOneU">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOneU" aria-expanded="false" aria-controls="flush-collapseOneU">
-                Lista de preguntas
-              </button>
-            </h2>
-            <div id="flush-collapseOneU" class="accordion-collapse collapse" aria-labelledby="flush-headingOneU" data-bs-parent="#accordionFlushExampleU">
-              <div class="accordion-body">
-                <div *ngIf="listaPreguntasUpdate.length === 0 || listaPreguntasUpdate === null">
-                  <p>Aún no hay preguntas añadidas.</p>
-                </div>
-                <div class="listpreguntas pat" *ngFor="let item of listaPreguntasUpdate">
-                  <div class="propietario">
-                    {{item.pregunta}}
-                  </div>
-                  <div class="suplente"></div>
-                  <div class="partido"></div>
-                  <div class="opciones">
-                    <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn" (click)="eliminarPreguntaUpdate(item.pregunta)">
-                    <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" (click)="editarPreguntaUpdate(item.pregunta)">
-                  </div>
+                <div class="suplente"></div>
+                <div class="partido"></div>
+                <div class="opciones">
+                  <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn"
+                       (click)="eliminarPreguntaUpdate(item.pregunta)">
+                  <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn"
+                       (click)="editarPreguntaUpdate(item.pregunta)">
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="cb">
-        <button class="btn btn-primary" (click)="closeModalEditMecanismos()">Cancelar</button>
-        <button class="btn btn-danger" (click)="guardarConfiguracionActualizada()">Guardar</button>
-      </div>
     </div>
+    <div class="cb">
+      <button class="btn btn-primary" (click)="closeModalEditMecanismos()">Cancelar</button>
+      <button class="btn btn-danger" (click)="guardarConfiguracionActualizada()">Guardar</button>
+    </div>
+  </div>
 </div>

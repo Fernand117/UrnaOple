@@ -14,6 +14,10 @@ export class EscolaresComponent implements OnInit {
 
   public partidos: PartidosModule;
   public escolares: EscolaresModule = new EscolaresModule();
+
+  public partidosUpdate: PartidosModule = new PartidosModule();
+  public escolaresUpdate: EscolaresModule = new EscolaresModule();
+
   private formData: FormData;
 
   private resPic: any;
@@ -21,9 +25,19 @@ export class EscolaresComponent implements OnInit {
   public imagePath: any;
   public imgURL: any;
   public message: string;
+
   public partidosList: any[] = [];
   public escolaresList: any[] = [];
+
+  public partidosListUpdate: any[] = [];
+
   private resData: any;
+
+  private consultaInstitucion: any;
+  private resConsultaInstitucion: any;
+
+  private consultaPartido: any;
+  private resConsultaPartido: any;
 
   constructor(
     private apiService: ApiServiceService,
@@ -89,6 +103,42 @@ export class EscolaresComponent implements OnInit {
   }
 
   agregarConfiguracion() {
+
+    if (this.escolares.presidente === "") {
+      this.mensajeAdvertencia("Ingrese el nombre del presidente");
+      return;
+    }
+
+    if (this.escolares.secretario === "") {
+      this.mensajeAdvertencia("Ingrese el nombre del secretario");
+      return;
+    }
+
+    if (this.escolares.primerEscrutador === "") {
+      this.mensajeAdvertencia("Ingrese el nombre del primer escrutador");
+      return;
+    }
+
+    if (this.escolares.segundoEscrutador === "") {
+      this.mensajeAdvertencia("Ingrese el nombre del segundo escrutador");
+      return;
+    }
+
+    if (this.escolares.nombreInstitucion === "") {
+      this.mensajeAdvertencia("Ingrese el nombre de la institución");
+      return;
+    }
+
+    if (this.escolares.nBoletas === "") {
+      this.mensajeAdvertencia("Ingrese el número de boletas");
+      return;
+    }
+
+    if (this.partidosList.length === 0) {
+      this.mensajeAdvertencia("Aún no hay ningún candidato registrado");
+      return;
+    }
+
     const datos = {
       "Presidente": this.escolares.presidente,
       "Secretario": this.escolares.secretario,
@@ -131,6 +181,55 @@ export class EscolaresComponent implements OnInit {
         this.router.navigateByUrl('/elecciones')
       }
     );
+  }
+
+  private mensajeAdvertencia(mensaje: string) {
+    Swal.fire({
+      title: "Advertencia",
+      text: mensaje,
+      icon: "warning"
+    });
+  }
+
+  public editarConfiguracionActual(institucion: string) {
+    this.consultaInstitucion = this.escolaresList.findIndex(e => e.nombreInstitucion === institucion);
+    this.resConsultaInstitucion = this.escolaresList[this.consultaInstitucion];
+
+    this.escolaresUpdate.presidente = this.resConsultaInstitucion["Presidente"];
+    this.escolaresUpdate.secretario = this.resConsultaInstitucion["Secretario"];
+    this.escolaresUpdate.primerEscrutador = this.resConsultaInstitucion["PrimerEscrutador"];
+    this.escolaresUpdate.segundoEscrutador = this.resConsultaInstitucion["SegundoEscrutador"];
+    this.escolaresUpdate.nombreInstitucion = this.resConsultaInstitucion["NombreInstitucion"];
+    this.escolaresUpdate.nBoletas = this.resConsultaInstitucion["CantidadBoletas"]
+    this.partidosListUpdate = this.resConsultaInstitucion["Partidos"];
+  }
+
+  public guardarConfiguracionUpdate() {
+
+  }
+
+  public editarPartidoActual(propietario: string) {
+    this.consultaPartido = this.partidosList.findIndex(p => p.Propietario === propietario);
+    this.resConsultaPartido = this.partidosList[this.consultaPartido];
+
+    this.partidosUpdate.Propietario = this.resConsultaPartido["Propietario"];
+    this.partidosUpdate.Suplente = this.resConsultaPartido["Suplente"];
+    this.partidosUpdate.Hipocoristico = this.resConsultaPartido["Hipocoristico"];
+    this.partidosUpdate.Cargo = this.resConsultaPartido["Cargo"];
+    this.partidosUpdate.TipoCandidatura = this.resConsultaPartido["TipoCandidatura"];
+    this.partidosUpdate.Logotipo = this.resConsultaPartido["Logotipo"];
+  }
+
+  public editarPartidoUpdate(propietario: string) {
+    this.consultaPartido = this.partidosListUpdate.findIndex(p => p.Propietario === propietario);
+    this.resConsultaPartido = this.partidosListUpdate[this.consultaPartido];
+
+    this.partidosUpdate.Propietario = this.resConsultaPartido["Propietario"];
+    this.partidosUpdate.Suplente = this.resConsultaPartido["Suplente"];
+    this.partidosUpdate.Hipocoristico = this.resConsultaPartido["Hipocoristico"];
+    this.partidosUpdate.Cargo = this.resConsultaPartido["Cargo"];
+    this.partidosUpdate.TipoCandidatura = this.resConsultaPartido["TipoCandidatura"];
+    this.partidosUpdate.Logotipo = this.resConsultaPartido["Logotipo"];
   }
 
 }

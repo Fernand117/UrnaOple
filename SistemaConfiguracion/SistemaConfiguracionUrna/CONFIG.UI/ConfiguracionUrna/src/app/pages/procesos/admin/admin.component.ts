@@ -172,32 +172,32 @@ export class AdminComponent implements OnInit {
         this.partidos.Logotipo = this.urlImgPartidoDefault;
       }
 
-      if (this.partidos.Propietario === "" || this.partidos.Propietario === null){
+      if (this.partidos.Propietario === "" || this.partidos.Propietario === null) {
         this.mensajeSwal("Ingrese el nombre del propietario.");
         return;
       }
 
-      if (this.partidos.Suplente === "" || this.partidos.Suplente === null){
+      if (this.partidos.Suplente === "" || this.partidos.Suplente === null) {
         this.mensajeSwal("Ingrese el nombre del suplente.");
         return;
       }
 
-      if (this.partidos.Hipocoristico === "" || this.partidos.Hipocoristico === null){
+      if (this.partidos.Hipocoristico === "" || this.partidos.Hipocoristico === null) {
         this.mensajeSwal("Ingrese el hipocoristico.");
         return;
       }
 
-      if (this.partidos.Cargo === "" || this.partidos.Cargo === null){
+      if (this.partidos.Cargo === "" || this.partidos.Cargo === null) {
         this.mensajeSwal("Ingrese el nombre del cargo.");
         return;
       }
 
-      if (this.partidos.TipoCandidatura === "" || this.partidos.TipoCandidatura === null){
+      if (this.partidos.TipoCandidatura === "" || this.partidos.TipoCandidatura === null) {
         this.mensajeSwal("Seleccione el tipo de candidatura.");
         return;
       }
 
-      if (this.partidos.Logotipo === "" || this.partidos.Logotipo === this.urlImgPartidoDefault){
+      if (this.partidos.Logotipo === "" || this.partidos.Logotipo === this.urlImgPartidoDefault) {
         this.mensajeSwal("Seleccione el logotipo del partido");
         return;
       }
@@ -208,44 +208,44 @@ export class AdminComponent implements OnInit {
       return;
     }
 
-      this.partidos.Id = 0;
-      if (this.resPic) {
-        this.partidos.Logotipo = this.resPic["url"];
-      } else {
-        this.partidos.Logotipo = this.urlImgPartidoDefault;
-      }
+    this.partidos.Id = 0;
+    if (this.resPic) {
+      this.partidos.Logotipo = this.resPic["url"];
+    } else {
+      this.partidos.Logotipo = this.urlImgPartidoDefault;
+    }
 
-      if (this.partidos.Propietario === "" || this.partidos.Propietario === null){
-        this.mensajeSwal("Ingrese el nombre del propietario.");
-        return;
-      }
+    if (this.partidos.Propietario === "" || this.partidos.Propietario === null) {
+      this.mensajeSwal("Ingrese el nombre del propietario.");
+      return;
+    }
 
-      if (this.partidos.Suplente === "" || this.partidos.Suplente === null){
-        this.mensajeSwal("Ingrese el nombre del suplente.");
-        return;
-      }
+    if (this.partidos.Suplente === "" || this.partidos.Suplente === null) {
+      this.mensajeSwal("Ingrese el nombre del suplente.");
+      return;
+    }
 
-      if (this.partidos.Hipocoristico === "" || this.partidos.Hipocoristico === null){
-        this.mensajeSwal("Ingrese el hipocoristico.");
-        return;
-      }
+    if (this.partidos.Hipocoristico === "" || this.partidos.Hipocoristico === null) {
+      this.mensajeSwal("Ingrese el hipocoristico.");
+      return;
+    }
 
-      if (this.partidos.Cargo === "" || this.partidos.Cargo === null){
-        this.mensajeSwal("Ingrese el nombre del cargo.");
-        return;
-      }
+    if (this.partidos.Cargo === "" || this.partidos.Cargo === null) {
+      this.mensajeSwal("Ingrese el nombre del cargo.");
+      return;
+    }
 
-      if (this.partidos.TipoCandidatura === "" || this.partidos.TipoCandidatura === null){
-        this.mensajeSwal("Seleccione el tipo de candidatura.");
-        return;
-      }
+    if (this.partidos.TipoCandidatura === "" || this.partidos.TipoCandidatura === null) {
+      this.mensajeSwal("Seleccione el tipo de candidatura.");
+      return;
+    }
 
-      if (this.partidos.Logotipo === "" || this.partidos.Logotipo === this.urlImgPartidoDefault){
-        this.mensajeSwal("Seleccione el logotipo del partido");
-        return;
-      }
+    if (this.partidos.Logotipo === "" || this.partidos.Logotipo === this.urlImgPartidoDefault) {
+      this.mensajeSwal("Seleccione el logotipo del partido");
+      return;
+    }
 
-      this.partidosList.push(this.partidos);
+    this.partidosList.push(this.partidos);
 
     this.mensajeSwalSuccess("Partido registrado correctamente");
 
@@ -255,7 +255,7 @@ export class AdminComponent implements OnInit {
 
   agregarConfiguracion() {
 
-    if (this.modoEdiccion === true){
+    if (this.modoEdiccion === true) {
       this.eleccionesList[this.foundEleccion].TipoEleccion = this.eleccionesUpdate.tipoEleccion;
       this.eleccionesList[this.foundEleccion].Presidente = this.eleccionesUpdate.presidente;
       this.eleccionesList[this.foundEleccion].Secretario = this.eleccionesUpdate.secretario;
@@ -279,7 +279,7 @@ export class AdminComponent implements OnInit {
       this.modoEdiccionPartidoActual = false;
     } else {
 
-      if (this.elecciones.tipoEleccion === "" || this.elecciones.tipoEleccion === null){
+      if (this.elecciones.tipoEleccion === "" || this.elecciones.tipoEleccion === null) {
         this.mensajeSwal("Seleccione un tipo de proceso electoral.");
         return;
       }
@@ -289,57 +289,57 @@ export class AdminComponent implements OnInit {
         return;
       }
 
-      if (this.elecciones.secretario === "" || this.elecciones.secretario === null){
+      if (this.elecciones.secretario === "" || this.elecciones.secretario === null) {
         this.mensajeSwal("Ingrese el nombre del secretario.");
         return;
       }
 
-      if (this.elecciones.primerEscrutador === "" || this.elecciones.primerEscrutador === null){
+      if (this.elecciones.primerEscrutador === "" || this.elecciones.primerEscrutador === null) {
         this.mensajeSwal("Ingrese el nombre del primer escrutador.");
         return;
       }
 
-      if (this.elecciones.segundoEscrutador === "" || this.elecciones.segundoEscrutador === null){
+      if (this.elecciones.segundoEscrutador === "" || this.elecciones.segundoEscrutador === null) {
         this.mensajeSwal("Ingrese el nombre del segundo escrutador.");
         return;
       }
 
-      if (this.elecciones.nBoletas === "" || this.elecciones.nBoletas === null || this.elecciones.nBoletas === "0"){
+      if (this.elecciones.nBoletas === "" || this.elecciones.nBoletas === null || this.elecciones.nBoletas === "0") {
         this.mensajeSwal("Ingrese un número de boletas mayor a cero.");
         return;
       }
 
-      if (this.elecciones.tipoCasilla === "" || this.elecciones.tipoCasilla === null){
+      if (this.elecciones.tipoCasilla === "" || this.elecciones.tipoCasilla === null) {
         this.mensajeSwal("Ingrese el tipo de casilla.");
         return;
       }
 
-      if (this.elecciones.entidad === "" || this.elecciones.entidad === null){
+      if (this.elecciones.entidad === "" || this.elecciones.entidad === null) {
         this.mensajeSwal("Ingrese la entidad.");
         return;
       }
 
-      if (this.elecciones.distrito === "" || this.elecciones.distrito === null){
+      if (this.elecciones.distrito === "" || this.elecciones.distrito === null) {
         this.mensajeSwal("Ingrese el distrito.");
         return;
       }
 
-      if (this.elecciones.municipio === "" || this.elecciones.municipio === null){
+      if (this.elecciones.municipio === "" || this.elecciones.municipio === null) {
         this.mensajeSwal("Ingrese el municipio.");
         return;
       }
 
-      if (this.elecciones.seccion === "" || this.elecciones.seccion === null){
+      if (this.elecciones.seccion === "" || this.elecciones.seccion === null) {
         this.mensajeSwal("Ingrese la sección electoral.");
         return;
       }
 
-      if (this.elecciones.folio === "" || this.elecciones.folio === null){
+      if (this.elecciones.folio === "" || this.elecciones.folio === null) {
         this.mensajeSwal("Ingrese el número de folio.");
         return;
       }
 
-      if (this.partidosList.length === 0 || this.partidosList === []){
+      if (this.partidosList.length === 0 || this.partidosList === []) {
         this.mensajeSwal("Registre al menos un partido.");
         return;
       }
@@ -406,7 +406,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
-  private mensajeSwal(mensaje: string): void{
+  private mensajeSwal(mensaje: string): void {
     Swal.fire({
       title: "Advertencia",
       icon: "warning",
@@ -414,7 +414,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  private mensajeSwalSuccess(mensaje: string): void{
+  private mensajeSwalSuccess(mensaje: string): void {
     Swal.fire({
       title: "Advertencia",
       icon: "success",
@@ -422,7 +422,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  public editEleccion(tipo: string): void{
+  public editEleccion(tipo: string): void {
     this.editEleccionModal();
 
     this.modoEdiccion = true;

@@ -48,7 +48,8 @@ namespace Urna.DAO.Elecciones
 				using (UrnaContext context = new UrnaContext())
 				{
 					var elecciones = await context.Configuracion
-												  .ToListAsync();
+													.OrderByDescending(i => i)
+													.ToListAsync();
 
 					foreach (var e in elecciones)
 					{

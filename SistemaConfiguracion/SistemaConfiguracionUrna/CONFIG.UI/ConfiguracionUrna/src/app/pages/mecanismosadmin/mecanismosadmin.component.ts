@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MecanismosModule } from '../../models/mecanismos/mecanismos.module';
-import { PreguntasModule } from '../../models/preguntas/preguntas.module';
-import { ApiServiceService } from '../../services/api-service.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {MecanismosModule} from '../../models/mecanismos/mecanismos.module';
+import {PreguntasModule} from '../../models/preguntas/preguntas.module';
+import {ApiServiceService} from '../../services/api-service.service';
+import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,7 +22,6 @@ export class MecanismosadminComponent implements OnInit {
   public listaMecanismos: any[] = [];
 
   public listaPreguntasUpdate: any[] = [];
-  public listaMecanismosUpdate: any[] = [];
 
   private resData: any;
 
@@ -38,7 +37,8 @@ export class MecanismosadminComponent implements OnInit {
   constructor(
     private apiService: ApiServiceService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.contador = 0;
