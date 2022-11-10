@@ -75,7 +75,9 @@ export class ReferendumComponent implements OnInit {
     Swal.fire({
       icon: 'error',
       title: 'Lo sentimos',
-      text: 'Ha ocurrido un error, por favor vuelve a intentarlo.'
+      text: 'Ha ocurrido un error, por favor vuelve a intentarlo.',
+      timer: 2000,
+      showConfirmButton: false
     });
   }
 
@@ -85,9 +87,12 @@ export class ReferendumComponent implements OnInit {
     let evento = this.miEvento;
     let ruta = this.route;
     Swal.fire(
-      '¡Tu voto ha sido registrado con éxito!',
-      'Gracias',
-      'success'
+      {
+        title: "¡Tu voto ha sido registrado con éxito!",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false
+      }
     )
     .then(function () {
       evento.emit(voto);

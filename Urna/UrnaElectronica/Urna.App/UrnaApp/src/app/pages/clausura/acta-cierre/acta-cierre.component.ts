@@ -24,6 +24,8 @@ export class ActaCierreComponent implements OnInit {
   votosples: any;
   votoscons: any;
 
+  votosesc: any;
+
   constructor(private route:Router, private service: ConfiguracionApiService) { }
 
   ngOnInit(): void {  
@@ -34,6 +36,7 @@ export class ActaCierreComponent implements OnInit {
     this.votosPlesbicito();
     this.votosConsulta();
     this.votosReferendum();
+    this.resultadosEsc();
   }
 
   votosGub() {
@@ -60,9 +63,7 @@ export class ActaCierreComponent implements OnInit {
 
   votosPlesbicito() {
     this.service.getVotosByTipo("presbicito").subscribe(resp => {
-      this.votosples = resp;
-      console.log(resp);
-      
+      this.votosples = resp;      
       this.votosples = this.votosples.data;
     });
   }
@@ -79,6 +80,13 @@ export class ActaCierreComponent implements OnInit {
       this.votosref = resp;
       this.votosref = this.votosref.data;
     });
+  }
+
+  resultadosEsc() {
+    this.service.getVotosByTipo('escolar').subscribe(resp => {
+      this.votosesc = resp;
+      this.votosesc = this.votosesc.data;
+    })
   }
 
 

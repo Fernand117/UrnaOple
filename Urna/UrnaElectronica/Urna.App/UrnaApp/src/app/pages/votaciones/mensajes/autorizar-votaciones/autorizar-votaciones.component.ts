@@ -1,44 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
+import {Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tarjetas',
-  templateUrl: './tarjetas.component.html',
-  styleUrls: ['./tarjetas.component.scss']
+  selector: 'app-autorizar-votaciones',
+  templateUrl: './autorizar-votaciones.component.html',
+  styleUrls: ['./autorizar-votaciones.component.scss']
 })
-export class TarjetasComponent implements OnInit {
+export class AutorizarVotacionesComponent implements OnInit {
 
   constructor(private route:Router) { }
+
   code = "";
   tarjeta_1 = '0002341465';
   tarjeta_2 = '0002341466';
   tarjeta_3 = '0002341467';
 
   ngOnInit(): void {
-    localStorage.clear();
   }
 
   validar() {
     if(this.code == this.tarjeta_1 || this.code == this.tarjeta_2 || this.code == this.tarjeta_3) {
-      this.mostrar_mensaje_success();
+      let categoria = localStorage.getItem('categoria');
+      if (categoria === 'Elecciones escolares') {
+        this.route.navigate(['/elecciones-escolares']);
+      } else if (categoria === 'Mecanismos de participación ciudadana'){
+        this.route.navigate(['/participacion-ciudadana']);
+      } else {
+        this.route.navigate(['/votaciones']);
+      }
     } else {
      this.mostrar_mensaje_error();
     }
-  }
-
-  mostrar_mensaje_success() {
-    let ruta = this.route;
-    Swal.fire(
-    {
-      title: "Tarjeta autorizada",
-      icon: "success",
-      timer: 2000,
-      showConfirmButton: false
-    }
-    ).then(function() {
-      ruta.navigate(['/configuracion']);
-    })
   }
 
   mostrar_mensaje_error() {
@@ -51,4 +44,6 @@ export class TarjetasComponent implements OnInit {
     });
     this.code = "";
   }
+
+
 }

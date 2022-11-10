@@ -54,13 +54,6 @@ export class BoletaComponent implements OnInit {
   }  
 
   continuar() {
-    let categoria = localStorage.getItem('categoria');
-    if (categoria === 'Elecciones escolares') {
-      this.route.navigate(['/elecciones-escolares']);
-    } else if (categoria === 'Mecanismos de participación ciudadana'){
-      this.route.navigate(['/participacion-ciudadana']);
-    } else {
-      this.route.navigate(['/votaciones']);
-    }
+    this.route.navigate(['/autorizar'])
   }
 }

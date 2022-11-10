@@ -12,6 +12,7 @@ import { VotacionesComponent } from './pages/votaciones/votaciones.component';
 import { ParticipacionCiudadanaComponent } from './pages/votaciones/participacion-ciudadana/participacion-ciudadana.component';
 import { ActaCierreComponent } from './pages/clausura/acta-cierre/acta-cierre.component';
 import { NoBoletasComponent } from './pages/votaciones/mensajes/no-boletas/no-boletas.component';
+import { AutorizarVotacionesComponent } from './pages/votaciones/mensajes/autorizar-votaciones/autorizar-votaciones.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/bienvenido', pathMatch: 'full' },
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'elecciones-escolares', component: EleccionesEscolaresComponent},
   { path: 'participacion-ciudadana', component: ParticipacionCiudadanaComponent},
   { path: 'acta-cierre', component: ActaCierreComponent},
-  { path: 'no-boletas', component: NoBoletasComponent}
+  { path: 'no-boletas', component: NoBoletasComponent},
+  { path: 'autorizar', component: AutorizarVotacionesComponent}
 ];
 
 @NgModule({

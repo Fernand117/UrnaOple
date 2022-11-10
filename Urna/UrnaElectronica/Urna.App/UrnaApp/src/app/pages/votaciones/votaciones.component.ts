@@ -115,7 +115,7 @@ export class VotacionesComponent implements OnInit, DoCheck {
       if (this.voto1 === true || this.voto2 === true || this.voto3 === true) {
         this.salir();
       }
-      if (this.boletas_ayuntamiento === 0 || this.boletas_diputacion === 0 || this.boletas_gubernatura === 0) {
+      if (this.boletas_ayuntamiento == 0 || this.boletas_diputacion == 0 || this.boletas_gubernatura == 0) {
         this.route.navigate(['/no-boletas']);
       }
     }

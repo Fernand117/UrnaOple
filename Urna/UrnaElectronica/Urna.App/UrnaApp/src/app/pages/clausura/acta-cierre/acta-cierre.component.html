@@ -80,9 +80,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of config_escolares[0]?.Partidos">
-            <td>{{boleta.Propietario}}</td>
-            <td>0</td>
+          <tr *ngFor="let boleta of votosesc">
+            <td>{{boleta.partido}}</td>
+            <td>{{boleta.voto}}</td>
           </tr>
         </tbody>
       </table>
@@ -104,9 +104,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let boleta of votosref">
-            <td>{{boleta.Pregunta}}</td>
-            <td>{{boleta.RespuestaSi}}</td>
-            <td>{{boleta.RespuestaNo}}</td>
+            <td>{{boleta.pregunta}}</td>
+            <td>{{boleta.respuestaSi}}</td>
+            <td>{{boleta.respuestaNo}}</td>
           </tr>
         </tbody>
       </table>
@@ -128,9 +128,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let boleta of votosples">
-            <td>{{boleta.Pregunta}}</td>
-            <td>{{boleta.RespuestaSi}}</td>
-            <td>{{boleta.RespuestaNo}}</td>
+            <td>{{boleta.pregunta}}</td>
+            <td>{{boleta.respuestaSi}}</td>
+            <td>{{boleta.respuestaNo}}</td>
           </tr>
         </tbody>
       </table>
@@ -152,9 +152,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let boleta of votoscons">
-            <td>{{boleta.Pregunta}}</td>
-            <td>{{boleta.RespuestaSi}}</td>
-            <td>{{boleta.RespuestaNo}}</td>
+            <td>{{boleta.pregunta}}</td>
+            <td>{{boleta.respuestaSi}}</td>
+            <td>{{boleta.respuestaNo}}</td>
           </tr>
         </tbody>
       </table>

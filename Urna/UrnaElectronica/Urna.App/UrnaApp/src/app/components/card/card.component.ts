@@ -126,7 +126,6 @@ export class CardComponent implements OnInit {
       TipoEleccion: TipoEleccion
     }
     this.service.updateContadorBoletas(request).subscribe((resp) => {
-      console.log(resp);
     }, error => {
       console.log(error);
     });
@@ -136,7 +135,9 @@ export class CardComponent implements OnInit {
     Swal.fire({
       icon: 'error',
       title: 'Lo sentimos',
-      text: 'Ya has realizado tu voto para este tipo de elección.'
+      text: 'Ya has realizado tu voto para este tipo de elección.',
+      timer: 2000,
+      showConfirmButton: false
     });
   }
 
@@ -144,7 +145,9 @@ export class CardComponent implements OnInit {
     Swal.fire({
       icon: 'error',
       title: 'Lo sentimos',
-      text: 'No se ha podido registrar tu voto, intentalo de nuevo'
+      text: 'No se ha podido registrar tu voto, intentalo de nuevo',
+      timer: 2000,
+      showConfirmButton: false
     });
   }  
 
@@ -156,9 +159,13 @@ export class CardComponent implements OnInit {
     let boletas = this.num_boletas;
     let evento = this.miEvento;
     Swal.fire(
-      '¡Tu voto ha sido registrado con éxito!',
-      'Te direccionaremos a la siguiente categoría de votaciones para que puedas seguir efectuando tus votos.',
-      'success'
+      {
+        title: "¡Tu voto ha sido registrado con éxito!",
+        text: 'Te direccionaremos a la siguiente categoría de votaciones para que puedas seguir efectuando tus votos.',
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false
+      }
     ).then(function () {
       evento.emit(voto);
       if (app === 'escolar') {

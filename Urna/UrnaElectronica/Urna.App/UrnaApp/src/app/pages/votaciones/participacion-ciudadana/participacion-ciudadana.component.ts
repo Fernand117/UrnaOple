@@ -116,7 +116,7 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
       if (this.voto1 === true || this.voto2 === true || this.voto3 === true) {
         this.salir();
       }
-      if (this.boletas_referendum === 0 || this.boletas_plesbicito === 0 || this.boletas_consulta === 0) {
+      if (this.boletas_referendum == 0 || this.boletas_plesbicito == 0 || this.boletas_consulta == 0) {
         this.route.navigate(['/no-boletas']);
       }
     }
@@ -187,25 +187,6 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
     this.active_tab = "consulta";
   }
 
-    //OBTENER EL NUMERO DE BOLETAS DISPONIBLES
-  num_boletas() {
-    this.service.getContadorBoletas().subscribe((resp) => {
-      let info: any = resp;
-      info = info.data;
-      console.log(this.confi_referendum);
-      
-      for (let i = 0; i < info.length; i++) {
-        if (info[i].tipoEleccion === this.confi_referendum.TipoMecanismo) {
-          this.boletas_referendum = info[i].cantidadBoletas;          
-        } else if (info[i].tipoEleccion === this.confi_presbicito.TipoMecanismo) {
-          this.boletas_plesbicito = info[i].cantidadBoletas;
-        } else if (info[i].tipoEleccion === this.confi_consulta.TipoMecanismo) {
-          this.boletas_consulta = info[i].cantidadBoletas;
-        }
-      }
-    });      
-  }
-
   //OBTENER LAS CONFIGURACIONES
   obtenerConfiguracion() {
     this.confi_referendum = localStorage.getItem('referendum');
@@ -215,6 +196,26 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
     this.confi_consulta = localStorage.getItem('consulta');
     this.confi_consulta = JSON.parse(this.confi_consulta);
   }
+  
+    //OBTENER EL NUMERO DE BOLETAS DISPONIBLES
+    num_boletas() {
+      this.service.getContadorBoletas().subscribe((resp) => {
+        let info: any = resp;
+        info = info.data;
+        for (let i = 0; i < info.length; i++) {
+          if (info[i].tipoEleccion === this.confi_referendum.TipoMecanismo) {
+            this.boletas_referendum = info[i].cantidadBoletas;     
+            console.log(this.boletas_referendum);
+          } else if (info[i].tipoEleccion === this.confi_presbicito.TipoMecanismo) {
+            this.boletas_plesbicito = info[i].cantidadBoletas;
+            console.log(this.boletas_plesbicito);
+          } else if (info[i].tipoEleccion === this.confi_consulta.TipoMecanismo) {
+            this.boletas_consulta = info[i].cantidadBoletas;
+            console.log(this.boletas_consulta);
+          }
+        }
+      });      
+    }
 
   //OBTENER EL ESTADO DEL VOTO 1
   statusVotoReferendum(e: any) {

@@ -30,7 +30,9 @@ export class EsperaElectorComponent implements OnInit {
     Swal.fire({
       icon: 'error',
       title: 'Tarjeta no autorizada',
-      text: 'Por favor inténtelo de nuevo'
+      text: 'Por favor inténtelo de nuevo',
+      timer: 2000,
+      showConfirmButton: false
     });
     this.code = "";
   }

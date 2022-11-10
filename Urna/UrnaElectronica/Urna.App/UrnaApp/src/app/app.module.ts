@@ -27,6 +27,7 @@ import { registerLocaleData } from '@angular/common';
 import { ReferendumComponent } from './pages/votaciones/participacion-ciudadana/referendum/referendum.component';
 import { ActaCierreComponent } from './pages/clausura/acta-cierre/acta-cierre.component';
 import { NoBoletasComponent } from './pages/votaciones/mensajes/no-boletas/no-boletas.component';
+import { AutorizarVotacionesComponent } from './pages/votaciones/mensajes/autorizar-votaciones/autorizar-votaciones.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -51,7 +52,8 @@ registerLocaleData(localeEs, 'es');
     ParticipacionCiudadanaComponent,
     ReferendumComponent,
     ActaCierreComponent,
-    NoBoletasComponent
+    NoBoletasComponent,
+    AutorizarVotacionesComponent
   ],
   imports: [
     BrowserModule,

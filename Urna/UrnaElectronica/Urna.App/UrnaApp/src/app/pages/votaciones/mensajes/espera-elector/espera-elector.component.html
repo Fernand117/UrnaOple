@@ -5,12 +5,9 @@
       <h1>En espera de elector</h1>
       <img src="./assets/img/espera.png">
     </div>
-    <div class="col">
-      <div class="card-body card">
-        <p>Ingrese la tarjeta para continuar</p>
-        <input class="form-control" type="password" [(ngModel)]="code" (change)="validar()" autofocus>
-      </div>
-    </div>
+    <br>
+    <p>Ingrese la tarjeta para continuar</p>
+    <input class="form-control" type="password" [(ngModel)]="code" (change)="validar()" autofocus #myInput> {{ myInput.focus() }}
   </div>
 </div>
 <app-footer></app-footer>

@@ -28,9 +28,12 @@ export class ClausuraComponent implements OnInit {
   mostrar_mensaje_success() {
     let ruta = this.route;
     Swal.fire(
-    'Tarjeta autorizada',      
-    'Da clic para comenzar con el proceso de clausura',
-    'success'
+    {
+      title: "Tarjeta autorizada",
+      icon: "success",
+      timer: 2000,
+      showConfirmButton: false
+    }
     ).then(function() {
       ruta.navigate(['/acta-cierre']);
     })
@@ -40,7 +43,9 @@ export class ClausuraComponent implements OnInit {
     Swal.fire({
       icon: 'error',
       title: 'Tarjeta no autorizada',
-      text: 'Por favor inténtelo de nuevo'
+      text: 'Por favor inténtelo de nuevo',
+      timer: 2000,
+      showConfirmButton: false
     });
     this.code = "";
   }
