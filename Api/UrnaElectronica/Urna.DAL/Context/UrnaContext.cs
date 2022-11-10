@@ -9,17 +9,13 @@ namespace Urna.DAL.Context
 {
     public class UrnaContext : DbContext
     {
-        public UrnaContext()
-        {
-         
-        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
                 //TODO: CAMBIO DE CONTRASEÑA DE LA DB A LA DE FERNANDO
-                //var conecction = "host=localhost;port=5432;database=urnaOple;username=postgres;password=Master117+";
-                var conecction = "host=localhost;port=5432;database=urnaOple;username=postgres;password=12345";
+                var conecction = "host=localhost;port=5432;database=urnaOple;username=postgres;password=Master117+";
+                //var conecction = "host=localhost;port=5432;database=urnaOple;username=postgres;password=12345";
                 optionsBuilder.UseNpgsql(conecction);
             }
         }
@@ -32,14 +28,14 @@ namespace Urna.DAL.Context
                 entity.HasKey(e => e.Id)
                       .HasName("PK_tbConfiguracion");
 
-                entity.ToTable("configuracion");
+                entity.ToTable("Configuracion");
 
                 entity.Property(e => e.Id)
-                      .HasColumnName("id")
+                      .HasColumnName("Id")
                       .UseIdentityByDefaultColumn();
 
                 entity.Property(e => e.Configuraciones)
-                      .HasColumnName("configuracion")
+                      .HasColumnName("Configuracion")
                       .HasColumnType("jsonb");
             });
 

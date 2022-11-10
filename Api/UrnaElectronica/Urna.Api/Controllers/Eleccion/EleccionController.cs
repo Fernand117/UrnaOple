@@ -17,10 +17,10 @@ namespace Urna.Api.Controllers.Eleccion
         public async Task<ActionResult<ApiResponse>> Get(string codigo) => await new EleccionBLO().Read(codigo);
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>> Post([FromBody] EleccionRequest request) => await new EleccionBLO().Create(request);
+        public async Task<ActionResult<ApiResponse>> Post([FromBody] ConfiguracionesRequest request) => await new EleccionBLO().Create(request);
 
         [HttpPut]
-        public async Task<ActionResult<ApiResponse>> Put([FromBody] EleccionRequest request) => await new EleccionBLO().Update(request);
+        public async Task<ActionResult<ApiResponse>> Put([FromBody] ConfiguracionesRequest request) => await new EleccionBLO().Update(request);
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<ApiResponse>> Delete(int id) => await new EleccionBLO().Delete(id);

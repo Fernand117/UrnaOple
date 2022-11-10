@@ -23,7 +23,7 @@ namespace Urna.DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
+                        .HasColumnName("Id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
@@ -34,7 +34,7 @@ namespace Urna.DAL.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Configuraciones")
-                        .HasColumnName("configuracion")
+                        .HasColumnName("Configuracion")
                         .HasColumnType("jsonb");
 
                     b.Property<DateTime>("Fecha")
@@ -43,7 +43,7 @@ namespace Urna.DAL.Migrations
                     b.HasKey("Id")
                         .HasName("PK_tbConfiguracion");
 
-                    b.ToTable("configuracion");
+                    b.ToTable("Configuracion");
                 });
 #pragma warning restore 612, 618
         }
