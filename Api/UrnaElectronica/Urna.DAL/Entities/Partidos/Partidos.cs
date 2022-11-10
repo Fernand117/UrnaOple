@@ -6,7 +6,6 @@ namespace Urna.DAL.Entities.Partidos
 {
     public class Partidos
     {
-        public int Id { get; set; }
         public string Logotipo { get; set; }
         public string Propietario { get; set; }
         public string Suplente { get; set; }

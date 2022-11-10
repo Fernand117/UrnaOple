@@ -10,8 +10,8 @@ using Urna.DAL.Context;
 namespace Urna.DAL.Migrations
 {
     [DbContext(typeof(UrnaContext))]
-    [Migration("20221031225841_dbOpleUpdateConfiguracion")]
-    partial class dbOpleUpdateConfiguracion
+    [Migration("20221110172543_dbOple_update_requests")]
+    partial class dbOple_update_requests
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,7 @@ namespace Urna.DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
+                        .HasColumnName("Id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
@@ -36,7 +36,7 @@ namespace Urna.DAL.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Configuraciones")
-                        .HasColumnName("configuracion")
+                        .HasColumnName("Configuracion")
                         .HasColumnType("jsonb");
 
                     b.Property<DateTime>("Fecha")
@@ -45,7 +45,7 @@ namespace Urna.DAL.Migrations
                     b.HasKey("Id")
                         .HasName("PK_tbConfiguracion");
 
-                    b.ToTable("configuracion");
+                    b.ToTable("Configuracion");
                 });
 #pragma warning restore 612, 618
         }

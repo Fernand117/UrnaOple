@@ -12,7 +12,7 @@ namespace Urna.BLO.Elecciones
 {
     public class EleccionBLO
     {
-        public async Task<ApiResponse> Create(EleccionRequest request)
+        public async Task<ApiResponse> Create(ConfiguracionesRequest request)
         {
             ApiResponse apiResponse = new ApiResponse();
             try
@@ -69,7 +69,7 @@ namespace Urna.BLO.Elecciones
             return apiResponse;
         }
 
-        public async Task<ApiResponse> Update(EleccionRequest request)
+        public async Task<ApiResponse> Update(ConfiguracionesRequest request)
         {
             ApiResponse apiResponse = new ApiResponse();
             try

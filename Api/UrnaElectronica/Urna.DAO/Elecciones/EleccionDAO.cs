@@ -12,7 +12,7 @@ namespace Urna.DAO.Elecciones
 {
 	public class EleccionDAO
 	{
-		public async Task<EleccionRequest> Create(EleccionRequest request)
+		public async Task<ConfiguracionesRequest> Create(ConfiguracionesRequest request)
 		{
 			try
 			{
@@ -24,7 +24,7 @@ namespace Urna.DAO.Elecciones
 						Fecha = DateTime.Now,
 						Codigo = codigo,
 						Categoria = request.Categoria,
-						Configuraciones = JsonSerializer.Serialize(request)
+						Configuraciones = JsonSerializer.Serialize(request.Procesos)
 					};
 
 					await context.AddAsync(configuracion);
@@ -59,7 +59,7 @@ namespace Urna.DAO.Elecciones
 							Fecha= e.Fecha,
 							Codigo = e.Codigo,
 							Categoria = e.Categoria,
-							Configuraciones = JsonSerializer.Serialize(e),
+							Configuraciones = JsonSerializer.Serialize(e.Configuraciones)
 						});
 					}
 
@@ -93,7 +93,7 @@ namespace Urna.DAO.Elecciones
 			return response;
 		}
 
-		public async Task<EleccionRequest> Update(EleccionRequest request)
+		public async Task<ConfiguracionesRequest> Update(ConfiguracionesRequest request)
 		{
 			try
 			{
@@ -103,7 +103,7 @@ namespace Urna.DAO.Elecciones
 											  .Where(e => e.Id == request.Id)
 											  .FirstOrDefaultAsync();
 
-					config.Configuraciones = JsonSerializer.Serialize(request);
+					config.Configuraciones = JsonSerializer.Serialize(request.Procesos);
 
 					await context.SaveChangesAsync();
 				}
@@ -113,7 +113,7 @@ namespace Urna.DAO.Elecciones
 			return request;
 		}
 
-		public async Task<EleccionRequest> Delete(int id)
+		public async Task<ConfiguracionesRequest> Delete(int id)
 		{
 			try
 			{
@@ -132,7 +132,7 @@ namespace Urna.DAO.Elecciones
 			}
 			catch (Exception ex) { }
 
-			return new EleccionRequest()
+			return new ConfiguracionesRequest()
 			{
 				Id = id
 			};
