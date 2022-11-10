@@ -39,19 +39,6 @@ export class ConfiguracionApiService {
   deleteDataBoletas() {
     return this.http.delete(`${apiUrl_local}boletas`);
   }
-
-  getVotosDiputacion() {
-    return this.http.get(`${apiUrl_local}diputacion`);
-  }
-
-  getVotosGubernatura() {
-    return this.http.get(`${apiUrl_local}gubernatura`);
-  }
-
-  getVotosAyuntamiento() {
-    return this.http.get(`${apiUrl_local}ayuntamiento`);
-  }
-
   
   getVotosByTipo(ruta: any) {
     return this.http.get(`${apiUrl_local}${ruta}`);

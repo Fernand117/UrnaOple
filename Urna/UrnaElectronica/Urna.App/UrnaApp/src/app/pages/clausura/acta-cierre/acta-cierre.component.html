@@ -21,7 +21,7 @@
         </tbody>
       </table>
       <div class="botones">
-        <button type="button" class="btn btn-primary" id="btn1" (click)="imprimirBoleta(config_gubernatura)">Imprimir</button>
+        <button type="button" class="btn btn-primary" id="btn1" (click)="obtenerVotos(votosgub)" (click)="imprimirBoleta(config_gubernatura)">Imprimir</button>
       </div>
     </div>
 
@@ -43,7 +43,7 @@
         </tbody>
       </table>
       <div class="botones">
-        <button type="button" class="btn btn-primary" id="btn1" (click)="imprimirBoleta(config_diputacion)">Imprimir</button>
+        <button type="button" class="btn btn-primary" id="btn1" (click)="obtenerVotos(votosdip)"  (click)="imprimirBoleta(config_diputacion)">Imprimir</button>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
         </tbody>
       </table>
       <div class="botones">
-        <button type="button" class="btn btn-primary" id="btn1" (click)="imprimirBoleta(config_ayuntamiento)">Imprimir</button>
+        <button type="button" class="btn btn-primary" id="btn1" (click)="obtenerVotos(votosayu)" (click)="imprimirBoleta(config_ayuntamiento)">Imprimir</button>
       </div>
     </div>
 

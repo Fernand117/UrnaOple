@@ -119,7 +119,7 @@ namespace Votos.DAO.Boletas
                 imprimirTickets.imprimirBoletaCeros(boletaInicialRequest);
 
                 MensajesLCD mensajesLcd = new MensajesLCD();
-                mensajesLcd.sendMensaje("Imprimiendo voleta inicial");
+                mensajesLcd.sendMensaje("Imprimiendo boleta inicial");
             }
             catch (Exception e)
             {

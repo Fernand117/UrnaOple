@@ -17,6 +17,7 @@ export class BoletaComponent implements OnInit {
   config_referendum?: any;
   config_plebiscito?: any;
   config_consulta?: any;
+  configuracion_general: any;
 
   constructor(private route:Router, private service: ConfiguracionApiService) { }
 
@@ -24,13 +25,24 @@ export class BoletaComponent implements OnInit {
     this.obtenerConfiguracion();
   }
 
-  imprimirBoleta(configuracion: any) {
+  imprimirBoleta(configuracion: any) {    
+    configuracion.Presidente = this.configuracion_general.Presidente;
+    configuracion.Secretario = this.configuracion_general.Secretario;
+    configuracion.PrimerEscrutador = this.configuracion_general.PrimerEscrutador;
+    configuracion.SegundoEscrutador = this.configuracion_general.SegundoEscrutador;
+    configuracion.Distrito = this.configuracion_general.Distrito;
+    configuracion.Entidad = this.configuracion_general.Entidad;
+    configuracion.Municipio = this.configuracion_general.Municipio;    
+    configuracion.TipoCasilla = this.configuracion_general.TipoCasilla;
+    configuracion.SeccionElectoral = this.configuracion_general.SeccionElectoral;  
+    
     this.service.imprimirBoleta(configuracion).subscribe(resp => {
-      console.log(resp);
     });
   }
 
   obtenerConfiguracion() {
+    this.configuracion_general =localStorage.getItem('configeneral');
+    this.configuracion_general = JSON.parse(this.configuracion_general);
     //CONFIGURACIONES PARA ELECCIONALES LOCALES
     this.config_gubernatura =localStorage.getItem('gubernatura');
     this.config_gubernatura = JSON.parse(this.config_gubernatura);    

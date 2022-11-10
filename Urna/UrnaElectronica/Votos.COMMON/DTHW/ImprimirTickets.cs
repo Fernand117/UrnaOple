@@ -143,5 +143,64 @@ namespace Votos.COMMON.DTHW
 
             return mensaje;
         }
+
+        // ************************************************************************************************************************************************************
+
+        public string estructuraBoletaResultados(BoletaInicialRequest _boletas)
+        {
+            BoletaInicialRequest boletaDto = new BoletaInicialRequest()
+            {
+                CantidadBoletas = _boletas.CantidadBoletas,
+                TipoCasilla = _boletas.TipoCasilla,
+                Distrito = _boletas.Distrito,
+                Entidad = _boletas.Entidad,
+                Folio = _boletas.Folio,
+                Municipio = _boletas.Municipio,
+                Partidos = _boletas.Partidos,
+                SeccionElectoral = _boletas.SeccionElectoral,
+                TipoEleccion = _boletas.TipoEleccion,
+                Presidente = _boletas.Presidente,
+                Secretario = _boletas.Secretario,
+                PrimerEscrutador = _boletas.PrimerEscrutador,
+                SegundoEscrutador = _boletas.SegundoEscrutador
+            };
+
+            string cabezera = "             OPLE VERACRUZ\n";
+            string mensajeHead = "ACTA DE CÓMPUTO DE CASILLA\n\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day +
+                               "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" +
+                               DateTime.Now.Second + "hrs." + "\n";
+            string eleccion = "Tipo elección: " + boletaDto.TipoEleccion + "\n";
+            string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "\nMunicipio: " +
+                              boletaDto.Municipio + "\n";
+            string datosDos = "Sección: " + boletaDto.SeccionElectoral + "  Casilla: " + boletaDto.TipoCasilla + "\n";
+            string separadorUno = "------------------------------------------------\n";
+            string headPartidos = "Clausura";
+            var lp = boletaDto.Partidos.ToList();
+            string partidos = "";
+            string partidosFirmas = "";
+            foreach (var p in lp)
+            {
+                partidos = partidos + "\n" + "Partido: " + p.Hipocoristico + "\n" + "Votos: 0\n";
+
+                partidosFirmas += p.Propietario + "\n" + separadorUno + "       RPP: " + p.Hipocoristico +
+                                  ": Nombre y Firma\n\n\n";
+            }
+
+            string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +
+                                boletaDto.Presidente + "\n" + separadorUno + "        Presidente(a): Nombre y Firma\n\n\n";
+            string secretario = boletaDto.Secretario + "\n" + separadorUno + "      Secretario(a): Nombre y Firma\n\n\n";
+            string escrutadorUno = boletaDto.PrimerEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 1: Nombre y Firma\n\n\n";
+            string escrutadorDos = boletaDto.SegundoEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 2: Nombre y Firma \n\n\n" + separadorUno +
+                                   "Representantes de Partidos Políticos\n\n\n";
+
+            mensaje = cabezera + mensajeHead + fechaHora + eleccion + datosUno + datosDos + separadorUno + headPartidos + partidos +
+                      presidente + secretario + escrutadorUno + escrutadorDos + partidosFirmas;
+
+            return mensaje;
+        }
+
     }
 }

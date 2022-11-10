@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Urna.DAL.Migrations
 {
-    public partial class dbOple_update_requests : Migration
+    public partial class update_dbOple : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

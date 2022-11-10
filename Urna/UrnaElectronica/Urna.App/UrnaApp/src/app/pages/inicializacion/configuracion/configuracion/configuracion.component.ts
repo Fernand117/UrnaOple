@@ -25,13 +25,15 @@ export class ConfiguracionComponent implements OnInit {
     this.deleteBoletas();
   }
 
+  //ELIMINAR DATOS DE LA BASE DE DATOS LOCAL
   deleteBoletas() {
     this.service.deleteDataBoletas().subscribe(resp => {
-      console.log(resp);
     });
   }
 
+  //INSERTAR EN LA BASE DE DATOS LA CANTIDADA DE BOLETAS PARA CADA TIPO DE ELECCIÓN
   setContadorBoletas(info: any) {
+    console.log(info);
     let request = {
       CantidadBoletas: info.CantidadBoletas,
       TipoEleccion: info.TipoEleccion
@@ -51,8 +53,7 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   configuracion_eleccioneslocales() {   
-    localStorage.setItem('categoria', this.confi.Categoria);       
-    let info = this.confi.Elecciones;
+    let info = this.confi.Elecciones;    
     for (let i = 0; i < info.length; i++) {
       this.setContadorBoletas(info[i]);
       if(info[i].TipoEleccion === 'Diputaciones') {
@@ -66,7 +67,6 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   configuracion_eleccionesEscolares() {
-    localStorage.setItem('categoria', this.confi.Categoria);           
     let info = this.confi.Escolares;
     localStorage.setItem('escolares', JSON.stringify(info));    
     let request = {
@@ -80,7 +80,6 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   configuracion_mecanismos_ciudadania() {
-    localStorage.setItem('categoria', this.confi.Categoria);       
     let info = this.confi.Mecanismos;
     for (let i = 0; i < info.length; i++) {
       this.setContadorBoletas(info[i]);
@@ -96,29 +95,42 @@ export class ConfiguracionComponent implements OnInit {
 
   descargarConfiguracion() {
     this.service.getConfiguracion(this.keyboard.value).subscribe((resp) => {
-      this.respuesta = resp;
-      this.confi = this.respuesta.data.configuraciones;
-      this.confi = JSON.parse(this.confi);
+      this.respuesta = resp;      
+      this.respuesta = this.respuesta.data;
+      localStorage.setItem('configeneral', this.respuesta);          
+      if (this.respuesta.configuraciones == null) {
+        this.mostrar_mensaje_error();
+      }  
+      this.confi = this.respuesta.configuraciones;
+      localStorage.setItem('configeneral', this.confi);          
+      this.confi = JSON.parse(this.confi);    
       
-      localStorage.setItem('categoria', this.confi.Categoria);      
-      if(this.confi.Categoria === 'Procesos locales electorales') {
+      localStorage.setItem('categoria', this.respuesta.categoria);      
+      if(this.respuesta.categoria === 'Procesos locales electorales') {
         this.configuracion_eleccioneslocales();
         this.route.navigate(['/boleta-inicializacion']);
-      } else if (this.confi.Categoria === "Elecciones escolares") {
+      } else if (this.respuesta.categoria === "Elecciones escolares") {
         localStorage.clear();
         this.route.navigate(['/boleta-inicializacion']);  
         this.configuracion_eleccionesEscolares();
-      } else if (this.confi.Categoria === "Mecanismos de participación ciudadana") {
+      } else if (this.respuesta.categoria === "Mecanismos de participación ciudadana") {
         localStorage.clear();
         this.configuracion_mecanismos_ciudadania();
         this.route.navigate(['/boleta-inicializacion']);
       }
     }, error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Código de configuración no valido'
-      })
+      this.mostrar_mensaje_error();
     });
   }
+
+  mostrar_mensaje_error() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Tarjeta no autorizada',
+      text: 'Por favor inténtelo de nuevo',
+      timer: 1000,
+      showConfirmButton: false
+    });
+  }
+
 }

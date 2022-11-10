@@ -16,6 +16,7 @@ export class ActaCierreComponent implements OnInit {
   config_referendum?: any;
   config_plebiscito?: any;
   config_consulta?: any;
+  configuracion_general: any;
   votosgub: any;
   votosayu: any;
   votosdip: any;
@@ -23,8 +24,9 @@ export class ActaCierreComponent implements OnInit {
   votosref: any;
   votosples: any;
   votoscons: any;
-
   votosesc: any;
+
+  votosRequest: any;
 
   constructor(private route:Router, private service: ConfiguracionApiService) { }
 
@@ -39,24 +41,39 @@ export class ActaCierreComponent implements OnInit {
     this.resultadosEsc();
   }
 
+  obtenerVotos(votos: any) {
+    this.votosRequest = votos;    
+  }
+
+  imprimirBoleta(configuracion: any) {        
+    this.configuracion_general.Partidos = this.votosRequest;
+    this.configuracion_general.TipoEleccion = configuracion.TipoEleccion;
+    this.configuracion_general.Folio = configuracion.Folio;
+    this.configuracion_general.CantidadBoletas = configuracion.CantidadBoletas;
+    delete this.configuracion_general['Elecciones'];
+    console.log(this.configuracion_general);
+    // this.service.imprimirBoleta(configuracion).subscribe(resp => {
+    //   console.log(resp);
+    // });
+  }
+
   votosGub() {
-    this.service.getVotosGubernatura().subscribe(resp => {
+    this.service.getVotosByTipo('gubernatura').subscribe(resp => {
       this.votosgub = resp;
       this.votosgub = this.votosgub.data;
     });
   }
 
   votosDip() {
-    this.service.getVotosDiputacion().subscribe(resp => {
+    this.service.getVotosByTipo('diputacion').subscribe(resp => {
       this.votosdip = resp;
       this.votosdip = this.votosdip.data;
     });
   }
 
   votosAyu() {
-    this.service.getVotosAyuntamiento().subscribe(resp => {
+    this.service.getVotosByTipo('ayuntamiento').subscribe(resp => {
       this.votosayu = resp;
-      
       this.votosayu = this.votosayu.data;
     });
   }
@@ -89,8 +106,9 @@ export class ActaCierreComponent implements OnInit {
     })
   }
 
-
   obtenerConfiguracion() {
+    this.configuracion_general =localStorage.getItem('configeneral');
+    this.configuracion_general = JSON.parse(this.configuracion_general);
     //CONFIGURACIONES PARA ELECCIONALES LOCALES
     this.config_gubernatura =localStorage.getItem('gubernatura');
     this.config_gubernatura = JSON.parse(this.config_gubernatura);    
@@ -104,7 +122,6 @@ export class ActaCierreComponent implements OnInit {
     this.config_escolares = JSON.parse(this.config_escolares);
 
     //CONFIGURACIONES MECANISMOS DE PARTICIPACIÓN CIUDADANA
-
     this.config_referendum =localStorage.getItem('referendum');
     this.config_referendum = JSON.parse(this.config_referendum);
     this.config_plebiscito =localStorage.getItem('presbicito');
@@ -112,8 +129,6 @@ export class ActaCierreComponent implements OnInit {
     this.config_consulta =localStorage.getItem('consulta');
     this.config_consulta = JSON.parse(this.config_consulta);
   }  
-
-  imprimirBoleta(configuracion: any) { }
 
   finalizar() {
     this.route.navigate(['/bienvenido']);

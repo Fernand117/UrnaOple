@@ -22,8 +22,11 @@ export class CardComponent implements OnInit {
   keyboard: KeyboardComponent = new KeyboardComponent;
   candidatoSeleccionado: any = "";
   voto: boolean = false;
+  configuracion_general: any;
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.configuracion_general = localStorage.getItem('configeneral');
+    this.configuracion_general = JSON.parse(this.configuracion_general);
     if (this.num_boletas = 0) {
       this.route.navigate(['/clausura']);
     }
@@ -41,13 +44,13 @@ export class CardComponent implements OnInit {
         "Partido": this.candidatoSeleccionado.Hipocoristico.toString(),
         "Voto": "1",
         "TipoEleccion": this.partidos.TipoEleccion,
-        "Entidad": this.partidos.Entidad,
-        "Distrito": this.partidos.Distrito,
-        "Municipio": this.partidos.Municipio,
-        "Seccion": this.partidos.SeccionElectoral,
-        "Casilla": this.partidos.TipoCasilla,
+        "Entidad": this.configuracion_general.Entidad,
+        "Distrito": this.configuracion_general.Distrito,
+        "Municipio": this.configuracion_general.Municipio,
+        "Seccion": this.configuracion_general.SeccionElectoral,
+        "Casilla": this.configuracion_general.TipoCasilla,
         "Folio": this.partidos.Folio
-      }
+      }      
       this.service.setVoto(request, this.name).subscribe((resp) => {
         this.updateCantidadBoletas();
         this.msjSuccess();
@@ -65,11 +68,11 @@ export class CardComponent implements OnInit {
         "Partido": this.keyboard.value,
         "Voto": "1",
         "TipoEleccion": this.partidos.TipoEleccion,
-        "Entidad": this.partidos.Entidad,
-        "Distrito": this.partidos.Distrito,
-        "Municipio": this.partidos.Municipio,
-        "Seccion": this.partidos.SeccionElectoral,
-        "Casilla": this.partidos.TipoCasilla,
+        "Entidad": this.configuracion_general.Entidad,
+        "Distrito": this.configuracion_general.Distrito,
+        "Municipio": this.configuracion_general.Municipio,
+        "Seccion": this.configuracion_general.SeccionElectoral,
+        "Casilla": this.configuracion_general.TipoCasilla,
         "Folio": this.partidos.Folio
       }
       this.service.setVoto(request, this.name).subscribe((resp) => {
@@ -91,13 +94,16 @@ export class CardComponent implements OnInit {
         "Partido": "Voto nulo",
         "Voto": "1",
         "TipoEleccion": this.partidos.TipoEleccion,
-        "Entidad": this.partidos.Entidad,
-        "Distrito": this.partidos.Distrito,
-        "Municipio": this.partidos.Municipio,
-        "Seccion": this.partidos.SeccionElectoral,
-        "Casilla": this.partidos.TipoCasilla,
+        "Entidad": this.configuracion_general.Entidad,
+        "Distrito": this.configuracion_general.Distrito,
+        "Municipio": this.configuracion_general.Municipio,
+        "Seccion": this.configuracion_general.SeccionElectoral,
+        "Casilla": this.configuracion_general.TipoCasilla,
         "Folio": this.partidos.Folio
       }
+
+      console.log(request);
+      
       this.service.setVoto(request, this.name).subscribe((resp) => {
         this.updateCantidadBoletas();
         this.msjSuccess();
