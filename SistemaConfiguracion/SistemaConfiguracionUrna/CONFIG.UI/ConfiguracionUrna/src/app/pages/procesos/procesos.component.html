@@ -2,11 +2,173 @@
 <app-menu></app-menu>
 
 <div class="contenedor">
-    <div class="title">
-        <h3>Lista de configuraciones de procesos electorales locales</h3>
+  <div class="title">
+    <button class="btn btnBack" [routerLink]="['/elecciones']">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+           viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </button>
+    <h3 id="lbMensaje">Crear una nueva configuración.</h3>
+    <button class="btn btn-primary" (click)="configurarDatosGenerales()">Guardar configuración.</button>
+  </div>
+  <div class="tabs">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+                role="tab" aria-controls="nav-home">Datos generales
+        </button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+                role="tab" aria-controls="nav-profile">Lista de elecciones
+        </button>
+        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button"
+                role="tab" aria-controls="nav-contact">Configuraciones
+        </button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+        <div class="form">
+
+          <h5>Funcionariado de mesas directivas de casilla.</h5>
+          <input type="text" name="presidente" id="presidente" placeholder="Presidente" class="form-control"
+                 [(ngModel)]="procesos.Presidente">
+          <input type="text" name="secretario" id="secretario" placeholder="Secretario" class="form-control"
+                 [(ngModel)]="procesos.Secretario">
+          <input type="text" name="primero" id="primero" placeholder="Primer escrutador" class="form-control"
+                 [(ngModel)]="procesos.PrimerEscrutador">
+          <input type="text" name="segundo" id="segundo" placeholder="Segundo escrutador" class="form-control"
+                 [(ngModel)]="procesos.SegundoEscrutador">
+
+          <input type="password" name="codigo" id="codigo" placeholder="Código RFID del presidente" class="form-control"
+                 [(ngModel)]="procesos.CodigoPresidente">
+        </div>
+        <div class="form">
+
+          <h5>Datos generales de la boleta</h5>
+          <input type="text" name="entidad" id="entidad" placeholder="Entidad" class="form-control"
+                 [(ngModel)]="procesos.Entidad">
+          <input type="text" name="distrito" id="distrito" placeholder="Distrito" class="form-control"
+                 [(ngModel)]="procesos.Distrito">
+          <input type="text" name="municipio" id="municipio" placeholder="Municipio" class="form-control"
+                 [(ngModel)]="procesos.Municipio">
+          <input type="number" name="seccion" id="seccion" min="0" placeholder="Sección electoral" class="form-control"
+                 onkeypress="return /[0-9]/i.test(event.key)" [(ngModel)]="procesos.SeccionElectoral">
+
+          <h5>Tipo de casilla</h5>
+          <select name="tipo" id="tipoCasilla" class="form-select" [(ngModel)]="procesos.TipoCasilla">
+            <option value="Basica">Basica</option>
+            <option value="Contigua">Contigua</option>
+            <option value="Extraordinaria">Extraordinaria</option>
+            <option value="Especial">Especial</option>
+          </select>
+
+        </div>
+
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+        <button class="btn btn-success" (click)="agregarEleccionesToList()">Añadir proceso electoral.</button>
+        <div class="form-partidos">
+          <h5>Seleccione el tipo de proceso electoral</h5>
+          <select name="tipo" id="tipoEleccion" class="form-select" [(ngModel)]="elecciones.TipoEleccion">
+            <option value="Gubernatura">Gubernatura</option>
+            <option value="Diputaciones">Diputaciones</option>
+            <option value="Ayuntamientos">Ayuntamientos</option>
+          </select>
+
+          <input type="number" name="boletas" id="boletas" min="0" placeholder="Cantidad de boletas" class="form-control"
+                 onkeypress="return /[0-9]/i.test(event.key)" [(ngModel)]="elecciones.CantidadBoletas">
+
+          <input type="number" name="folio" id="folio" min="0" placeholder="Folio" class="form-control"
+                 onkeypress="return /[0-9]/i.test(event.key)" [(ngModel)]="elecciones.Folio">
+        </div>
+
+        <div class="mensajePar" *ngIf="partidosList === [] || partidosList.length === 0">
+          <p>Aún no hay partidos registrados.</p>
+        </div>
+
+        <div class="pat" *ngFor="let item of partidosList">
+          <div class="logo"><img src="{{item.Logotipo}}" alt="" class="imgLogo"></div>
+          <div class="propietario">
+            <h6>Propietario</h6>
+            <p>{{item.Propietario}}</p>
+          </div>
+          <div class="suplente">
+            <h6>Suplente</h6>
+            <p>{{item.Suplente}}</p>
+          </div>
+          <div class="partido">
+            <h6>Partido</h6>
+            <p>{{item.Hipocoristico}}</p>
+          </div>
+          <div class="opciones">
+            <img src="../../../../assets/img/icons8-delete-90.png" alt="" class="imgBtn" (click)="eliminarPartidoAcutal(item.Hipocoristico)">
+            <img src="../../../../assets/img/icons8-edit-90.png" alt="" class="imgBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="editarPartidoAcutal(item.Hipocoristico)">
+          </div>
+        </div>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Añadir partido</button>
+
+      </div>
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+
+        <div class="mensajePar" *ngIf="eleccionesList === [] || eleccionesList.length === 0">
+          <p>Aún no hay ningún tipo de proceso electoral configurado.</p>
+        </div>
+        <div class="pat" *ngFor="let item of eleccionesList">
+          <div class="propietario">
+            <h6>Tipo de proceso electoral</h6>
+            <p>{{item.TipoEleccion}}</p>
+          </div>
+          <div class="suplente">
+            <h6>Cantidad de boletas</h6>
+            <p>{{item.CantidadBoletas}}</p>
+          </div>
+          <div class="partido">
+            <h6>Folio</h6>
+            <p>{{item.Folio}}</p>
+          </div>
+          <div class="opciones"></div>
+        </div>
+      </div>
     </div>
-    <div class="list"></div>
-    <div class="btnGroup">
-        <button class="btn" [routerLink]="['/elecciones/procesos/nuevo']">Registrar</button>
+  </div>
+</div>
+
+<!-- MODAL PARA AÑADIR PARTIDOS -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Añadir nuevo partido</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-partido">
+          <input type="text" class="form-control" name="propietario" id="propietario" placeholder="Propietario" [(ngModel)]="partidos.Propietario">
+          <input type="text" class="form-control" name="suplente" id="suplente" placeholder="Suplente" [(ngModel)]="partidos.Suplente">
+          <input type="text" class="form-control" name="hipocoristico" id="hipocoristico" placeholder="Hipocoristico" [(ngModel)]="partidos.Hipocoristico">
+          <input type="text" class="form-control" name="cargo" id="cargo" placeholder="Cargo" [(ngModel)]="partidos.Cargo">
+          <select name="tipo" id="tipo" class="form-select" [(ngModel)]="partidos.TipoCandidatura">
+            <option value="Candidatura registrada">Candidatura registrada</option>
+            <option value="No Registrado">No registrado</option>
+            <option value="Coalición">Coalición</option>
+            <option value="Candidatura Independiente">Candidatura independiente</option>
+          </select>
+        </div>
+        <div class="form-partido">
+          <input #file type="file" accept='image/*' (change)="preview(file.files)" name="logo" id="logo"
+                 class="form-control">
+          <img [src]="imgURL" alt="" class="imgLogo" id="imgLogoOple" width="350px" height="200px">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelarAgregarOEdiccionPartido()">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="agregarPartidosToList()">Guardar</button>
+      </div>
     </div>
+  </div>
 </div>

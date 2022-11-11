@@ -13,6 +13,7 @@ namespace Urna.COMMON.DTOS.Elecciones
         public string Municipio { get; set; }
         public string SeccionElectoral { get; set; }
         public string TipoCasilla { get; set; }
+        public string CodigoPresidente { get; set; }
         public List<DAL.Entities.Elecciones> Elecciones { get; set; }
     }
 }

@@ -11,12 +11,13 @@ import { EleccionesComponent } from './pages/elecciones/elecciones.component';
 import { ProcesosComponent } from './pages/procesos/procesos.component';
 import { ParticipacionComponent } from './pages/participacion/participacion.component';
 import { EscolaresComponent } from './pages/escolares/escolares.component';
-import { AdminComponent } from './pages/procesos/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { CloudinaryModule } from '@cloudinary/ng';
 import { MecanismosadminComponent } from './pages/mecanismosadmin/mecanismosadmin.component';
+
 import localeEs from '@angular/common/locales/es';
+
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs, 'es');
 
@@ -31,7 +32,6 @@ registerLocaleData(localeEs, 'es');
     ProcesosComponent,
     ParticipacionComponent,
     EscolaresComponent,
-    AdminComponent,
     MecanismosadminComponent
   ],
   imports: [
@@ -39,7 +39,7 @@ registerLocaleData(localeEs, 'es');
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    CloudinaryModule
+    CloudinaryModule,
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
