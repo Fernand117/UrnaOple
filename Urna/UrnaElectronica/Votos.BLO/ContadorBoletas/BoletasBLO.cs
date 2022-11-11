@@ -82,6 +82,24 @@ namespace Votos.BLO.ContadorBoletas
             return apiResponse;
         }
 
+        public async Task<ApiResponse> Print_Clausura(BoletaFinalRequest request)
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new BoletasDAO().ImprimirBoletaFinal(request);
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
+
         public async Task<ApiResponse> Delete()
         {
             ApiResponse apiResponse = new ApiResponse();

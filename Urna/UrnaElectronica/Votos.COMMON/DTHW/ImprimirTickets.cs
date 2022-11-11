@@ -29,6 +29,15 @@ namespace Votos.COMMON.DTHW
             pd.Print();
         }
 
+        public void imprimirBoletaCierre(BoletaFinalRequest request)
+        {
+            mensaje = estructuraBoletaResultados(request);
+            Console.WriteLine(mensaje);
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += Pd_PrintPage;
+            pd.Print();
+        }
+
         private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -146,9 +155,9 @@ namespace Votos.COMMON.DTHW
 
         // ************************************************************************************************************************************************************
 
-        public string estructuraBoletaResultados(BoletaInicialRequest _boletas)
+        public string estructuraBoletaResultados(BoletaFinalRequest _boletas)
         {
-            BoletaInicialRequest boletaDto = new BoletaInicialRequest()
+            BoletaFinalRequest boletaDto = new BoletaFinalRequest()
             {
                 CantidadBoletas = _boletas.CantidadBoletas,
                 TipoCasilla = _boletas.TipoCasilla,
@@ -181,10 +190,7 @@ namespace Votos.COMMON.DTHW
             string partidosFirmas = "";
             foreach (var p in lp)
             {
-                partidos = partidos + "\n" + "Partido: " + p.Hipocoristico + "\n" + "Votos: 0\n";
-
-                partidosFirmas += p.Propietario + "\n" + separadorUno + "       RPP: " + p.Hipocoristico +
-                                  ": Nombre y Firma\n\n\n";
+                partidos = partidos + "\n" + "Partido: " + p.partido + "\n" + "Votos: " + p.voto + "\n";
             }
 
             string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +

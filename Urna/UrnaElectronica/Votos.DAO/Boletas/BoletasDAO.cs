@@ -128,6 +128,40 @@ namespace Votos.DAO.Boletas
             return request;
         }
 
+        public async Task<BoletaFinalRequest> ImprimirBoletaFinal(BoletaFinalRequest request)
+        {
+            try
+            {
+                BoletaFinalRequest boletaFinalRequest = new BoletaFinalRequest()
+                {
+                    CantidadBoletas = request.CantidadBoletas,
+                    TipoCasilla = request.TipoCasilla,
+                    Distrito = request.Distrito,
+                    Entidad = request.Entidad,
+                    Folio = request.Folio,
+                    Municipio = request.Municipio,
+                    SeccionElectoral = request.SeccionElectoral,
+                    TipoEleccion = request.TipoEleccion,
+                    Presidente = request.Presidente,
+                    Secretario = request.Secretario,
+                    PrimerEscrutador = request.PrimerEscrutador,
+                    SegundoEscrutador = request.SegundoEscrutador,
+                    Partidos = request.Partidos
+                };
+
+                ImprimirTickets imprimirTickets = new ImprimirTickets();
+                imprimirTickets.imprimirBoletaCierre(boletaFinalRequest);
+
+                MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta de clausura");
+            }
+            catch (Exception e)
+            {
+                request.TipoEleccion = e.Message;
+            }
+            return request;
+        }
+
         public async Task<BoletasRequest> Delete()
         {
             try

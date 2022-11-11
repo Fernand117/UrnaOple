@@ -36,11 +36,11 @@ namespace Votos.DAO.Ayuntamientos
 						Folio = request.Folio
 					};
 
-					/*MensajesLCD mensajesLCD = new MensajesLCD();
+					MensajesLCD mensajesLCD = new MensajesLCD();
 					mensajesLCD.sendMensaje("Votando.");
 
 					ImprimirTickets imprimirTickets = new ImprimirTickets();
-					imprimirTickets.imprimirComprobante(boletasDto);*/
+					imprimirTickets.imprimirComprobante(boletasDto);
 
 					if (voto == null)
 					{

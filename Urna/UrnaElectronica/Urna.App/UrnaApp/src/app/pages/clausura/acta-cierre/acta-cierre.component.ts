@@ -52,9 +52,9 @@ export class ActaCierreComponent implements OnInit {
     this.configuracion_general.CantidadBoletas = configuracion.CantidadBoletas;
     delete this.configuracion_general['Elecciones'];
     console.log(this.configuracion_general);
-    // this.service.imprimirBoleta(configuracion).subscribe(resp => {
-    //   console.log(resp);
-    // });
+    this.service.imprimirBoletaFinal(this.configuracion_general).subscribe(resp => {
+      console.log(resp);
+    });
   }
 
   votosGub() {
