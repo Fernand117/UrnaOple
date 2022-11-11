@@ -33,7 +33,6 @@ export class ConfiguracionComponent implements OnInit {
 
   //INSERTAR EN LA BASE DE DATOS LA CANTIDADA DE BOLETAS PARA CADA TIPO DE ELECCIÓN
   setContadorBoletas(info: any) {
-    console.log(info);
     let request = {
       CantidadBoletas: info.CantidadBoletas,
       TipoEleccion: info.TipoEleccion
@@ -97,6 +96,8 @@ export class ConfiguracionComponent implements OnInit {
     this.service.getConfiguracion(this.keyboard.value).subscribe((resp) => {
       this.respuesta = resp;      
       this.respuesta = this.respuesta.data;
+      console.log(this.respuesta.categoria);
+      
       localStorage.setItem('configeneral', this.respuesta);          
       if (this.respuesta.configuraciones == null) {
         this.mostrar_mensaje_error();
@@ -115,6 +116,7 @@ export class ConfiguracionComponent implements OnInit {
         this.configuracion_eleccionesEscolares();
       } else if (this.respuesta.categoria === "Mecanismos de participación ciudadana") {
         localStorage.clear();
+        localStorage.setItem('categoria', this.respuesta.categoria);      
         this.configuracion_mecanismos_ciudadania();
         this.route.navigate(['/boleta-inicializacion']);
       }
