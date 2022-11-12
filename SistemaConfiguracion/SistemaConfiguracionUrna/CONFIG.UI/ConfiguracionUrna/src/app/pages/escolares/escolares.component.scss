@@ -172,3 +172,15 @@
     }
   }
 }
+
+.form-partido {
+  width: 50%;
+  height: auto;
+  float: left;
+  padding: 2%;
+
+  .form-control,
+  .form-select {
+    margin-bottom: 5px;
+  }
+}

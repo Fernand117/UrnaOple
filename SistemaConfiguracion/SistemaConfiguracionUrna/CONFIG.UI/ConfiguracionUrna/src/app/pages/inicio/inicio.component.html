@@ -102,9 +102,9 @@
             <div class="modal-header">
             </div>
             <div class="modal-body">
-                <div *ngFor="let item of config?.Elecciones">
+                <div>
                     <br>
-                    <h4>Configuraciones para {{item.TipoEleccion}}</h4>
+                    <h4>Configuraciones para {{config.TipoEleccion}}</h4>
                     <table class="table table-sm">
                         <thead>
                             <tr>
@@ -118,11 +118,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{item.Distrito}}</td>
-                                <td>{{item.Entidad}}</td>
-                                <td>{{item.Municipio}}</td>
-                                <td>{{item.CantidadBoletas}}</td>
-                                <td>{{item.TipoCasilla}}</td>
+                                <td>{{config.Distrito}}</td>
+                                <td>{{config.Entidad}}</td>
+                                <td>{{config.Municipio}}</td>
+                                <td>{{config['Elecciones'][0].CantidadBoletas}}</td>
+                                <td>{{config.TipoCasilla}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -140,16 +140,16 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{item.PrimerEscrutador}}</td>
-                                <td>{{item.SegundoEscrutador}}</td>
-                                <td>{{item.Presidente}}</td>
-                                <td>{{item.Secretario}}</td>
-                                <td>{{item.Folio}}</td>
+                                <td>{{config.PrimerEscrutador}}</td>
+                                <td>{{config.SegundoEscrutador}}</td>
+                                <td>{{config.Presidente}}</td>
+                                <td>{{config.Secretario}}</td>
+                                <td>{{config.Folio}}</td>
                             </tr>
                         </tbody>
                     </table>
                     <h5>Lista de partidos</h5>
-                    <div *ngFor="let pregunta of item.Partidos">
+                    <div *ngFor="let pregunta of config['Elecciones'][0]['Partidos']">
                         <p>{{pregunta.Hipocoristico}}</p>
                     </div>
                     <hr class="solid">
@@ -247,7 +247,7 @@
                        <p>{{partido.Hipocoristico}}</p>
                    </div>
                 </div>
-             
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>

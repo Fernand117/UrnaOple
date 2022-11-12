@@ -14,6 +14,7 @@ namespace Urna.DAL.Entities
         public string SegundoEscrutador { get; set; }
         public string NombreInstitucion { get; set; }
         public string CantidadBoletas { get; set; }
+        public string CodigoPresidente { get; set; }
         public List<Partidos.Partidos> Partidos { get; set; }
     }
 }
