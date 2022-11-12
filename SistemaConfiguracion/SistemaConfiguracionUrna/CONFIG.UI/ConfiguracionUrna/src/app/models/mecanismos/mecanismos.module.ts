@@ -10,10 +10,6 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class MecanismosModule {
-  public TipoMecanismo: string;
-  public Nombre: string;
-  public Objeto: string;
-  public CantidadBoletas: string;
   public Presidente: string;
   public Secretario: string;
   public PrimerEscrutador: string;
@@ -22,15 +18,9 @@ export class MecanismosModule {
   public Distrito: string;
   public Municipio: string;
   public Seccion: string;
-  public Folio: string;
-  public Firmas: any[];
-  public Preguntas: any[];
+  public TipoMecanismos: any[];
 
   constructor() {
-    this.TipoMecanismo = "";
-    this.Nombre = "";
-    this.Objeto = "";
-    this.CantidadBoletas = "";
     this.Presidente = "";
     this.Secretario = "";
     this.PrimerEscrutador = "";
@@ -39,7 +29,6 @@ export class MecanismosModule {
     this.Distrito = "";
     this.Municipio = "";
     this.Seccion = "";
-    this.Folio = "";
-    this.Preguntas = [];
+    this.TipoMecanismos = [];
   }
 }

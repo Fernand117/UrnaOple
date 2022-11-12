@@ -8,6 +8,5 @@ namespace Urna.DAL.Entities.Preguntas
     {
         public int Id { get; set; }
         public string Pregunta { get; set; }
-
     }
 }

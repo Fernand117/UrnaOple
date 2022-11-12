@@ -6,7 +6,7 @@ import { EleccionesComponent } from './pages/elecciones/elecciones.component';
 import { ProcesosComponent } from './pages/procesos/procesos.component';
 import { ParticipacionComponent } from './pages/participacion/participacion.component';
 import { EscolaresComponent } from './pages/escolares/escolares.component';
-import { MecanismosadminComponent } from './pages/mecanismosadmin/mecanismosadmin.component';
+import {MecanismosComponent} from "./pages/mecanismos/mecanismos.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,11 +15,11 @@ const routes: Routes = [
 
   // Rutas para acceso a las elecciones
   { path: 'elecciones/procesos', component: ProcesosComponent },
+  { path: 'elecciones/mecanismos', component: MecanismosComponent},
   { path: 'elecciones/participacion', component: ParticipacionComponent },
   { path: 'elecciones/escolares', component: EscolaresComponent },
 
   // Rutas para la administración de las elecciones
-  { path: 'elecciones/mecanismos/nuevo', component: MecanismosadminComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];
 

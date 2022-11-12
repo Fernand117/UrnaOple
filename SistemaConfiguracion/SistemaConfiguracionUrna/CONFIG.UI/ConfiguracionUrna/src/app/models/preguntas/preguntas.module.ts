@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class PreguntasModule {
-  public pregunta: string;
+  public Pregunta: string;
   constructor() {
-    this.pregunta = "";
+    this.Pregunta = "";
   }
 }

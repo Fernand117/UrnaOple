@@ -17,10 +17,10 @@ namespace Urna.Api.Controllers.Mecanismo
         public async Task<ActionResult<ApiResponse>> Get(string codigo) => await new MecanismoBLO().Read(codigo);
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>> Post([FromBody] MecanismoRequest request) => await new MecanismoBLO().Create(request);
+        public async Task<ActionResult<ApiResponse>> Post([FromBody] ConfiguracionMecanismosRequest request) => await new MecanismoBLO().Create(request);
 
         [HttpPut]
-        public async Task<ActionResult<ApiResponse>> Put([FromBody] MecanismoRequest request) => await new MecanismoBLO().Update(request);
+        public async Task<ActionResult<ApiResponse>> Put([FromBody] ConfiguracionMecanismosRequest request) => await new MecanismoBLO().Update(request);
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<ApiResponse>> Delete(int id) => await new MecanismoBLO().Delete(id);

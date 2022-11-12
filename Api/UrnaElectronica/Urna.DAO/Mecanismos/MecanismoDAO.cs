@@ -14,7 +14,7 @@ namespace Urna.DAO.Mecanismos
 {
     public class MecanismoDAO
     {
-        public async Task<MecanismoRequest> Create(MecanismoRequest request)
+        public async Task<ConfiguracionMecanismosRequest> Create(ConfiguracionMecanismosRequest request)
         {
 			try
 			{
@@ -26,7 +26,7 @@ namespace Urna.DAO.Mecanismos
 						Fecha = DateTime.Now,
 						Codigo = codigo,
 						Categoria = request.Categoria,
-						Configuraciones = JsonSerializer.Serialize(request)
+						Configuraciones = JsonSerializer.Serialize(request.Mecanismos)
 					};
 
 					await context.AddAsync(configuracion);
@@ -57,7 +57,7 @@ namespace Urna.DAO.Mecanismos
 							Fecha = m.Fecha,
 							Codigo = m.Codigo,
 							Categoria = m.Categoria,
-							Configuraciones = JsonSerializer.Serialize(m)
+							Configuraciones = JsonSerializer.Serialize(m.Configuraciones)
 						});
 					}
 				}
@@ -90,7 +90,7 @@ namespace Urna.DAO.Mecanismos
 			return response;
 		}
 
-		public async Task<MecanismoRequest> Update(MecanismoRequest request)
+		public async Task<ConfiguracionMecanismosRequest> Update(ConfiguracionMecanismosRequest request)
 		{
 			try
 			{
@@ -100,7 +100,7 @@ namespace Urna.DAO.Mecanismos
 											  .Where(m => m.Id == request.Id)
 											  .FirstOrDefaultAsync();
 
-					config.Configuraciones = JsonSerializer.Serialize(request);
+					config.Configuraciones = JsonSerializer.Serialize(request.Mecanismos);
 
 					await context.SaveChangesAsync();
 				}
@@ -110,7 +110,7 @@ namespace Urna.DAO.Mecanismos
 			return request;
 		}
 
-		public async Task<MecanismoRequest> Delete(int id)
+		public async Task<ConfiguracionMecanismosRequest> Delete(int id)
 		{
 			try
 			{
@@ -129,7 +129,7 @@ namespace Urna.DAO.Mecanismos
 			}
 			catch (Exception ex) { }
 
-			return new MecanismoRequest()
+			return new ConfiguracionMecanismosRequest()
 			{
 				Id = id
 			};

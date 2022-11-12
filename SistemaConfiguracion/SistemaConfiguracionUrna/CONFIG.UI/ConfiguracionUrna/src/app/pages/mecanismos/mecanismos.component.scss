@@ -23,48 +23,34 @@
   width: 50%;
   height: auto;
   float: left;
-  padding: 2%;
-
-  .form-control {
-    margin-bottom: 5px;
-  }
-}
-
-.form-partidos {
-  width: 100%;
-  height: auto;
-  padding: 2%;
-
+  padding: 10px;
   .form-control,
   .form-select {
     margin-bottom: 5px;
   }
 }
 
-.mensajePar {
+.btn {
+  margin: 10px;
+  float: right;
+}
+
+.form-mecanismos {
+  width: 100%;
+  height: auto;
+  padding: 2%;
+  .form-control,
+  .form-select {
+    margin-bottom: 5px;
+  }
+}
+
+.mensajeMeca {
   width: 100%;
   height: auto;
   margin: 2%;
   text-align: center;
 }
-
-.btn {
-  float: right;
-  margin: 10px;
-}
-
-.form-partido {
-  width: 50%;
-  height: auto;
-  float: left;
-  padding: 2%;
-
-  .form-control,
-  .form-select {
-    margin-bottom: 5px;
-  }
-}
-
 
 .pat {
   width: 100%;

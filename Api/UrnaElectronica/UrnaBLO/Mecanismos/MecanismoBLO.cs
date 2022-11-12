@@ -11,7 +11,7 @@ namespace Urna.BLO.Mecanismos
 {
     public class MecanismoBLO
     {
-        public async Task<ApiResponse> Create(MecanismoRequest request)
+        public async Task<ApiResponse> Create(ConfiguracionMecanismosRequest request)
         {
             ApiResponse apiResponse = new ApiResponse();
             try
@@ -68,7 +68,7 @@ namespace Urna.BLO.Mecanismos
             return apiResponse;
         }
 
-        public async Task<ApiResponse> Update(MecanismoRequest request)
+        public async Task<ApiResponse> Update(ConfiguracionMecanismosRequest request)
         {
             ApiResponse apiResponse = new ApiResponse();
             try

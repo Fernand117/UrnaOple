@@ -40,10 +40,6 @@ export class ProcesosComponent implements OnInit {
   private consultaPartidoActual: any;
   private resConsultaPartidoActual: any;
 
-  // VARIABLES PARA CONSULTAR LA CONFIGURACION ACTUAL DE LA LISTA DE CONFIGURACIONES
-  private consultaConfiguracionActual: any;
-  private resConsultaConfiguracionActual: any;
-
   // MANEJADORES DE ESTADOS DE EDICCIÓN
   private MODO_EDICCION_PARTIDO: boolean;
   private MODO_EDICCION_CONFIGURACION: boolean;
@@ -260,7 +256,6 @@ export class ProcesosComponent implements OnInit {
   }
 
   public eliminarPartidoAcutal(hipocoristico: string) {
-
     Swal.fire({
       title: hipocoristico,
       text: "¿Desea eliminar este partido?",

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MecanismosadminComponent } from './mecanismosadmin.component';
+import { MecanismosComponent } from './mecanismos.component';
 
-describe('MecanismosadminComponent', () => {
-  let component: MecanismosadminComponent;
-  let fixture: ComponentFixture<MecanismosadminComponent>;
+describe('MecanismosComponent', () => {
+  let component: MecanismosComponent;
+  let fixture: ComponentFixture<MecanismosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MecanismosadminComponent ]
+      declarations: [ MecanismosComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MecanismosadminComponent);
+    fixture = TestBed.createComponent(MecanismosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

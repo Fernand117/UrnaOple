@@ -14,11 +14,11 @@ import { EscolaresComponent } from './pages/escolares/escolares.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { CloudinaryModule } from '@cloudinary/ng';
-import { MecanismosadminComponent } from './pages/mecanismosadmin/mecanismosadmin.component';
 
 import localeEs from '@angular/common/locales/es';
 
 import { registerLocaleData } from '@angular/common';
+import { MecanismosComponent } from './pages/mecanismos/mecanismos.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -32,7 +32,7 @@ registerLocaleData(localeEs, 'es');
     ProcesosComponent,
     ParticipacionComponent,
     EscolaresComponent,
-    MecanismosadminComponent
+    MecanismosComponent
   ],
   imports: [
     BrowserModule,
