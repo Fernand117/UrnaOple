@@ -20,6 +20,15 @@ namespace Votos.COMMON.DTHW
             pf.Print();
         }
 
+        public void imprimirComprobanteMecanismos(BoletasDTO request)
+        {
+            mensaje = estructuraTicketMecanismos(request);
+            Console.WriteLine(mensaje);
+            PrintDocument pf = new PrintDocument();
+            pf.PrintPage += Pf_PrintPage;
+            pf.Print();
+        }
+
         public void imprimirBoletaCeros(BoletaInicialRequest request)
         {
             mensaje = estructuraBoletaCeros(request);
@@ -111,6 +120,48 @@ namespace Votos.COMMON.DTHW
             string mensajeEstructura = cabezera + mensajeHead + fechaHora + eleccion + separadorUno
                       + datosUno + datosDos + folio + partidos + partidoNombre;
             
+            return mensajeEstructura;
+        }
+
+        public string estructuraTicketMecanismos(BoletasDTO _boletas)
+        {
+            BoletasDTO boletaDto = new BoletasDTO()
+            {
+                CantidadBoletas = _boletas.CantidadBoletas,
+                Casilla = _boletas.Casilla,
+                Distrito = _boletas.Distrito,
+                Entidad = _boletas.Entidad,
+                Folio = _boletas.Folio,
+                Municipio = _boletas.Municipio,
+                Partido = _boletas.Partido,
+                Seccion = _boletas.Seccion,
+                TipoEleccion = _boletas.TipoEleccion,
+                RespuestaSi = _boletas.RespuestaSi
+            };
+
+            string cabezera = "           OPLE VERACRUZ\n";
+            string mensajeHead = "      Comprobante de votación\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "hrs." + "\n";
+            string eleccion = "Tipo de mecanismo: " + boletaDto.TipoEleccion + "\n";
+            string separadorUno = "------------------------------------------------\n";
+            string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "\n";
+            string datosDos = "Sección: " + boletaDto.Seccion + "  Folio: " + boletaDto.Folio + "\n";
+            string folio = "Municipio: " + boletaDto.Municipio + "\n\n";
+            string partidos = "      Votaste por la pregunta\n\n";
+            string partidoNombre = "     " + boletaDto.Partido + "\n";
+            string respuesta = boletaDto.RespuestaSi;
+            string res = "";
+            if (respuesta == "1")
+            {
+                res = "      Si";
+            } else
+            {
+                res = "      No";
+            }
+
+            string mensajeEstructura = cabezera + mensajeHead + fechaHora + eleccion + separadorUno
+                      + datosUno + datosDos + folio + partidos + partidoNombre + res;
+
             return mensajeEstructura;
         }
 
