@@ -160,6 +160,32 @@ namespace Votos.DAO.Boletas
             return request;
         }
 
+        public async Task<BoletaInicialRequest> ImprimirBoletaInicialEscolares(BoletaInicialRequest request)
+        {
+            try
+            {
+                BoletaInicialRequest boletaInicialRequest = new BoletaInicialRequest()
+                {
+                    Presidente = request.Presidente,
+                    Secretario = request.Secretario,
+                    PrimerEscrutador = request.PrimerEscrutador,
+                    SegundoEscrutador = request.SegundoEscrutador,
+                    Partidos = request.Partidos
+                };
+
+                ImprimirTickets imprimirTickets = new ImprimirTickets();
+                imprimirTickets.imprimirBoletaCerosEscolares(boletaInicialRequest);
+
+                MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta inicial");
+            }
+            catch (Exception e)
+            {
+                request.TipoEleccion = e.Message;
+            }
+            return request;
+        }
+
         public async Task<BoletaFinalRequest> ImprimirBoletaFinal(BoletaFinalRequest request)
         {
             try
@@ -222,6 +248,32 @@ namespace Votos.DAO.Boletas
             catch (Exception e)
             {
                 request.MecanismoTipo = e.Message;
+            }
+            return request;
+        }
+
+        public async Task<BoletaFinalRequest> ImprimirBoletaFinalEscolares(BoletaFinalRequest request)
+        {
+            try
+            {
+                BoletaFinalRequest boletaFinalRequest = new BoletaFinalRequest()
+                {
+                    Presidente = request.Presidente,
+                    Secretario = request.Secretario,
+                    PrimerEscrutador = request.PrimerEscrutador,
+                    SegundoEscrutador = request.SegundoEscrutador,
+                    Partidos = request.Partidos
+                };
+
+                ImprimirTickets imprimirTickets = new ImprimirTickets();
+                imprimirTickets.imprimirBoletaCierreEscolares(boletaFinalRequest);
+
+                MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta de clausura");
+            }
+            catch (Exception e)
+            {
+                request.TipoEleccion = e.Message;
             }
             return request;
         }

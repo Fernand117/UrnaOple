@@ -66,7 +66,8 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   configuracion_eleccionesEscolares() {
-    let info = this.confi.Escolares;
+    let info = this.confi.Escolares;       
+    localStorage.setItem('configeneral', JSON.stringify(info[0]));          
     localStorage.setItem('escolares', JSON.stringify(info));    
     let request = {
       CantidadBoletas: info[0].CantidadBoletas,
@@ -94,12 +95,13 @@ export class ConfiguracionComponent implements OnInit {
 
   descargarConfiguracion() {
     this.service.getConfiguracion(this.keyboard.value).subscribe((resp) => {
-      this.respuesta = resp;      
-      this.respuesta = this.respuesta.data;
+      this.respuesta = resp;            
+      this.respuesta = this.respuesta.data;      
       if (this.respuesta.configuraciones == null) {
         this.mostrar_mensaje_error();
       }  
       this.confi = this.respuesta.configuraciones;      
+      
       localStorage.setItem('configeneral', this.confi);          
       this.confi = JSON.parse(this.confi);          
     

@@ -50,9 +50,8 @@ export class ActaCierreComponent implements OnInit {
     this.configuracion_general.TipoEleccion = configuracion.TipoEleccion;
     this.configuracion_general.Folio = configuracion.Folio;
     this.configuracion_general.CantidadBoletas = configuracion.CantidadBoletas;
-    delete this.configuracion_general['Elecciones'];
+    delete this.configuracion_general['Elecciones'];    
     this.service.imprimirBoletaFinal(this.configuracion_general).subscribe(resp => {
-      console.log(resp);
     });
   }
 
@@ -62,6 +61,15 @@ export class ActaCierreComponent implements OnInit {
     this.configuracion_general.Folio = configuracion.Folio;
     delete this.configuracion_general['TipoMecanismos'];
     this.service.imprimirBoletaFinalMecanismos(this.configuracion_general).subscribe(resp => {
+    });
+  }
+
+  imprimirBoletaEscolares(configuracion: any) {    
+    this.configuracion_general.Preguntas = this.votosRequest;
+    this.configuracion_general.MecanismoTipo = configuracion.MecanismoTipo;
+    this.configuracion_general.Folio = configuracion.Folio;
+    delete this.configuracion_general['TipoMecanismos'];
+    this.service.imprimirBoletaFinalEscolares(this.configuracion_general).subscribe(resp => {
       console.log(resp);
     });
   }

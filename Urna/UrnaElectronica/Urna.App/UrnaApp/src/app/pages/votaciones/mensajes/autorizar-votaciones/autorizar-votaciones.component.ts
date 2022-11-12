@@ -38,6 +38,8 @@ export class AutorizarVotacionesComponent implements OnInit {
     this.configuracion =localStorage.getItem('configeneral');
     this.configuracion = JSON.parse(this.configuracion);
     this.tarjeta_presidente = this.configuracion.CodigoPresidente;
+    console.log(this.tarjeta_presidente);
+    
   }
 
   mostrar_mensaje_error() {

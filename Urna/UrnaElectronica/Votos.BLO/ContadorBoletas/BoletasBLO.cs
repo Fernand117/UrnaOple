@@ -100,6 +100,24 @@ namespace Votos.BLO.ContadorBoletas
             return apiResponse;
         }
 
+        public async Task<ApiResponse> PrintEscolares(BoletaInicialRequest request)
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new BoletasDAO().ImprimirBoletaInicialEscolares(request);
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
+
         public async Task<ApiResponse> Print_Clausura(BoletaFinalRequest request)
         {
             ApiResponse apiResponse = new ApiResponse();
@@ -126,6 +144,24 @@ namespace Votos.BLO.ContadorBoletas
                 apiResponse.ResponseCode = Response.Success;
                 apiResponse.ResponseText = Resources.MensajeOk;
                 apiResponse.Data = await new BoletasDAO().ImprimirBoletaFinalMecanismos(request);
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
+
+        public async Task<ApiResponse> Print_Clausura_Escolares(BoletaFinalRequest request)
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new BoletasDAO().ImprimirBoletaFinalEscolares(request);
             }
             catch (Exception e)
             {

@@ -19,6 +19,14 @@ namespace Votos.COMMON.DTHW
             pf.PrintPage += Pf_PrintPage;
             pf.Print();
         }
+        public void imprimirComprobanteEscolares(BoletasDTO request)
+        {
+            mensaje = estructuraTicketEscolares(request);
+            Console.WriteLine(mensaje);
+            PrintDocument pf = new PrintDocument();
+            pf.PrintPage += Pf_PrintPage;
+            pf.Print();
+        }
 
         public void imprimirComprobanteMecanismos(BoletasDTO request)
         {
@@ -46,6 +54,14 @@ namespace Votos.COMMON.DTHW
             pd.PrintPage += Pd_PrintPage;
             pd.Print();
         }
+        public void imprimirBoletaCerosEscolares(BoletaInicialRequest request)
+        {
+            mensaje = estructuraBoletaCerosEscolares(request);
+            Console.WriteLine(mensaje);
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += Pd_PrintPage;
+            pd.Print();
+        }
 
         public void imprimirBoletaCierre(BoletaFinalRequest request)
         {
@@ -58,6 +74,15 @@ namespace Votos.COMMON.DTHW
         public void imprimirBoletaCierreMecanismos(BoletaInicialMecanismosRequest request)
         {
             mensaje = estructuraBoletaResultadosMecanismos(request);
+            Console.WriteLine(mensaje);
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += Pd_PrintPage;
+            pd.Print();
+        }
+
+        public void imprimirBoletaCierreEscolares(BoletaFinalRequest request)
+        {
+            mensaje = estructuraBoletaResultadosEscolares(request);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += Pd_PrintPage;
@@ -120,6 +145,27 @@ namespace Votos.COMMON.DTHW
             string mensajeEstructura = cabezera + mensajeHead + fechaHora + eleccion + separadorUno
                       + datosUno + datosDos + folio + partidos + partidoNombre;
             
+            return mensajeEstructura;
+        }
+
+        public string estructuraTicketEscolares(BoletasDTO _boletas)
+        {
+            BoletasDTO boletaDto = new BoletasDTO()
+            {
+                Partido = _boletas.Partido,
+            };
+
+            string cabezera = "           OPLE VERACRUZ\n";
+            string mensajeHead = "      Comprobante de votación\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "hrs." + "\n";
+            string eleccion = "Elecciones escolares: " + "\n";
+            string separadorUno = "------------------------------------------------\n";
+            string partidos = "      Votaste por el candidato\n\n";
+            string partidoNombre = "     " + boletaDto.Partido + "\n";
+
+            string mensajeEstructura = cabezera + mensajeHead + fechaHora + eleccion + separadorUno
+                      + partidos + partidoNombre;
+
             return mensajeEstructura;
         }
 
@@ -374,6 +420,89 @@ namespace Votos.COMMON.DTHW
 
             mensaje = cabezera + mensajeHead + fechaHora + eleccion + datosUno + datosDos + separadorUno + headPartidos + partidos +
                       presidente + secretario + escrutadorUno + escrutadorDos;
+            return mensaje;
+        }
+
+        // *************************************************************************************************************************************************
+
+        public string estructuraBoletaCerosEscolares(BoletaInicialRequest _boletas)
+        {
+            BoletaInicialRequest boletaDto = new BoletaInicialRequest()
+            {
+                Partidos = _boletas.Partidos,
+                Presidente = _boletas.Presidente,
+                Secretario = _boletas.Secretario,
+                PrimerEscrutador = _boletas.PrimerEscrutador,
+                SegundoEscrutador = _boletas.SegundoEscrutador
+            };
+
+            string cabezera = "             OPLE VERACRUZ\n";
+            string mensajeHead = "ACTA DE INSTALACIÓN DE CASILLA\n\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day +
+                               "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" +
+                               DateTime.Now.Second + "hrs." + "\n";
+            string eleccion = "Elecciones Escolares" + "\n";
+            string separadorUno = "------------------------------------------------\n";
+            string headPartidos = "Que en presencia del Funcionariado\nde Mesa Directiva de Casilla\ny representaciones de los partidos\npolíticos se inicializó y verificó\nque el sistema se encuentra en\nceros, así como el contenedor de\ntestigos de votos se encuentra vacío.\n" + separadorUno + "\tCandidatos escolares";
+            var lp = boletaDto.Partidos.ToList();
+            string partidos = "";
+            foreach (var p in lp)
+            {
+                partidos = partidos + "\n" + "Candidato: " + p.Hipocoristico + "\n" + "Votos: 0\n";
+            }
+
+            string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +
+                                boletaDto.Presidente + "\n" + separadorUno + "        Presidente(a): Nombre y Firma\n\n\n";
+            string secretario = boletaDto.Secretario + "\n" + separadorUno + "      Secretario(a): Nombre y Firma\n\n\n";
+            string escrutadorUno = boletaDto.PrimerEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 1: Nombre y Firma\n\n\n";
+            string escrutadorDos = boletaDto.SegundoEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 2: Nombre y Firma \n";
+
+            mensaje = cabezera + mensajeHead + fechaHora + eleccion + separadorUno + headPartidos + partidos +
+                      presidente + secretario + escrutadorUno + escrutadorDos;
+            return mensaje;
+        }
+
+        public string estructuraBoletaResultadosEscolares(BoletaFinalRequest _boletas)
+        {
+            BoletaFinalRequest boletaDto = new BoletaFinalRequest()
+            {
+                Partidos = _boletas.Partidos,
+                Presidente = _boletas.Presidente,
+                Secretario = _boletas.Secretario,
+                PrimerEscrutador = _boletas.PrimerEscrutador,
+                SegundoEscrutador = _boletas.SegundoEscrutador
+            };
+
+            string cabezera = "             OPLE VERACRUZ\n";
+            string mensajeHead = "ACTA DE CÓMPUTO DE CASILLA\n\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day +
+                               "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" +
+                               DateTime.Now.Second + "hrs." + "\n";
+            string eleccion = "Elecciones escolares " + "\n";
+            string separadorUno = "------------------------------------------------\n";
+            string headPartidos = "Que en presencia del Funcionariado\nde Mesa Directiva de Casilla\ny representaciones de los partidos\npolíticos se clausuró y computaron\nquedando de la siguiente manera:\n" + separadorUno + "\tVOTACIÓN " + "\n";
+            var lp = boletaDto.Partidos.ToList();
+            string partidos = "";
+            int total_votos = 0;
+            foreach (var p in lp)
+            {
+                partidos = partidos + "\n" + p.partido + "\n" + "Votos: " + p.voto + "\n";
+                total_votos = total_votos + int.Parse(p.voto);
+            }
+            string txt_total = "\n" + "VOTACIÓN TOTAL: " + total_votos;
+
+            string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +
+                                boletaDto.Presidente + "\n" + separadorUno + "        Presidente(a): Nombre y Firma\n\n\n";
+            string secretario = boletaDto.Secretario + "\n" + separadorUno + "      Secretario(a): Nombre y Firma\n\n\n";
+            string escrutadorUno = boletaDto.PrimerEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 1: Nombre y Firma\n\n\n";
+            string escrutadorDos = boletaDto.SegundoEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 2: Nombre y Firma \n";
+
+            mensaje = cabezera + mensajeHead + fechaHora + eleccion  + separadorUno + headPartidos + partidos +
+                      txt_total + presidente + secretario + escrutadorUno + escrutadorDos;
             return mensaje;
         }
 

@@ -36,10 +36,10 @@ namespace Votos.DAO.Escolares
                     };
 
                     /*MensajesLCD mensajesLCD = new MensajesLCD();
-                    mensajesLCD.sendMensaje("Votando.");
+                    mensajesLCD.sendMensaje("Votando.");*/
 
                     ImprimirTickets imprimirTickets = new ImprimirTickets();
-                    imprimirTickets.imprimirComprobante(boletasDto);*/
+                    imprimirTickets.imprimirComprobanteEscolares(boletasDto);
 
                     if (voto == null)
                     {

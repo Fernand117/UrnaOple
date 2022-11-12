@@ -25,7 +25,7 @@ export class BoletaComponent implements OnInit {
     this.obtenerConfiguracion();
   }
 
-  imprimirBoleta(configuracion: any) {    
+  imprimirBoleta(configuracion: any) {        
     configuracion.Presidente = this.configuracion_general.Presidente;
     configuracion.Secretario = this.configuracion_general.Secretario;
     configuracion.PrimerEscrutador = this.configuracion_general.PrimerEscrutador;
@@ -36,6 +36,17 @@ export class BoletaComponent implements OnInit {
     configuracion.TipoCasilla = this.configuracion_general.TipoCasilla;
     configuracion.SeccionElectoral = this.configuracion_general.SeccionElectoral;      
     this.service.imprimirBoleta(configuracion).subscribe(resp => {      
+    }, (error)  => {
+    });
+  }
+
+  imprimirBoletaEscolares(configuracion: any) {   
+    let datos = this.configuracion_general;    
+    configuracion.Presidente = datos.Presidente;
+    configuracion.Secretario = datos.Secretario;
+    configuracion.PrimerEscrutador = datos.PrimerEscrutador;
+    configuracion.SegundoEscrutador = datos.SegundoEscrutador;  
+    this.service.imprimirBoletaEscolares(configuracion[0]).subscribe(resp => {      
     }, (error)  => {
     });
   }
@@ -67,7 +78,7 @@ export class BoletaComponent implements OnInit {
 
     //CONFIGURACIÓN ELECCIONES ESCOLARES
     this.config_escolares =localStorage.getItem('escolares');
-    this.config_escolares = JSON.parse(this.config_escolares);
+    this.config_escolares = JSON.parse(this.config_escolares);    
 
     //CONFIGURACIONES MECANISMOS DE PARTICIPACIÓN CIUDADANA
 
