@@ -35,8 +35,8 @@ namespace Votos.DAO.Escolares
                         Folio = request.Folio
                     };
 
-                    /*MensajesLCD mensajesLCD = new MensajesLCD();
-                    mensajesLCD.sendMensaje("Votando.");*/
+                    MensajesLCD mensajesLCD = new MensajesLCD();
+                    mensajesLCD.sendMensaje("Votando.");
 
                     ImprimirTickets imprimirTickets = new ImprimirTickets();
                     imprimirTickets.imprimirComprobanteEscolares(boletasDto);

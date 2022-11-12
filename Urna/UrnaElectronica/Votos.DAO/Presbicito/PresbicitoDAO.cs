@@ -37,8 +37,8 @@ namespace Votos.DAO.Presbicito
                         RespuestaSi = request.RespuestaSi
                     };
 
-                    /*MensajesLCD mensajesLCD = new MensajesLCD();
-                    mensajesLCD.sendMensaje("Votando.");*/
+                    MensajesLCD mensajesLCD = new MensajesLCD();
+                    mensajesLCD.sendMensaje("Votando.");
 
                     ImprimirTickets imprimirTickets = new ImprimirTickets();
                     imprimirTickets.imprimirComprobanteMecanismos(boletasDto);
