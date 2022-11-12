@@ -65,19 +65,20 @@ namespace Votos.COMMON.DTHW
             SolidBrush brush = new SolidBrush(Color.Black);
 
             //g.DrawString(mensaje, font, brush, new Rectangle(0, 0));
-            g.DrawImage(imageBit, 100, 5);
+            g.DrawImage(imageBit, 5, 5);
             g.DrawString(mensaje, font, brush, 0, 0);
         }
 
         private void Pf_PrintPage(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
-            //Image image = Image.FromFile("LOGOTIPO_OPLE.png");
+            Image image = Image.FromFile("LOGOTIPO_OPLE.png");
             Font font = new Font("Arial", 12);
 
             SolidBrush brush = new SolidBrush(Color.Black);
 
-            //g.DrawImage(image, 5, 5);
+            Bitmap imageBit = new Bitmap(image, 100, 100);
+            g.DrawImage(imageBit, 5, 5);
             g.DrawString(mensaje,
             font, brush,
             new Rectangle(0, 0, 300, 400));
