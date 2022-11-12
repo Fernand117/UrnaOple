@@ -12,5 +12,7 @@ namespace Votos.COMMON.DTOS.Boletas
         public string Seccion { get; set; }
         public string Casilla { get; set; }
         public string Folio { get; set; }
+        public string RespuestaSi { get; set; }
+
     }
 }

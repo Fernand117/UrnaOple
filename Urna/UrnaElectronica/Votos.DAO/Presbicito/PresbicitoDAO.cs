@@ -33,14 +33,15 @@ namespace Votos.DAO.Presbicito
                         Municipio = request.Municipio,
                         Seccion = request.Seccion,
                         Casilla = request.Casilla,
-                        Folio = request.Folio
+                        Folio = request.Folio,
+                        RespuestaSi = request.RespuestaSi
                     };
 
                     /*MensajesLCD mensajesLCD = new MensajesLCD();
-                    mensajesLCD.sendMensaje("Votando.");
+                    mensajesLCD.sendMensaje("Votando.");*/
 
                     ImprimirTickets imprimirTickets = new ImprimirTickets();
-                    imprimirTickets.imprimirComprobante(boletasDto);*/
+                    imprimirTickets.imprimirComprobanteMecanismos(boletasDto);
 
                     if (voto == null)
                     {

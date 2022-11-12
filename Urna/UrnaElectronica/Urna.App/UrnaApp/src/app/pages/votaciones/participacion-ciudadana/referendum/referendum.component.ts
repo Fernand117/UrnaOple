@@ -16,6 +16,7 @@ export class ReferendumComponent implements OnInit {
   voto: boolean = false;
   form: any = [];
   configuracion: any;
+  conf_gral: any;
 
   constructor(private service: ConfiguracionApiService, private route: Router, private formBuilder: FormBuilder) { }
 
@@ -33,10 +34,18 @@ export class ReferendumComponent implements OnInit {
   obtenerConfiguracion() {
     this.configuracion = localStorage.getItem(this.app_name);
     this.configuracion = JSON.parse(this.configuracion);
+    this.conf_gral =localStorage.getItem('configeneral');
+    this.conf_gral = JSON.parse(this.conf_gral);
   }
 
   anularVoto() {
     let request = {
+      Entidad: this.conf_gral.Entidad,
+      Distrito: this.conf_gral.Distrito,
+      Municipio: this.conf_gral.Municipio,
+      Seccion: this.conf_gral.SeccionElectoral,
+      Folio: this.configuracion.Folio,
+      TipoEleccion: this.configuracion.MecanismoTipo,
       Pregunta: 'Voto nulo',
       RespuestaSi: '1'
     }
@@ -50,9 +59,15 @@ export class ReferendumComponent implements OnInit {
     for (const prop in this.form.value) {
       let request =
       {
+        Entidad: this.conf_gral.Entidad,
+        Distrito: this.conf_gral.Distrito,
+        Municipio: this.conf_gral.Municipio,
+        Seccion: this.conf_gral.SeccionElectoral,
+        Folio: this.configuracion.Folio,
+        TipoEleccion: this.configuracion.MecanismoTipo,
         Pregunta: prop,
         RespuestaSi: this.form.value[prop],
-      }            
+      }                  
       this.service.setVoto(request, this.app_name).subscribe((resp) => {
         this.msjSuccess();
       }, error => {
@@ -76,7 +91,6 @@ export class ReferendumComponent implements OnInit {
       TipoEleccion: TipoEleccion
     }
     this.service.updateContadorBoletas(request).subscribe((resp) => {
-      console.log(resp);
     }, error => {
       console.log(error);
     });
