@@ -39,11 +39,29 @@ namespace Urna.DAL.Context
                       .HasColumnType("jsonb");
             });
 
+            modelBuilder.Entity<ResultadosVotacion>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                    .HasName("PK_tbResultados");
+
+                entity.ToTable("Resultados");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("Id")
+                    .UseIdentityByDefaultColumn();
+
+                entity.Property(e => e.Resultados)
+                    .HasColumnName("Resultados")
+                    .HasColumnType("jsonb");
+            });
+
         }
 
         #region DBSETS
 
         public virtual DbSet<Configuracion> Configuracion { get; set; }
+        
+        public virtual DbSet<ResultadosVotacion> Resultados { get; set; }
 
         #endregion
     }

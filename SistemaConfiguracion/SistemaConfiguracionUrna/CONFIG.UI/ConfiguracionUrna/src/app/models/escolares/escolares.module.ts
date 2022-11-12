@@ -15,6 +15,7 @@ export class EscolaresModule {
   public segundoEscrutador: string;
   public nBoletas: string;
   public nombreInstitucion: string;
+  public codigo: string;
   public partidos: any[];
 
   constructor() {
@@ -24,6 +25,7 @@ export class EscolaresModule {
     this.segundoEscrutador = "";
     this.nBoletas = "";
     this.nombreInstitucion = "";
+    this.codigo = "";
     this.partidos = [];
   }
 }
