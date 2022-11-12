@@ -7,7 +7,7 @@ using Urna.DAL.Entities;
 
 namespace Urna.DAL.Context
 {
-    public class UrnaContext : DbContext
+    public class UrnaContext : IdentityDbContext
     {
         public UrnaContext()
         {
@@ -17,7 +17,7 @@ namespace Urna.DAL.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var conecction = "host=localhost;port=5432;database=urnaOple;username=postgres;password=12345";
+                var conecction = "host=localhost;port=5432;database=urnaOple;username=postgres;password=oscarin99";
                 optionsBuilder.UseNpgsql(conecction);
             }
         }

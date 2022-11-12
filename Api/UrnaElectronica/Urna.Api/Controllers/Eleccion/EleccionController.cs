@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Urna.BLO.Elecciones;
 using Urna.COMMON.DTOS;
@@ -8,6 +10,7 @@ namespace Urna.Api.Controllers.Eleccion
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class EleccionController : ControllerBase
     {
         [HttpGet]
