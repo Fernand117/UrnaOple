@@ -51,8 +51,17 @@ export class ActaCierreComponent implements OnInit {
     this.configuracion_general.Folio = configuracion.Folio;
     this.configuracion_general.CantidadBoletas = configuracion.CantidadBoletas;
     delete this.configuracion_general['Elecciones'];
-    console.log(this.configuracion_general);
     this.service.imprimirBoletaFinal(this.configuracion_general).subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+  imprimirBoletaMecanismos(configuracion: any) {    
+    this.configuracion_general.Preguntas = this.votosRequest;
+    this.configuracion_general.MecanismoTipo = configuracion.MecanismoTipo;
+    this.configuracion_general.Folio = configuracion.Folio;
+    delete this.configuracion_general['TipoMecanismos'];
+    this.service.imprimirBoletaFinalMecanismos(this.configuracion_general).subscribe(resp => {
       console.log(resp);
     });
   }

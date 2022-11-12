@@ -35,13 +35,24 @@ export class ReferendumComponent implements OnInit {
     this.configuracion = JSON.parse(this.configuracion);
   }
 
-  votar_registrado() {
+  anularVoto() {
+    let request = {
+      Pregunta: 'Voto nulo',
+      RespuestaSi: '1'
+    }
+    this.service.setVoto(request, this.app_name).subscribe((resp) => {
+      this.msjVotoNulo();
+      this.updateCantidadBoletas();
+    });
+  }
+
+  votar_registrado() {    
     for (const prop in this.form.value) {
       let request =
       {
         Pregunta: prop,
         RespuestaSi: this.form.value[prop],
-      }      
+      }            
       this.service.setVoto(request, this.app_name).subscribe((resp) => {
         this.msjSuccess();
       }, error => {
@@ -79,6 +90,26 @@ export class ReferendumComponent implements OnInit {
       timer: 2000,
       showConfirmButton: false
     });
+  }
+
+  msjVotoNulo() {
+    this.voto = true;
+    let voto = this.voto;
+    let evento = this.miEvento;
+    let ruta = this.route;
+    Swal.fire(
+      {
+        title: "¡Tu voto ha sido anulado!",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false
+      }
+    )
+    .then(function () {
+      evento.emit(voto);
+    }
+    );
+
   }
 
   msjSuccess() {

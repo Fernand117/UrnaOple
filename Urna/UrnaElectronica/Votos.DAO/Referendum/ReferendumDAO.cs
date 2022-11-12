@@ -36,11 +36,11 @@ namespace Votos.DAO.Referendum
                         Folio = request.Folio
                     };
 
-                    MensajesLCD mensajesLCD = new MensajesLCD();
+                    /*MensajesLCD mensajesLCD = new MensajesLCD();
                     mensajesLCD.sendMensaje("Votando.");
 
                     ImprimirTickets imprimirTickets = new ImprimirTickets();
-                    imprimirTickets.imprimirComprobante(boletasDto);
+                    imprimirTickets.imprimirComprobante(boletasDto);*/
 
                     if (voto == null)
                     {
@@ -56,7 +56,7 @@ namespace Votos.DAO.Referendum
                             await context.AddAsync(referendum);
                             await context.SaveChangesAsync();
                         }
-                        else
+                        else if (int.Parse(request.RespuestaSi) == 0)
                         {
                             Referendums referendum = new Referendums()
                             {
@@ -64,6 +64,18 @@ namespace Votos.DAO.Referendum
                                 Pregunta = request.Pregunta,
                                 RespuestaSi = "0",
                                 RespuestaNo = "1"
+                            };
+                            await context.AddAsync(referendum);
+                            await context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            Referendums referendum = new Referendums()
+                            {
+                                Id = request.Id,
+                                Pregunta = request.Pregunta,
+                                RespuestaSi = "1",
+                                RespuestaNo = "0"
                             };
                             await context.AddAsync(referendum);
                             await context.SaveChangesAsync();

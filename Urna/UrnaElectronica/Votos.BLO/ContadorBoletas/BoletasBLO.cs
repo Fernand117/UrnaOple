@@ -82,6 +82,24 @@ namespace Votos.BLO.ContadorBoletas
             return apiResponse;
         }
 
+        public async Task<ApiResponse> PrintMecanismos(BoletaInicialMecanismosRequest request)
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new BoletasDAO().ImprimirBoletaInicialMecanismos(request);
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
+
         public async Task<ApiResponse> Print_Clausura(BoletaFinalRequest request)
         {
             ApiResponse apiResponse = new ApiResponse();
@@ -90,6 +108,24 @@ namespace Votos.BLO.ContadorBoletas
                 apiResponse.ResponseCode = Response.Success;
                 apiResponse.ResponseText = Resources.MensajeOk;
                 apiResponse.Data = await new BoletasDAO().ImprimirBoletaFinal(request);
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
+
+        public async Task<ApiResponse> Print_Clausura_Mecanismos(BoletaInicialMecanismosRequest request)
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new BoletasDAO().ImprimirBoletaFinalMecanismos(request);
             }
             catch (Exception e)
             {

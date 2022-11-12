@@ -195,6 +195,8 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
     this.confi_presbicito = JSON.parse(this.confi_presbicito);
     this.confi_consulta = localStorage.getItem('consulta');
     this.confi_consulta = JSON.parse(this.confi_consulta);
+    console.log(this.confi_referendum);
+    
   }
   
     //OBTENER EL NUMERO DE BOLETAS DISPONIBLES
@@ -202,16 +204,13 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
       this.service.getContadorBoletas().subscribe((resp) => {
         let info: any = resp;
         info = info.data;
-        for (let i = 0; i < info.length; i++) {
-          if (info[i].tipoEleccion === this.confi_referendum.TipoMecanismo) {
+        for (let i = 0; i < info.length; i++) {          
+          if (info[i].tipoEleccion == this.confi_referendum?.MecanismoTipo) {
             this.boletas_referendum = info[i].cantidadBoletas;     
-            console.log(this.boletas_referendum);
-          } else if (info[i].tipoEleccion === this.confi_presbicito.TipoMecanismo) {
+          } else if (info[i].tipoEleccion == this.confi_presbicito?.MecanismoTipo) {
             this.boletas_plesbicito = info[i].cantidadBoletas;
-            console.log(this.boletas_plesbicito);
-          } else if (info[i].tipoEleccion === this.confi_consulta.TipoMecanismo) {
+          } else if (info[i].tipoEleccion == this.confi_consulta?.MecanismoTipo) {
             this.boletas_consulta = info[i].cantidadBoletas;
-            console.log(this.boletas_consulta);
           }
         }
       });      

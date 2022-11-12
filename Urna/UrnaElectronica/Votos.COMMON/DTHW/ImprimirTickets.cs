@@ -29,9 +29,26 @@ namespace Votos.COMMON.DTHW
             pd.Print();
         }
 
+        public void imprimirBoletaCerosMecanismos(BoletaInicialMecanismosRequest request)
+        {
+            mensaje = estructuraBoletaCerosMecanismos(request);
+            Console.WriteLine(mensaje);
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += Pd_PrintPage;
+            pd.Print();
+        }
+
         public void imprimirBoletaCierre(BoletaFinalRequest request)
         {
             mensaje = estructuraBoletaResultados(request);
+            Console.WriteLine(mensaje);
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += Pd_PrintPage;
+            pd.Print();
+        }
+        public void imprimirBoletaCierreMecanismos(BoletaInicialMecanismosRequest request)
+        {
+            mensaje = estructuraBoletaResultadosMecanismos(request);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += Pd_PrintPage;
@@ -149,7 +166,6 @@ namespace Votos.COMMON.DTHW
 
             mensaje = cabezera + mensajeHead + fechaHora + eleccion + datosUno + datosDos + separadorUno + headPartidos + partidos +
                       presidente + secretario + escrutadorUno + escrutadorDos + partidosFirmas;
-
             return mensaje;
         }
 
@@ -184,13 +200,69 @@ namespace Votos.COMMON.DTHW
                               boletaDto.Municipio + "\n";
             string datosDos = "Sección: " + boletaDto.SeccionElectoral + "  Casilla: " + boletaDto.TipoCasilla + "\n";
             string separadorUno = "------------------------------------------------\n";
-            string headPartidos = "Clausura";
+            string headPartidos = "Que en presencia del Funcionariado\nde Mesa Directiva de Casilla\ny representaciones de los partidos\npolíticos se clausuró y computaron\nquedando de la siguiente manera:\n" + separadorUno + "\tVOTACIÓN " + "\n";
             var lp = boletaDto.Partidos.ToList();
+            string partidos = "";
+            int total_votos = 0;
+            string partidosFirmas = "";
+            foreach (var p in lp)
+            {
+                partidos = partidos + "\n" + p.partido + "\n" + "Votos: " + p.voto + "\n";
+                total_votos = total_votos + int.Parse(p.voto);
+            }
+            string txt_total = "\n" + "VOTACIÓN TOTAL: " + total_votos;
+
+            string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +
+                                boletaDto.Presidente + "\n" + separadorUno + "        Presidente(a): Nombre y Firma\n\n\n";
+            string secretario = boletaDto.Secretario + "\n" + separadorUno + "      Secretario(a): Nombre y Firma\n\n\n";
+            string escrutadorUno = boletaDto.PrimerEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 1: Nombre y Firma\n\n\n";
+            string escrutadorDos = boletaDto.SegundoEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 2: Nombre y Firma \n\n\n" + separadorUno +
+                                   "Representantes de Partidos Políticos\n\n\n";
+
+            mensaje = cabezera + mensajeHead + fechaHora + eleccion + datosUno + datosDos + separadorUno + headPartidos + partidos +
+                      txt_total + presidente + secretario + escrutadorUno + escrutadorDos + partidosFirmas;
+            return mensaje;
+        }
+
+
+        // ************************************************************* MECANISMOS *****************************************************************
+
+        public string estructuraBoletaCerosMecanismos(BoletaInicialMecanismosRequest _boletas)
+        {
+            BoletaInicialMecanismosRequest boletaDto = new BoletaInicialMecanismosRequest()
+            {
+                Distrito = _boletas.Distrito,
+                Entidad = _boletas.Entidad,
+                Folio = _boletas.Folio,
+                Municipio = _boletas.Municipio,
+                Preguntas = _boletas.Preguntas,
+                SeccionElectoral = _boletas.SeccionElectoral,
+                MecanismoTipo = _boletas.MecanismoTipo,
+                Presidente = _boletas.Presidente,
+                Secretario = _boletas.Secretario,
+                PrimerEscrutador = _boletas.PrimerEscrutador,
+                SegundoEscrutador = _boletas.SegundoEscrutador
+            };
+
+            string cabezera = "             OPLE VERACRUZ\n";
+            string mensajeHead = "ACTA DE INSTALACIÓN DE CASILLA\n\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day +
+                               "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" +
+                               DateTime.Now.Second + "hrs." + "\n";
+            string eleccion = "Tipo de mecanismo: " + boletaDto.MecanismoTipo + "\n";
+            string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "\nMunicipio: " +
+                              boletaDto.Municipio + "\n";
+            string datosDos = "Sección: " + boletaDto.SeccionElectoral;
+            string separadorUno = "------------------------------------------------\n";
+            string headPartidos = "Que en presencia del Funcionariado\nde Mesa Directiva de Casilla\ny representaciones de los partidos\npolíticos se inicializó y verificó\nque el sistema se encuentra en\nceros, así como el contenedor de\ntestigos de votos se encuentra vacío.\n" + separadorUno + "\tLista de preguntas";
+            var lp = boletaDto.Preguntas.ToList();
             string partidos = "";
             string partidosFirmas = "";
             foreach (var p in lp)
             {
-                partidos = partidos + "\n" + "Partido: " + p.partido + "\n" + "Votos: " + p.voto + "\n";
+                partidos = partidos + "\n" + p.Pregunta + "\n" + "Votos Si: 0\n" + "Votos No: 0\n";
             }
 
             string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +
@@ -204,7 +276,57 @@ namespace Votos.COMMON.DTHW
 
             mensaje = cabezera + mensajeHead + fechaHora + eleccion + datosUno + datosDos + separadorUno + headPartidos + partidos +
                       presidente + secretario + escrutadorUno + escrutadorDos + partidosFirmas;
+            return mensaje;
+        }
 
+
+        public string estructuraBoletaResultadosMecanismos(BoletaInicialMecanismosRequest _boletas)
+        {
+            BoletaInicialMecanismosRequest boletaDto = new BoletaInicialMecanismosRequest()
+            {
+                Distrito = _boletas.Distrito,
+                Entidad = _boletas.Entidad,
+                Folio = _boletas.Folio,
+                Municipio = _boletas.Municipio,
+                Preguntas = _boletas.Preguntas,
+                SeccionElectoral = _boletas.SeccionElectoral,
+                MecanismoTipo = _boletas.MecanismoTipo,
+                Presidente = _boletas.Presidente,
+                Secretario = _boletas.Secretario,
+                PrimerEscrutador = _boletas.PrimerEscrutador,
+                SegundoEscrutador = _boletas.SegundoEscrutador
+            };
+
+            string cabezera = "             OPLE VERACRUZ\n";
+            string mensajeHead = "ACTA DE CÓMPUTO DE CASILLA\n\n";
+            string fechaHora = "Fecha: " + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day +
+                               "    " + "Hora: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" +
+                               DateTime.Now.Second + "hrs." + "\n";
+            string eleccion = "Tipo de mecanismo: " + boletaDto.MecanismoTipo + "\n";
+            string datosUno = "Entidad: " + boletaDto.Entidad + "  Distrito: " + boletaDto.Distrito + "\nMunicipio: " +
+                              boletaDto.Municipio + "\n";
+            string datosDos = "Sección: " + boletaDto.SeccionElectoral;
+            string separadorUno = "------------------------------------------------\n";
+            string headPartidos = "Que en presencia del Funcionariado\nde Mesa Directiva de Casilla\ny representaciones de los partidos\npolíticos se clausuró y computaron\nquedando de la siguiente manera:\n" + separadorUno + "\tVOTACIÓN " + "\n";
+            var lp = boletaDto.Preguntas.ToList();
+            string partidos = "";
+            string partidosFirmas = "";
+            foreach (var p in lp)
+            {
+                partidos = partidos + "\n" + p.Pregunta + "\n" + "Votos Si: " + p.RespuestaSi + "\n" + "Votos No: " + p.RespuestaNo + "\n";
+            }
+
+            string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +
+                                boletaDto.Presidente + "\n" + separadorUno + "        Presidente(a): Nombre y Firma\n\n\n";
+            string secretario = boletaDto.Secretario + "\n" + separadorUno + "      Secretario(a): Nombre y Firma\n\n\n";
+            string escrutadorUno = boletaDto.PrimerEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 1: Nombre y Firma\n\n\n";
+            string escrutadorDos = boletaDto.SegundoEscrutador + "\n" + separadorUno +
+                                   "      Escrutador(a) 2: Nombre y Firma \n\n\n" + separadorUno +
+                                   "Representantes de Partidos Políticos\n\n\n";
+
+            mensaje = cabezera + mensajeHead + fechaHora + eleccion + datosUno + datosDos + separadorUno + headPartidos + partidos +
+                      presidente + secretario + escrutadorUno + escrutadorDos + partidosFirmas;
             return mensaje;
         }
 

@@ -28,7 +28,6 @@ import { ReferendumComponent } from './pages/votaciones/participacion-ciudadana/
 import { ActaCierreComponent } from './pages/clausura/acta-cierre/acta-cierre.component';
 import { NoBoletasComponent } from './pages/votaciones/mensajes/no-boletas/no-boletas.component';
 import { AutorizarVotacionesComponent } from './pages/votaciones/mensajes/autorizar-votaciones/autorizar-votaciones.component';
-import { MecanismosComponent } from './pages/mecanismos/mecanismos.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -55,7 +54,6 @@ registerLocaleData(localeEs, 'es');
     ActaCierreComponent,
     NoBoletasComponent,
     AutorizarVotacionesComponent,
-    MecanismosComponent
   ],
   imports: [
     BrowserModule,

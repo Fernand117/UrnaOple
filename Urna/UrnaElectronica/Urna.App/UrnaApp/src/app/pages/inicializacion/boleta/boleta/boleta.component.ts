@@ -34,9 +34,23 @@ export class BoletaComponent implements OnInit {
     configuracion.Entidad = this.configuracion_general.Entidad;
     configuracion.Municipio = this.configuracion_general.Municipio;    
     configuracion.TipoCasilla = this.configuracion_general.TipoCasilla;
-    configuracion.SeccionElectoral = this.configuracion_general.SeccionElectoral;  
-    
-    this.service.imprimirBoleta(configuracion).subscribe(resp => {
+    configuracion.SeccionElectoral = this.configuracion_general.SeccionElectoral;      
+    this.service.imprimirBoleta(configuracion).subscribe(resp => {      
+    }, (error)  => {
+    });
+  }
+
+  imprimirBoletaMecanismos(configuracion: any) {    
+    configuracion.Presidente = this.configuracion_general.Presidente;
+    configuracion.Secretario = this.configuracion_general.Secretario;
+    configuracion.PrimerEscrutador = this.configuracion_general.PrimerEscrutador;
+    configuracion.SegundoEscrutador = this.configuracion_general.SegundoEscrutador;
+    configuracion.Distrito = this.configuracion_general.Distrito;
+    configuracion.Entidad = this.configuracion_general.Entidad;
+    configuracion.Municipio = this.configuracion_general.Municipio;    
+    configuracion.SeccionElectoral = this.configuracion_general.SeccionElectoral;    
+    this.service.imprimirBoletaMecanismos(configuracion).subscribe(resp => {      
+    }, (error)  => {
     });
   }
 

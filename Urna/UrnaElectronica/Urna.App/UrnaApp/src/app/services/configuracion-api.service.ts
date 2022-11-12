@@ -36,8 +36,16 @@ export class ConfiguracionApiService {
     return this.http.post(`${apiUrl_local}boletas/imprimir/boletainicial`, boleta);
   }
 
+  imprimirBoletaMecanismos(boleta: any) {
+    return this.http.post(`${apiUrl_local}boletas/imprimir/boletainicialmecanismos`, boleta);
+  }
+
   imprimirBoletaFinal(boleta: any) {
     return this.http.post(`${apiUrl_local}boletas/imprimir/boletafinal`, boleta);
+  }
+
+  imprimirBoletaFinalMecanismos(boleta: any) {
+    return this.http.post(`${apiUrl_local}boletas/imprimir/boletafinalmecanismos`, boleta);
   }
 
   deleteDataBoletas() {

@@ -32,20 +32,20 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   //INSERTAR EN LA BASE DE DATOS LA CANTIDADA DE BOLETAS PARA CADA TIPO DE ELECCIÓN
-  setContadorBoletas(info: any) {
+  setContadorBoletas(info: any) {    
     let request = {
       CantidadBoletas: info.CantidadBoletas,
       TipoEleccion: info.TipoEleccion
     }
-
-    if (this.confi.Categoria === "Mecanismos de participación ciudadana") {
+    
+    if (this.respuesta.categoria === "Mecanismos de participación ciudadana") {
       request = {
         CantidadBoletas: info.CantidadBoletas,
-        TipoEleccion: info.TipoMecanismo
+        TipoEleccion: info.MecanismoTipo
       }
     }
 
-    this.service.contadorBoletas(request).subscribe((resp) => {
+    this.service.contadorBoletas(request).subscribe((resp) => {      
     }, error => {
       console.log(error);
     });
@@ -79,14 +79,14 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   configuracion_mecanismos_ciudadania() {
-    let info = this.confi.Mecanismos;
+    let info = this.confi.TipoMecanismos;    
     for (let i = 0; i < info.length; i++) {
       this.setContadorBoletas(info[i]);
-      if(info[i].TipoMecanismo === 'Referéndum') {        
+      if(info[i].MecanismoTipo === 'Referéndum') {        
       localStorage.setItem('referendum', JSON.stringify(info[i]));
-    } else if(info[i].TipoMecanismo === 'Plebiscito') {
+    } else if(info[i].MecanismoTipo === 'Plebiscito') {
       localStorage.setItem('presbicito', JSON.stringify(info[i]));
-      } else if(info[i].TipoMecanismo === 'Consulta Popular') {
+      } else if(info[i].MecanismoTipo === 'Consulta Popular') {
         localStorage.setItem('consulta', JSON.stringify(info[i]));
       } 
     }
@@ -96,29 +96,23 @@ export class ConfiguracionComponent implements OnInit {
     this.service.getConfiguracion(this.keyboard.value).subscribe((resp) => {
       this.respuesta = resp;      
       this.respuesta = this.respuesta.data;
-      console.log(this.respuesta.categoria);
-      
-      localStorage.setItem('configeneral', this.respuesta);          
       if (this.respuesta.configuraciones == null) {
         this.mostrar_mensaje_error();
       }  
-      this.confi = this.respuesta.configuraciones;
+      this.confi = this.respuesta.configuraciones;      
       localStorage.setItem('configeneral', this.confi);          
-      this.confi = JSON.parse(this.confi);    
-      
+      this.confi = JSON.parse(this.confi);          
+    
       localStorage.setItem('categoria', this.respuesta.categoria);      
       if(this.respuesta.categoria === 'Procesos locales electorales') {
         this.configuracion_eleccioneslocales();
-        this.route.navigate(['/boleta-inicializacion']);
+        this.mostrar_mensaje_success();
       } else if (this.respuesta.categoria === "Elecciones escolares") {
-        localStorage.clear();
-        this.route.navigate(['/boleta-inicializacion']);  
+        this.mostrar_mensaje_success(); 
         this.configuracion_eleccionesEscolares();
       } else if (this.respuesta.categoria === "Mecanismos de participación ciudadana") {
-        localStorage.clear();
-        localStorage.setItem('categoria', this.respuesta.categoria);      
         this.configuracion_mecanismos_ciudadania();
-        this.route.navigate(['/boleta-inicializacion']);
+        this.mostrar_mensaje_success();
       }
     }, error => {
       this.mostrar_mensaje_error();
@@ -128,11 +122,25 @@ export class ConfiguracionComponent implements OnInit {
   mostrar_mensaje_error() {
     Swal.fire({
       icon: 'error',
-      title: 'Tarjeta no autorizada',
+      title: 'Código de configuración no válido.',
       text: 'Por favor inténtelo de nuevo',
       timer: 1000,
       showConfirmButton: false
     });
+  }
+
+  mostrar_mensaje_success() {
+    let ruta = this.route;
+    Swal.fire(
+    {
+      title: "Configuración descargada",
+      icon: "success",
+      timer: 1000,
+      showConfirmButton: false
+    }
+    ).then(function() {
+      ruta.navigate(['/boleta-inicializacion']);
+    })
   }
 
 }

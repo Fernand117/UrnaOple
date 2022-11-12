@@ -128,6 +128,38 @@ namespace Votos.DAO.Boletas
             return request;
         }
 
+        public async Task<BoletaInicialMecanismosRequest> ImprimirBoletaInicialMecanismos(BoletaInicialMecanismosRequest request)
+        {
+            try
+            {
+                BoletaInicialMecanismosRequest boletaInicialRequest = new BoletaInicialMecanismosRequest()
+                {
+                    Distrito = request.Distrito,
+                    Entidad = request.Entidad,
+                    Folio = request.Folio,
+                    Municipio = request.Municipio,
+                    SeccionElectoral = request.SeccionElectoral,
+                    MecanismoTipo = request.MecanismoTipo,
+                    Presidente = request.Presidente,
+                    Secretario = request.Secretario,
+                    PrimerEscrutador = request.PrimerEscrutador,
+                    SegundoEscrutador = request.SegundoEscrutador,
+                    Preguntas = request.Preguntas
+                };
+
+                ImprimirTickets imprimirTickets = new ImprimirTickets();
+                imprimirTickets.imprimirBoletaCerosMecanismos(boletaInicialRequest);
+
+                MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta inicial");
+            }
+            catch (Exception e)
+            {
+                request.MecanismoTipo = e.Message;
+            }
+            return request;
+        }
+
         public async Task<BoletaFinalRequest> ImprimirBoletaFinal(BoletaFinalRequest request)
         {
             try
@@ -162,6 +194,37 @@ namespace Votos.DAO.Boletas
             return request;
         }
 
+        public async Task<BoletaInicialMecanismosRequest> ImprimirBoletaFinalMecanismos(BoletaInicialMecanismosRequest request)
+        {
+            try
+            {
+                BoletaInicialMecanismosRequest boletaInicialRequest = new BoletaInicialMecanismosRequest()
+                {
+                    Distrito = request.Distrito,
+                    Entidad = request.Entidad,
+                    Folio = request.Folio,
+                    Municipio = request.Municipio,
+                    SeccionElectoral = request.SeccionElectoral,
+                    MecanismoTipo = request.MecanismoTipo,
+                    Presidente = request.Presidente,
+                    Secretario = request.Secretario,
+                    PrimerEscrutador = request.PrimerEscrutador,
+                    SegundoEscrutador = request.SegundoEscrutador,
+                    Preguntas = request.Preguntas
+                };
+
+                ImprimirTickets imprimirTickets = new ImprimirTickets();
+                imprimirTickets.imprimirBoletaCierreMecanismos(boletaInicialRequest);
+
+                MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta de clausura");
+            }
+            catch (Exception e)
+            {
+                request.MecanismoTipo = e.Message;
+            }
+            return request;
+        }
         public async Task<BoletasRequest> Delete()
         {
             try

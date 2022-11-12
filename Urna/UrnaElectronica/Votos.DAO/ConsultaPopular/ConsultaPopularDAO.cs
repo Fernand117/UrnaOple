@@ -35,11 +35,11 @@ namespace Votos.DAO.ConsultaPopular
                         Folio = request.Folio
                     };
 
-                    MensajesLCD mensajesLCD = new MensajesLCD();
+                    /*MensajesLCD mensajesLCD = new MensajesLCD();
                     mensajesLCD.sendMensaje("Votando.");
 
                     ImprimirTickets imprimirTickets = new ImprimirTickets();
-                    imprimirTickets.imprimirComprobante(boletasDto);
+                    imprimirTickets.imprimirComprobante(boletasDto);*/
 
                     if (voto == null)
                     {
@@ -55,15 +55,25 @@ namespace Votos.DAO.ConsultaPopular
                             await context.AddAsync(consultaPopular);
                             await context.SaveChangesAsync();
                         }
-
-                        else
-                        {
+                        else if(int.Parse(request.RespuestaSi) == 0) {
                             Consulta consultaPopular = new Consulta()
                             {
                                 Id = request.Id,
                                 Pregunta = request.Pregunta,
                                 RespuestaSi = "0",
                                 RespuestaNo = "1"
+                            };
+                            await context.AddAsync(consultaPopular);
+                            await context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            Consulta consultaPopular = new Consulta()
+                            {
+                                Id = request.Id,
+                                Pregunta = request.Pregunta,
+                                RespuestaSi = "1",
+                                RespuestaNo = "0"
                             };
                             await context.AddAsync(consultaPopular);
                             await context.SaveChangesAsync();
