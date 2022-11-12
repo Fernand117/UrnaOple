@@ -18,6 +18,7 @@ export class MecanismosModule {
   public Distrito: string;
   public Municipio: string;
   public Seccion: string;
+  public CodigoPresidente: string;
   public TipoMecanismos: any[];
 
   constructor() {
@@ -29,6 +30,7 @@ export class MecanismosModule {
     this.Distrito = "";
     this.Municipio = "";
     this.Seccion = "";
+    this.CodigoPresidente = "";
     this.TipoMecanismos = [];
   }
 }

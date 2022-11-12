@@ -99,7 +99,7 @@ export class MecanismosComponent implements OnInit {
 
     this.tiposMecanismos.Preguntas = this.listaPreguntas;
     const mecanismo = {
-      "TipoMecanismo": this.tiposMecanismos.TipoMecanismo,
+      "MecanismoTipo": this.tiposMecanismos.TipoMecanismo,
       "Nombre": this.tiposMecanismos.Nombre,
       "Objeto": this.tiposMecanismos.Objeto,
       "Folio": this.tiposMecanismos.Folio.toString(),
@@ -121,6 +121,10 @@ export class MecanismosComponent implements OnInit {
 
     if (this.mecanismos.Presidente === "") {
       return this.alertas.mensajeError("Ingrese el nombre del presidente");
+    }
+
+    if (this.mecanismos.CodigoPresidente === "") {
+      return this.alertas.mensajeError("Ingrese el código RFID del presidente");
     }
 
     if (this.mecanismos.Secretario === "") {
@@ -162,7 +166,8 @@ export class MecanismosComponent implements OnInit {
       "Municipio": this.mecanismos.Municipio,
       "Distrito": this.mecanismos.Distrito,
       "SeccionElectoral": this.mecanismos.Seccion.toString(),
-      "TipoMecanismo": this.mecanismos.TipoMecanismos
+      "CodigoPresidente": this.mecanismos.CodigoPresidente.toString(),
+      "TipoMecanismos": this.mecanismos.TipoMecanismos
     };
 
     const datosGenerales = {

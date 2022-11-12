@@ -12,6 +12,7 @@ namespace Urna.DAL.Entities
         public string Distrito { get; set; } 
         public string Municipio { get; set; } 
         public string SeccionElectoral { get; set; }
+        public string CodigoPresidente { get; set; }
         public List<TipoMecanismo> TipoMecanismos { get; set; }
     }
 }

@@ -58,13 +58,14 @@ namespace Votos.COMMON.DTHW
         private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
-            //Image image = Image.FromFile("LOGOTIPO_OPLE.png");
+            Image image = Image.FromFile("LOGOTIPO_OPLE.png");
+            Bitmap imageBit = new Bitmap(image, 100, 100);
             Font font = new Font("Arial", 12);
 
             SolidBrush brush = new SolidBrush(Color.Black);
 
             //g.DrawString(mensaje, font, brush, new Rectangle(0, 0));
-            //g.DrawImage(image, 100, 5);
+            g.DrawImage(imageBit, 100, 5);
             g.DrawString(mensaje, font, brush, 0, 0);
         }
 

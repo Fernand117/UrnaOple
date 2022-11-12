@@ -28,6 +28,8 @@
         <h5>Funcionariado de mesa directiva de casilla</h5>
         <input type="text" name="presidente" id="presidente" placeholder="Presidente" class="form-control"
                [(ngModel)]="mecanismos.Presidente">
+        <input type="password" name="codigo" id="codigo" placeholder="Código RFID del presidente" class="form-control"
+               [(ngModel)]="mecanismos.CodigoPresidente">
         <input type="text" name="secretario" id="secretario" placeholder="Secretario" class="form-control"
                [(ngModel)]="mecanismos.Secretario">
         <input type="text" name="primero" id="primero" placeholder="Primer escrutador" class="form-control"
@@ -44,7 +46,7 @@
         <input type="text" name="municipio" id="municipio" placeholder="Municipio" class="form-control"
                [(ngModel)]="mecanismos.Municipio">
         <input type="number" name="seccion" id="seccion" placeholder="Sección" class="form-control"
-               [(ngModel)]="mecanismos.Seccion">
+               onkeypress="return /[0-9]/i.test(event.key)" [(ngModel)]="mecanismos.Seccion">
       </div>
 
     </div>
@@ -63,11 +65,11 @@
         <input type="text" name="objeto" id="objeto" placeholder="Objeto del mecanismo de participación"
                class="form-control" [(ngModel)]="tiposMecanismos.Objeto">
 
-        <input type="number" name="folio" id="foliio" placeholder="Folio" class="form-control"
-               [(ngModel)]="tiposMecanismos.Folio">
+        <input type="number" name="folio" id="foliio" onKeyDown="if(this.value.length==4) this.value = this.value.slice(0, - 1)" placeholder="Folio" class="form-control"
+               onkeypress="return /[0-9]/i.test(event.key)" [(ngModel)]="tiposMecanismos.Folio">
         <h5>Cantidad de boletas</h5>
-        <input type="text" name="nboletas" id="nboletas" placeholder="Cantidad de boletas" class="form-control"
-               [(ngModel)]="tiposMecanismos.CantidadBoletas">
+        <input type="number" name="nboletas" id="nboletas" placeholder="Cantidad de boletas" class="form-control"
+               onkeypress="return /[0-9]/i.test(event.key)" [(ngModel)]="tiposMecanismos.CantidadBoletas">
       </div>
 
       <div class="mensajeMeca" *ngIf="listaPreguntas.length === 0 || listaPreguntas === null">

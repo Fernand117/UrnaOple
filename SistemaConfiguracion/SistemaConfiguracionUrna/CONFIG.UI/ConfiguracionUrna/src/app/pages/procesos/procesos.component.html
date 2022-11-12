@@ -80,7 +80,7 @@
           <input type="number" name="boletas" id="boletas" min="0" placeholder="Cantidad de boletas" class="form-control"
                  onkeypress="return /[0-9]/i.test(event.key)" [(ngModel)]="elecciones.CantidadBoletas">
 
-          <input type="number" name="folio" id="folio" min="0" placeholder="Folio" class="form-control"
+          <input type="number" name="folio" id="folio" min="0" onKeyDown="if(this.value.length==4) this.value = this.value.slice(0, - 1)" placeholder="Folio" class="form-control"
                  onkeypress="return /[0-9]/i.test(event.key)" [(ngModel)]="elecciones.Folio">
         </div>
 
