@@ -12,15 +12,15 @@ export class AutorizarVotacionesComponent implements OnInit {
   constructor(private route:Router) { }
 
   code = "";
-  tarjeta_1 = '0002341465';
-  tarjeta_2 = '0002341466';
-  tarjeta_3 = '0002341467';
+  tarjeta_presidente: string = "";
+  configuracion: any;
 
   ngOnInit(): void {
+    this.obtenerCodigoAutorizacion();
   }
 
   validar() {
-    if(this.code == this.tarjeta_1 || this.code == this.tarjeta_2 || this.code == this.tarjeta_3) {
+    if(this.code == this.tarjeta_presidente) {
       let categoria = localStorage.getItem('categoria');
       if (categoria === 'Elecciones escolares') {
         this.route.navigate(['/elecciones-escolares']);
@@ -32,6 +32,12 @@ export class AutorizarVotacionesComponent implements OnInit {
     } else {
      this.mostrar_mensaje_error();
     }
+  }
+
+  obtenerCodigoAutorizacion() {
+    this.configuracion =localStorage.getItem('configeneral');
+    this.configuracion = JSON.parse(this.configuracion);
+    this.tarjeta_presidente = this.configuracion.CodigoPresidente;
   }
 
   mostrar_mensaje_error() {
