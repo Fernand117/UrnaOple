@@ -9,48 +9,48 @@ import {config} from "rxjs";
 })
 export class InicioComponent implements OnInit {
 
-  resData: any = "";
-  configuracion: any;
-  config: any;
-  public listaConfiguracionesLocales: any[] = [];
-  public listaConfiguracionesMecanismos: any[] = [];
-  public listaConfiguracionesEscolares: any[] = [];
+  public responseServer: any = "";
+
+  public listaElecciones: any[] = [];
+  public listaMecanismos: any[] = [];
+  public listaEscolares:  any[] = [];
 
   constructor(
     private apiService: ApiServiceService
   ) { }
 
   ngOnInit(): void {
-    this.listar();
+    this.getListaElecciones();
   }
 
-  listar() {
+  public getListaElecciones() {
     this.apiService.listaConfiguraciones().subscribe(
       res => {
-        this.resData = res;
-        this.resData = this.resData['data'];
-        console.log(this.resData)
-        for (let i = 0; i < this.resData.length; i++) {
-          if (this.resData[i].categoria === 'Procesos locales electorales') {
-            this.listaConfiguracionesLocales.push(this.resData[i]);
-            console.log(this.listaConfiguracionesLocales)
-          } else if (this.resData[i].categoria === 'Mecanismos de participación ciudadana') {
-            this.listaConfiguracionesMecanismos.push(this.resData[i]);
-          } else {
-            this.listaConfiguracionesEscolares.push(this.resData[i]);
+        this.responseServer = res;
+        this.responseServer = this.responseServer['data'];
+
+        for (let i = 0; i < this.responseServer.length; i++) {
+          if (this.responseServer[i].categoria === "Procesos locales electorales") {
+            this.responseServer[i].configuraciones = JSON.parse(this.responseServer[i].configuraciones);
+            this.responseServer[i].configuraciones = JSON.parse(this.responseServer[i].configuraciones);
+            this.listaElecciones.push(this.responseServer[i]);
+          }
+
+          if (this.responseServer[i].categoria === "Mecanismos de participación ciudadana") {
+            this.responseServer[i].configuraciones = JSON.parse(this.responseServer[i].configuraciones);
+            this.responseServer[i].configuraciones = JSON.parse(this.responseServer[i].configuraciones);
+            this.listaMecanismos.push(this.responseServer[i]);
+          }
+
+          if (this.responseServer[i].categoria === "Elecciones escolares") {
+            this.responseServer[i].configuraciones = JSON.parse(this.responseServer[i].configuraciones);
+            this.responseServer[i].configuraciones = JSON.parse(this.responseServer[i].configuraciones);
+            this.listaEscolares.push(this.responseServer[i]);
           }
         }
+
+        console.log(this.listaEscolares);
       }
     );
-  }
-
-  viewItem(item: any) {
-    this.apiService.getOneConfiguracion(item).subscribe(resp => {
-      this.configuracion = resp;
-
-      this.configuracion = this.configuracion.data['configuraciones'];
-      this.config = JSON.parse(this.configuracion);
-      console.log(this.config)
-    });
   }
 }
