@@ -37,10 +37,10 @@ namespace Votos.DAO.Ayuntamientos
 					};
 
 					/*MensajesLCD mensajesLCD = new MensajesLCD();
-					mensajesLCD.sendMensaje("Votando.");
+					mensajesLCD.sendMensaje("Votando.");*/
 
 					ImprimirTickets imprimirTickets = new ImprimirTickets();
-					imprimirTickets.imprimirComprobante(boletasDto);*/
+					imprimirTickets.imprimirComprobante(boletasDto);
 
 					if (voto == null)
 					{
