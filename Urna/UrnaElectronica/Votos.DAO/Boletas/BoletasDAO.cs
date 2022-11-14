@@ -118,8 +118,8 @@ namespace Votos.DAO.Boletas
                 ImprimirTickets imprimirTickets = new ImprimirTickets();
                 imprimirTickets.imprimirBoletaCeros(boletaInicialRequest);
 
-                MensajesLCD mensajesLcd = new MensajesLCD();
-                mensajesLcd.sendMensaje("Imprimiendo boleta inicial");
+                /*MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta inicial");*/
             }
             catch (Exception e)
             {
@@ -150,8 +150,8 @@ namespace Votos.DAO.Boletas
                 ImprimirTickets imprimirTickets = new ImprimirTickets();
                 imprimirTickets.imprimirBoletaCerosMecanismos(boletaInicialRequest);
 
-                MensajesLCD mensajesLcd = new MensajesLCD();
-                mensajesLcd.sendMensaje("Imprimiendo boleta inicial");
+                /*MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta inicial");*/
             }
             catch (Exception e)
             {
@@ -176,8 +176,8 @@ namespace Votos.DAO.Boletas
                 ImprimirTickets imprimirTickets = new ImprimirTickets();
                 imprimirTickets.imprimirBoletaCerosEscolares(boletaInicialRequest);
 
-                MensajesLCD mensajesLcd = new MensajesLCD();
-                mensajesLcd.sendMensaje("Imprimiendo boleta inicial");
+                /*MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta inicial");*/
             }
             catch (Exception e)
             {
@@ -210,8 +210,8 @@ namespace Votos.DAO.Boletas
                 ImprimirTickets imprimirTickets = new ImprimirTickets();
                 imprimirTickets.imprimirBoletaCierre(boletaFinalRequest);
 
-                MensajesLCD mensajesLcd = new MensajesLCD();
-                mensajesLcd.sendMensaje("Imprimiendo boleta de clausura");
+                /*MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta de clausura");*/
             }
             catch (Exception e)
             {
@@ -242,8 +242,8 @@ namespace Votos.DAO.Boletas
                 ImprimirTickets imprimirTickets = new ImprimirTickets();
                 imprimirTickets.imprimirBoletaCierreMecanismos(boletaInicialRequest);
 
-                MensajesLCD mensajesLcd = new MensajesLCD();
-                mensajesLcd.sendMensaje("Imprimiendo boleta de clausura");
+                /*MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta de clausura");*/
             }
             catch (Exception e)
             {
@@ -268,8 +268,8 @@ namespace Votos.DAO.Boletas
                 ImprimirTickets imprimirTickets = new ImprimirTickets();
                 imprimirTickets.imprimirBoletaCierreEscolares(boletaFinalRequest);
 
-                MensajesLCD mensajesLcd = new MensajesLCD();
-                mensajesLcd.sendMensaje("Imprimiendo boleta de clausura");
+                /*MensajesLCD mensajesLcd = new MensajesLCD();
+                mensajesLcd.sendMensaje("Imprimiendo boleta de clausura");*/
             }
             catch (Exception e)
             {
