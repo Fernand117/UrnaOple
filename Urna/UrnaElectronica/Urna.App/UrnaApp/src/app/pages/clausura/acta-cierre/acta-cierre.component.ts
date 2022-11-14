@@ -65,10 +65,7 @@ export class ActaCierreComponent implements OnInit {
   }
 
   imprimirBoletaEscolares(configuracion: any) {    
-    this.configuracion_general.Preguntas = this.votosRequest;
-    this.configuracion_general.MecanismoTipo = configuracion.MecanismoTipo;
-    this.configuracion_general.Folio = configuracion.Folio;
-    delete this.configuracion_general['TipoMecanismos'];
+    this.configuracion_general.Partidos = this.votosRequest;    
     this.service.imprimirBoletaFinalEscolares(this.configuracion_general).subscribe(resp => {
       console.log(resp);
     });

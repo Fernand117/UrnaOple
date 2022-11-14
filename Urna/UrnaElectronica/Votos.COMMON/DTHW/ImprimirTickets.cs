@@ -199,15 +199,19 @@ namespace Votos.COMMON.DTHW
             string res = "";
             if (respuesta == "1")
             {
-                res = "      Si";
+                res = "      Respuesta: Si";
             } else
             {
-                res = "      No";
+                res = "      Respuesta: No";
+            }
+
+            if (boletaDto.Partido == "Voto nulo")
+            {
+                res = "";
             }
 
             string mensajeEstructura = cabezera + mensajeHead + fechaHora + eleccion + separadorUno
                       + datosUno + datosDos + folio + partidos + partidoNombre + res;
-
             return mensajeEstructura;
         }
 
