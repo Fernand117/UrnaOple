@@ -194,7 +194,12 @@ namespace Votos.COMMON.DTHW
             string datosDos = "Sección: " + boletaDto.Seccion + "  Folio: " + boletaDto.Folio + "\n";
             string folio = "Municipio: " + boletaDto.Municipio + "\n\n";
             string partidos = "      Votaste por la pregunta\n\n";
-            string partidoNombre = "     " + boletaDto.Partido + "\n";
+            string[] partidoA = boletaDto.Partido.Split(' ');
+            string partidoNombre = "     ";
+            foreach (var w in partidoA)
+            {
+                partidoNombre += $"<{partidoA}>" + "\n";
+            }
             string respuesta = boletaDto.RespuestaSi;
             string res = "";
             if (respuesta == "1")
