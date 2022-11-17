@@ -6,7 +6,7 @@ namespace Votos.COMMON.DTOS.Boletas
 {
     public class BoletaFinalRequest
     {
-        public int Id { get; set; }
+        public string QrCode { get; set; }
         public string TipoEleccion { get; set; }
         public string CantidadBoletas { get; set; }
 

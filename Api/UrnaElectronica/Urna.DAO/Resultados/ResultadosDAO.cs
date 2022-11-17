@@ -23,7 +23,8 @@ namespace Urna.DAO.Resultados
                         Fecha = DateTime.Now,
                         Codigo = request.Codigo,
                         Categoria = request.Categoria,
-                        Resultados = request.Resultados
+                        QrCode = request.QrCode,
+                        Resultados = JsonSerializer.Serialize(request.Resultados)
                     };
 
                     await context.AddAsync(resultadosVotacion);
@@ -57,6 +58,7 @@ namespace Urna.DAO.Resultados
                             Fecha = i.Fecha,
                             Codigo = i.Codigo,
                             Categoria = i.Categoria,
+                            QrCode = i.QrCode,
                             Resultados = JsonSerializer.Serialize(i.Resultados)
                         });
                     }

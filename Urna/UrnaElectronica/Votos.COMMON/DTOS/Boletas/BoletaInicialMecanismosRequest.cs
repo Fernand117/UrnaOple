@@ -6,7 +6,7 @@ namespace Votos.COMMON.DTOS.Boletas
 {
     public class BoletaInicialMecanismosRequest
     {
-        public int Id { get; set; }
+        public string QrCode { get; set; }
         public string MecanismoTipo { get; set; }
 
         //Datos para imprimir el ticket

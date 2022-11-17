@@ -45,6 +45,36 @@ namespace Urna.DAL.Migrations
 
                     b.ToTable("Configuracion");
                 });
+
+            modelBuilder.Entity("Urna.DAL.Entities.ResultadosVotacion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Categoria")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Codigo")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("QrCode")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Resultados")
+                        .HasColumnName("Resultados")
+                        .HasColumnType("jsonb");
+
+                    b.HasKey("Id")
+                        .HasName("PK_tbResultados");
+
+                    b.ToTable("Resultados");
+                });
 #pragma warning restore 612, 618
         }
     }

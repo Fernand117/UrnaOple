@@ -8,6 +8,7 @@ namespace Urna.COMMON.DTOS.Resultados
         public DateTime Fecha { get; set; }
         public string Codigo { get; set; }
         public string Categoria { get; set; }
+        public string QrCode { get; set; }
         public string Resultados { get; set; }
     }
 }

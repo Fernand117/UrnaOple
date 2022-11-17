@@ -10,8 +10,8 @@ using Urna.DAL.Context;
 namespace Urna.DAL.Migrations
 {
     [DbContext(typeof(UrnaContext))]
-    [Migration("20221110174728_update_dbOple")]
-    partial class update_dbOple
+    [Migration("20221117182450_dbOple_resultados")]
+    partial class dbOple_resultados
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,36 @@ namespace Urna.DAL.Migrations
                         .HasName("PK_tbConfiguracion");
 
                     b.ToTable("Configuracion");
+                });
+
+            modelBuilder.Entity("Urna.DAL.Entities.ResultadosVotacion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Categoria")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Codigo")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("QrCode")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Resultados")
+                        .HasColumnName("Resultados")
+                        .HasColumnType("jsonb");
+
+                    b.HasKey("Id")
+                        .HasName("PK_tbResultados");
+
+                    b.ToTable("Resultados");
                 });
 #pragma warning restore 612, 618
         }

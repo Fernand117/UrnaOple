@@ -29,6 +29,7 @@ namespace Votos.COMMON.DTHW
             mensaje = estructuraTicketEscolares(request);
             Console.WriteLine(mensaje);
             PrintDocument pf = new PrintDocument();
+            pf.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
             pf.PrintPage += Pf_PrintPage;
             pf.Print();
         }
@@ -38,19 +39,17 @@ namespace Votos.COMMON.DTHW
             mensaje = estructuraTicketMecanismos(request);
             Console.WriteLine(mensaje);
             PrintDocument pf = new PrintDocument();
+            pf.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
             pf.PrintPage += Pf_PrintPage;
             pf.Print();
         }
 
-        public async void imprimirBoletaCeros(BoletaInicialRequest request)
+        public void imprimirBoletaCeros(BoletaInicialRequest request)
         {
             mensaje = estructuraBoletaCeros(request);
-            string image64 = await GetImageAsBase64Url(request.Distrito);
-            _image = Base64ToImage(image64);
-            Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
             pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
-            pd.PrintPage +=  new PrintPageEventHandler(Pd_PrintPage);
+            pd.PrintPage +=  new PrintPageEventHandler(Pf_PrintPage);
             pd.Print();
         }
 
@@ -59,6 +58,7 @@ namespace Votos.COMMON.DTHW
             mensaje = estructuraBoletaCerosMecanismos(request);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
+            pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
             pd.PrintPage += Pd_PrintPage;
             pd.Print();
         }
@@ -67,33 +67,43 @@ namespace Votos.COMMON.DTHW
             mensaje = estructuraBoletaCerosEscolares(request);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
+            pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
             pd.PrintPage += Pd_PrintPage;
             pd.Print();
         }
 
-        public void imprimirBoletaCierre(BoletaFinalRequest request)
+        public async void imprimirBoletaCierre(BoletaFinalRequest request)
         {
             mensaje = estructuraBoletaResultados(request);
+            string image64 = await GetImageAsBase64Url(request.QrCode);
+            _image = Base64ToImage(image64);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
-            pd.PrintPage += Pd_PrintPage;
+            pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
+            pd.PrintPage +=  new PrintPageEventHandler(Pd_PrintPage);
             pd.Print();
         }
-        public void imprimirBoletaCierreMecanismos(BoletaInicialMecanismosRequest request)
+        public async void imprimirBoletaCierreMecanismos(BoletaInicialMecanismosRequest request)
         {
             mensaje = estructuraBoletaResultadosMecanismos(request);
+            string image64 = await GetImageAsBase64Url(request.QrCode);
+            _image = Base64ToImage(image64);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
-            pd.PrintPage += Pd_PrintPage;
+            pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
+            pd.PrintPage +=  new PrintPageEventHandler(Pd_PrintPage);
             pd.Print();
         }
 
-        public void imprimirBoletaCierreEscolares(BoletaFinalRequest request)
+        public async void imprimirBoletaCierreEscolares(BoletaFinalRequest request)
         {
             mensaje = estructuraBoletaResultadosEscolares(request);
+            string image64 = await GetImageAsBase64Url(request.QrCode);
+            _image = Base64ToImage(image64);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
-            pd.PrintPage += Pd_PrintPage;
+            pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
+            pd.PrintPage +=  new PrintPageEventHandler(Pd_PrintPage);
             pd.Print();
         }
 
