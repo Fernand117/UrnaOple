@@ -7,6 +7,7 @@ import { ProcesosComponent } from './pages/procesos/procesos.component';
 import { ParticipacionComponent } from './pages/participacion/participacion.component';
 import { EscolaresComponent } from './pages/escolares/escolares.component';
 import {MecanismosComponent} from "./pages/mecanismos/mecanismos.component";
+import {ResultadosComponent} from "./pages/resultados/resultados.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'elecciones/mecanismos', component: MecanismosComponent},
   { path: 'elecciones/participacion', component: ParticipacionComponent },
   { path: 'elecciones/escolares', component: EscolaresComponent },
+  { path: 'resultados/code/:code', component: ResultadosComponent },
 
   // Rutas para la administración de las elecciones
   { path: '**', pathMatch: 'full', redirectTo: 'login'}

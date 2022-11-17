@@ -38,7 +38,7 @@ export class ApiServiceService {
     return this.http.post(`${this.url}/escolar`, datos, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 
-  getOneConfiguracion(code:any) {
-    return this.http.get(`${this.url}/eleccion/code/${code}`);
+  listarResultados(code:any) {
+    return this.http.get(`${this.url}/resultados/code/${code}`);
   }
 }

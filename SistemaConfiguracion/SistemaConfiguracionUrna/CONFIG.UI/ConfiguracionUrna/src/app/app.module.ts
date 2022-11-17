@@ -19,6 +19,7 @@ import localeEs from '@angular/common/locales/es';
 
 import { registerLocaleData } from '@angular/common';
 import { MecanismosComponent } from './pages/mecanismos/mecanismos.component';
+import { ResultadosComponent } from './pages/resultados/resultados.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -32,7 +33,8 @@ registerLocaleData(localeEs, 'es');
     ProcesosComponent,
     ParticipacionComponent,
     EscolaresComponent,
-    MecanismosComponent
+    MecanismosComponent,
+    ResultadosComponent
   ],
   imports: [
     BrowserModule,
