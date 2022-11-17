@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Votos.COMMON.DTOS.Boletas;
 
 namespace Votos.COMMON.DTHW
@@ -10,6 +14,7 @@ namespace Votos.COMMON.DTHW
     public class ImprimirTickets
     {
         private string mensaje { get; set; }
+        private Image _image { get; set; }
 
         public void imprimirComprobante(BoletasDTO request)
         {
@@ -37,12 +42,15 @@ namespace Votos.COMMON.DTHW
             pf.Print();
         }
 
-        public void imprimirBoletaCeros(BoletaInicialRequest request)
+        public async void imprimirBoletaCeros(BoletaInicialRequest request)
         {
             mensaje = estructuraBoletaCeros(request);
+            string image64 = await GetImageAsBase64Url(request.Distrito);
+            _image = Base64ToImage(image64);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
-            pd.PrintPage += Pd_PrintPage;
+            pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
+            pd.PrintPage +=  new PrintPageEventHandler(Pd_PrintPage);
             pd.Print();
         }
 
@@ -93,14 +101,17 @@ namespace Votos.COMMON.DTHW
         {
             Graphics g = e.Graphics;
             Image image = Image.FromFile("C:\\LOGOTIPO_OPLE.png");
-            Bitmap imageBit = new Bitmap(image, 150, 100);
-            Font font = new Font("Arial", 12);
+            Bitmap imageOple = new Bitmap(image, 120, 80);
+
+            Bitmap imageBit = new Bitmap(_image, 100, 100);
+            Font font = new Font("Arial", 11);
 
             SolidBrush brush = new SolidBrush(Color.Black);
 
             //g.DrawString(mensaje, font, brush, new Rectangle(0, 0));
-            g.DrawImage(imageBit, 60, 0);
-            g.DrawString(mensaje, font, brush, 0, 150);
+            g.DrawImage(imageOple, 20, 0);
+            g.DrawImage(imageBit, 170, 0);
+            g.DrawString(mensaje, font, brush, 0, 120);
         }
 
         private void Pf_PrintPage(object sender, PrintPageEventArgs e)
@@ -513,6 +524,30 @@ namespace Votos.COMMON.DTHW
             mensaje = cabezera + mensajeHead + fechaHora + eleccion  + separadorUno + headPartidos + partidos +
                       txt_total + presidente + secretario + escrutadorUno + escrutadorDos;
             return mensaje;
+        }
+        
+        public async static Task<string> GetImageAsBase64Url(string url)
+        {
+            var credentials = new NetworkCredential("", "");
+            using (var handler = new HttpClientHandler { Credentials = credentials })
+            using (var client = new HttpClient(handler))
+            {
+                var bytes = await client.GetByteArrayAsync(url);
+                string img = Convert.ToBase64String(bytes);
+                return img;
+            }
+        }
+        
+        public Image Base64ToImage(string base64String)
+        {
+            // Convert base 64 string to byte[]
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            // Convert byte[] to Image
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+                Image image = Image.FromStream(ms, true);
+                return image;
+            }
         }
 
     }
