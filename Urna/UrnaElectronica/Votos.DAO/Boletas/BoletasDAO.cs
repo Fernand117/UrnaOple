@@ -204,7 +204,8 @@ namespace Votos.DAO.Boletas
                     Secretario = request.Secretario,
                     PrimerEscrutador = request.PrimerEscrutador,
                     SegundoEscrutador = request.SegundoEscrutador,
-                    Partidos = request.Partidos
+                    Partidos = request.Partidos,
+                    QrCode = request.QrCode
                 };
 
                 ImprimirTickets imprimirTickets = new ImprimirTickets();
@@ -236,7 +237,8 @@ namespace Votos.DAO.Boletas
                     Secretario = request.Secretario,
                     PrimerEscrutador = request.PrimerEscrutador,
                     SegundoEscrutador = request.SegundoEscrutador,
-                    Preguntas = request.Preguntas
+                    Preguntas = request.Preguntas,
+                    QrCode = request.QrCode
                 };
 
                 ImprimirTickets imprimirTickets = new ImprimirTickets();
@@ -262,7 +264,8 @@ namespace Votos.DAO.Boletas
                     Secretario = request.Secretario,
                     PrimerEscrutador = request.PrimerEscrutador,
                     SegundoEscrutador = request.SegundoEscrutador,
-                    Partidos = request.Partidos
+                    Partidos = request.Partidos,
+                    QrCode = request.QrCode
                 };
 
                 ImprimirTickets imprimirTickets = new ImprimirTickets();

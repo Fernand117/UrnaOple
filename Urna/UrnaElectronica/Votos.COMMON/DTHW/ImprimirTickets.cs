@@ -75,6 +75,7 @@ namespace Votos.COMMON.DTHW
         public async void imprimirBoletaCierre(BoletaFinalRequest request)
         {
             mensaje = estructuraBoletaResultados(request);
+            Console.WriteLine("COD QR" + request.QrCode);
             string image64 = await GetImageAsBase64Url(request.QrCode);
             _image = Base64ToImage(image64);
             Console.WriteLine(mensaje);
@@ -536,12 +537,13 @@ namespace Votos.COMMON.DTHW
             return mensaje;
         }
         
-        public async static Task<string> GetImageAsBase64Url(string url)
+        public async static Task<string> GetImageAsBase64Url(String url)
         {
             var credentials = new NetworkCredential("", "");
             using (var handler = new HttpClientHandler { Credentials = credentials })
             using (var client = new HttpClient(handler))
             {
+                Console.WriteLine(url);
                 var bytes = await client.GetByteArrayAsync(url);
                 string img = Convert.ToBase64String(bytes);
                 return img;
