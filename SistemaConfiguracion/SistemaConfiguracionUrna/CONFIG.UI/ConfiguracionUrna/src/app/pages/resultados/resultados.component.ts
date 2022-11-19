@@ -12,6 +12,8 @@ export class ResultadosComponent implements OnInit {
   public resServidor: any;
   public resDatosServidor: any
   public data: any[] = [];
+  public resCategorias: any[] = [];
+  public jsonParse: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +28,12 @@ export class ResultadosComponent implements OnInit {
         this.resServidor = res;
         this.resDatosServidor = this.resServidor;
         this.data = this.resDatosServidor['data'];
-        console.log(this.resDatosServidor)
+        console.log(this.data)
+        for (let i = 0; i < this.data.length; i++) {
+          //this.jsonParse = JSON.parse(this.data[i]['resultados']);
+          this.resCategorias.push(JSON.parse(JSON.parse(this.data[i]['resultados'])));
+          console.log(this.resCategorias)
+        }
       }
     );
   }

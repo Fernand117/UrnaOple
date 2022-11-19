@@ -1,6 +1,15 @@
 <div class="contenedor">
-  <img src="../../../assets/img/LogoOple.png" alt="">
+  <img src="../../../assets/img/LogoOple.png" alt="Logo del ople" class="imgLogoOple">
+  <p>Resultados de los procesos electorales.</p>
   <div *ngIf="data.length == 0">
     <h1>Aún no hay resultados de las votaciones.</h1>
+  </div>
+  <div *ngFor="let item of resCategorias">
+    <div *ngFor="let i of item">
+      {{i.TipoEleccion}}
+      <div *ngFor="let v of i.Datos">
+        {{v.Partido}} {{v.Voto}}
+      </div>
+    </div>
   </div>
 </div>
