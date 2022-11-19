@@ -13,7 +13,11 @@ export class ResultadosComponent implements OnInit {
   public resDatosServidor: any
   public data: any[] = [];
   public resCategorias: any[] = [];
-  public jsonParse: any;
+
+  //VARIABLES PARA SACAR LAS CATEGORIAS
+  public TIPO_ELECCION_UNO: string;
+  public TIPO_ELECCION_DOS: string;
+  public TIPO_ELECCION_TRES: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +36,27 @@ export class ResultadosComponent implements OnInit {
         for (let i = 0; i < this.data.length; i++) {
           //this.jsonParse = JSON.parse(this.data[i]['resultados']);
           this.resCategorias.push(JSON.parse(JSON.parse(this.data[i]['resultados'])));
-          console.log(this.resCategorias)
+        }
+        console.log(this.resCategorias)
+
+        for (let i = 0; i < this.resCategorias.length; i++) {
+          if (this.resCategorias[i]['categoria'] === "Elecciones escolares") {
+            this.TIPO_ELECCION_UNO = this.resCategorias[i]['categoria'];
+          }
+          for (let j = 0; j < this.resCategorias[i].length; j++) {
+            console.log(this.resCategorias[i][j]['TipoEleccion']);
+            if (this.resCategorias[i][j]['TipoEleccion'] === "Gubernatura") {
+              this.TIPO_ELECCION_UNO = this.resCategorias[i][j]['TipoEleccion'];
+            }
+
+            if (this.resCategorias[i][j]['TipoEleccion'] === "Diputacion") {
+              this.TIPO_ELECCION_DOS = this.resCategorias[i][j]['TipoEleccion'];
+            }
+
+            if (this.resCategorias[i][j]['TipoEleccion'] === "Ayuntamiento") {
+              this.TIPO_ELECCION_TRES = this.resCategorias[i][j]['TipoEleccion'];
+            }
+          }
         }
       }
     );
