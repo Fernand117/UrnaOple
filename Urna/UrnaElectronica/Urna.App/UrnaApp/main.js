@@ -6,7 +6,7 @@ createWindow = () => {
     appWin = new BrowserWindow({
         width: 1920,
         height: 1080,
-        title: "Angular and Electron",
+        title: "Urna OPLE Veracruz",
         autoHideMenuBar: true,
         resizable: false,
         fullscreen: true,

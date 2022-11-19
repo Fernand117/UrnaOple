@@ -37,6 +37,22 @@ export class EsperaElectorComponent implements OnInit {
     this.code = "";
   }
 
+  clausurar() {
+    Swal.fire({
+      title: '¿Estas seguro de clausurar la urna?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#E33889',
+      cancelButtonColor: '#6F3CC6',
+      cancelButtonText: 'No, cancelar',
+      confirmButtonText: 'Si, clausurar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.route.navigate(['/clausura']);
+      }
+    })
+  }
+
   siguiente_elector() {
     switch (this.categoria) {
       case 'Elecciones escolares':

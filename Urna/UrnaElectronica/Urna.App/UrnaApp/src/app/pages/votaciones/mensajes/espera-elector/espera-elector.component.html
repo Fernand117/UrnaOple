@@ -8,6 +8,7 @@
     <br>
     <p>Ingrese la tarjeta para continuar</p>
     <input class="form-control" type="password" [(ngModel)]="code" (change)="validar()" autofocus #myInput> {{ myInput.focus() }}
+  <button (click)="clausurar()" class="btn btn-primary">CLAUSURAR URNA</button>
   </div>
 </div>
 <app-footer></app-footer>

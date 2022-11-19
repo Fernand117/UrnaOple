@@ -95,6 +95,7 @@ export class ConfiguracionComponent implements OnInit {
 
   descargarConfiguracion() {
     this.service.getConfiguracion(this.keyboard.value).subscribe((resp) => {
+      localStorage.setItem('codigo', this.keyboard.value);      
       this.respuesta = resp;            
       this.respuesta = this.respuesta.data;      
       if (this.respuesta.configuraciones == null) {

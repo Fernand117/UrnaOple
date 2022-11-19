@@ -48,7 +48,7 @@ namespace Votos.COMMON.DTHW
         {
             mensaje = estructuraBoletaCeros(request);
             PrintDocument pd = new PrintDocument();
-            pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
+            pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";   
             pd.PrintPage +=  new PrintPageEventHandler(Pf_PrintPage);
             pd.Print();
         }
@@ -303,6 +303,7 @@ namespace Votos.COMMON.DTHW
         {
             BoletaFinalRequest boletaDto = new BoletaFinalRequest()
             {
+                QrCode = _boletas.QrCode,
                 CantidadBoletas = _boletas.CantidadBoletas,
                 TipoCasilla = _boletas.TipoCasilla,
                 Distrito = _boletas.Distrito,
@@ -315,7 +316,7 @@ namespace Votos.COMMON.DTHW
                 Presidente = _boletas.Presidente,
                 Secretario = _boletas.Secretario,
                 PrimerEscrutador = _boletas.PrimerEscrutador,
-                SegundoEscrutador = _boletas.SegundoEscrutador
+                SegundoEscrutador = _boletas.SegundoEscrutador,
             };
 
             string cabezera = "             OPLE VERACRUZ\n";
@@ -410,6 +411,7 @@ namespace Votos.COMMON.DTHW
         {
             BoletaInicialMecanismosRequest boletaDto = new BoletaInicialMecanismosRequest()
             {
+                QrCode = _boletas.QrCode,
                 Distrito = _boletas.Distrito,
                 Entidad = _boletas.Entidad,
                 Folio = _boletas.Folio,
@@ -499,6 +501,7 @@ namespace Votos.COMMON.DTHW
         {
             BoletaFinalRequest boletaDto = new BoletaFinalRequest()
             {
+                QrCode = _boletas.QrCode,
                 Partidos = _boletas.Partidos,
                 Presidente = _boletas.Presidente,
                 Secretario = _boletas.Secretario,

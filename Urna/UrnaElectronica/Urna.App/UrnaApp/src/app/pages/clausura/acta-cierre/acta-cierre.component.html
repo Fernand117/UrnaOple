@@ -2,7 +2,15 @@
 <div class="container">
   <h1>Acta de cierre</h1>
   <div class="row">
-
+    <div id="contenido">
+      <ngx-qrcode
+      id="qr"
+      [elementType]="elementType"
+      [value]="value"
+      cssClass="aClass"
+      [errorCorrectionLevel]="errorCorrectionLevel">
+      </ngx-qrcode>
+    </div>
     <!-- BOLETA GUBERNATURAS -->
     <div class="col-sm" *ngIf="config_gubernatura">
       <h2>Gubernaturas</h2>
@@ -104,7 +112,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let boleta of votosref">
-            <td>{{boleta.pregunta}}</td>
+            <td>{{boleta.partido}}</td>
             <td>{{boleta.respuestaSi}}</td>
             <td>{{boleta.respuestaNo}}</td>
           </tr>
@@ -128,7 +136,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let boleta of votosples">
-            <td>{{boleta.pregunta}}</td>
+            <td>{{boleta.partido}}</td>
             <td>{{boleta.respuestaSi}}</td>
             <td>{{boleta.respuestaNo}}</td>
           </tr>
@@ -152,7 +160,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let boleta of votoscons">
-            <td>{{boleta.pregunta}}</td>
+            <td>{{boleta.partido}}</td>
             <td>{{boleta.respuestaSi}}</td>
             <td>{{boleta.respuestaNo}}</td>
           </tr>
