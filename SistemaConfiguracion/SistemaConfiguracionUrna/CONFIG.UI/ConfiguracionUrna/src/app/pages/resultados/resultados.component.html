@@ -4,14 +4,6 @@
   <div *ngIf="data.length == 0">
     <h1>Aún no hay resultados de las votaciones.</h1>
   </div>
-  <div *ngFor="let item of resCategorias">
-    <div *ngFor="let i of item">
-      {{i.TipoEleccion}}
-      <div *ngFor="let v of i.Datos">
-        {{v.Partido}} {{v.Voto}}
-      </div>
-    </div>
-  </div>
 
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -21,9 +13,60 @@
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+
+      <table class="table">
+        <thead class="headTable">
+          <tr>
+            <td>Cándidato</td>
+            <td>Votos</td>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of LISTA_VOTOS_GUBERNATURA">
+          <tr *ngFor="let result of item">
+            <td>{{result.Partido}}</td>
+            <td>{{result.Voto}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+
+      <table class="table">
+        <thead class="headTable">
+        <tr>
+          <td>Cándidato</td>
+          <td>Votos</td>
+        </tr>
+        </thead>
+        <tbody *ngFor="let item of LISTA_VOTOS_DIPUTACIONES">
+        <tr *ngFor="let result of item">
+          <td>{{result.Partido}}</td>
+          <td>{{result.Voto}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+
+      <table class="table">
+        <thead class="headTable">
+        <tr>
+          <td>Cándidato</td>
+          <td>Votos</td>
+        </tr>
+        </thead>
+        <tbody *ngFor="let item of LISTA_VOTOS_AYUNTAMIENTOS">
+        <tr *ngFor="let result of item">
+          <td>{{result.Partido}}</td>
+          <td>{{result.Voto}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
   </div>
 
 </div>
