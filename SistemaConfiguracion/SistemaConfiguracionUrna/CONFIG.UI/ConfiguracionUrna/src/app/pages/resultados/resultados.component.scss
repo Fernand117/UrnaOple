@@ -5,10 +5,28 @@
   .imgLogoOple {
     width: 100px;
     margin: 0 auto;
+    margin-top: 5%;
+  }
+
+  .lbMensaje {
+    margin-top: 5%;
   }
 
   .headTable {
+    width: 100%;
     background-color: deeppink;
     color: white;
+  }
+
+  .nav-link {
+    width: 120px;
+    word-wrap: break-word;
+    overflow: hidden;
+    font-size: 12px;
+    display: none;
+  }
+
+  .tab-content {
+    display: none;
   }
 }

@@ -1,9 +1,7 @@
 <div class="contenedor">
   <img src="../../../assets/img/LogoOple.png" alt="Logo del ople" class="imgLogoOple">
-  <p>Resultados de los procesos electorales.</p>
-  <div *ngIf="data.length == 0">
-    <h1>Aún no hay resultados de las votaciones.</h1>
-  </div>
+  <h3 class="lbMensaje" *ngIf="data.length > 0">Resultados de los procesos electorales.</h3>
+  <h3 class="lbMensaje" *ngIf="data.length == 0">Aún no hay resultados de las votaciones.</h3>
 
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -18,14 +16,19 @@
       <table class="table">
         <thead class="headTable">
           <tr>
-            <td>Cándidato</td>
-            <td>Votos</td>
+            <td id="tdPregunta1">Pregunta</td>
+            <td id="tdCandidato1">Cándidato</td>
+            <td id="tdVotos1">Votos</td>
+            <td id="tdSi1">Si</td>
+            <td id="tdNo1">No</td>
           </tr>
         </thead>
         <tbody *ngFor="let item of LISTA_VOTOS_GUBERNATURA">
           <tr *ngFor="let result of item">
-            <td>{{result.Partido}}</td>
-            <td>{{result.Voto}}</td>
+            <td id="tdRPartido1">{{result.Partido}}</td>
+            <td id="tdRVoto1" *ngIf="result.Voto > 0">{{result.Voto}}</td>
+            <td id="tdRSi1" *ngIf="result.RespuestaSi > 0">{{result.RespuestaSi}}</td>
+            <td id="tdRNo1" *ngIf="result.RespuestaNo > 0">{{result.RespuestaNo}}</td>
           </tr>
         </tbody>
       </table>
@@ -36,14 +39,19 @@
       <table class="table">
         <thead class="headTable">
         <tr>
-          <td>Cándidato</td>
-          <td>Votos</td>
+          <td id="tdPregunta2">Pregunta</td>
+          <td id="tdCandidato2">Cándidato</td>
+          <td id="tdVotos2">Votos</td>
+          <td id="tdSi2">Si</td>
+          <td id="tdNo2">No</td>
         </tr>
         </thead>
         <tbody *ngFor="let item of LISTA_VOTOS_DIPUTACIONES">
         <tr *ngFor="let result of item">
-          <td>{{result.Partido}}</td>
-          <td>{{result.Voto}}</td>
+          <td id="tdRPartido2">{{result.Partido}}</td>
+          <td id="tdRVoto2" *ngIf="result.Voto > 0">{{result.Voto}}</td>
+          <td id="tdRSi2" *ngIf="result.RespuestaSi > 0">{{result.RespuestaSi}}</td>
+          <td id="tdRNo2" *ngIf="result.RespuestaNo > 0">{{result.RespuestaNo}}</td>
         </tr>
         </tbody>
       </table>
@@ -54,14 +62,19 @@
       <table class="table">
         <thead class="headTable">
         <tr>
-          <td>Cándidato</td>
-          <td>Votos</td>
+          <td id="tdPregunta3">Pregunta</td>
+          <td id="tdCandidato3">Cándidato</td>
+          <td id="tdVotos3">Votos</td>
+          <td id="tdSi3">Si</td>
+          <td id="tdNo3">No</td>
         </tr>
         </thead>
         <tbody *ngFor="let item of LISTA_VOTOS_AYUNTAMIENTOS">
         <tr *ngFor="let result of item">
-          <td>{{result.Partido}}</td>
-          <td>{{result.Voto}}</td>
+          <td id="tdRPartido3">{{result.Partido}}</td>
+          <td id="tdRVoto3" *ngIf="result.Voto > 0">{{result.Voto}}</td>
+          <td id="tdRSi3" *ngIf="result.RespuestaSi > 0">{{result.RespuestaSi}}</td>
+          <td id="tdRNo3" *ngIf="result.RespuestaNo > 0">{{result.RespuestaNo}}</td>
         </tr>
         </tbody>
       </table>
