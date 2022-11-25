@@ -32,7 +32,7 @@ export class ActaCierreComponent implements OnInit {
   title = 'OPLE';
   elementType = NgxQrcodeElementTypes.URL;
   errorCorrectionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
-  value = `http://74.208.95.183/api/eleccion/code/${localStorage.getItem('codigo')}`;
+  value = `https://resultadosople.web.app/resultados/code/${localStorage.getItem('codigo')}`;
   valor = "codigoqr" + localStorage.getItem('codigo')?.toString();
 
   //IMAGEN QR
@@ -53,12 +53,12 @@ export class ActaCierreComponent implements OnInit {
     this.votosConsulta();
     this.votosReferendum();
     this.resultadosEsc();
-    setTimeout(()=>{    
+    setTimeout(()=>{
       this.crearImagen();
     }, 500);
   }
 
-  //CONVERTIR Y ENVIAR LA IMAGEN DEL CÓDIGO QR AL SERVIDOR 
+  //CONVERTIR Y ENVIAR LA IMAGEN DEL CÓDIGO QR AL SERVIDOR
   crearImagen() {
     let doc = document.querySelector("#qr") as HTMLElement;
     html2canvas(doc).then(canvas => {
@@ -66,7 +66,7 @@ export class ActaCierreComponent implements OnInit {
       this.formData = new FormData();
       this.formData.append('file', this.imagenCreada);
       this.formData.append('public_id', this.valor + "" + "696242651689144");
-      this.formData.append('upload_preset', 'filesOple');      
+      this.formData.append('upload_preset', 'filesOple');
       this.service.uploadSignature(this.formData).subscribe(
         res => {
           this.resPic = res;

@@ -1,6 +1,85 @@
 <div class="contenedor">
-  <img src="../../../assets/img/LogoOple.png" alt="">
-  <div *ngIf="data.length == 0">
-    <h1>Aún no hay resultados de las votaciones.</h1>
+  <img src="../../../assets/img/LogoOple.png" alt="Logo del ople" class="imgLogoOple">
+  <h3 class="lbMensaje" *ngIf="data.length > 0">Resultados de los procesos electorales.</h3>
+  <h3 class="lbMensaje" *ngIf="data.length == 0">Aún no hay resultados de las votaciones.</h3>
+
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">{{TIPO_ELECCION_UNO}}</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">{{TIPO_ELECCION_DOS}}</button>
+      <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">{{TIPO_ELECCION_TRES}}</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+
+      <table class="table">
+        <thead class="headTable">
+          <tr>
+            <td id="tdPregunta1">Pregunta</td>
+            <td id="tdCandidato1">Cándidato</td>
+            <td id="tdVotos1">Votos</td>
+            <td id="tdSi1">Si</td>
+            <td id="tdNo1">No</td>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of LISTA_VOTOS_GUBERNATURA">
+          <tr *ngFor="let result of item">
+            <td id="tdRPartido1">{{result.Partido}}</td>
+            <td id="tdRVoto1" *ngIf="result.Voto > 0">{{result.Voto}}</td>
+            <td id="tdRSi1" *ngIf="result.RespuestaSi > 0">{{result.RespuestaSi}}</td>
+            <td id="tdRNo1" *ngIf="result.RespuestaNo > 0">{{result.RespuestaNo}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+
+      <table class="table">
+        <thead class="headTable">
+        <tr>
+          <td id="tdPregunta2">Pregunta</td>
+          <td id="tdCandidato2">Cándidato</td>
+          <td id="tdVotos2">Votos</td>
+          <td id="tdSi2">Si</td>
+          <td id="tdNo2">No</td>
+        </tr>
+        </thead>
+        <tbody *ngFor="let item of LISTA_VOTOS_DIPUTACIONES">
+        <tr *ngFor="let result of item">
+          <td id="tdRPartido2">{{result.Partido}}</td>
+          <td id="tdRVoto2" *ngIf="result.Voto > 0">{{result.Voto}}</td>
+          <td id="tdRSi2" *ngIf="result.RespuestaSi > 0">{{result.RespuestaSi}}</td>
+          <td id="tdRNo2" *ngIf="result.RespuestaNo > 0">{{result.RespuestaNo}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+
+      <table class="table">
+        <thead class="headTable">
+        <tr>
+          <td id="tdPregunta3">Pregunta</td>
+          <td id="tdCandidato3">Cándidato</td>
+          <td id="tdVotos3">Votos</td>
+          <td id="tdSi3">Si</td>
+          <td id="tdNo3">No</td>
+        </tr>
+        </thead>
+        <tbody *ngFor="let item of LISTA_VOTOS_AYUNTAMIENTOS">
+        <tr *ngFor="let result of item">
+          <td id="tdRPartido3">{{result.Partido}}</td>
+          <td id="tdRVoto3" *ngIf="result.Voto > 0">{{result.Voto}}</td>
+          <td id="tdRSi3" *ngIf="result.RespuestaSi > 0">{{result.RespuestaSi}}</td>
+          <td id="tdRNo3" *ngIf="result.RespuestaNo > 0">{{result.RespuestaNo}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
   </div>
+
 </div>
