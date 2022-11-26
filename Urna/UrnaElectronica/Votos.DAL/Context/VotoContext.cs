@@ -46,6 +46,9 @@ namespace Votos.DAL.Context
 
                 entity.Property(a => a.Voto)
                       .HasColumnName("votos");
+
+                entity.Property(a => a.Tipo)
+                      .HasColumnName("tipo");
             });
 
             modelBuilder.Entity<Gubernatura>(entity =>
