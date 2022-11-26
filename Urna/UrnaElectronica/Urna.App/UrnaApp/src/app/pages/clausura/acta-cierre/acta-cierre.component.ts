@@ -20,14 +20,20 @@ export class ActaCierreComponent implements OnInit {
   config_consulta?: any;
   configuracion_general: any;
   votosgub: any;
+  votosgubFiltro: any = [];
   votosayu: any;
+  votosayuFiltro: any = [];
   votosdip: any;
+  votosdipFiltro: any = [];
   votosref: any;
   votosples: any;
   votoscons: any;
   votosesc: any;
   votosRequest: any;
   resPic: any;
+  c1 = 0;
+  c2 = 0;
+  c3 = 0;
 
   title = 'OPLE';
   elementType = NgxQrcodeElementTypes.URL;
@@ -70,7 +76,7 @@ export class ActaCierreComponent implements OnInit {
       this.service.uploadSignature(this.formData).subscribe(
         res => {
           this.resPic = res;
-          this.resPic = this.resPic.url;
+          this.resPic = this.resPic.url;          
         }
       );
     }).then(() => {
@@ -84,12 +90,16 @@ export class ActaCierreComponent implements OnInit {
       "Categoria": localStorage.getItem('categoria'),
       "Resultados": this.listaResultados
     }
+    console.log(resultados);
+    
     this.service.sendResultados(resultados).subscribe((resp) => {
+      console.log(resp);
+      
     })
   }
 
   obtenerVotos(votos: any) {
-    this.votosRequest = votos;
+    this.votosRequest = votos;        
   }
 
   imprimirBoleta(configuracion: any) {
@@ -99,7 +109,13 @@ export class ActaCierreComponent implements OnInit {
     this.configuracion_general.CantidadBoletas = configuracion.CantidadBoletas;
     this.configuracion_general.QrCode = this.resPic;
     delete this.configuracion_general['Elecciones'];
+    console.log(this.configuracion_general);
+    
     this.service.imprimirBoletaFinal(this.configuracion_general).subscribe(resp => {
+      console.log(resp);
+    }, error => {
+      console.log(error);
+      
     });
   }
 
@@ -124,14 +140,26 @@ export class ActaCierreComponent implements OnInit {
   votosGub() {
     this.service.getVotosByTipo('gubernatura').subscribe(resp => {
       this.votosgub = resp;
-      this.votosgub = this.votosgub.data;
-      console.log(this.votosgub);
+      this.votosgub = this.votosgub.data;    
       
-      if (Object.entries(this.votosgub).length > 0) {
+      for (let i = 0; i < this.votosgub.length; i++) {
+        if (this.votosgub[i].tipo == "No registrado") {     
+          this.c1++;
+          this.votosgubFiltro = this.votosgub.filter(function(nor: any) { return nor.tipo !== "No registrado" }); // filtramos          
+        }  
+      }      
+      let noRegistrados = {
+        "partido": "No registrados",
+        "voto": this.c1.toString(),
+        "tipo": "No registrado"
+      }
+      this.votosgubFiltro.push(noRegistrados)
+      
+      if (Object.entries(this.votosgubFiltro).length > 0) {
         const datos = {
           "TipoEleccion": "Gubernaturas",
-          "Datos": this.votosgub
-        };
+          "Datos": this.votosgubFiltro
+        };        
         this.listaResultados.push(datos);
       }
     });
@@ -140,11 +168,27 @@ export class ActaCierreComponent implements OnInit {
   votosDip() {
     this.service.getVotosByTipo('diputacion').subscribe(resp => {
       this.votosdip = resp;
-      this.votosdip = this.votosdip.data;
-      if (Object.entries(this.votosdip).length > 0) {
+      this.votosdip = this.votosdip.data;     
+      console.log(this.votosdip);
+       
+
+      for (let i = 0; i < this.votosdip.length; i++) {
+        if (this.votosdip[i].tipo == "No registrado") {     
+          this.c2++;
+          this.votosdipFiltro = this.votosdip.filter(function(nor: any) { return nor.tipo !== "No registrado" }); // filtramos          
+        }  
+      }      
+      let noRegistrados = {
+        "partido": "No registrados",
+        "voto": this.c2.toString(),
+        "tipo": "No registrado"
+      }
+      this.votosdipFiltro.push(noRegistrados);
+
+      if (Object.entries(this.votosdipFiltro).length > 0) {
         const datos = {
           "TipoEleccion": "Diputaciones",
-          "Datos": this.votosdip
+          "Datos": this.votosdipFiltro
         };
         this.listaResultados.push(datos);
       }
@@ -154,11 +198,25 @@ export class ActaCierreComponent implements OnInit {
   votosAyu() {
     this.service.getVotosByTipo('ayuntamiento').subscribe(resp => {
       this.votosayu = resp;
-      this.votosayu = this.votosayu.data;
-      if (Object.entries(this.votosayu).length > 0) {
+      this.votosayu = this.votosayu.data;      
+
+      for (let i = 0; i < this.votosayu.length; i++) {
+        if (this.votosayu[i].tipo == "No registrado") {     
+          this.c3++;
+          this.votosayuFiltro = this.votosayu.filter(function(nor: any) { return nor.tipo !== "No registrado" }); // filtramos          
+        }  
+      }      
+      let noRegistrados = {
+        "partido": "No registrados",
+        "voto": this.c3.toString(),
+        "tipo": "No registrado"
+      }
+      this.votosayuFiltro.push(noRegistrados);
+
+      if (Object.entries(this.votosayuFiltro).length > 0) {
         const datos = {
           "TipoEleccion": "Ayuntamientos",
-          "Datos": this.votosayu
+          "Datos": this.votosayuFiltro
         };
         this.listaResultados.push(datos);
       }
