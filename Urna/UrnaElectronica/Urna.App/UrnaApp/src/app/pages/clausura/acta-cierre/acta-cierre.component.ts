@@ -141,13 +141,17 @@ export class ActaCierreComponent implements OnInit {
     this.service.getVotosByTipo('gubernatura').subscribe(resp => {
       this.votosgub = resp;
       this.votosgub = this.votosgub.data;    
-      
+      this.votosgubFiltro = this.votosgub;
+
       for (let i = 0; i < this.votosgub.length; i++) {
         if (this.votosgub[i].tipo == "No registrado") {     
           this.c1++;
           this.votosgubFiltro = this.votosgub.filter(function(nor: any) { return nor.tipo !== "No registrado" }); // filtramos          
+          console.log(this.votosgubFiltro);
+          
         }  
       }      
+      
       let noRegistrados = {
         "partido": "No registrados",
         "voto": this.c1.toString(),
@@ -168,9 +172,8 @@ export class ActaCierreComponent implements OnInit {
   votosDip() {
     this.service.getVotosByTipo('diputacion').subscribe(resp => {
       this.votosdip = resp;
-      this.votosdip = this.votosdip.data;     
-      console.log(this.votosdip);
-       
+      this.votosdip = this.votosdip.data;    
+      this.votosdipFiltro = this.votosdip;        
 
       for (let i = 0; i < this.votosdip.length; i++) {
         if (this.votosdip[i].tipo == "No registrado") {     
@@ -199,6 +202,7 @@ export class ActaCierreComponent implements OnInit {
     this.service.getVotosByTipo('ayuntamiento').subscribe(resp => {
       this.votosayu = resp;
       this.votosayu = this.votosayu.data;      
+      this.votosayuFiltro = this.votosayu;
 
       for (let i = 0; i < this.votosayu.length; i++) {
         if (this.votosayu[i].tipo == "No registrado") {     
