@@ -9,5 +9,6 @@ namespace Votos.DAL.Entities.Gubernaturas
         public int Id { get; set; }
         public string Partido { get; set; }
         public string Voto { get; set; }
+        public string Tipo { get; set; }
     }
 }

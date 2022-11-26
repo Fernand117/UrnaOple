@@ -48,7 +48,8 @@ namespace Votos.DAO.Ayuntamientos
 						{
 							Id = request.Id,
 							Partido = request.Partido,
-							Voto = request.Voto
+							Voto = request.Voto,
+							Tipo = request.Tipo
 						};
 
 						await context.AddAsync(ayuntamiento);
@@ -85,7 +86,8 @@ namespace Votos.DAO.Ayuntamientos
 				        {
 					        Id = v.Id,
 					        Partido = v.Partido,
-					        Voto = v.Voto
+					        Voto = v.Voto,
+							Tipo = v.Tipo
 				        });
 			        }
 		        }

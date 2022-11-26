@@ -47,7 +47,8 @@ namespace Votos.DAO.Gubernaturas
                         {
                             Id = request.Id,
                             Partido = request.Partido,
-                            Voto = request.Voto
+                            Voto = request.Voto,
+                            Tipo = request.Tipo
                         };
 
                         await context.AddAsync(gubernatura);
@@ -84,7 +85,8 @@ namespace Votos.DAO.Gubernaturas
                         {
                             Id = v.Id,
                             Partido = v.Partido,
-                            Voto = v.Voto
+                            Voto = v.Voto,
+                            Tipo = v.Tipo
                         });
                     }
                 }

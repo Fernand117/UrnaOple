@@ -43,6 +43,7 @@ export class CardComponent implements OnInit {
       const request = {
         "Partido": this.candidatoSeleccionado.Hipocoristico.toString(),
         "Voto": "1",
+        "Tipo": "Registrado",
         "TipoEleccion": this.partidos.TipoEleccion,
         "Entidad": this.configuracion_general.Entidad,
         "Distrito": this.configuracion_general.Distrito,
@@ -67,6 +68,7 @@ export class CardComponent implements OnInit {
       const request = {
         "Partido": this.keyboard.value,
         "Voto": "1",
+        "Tipo": "No registrado",
         "TipoEleccion": this.partidos.TipoEleccion,
         "Entidad": this.configuracion_general.Entidad,
         "Distrito": this.configuracion_general.Distrito,

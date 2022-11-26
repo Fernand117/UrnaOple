@@ -47,7 +47,8 @@ namespace Votos.DAO.Diputaciones
                         {
                             Id = request.Id,
                             Partido = request.Partido,
-                            Voto = request.Voto
+                            Voto = request.Voto,
+                            Tipo = request.Tipo
                         };
 
                         await context.AddAsync(diputacion);

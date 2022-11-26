@@ -125,6 +125,8 @@ export class ActaCierreComponent implements OnInit {
     this.service.getVotosByTipo('gubernatura').subscribe(resp => {
       this.votosgub = resp;
       this.votosgub = this.votosgub.data;
+      console.log(this.votosgub);
+      
       if (Object.entries(this.votosgub).length > 0) {
         const datos = {
           "TipoEleccion": "Gubernaturas",
