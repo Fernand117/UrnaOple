@@ -22,15 +22,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of votosgub">
-            <td>{{boleta.partido}}</td>
+          <tr *ngFor="let boleta of votosgubFiltro">
             <td>{{boleta.partido}}</td>
             <td>{{boleta.voto}}</td>
           </tr>
         </tbody>
       </table>
       <div class="botones">
-        <button type="button" class="btn btn-primary" id="btn1" (click)="obtenerVotos(votosgub)" (click)="imprimirBoleta(config_gubernatura)">Imprimir</button>
+        <button type="button" class="btn btn-primary" id="btn1" (click)="obtenerVotos(votosgubFiltro)" (click)="imprimirBoleta(config_gubernatura)">Imprimir</button>
       </div>
     </div>
 
@@ -45,14 +44,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of votosdip">
+          <tr *ngFor="let boleta of votosdipFiltro">
             <td>{{boleta.partido}}</td>
             <td>{{boleta.voto}}</td>
           </tr>
         </tbody>
       </table>
       <div class="botones">
-        <button type="button" class="btn btn-primary" id="btn1" (click)="obtenerVotos(votosdip)"  (click)="imprimirBoleta(config_diputacion)">Imprimir</button>
+        <button type="button" class="btn btn-primary" id="btn1" (click)="obtenerVotos(votosdipFiltro)"  (click)="imprimirBoleta(config_diputacion)">Imprimir</button>
       </div>
     </div>
 
@@ -67,14 +66,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let boleta of votosayu">
+          <tr *ngFor="let boleta of votosayuFiltro">
             <td>{{boleta.partido}}</td>
             <td>{{boleta.voto}}</td>
           </tr>
         </tbody>
       </table>
       <div class="botones">
-        <button type="button" class="btn btn-primary" id="btn1" (click)="obtenerVotos(votosayu)" (click)="imprimirBoleta(config_ayuntamiento)">Imprimir</button>
+        <button type="button" class="btn btn-primary" id="btn1" (click)="obtenerVotos(votosayuFiltro)" (click)="imprimirBoleta(config_ayuntamiento)">Imprimir</button>
       </div>
     </div>
 

@@ -90,6 +90,10 @@ export class CardComponent implements OnInit {
     }
   }
 
+  limpiar() {
+    this.keyboard.value = "";
+  }
+
   anularVoto() {
     if (!this.voto) {
       const request = {

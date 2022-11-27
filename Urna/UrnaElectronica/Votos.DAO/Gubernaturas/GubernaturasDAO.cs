@@ -81,6 +81,7 @@ namespace Votos.DAO.Gubernaturas
                     var votos = await context.Gubernaturas.ToListAsync();
                     foreach (var v in votos)
                     {
+                       
                         response.Add(new GubernaturaDTO()
                         {
                             Id = v.Id,

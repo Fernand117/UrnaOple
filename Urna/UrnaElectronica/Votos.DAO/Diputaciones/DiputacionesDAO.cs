@@ -85,7 +85,8 @@ namespace Votos.DAO.Diputaciones
                         {
                             Id = v.Id,
                             Partido = v.Partido,
-                            Voto = v.Voto
+                            Voto = v.Voto,
+                            Tipo = v.Tipo
                         });
                     }
                 }
