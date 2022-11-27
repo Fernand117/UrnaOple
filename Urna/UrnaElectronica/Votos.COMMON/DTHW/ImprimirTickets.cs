@@ -39,9 +39,12 @@ namespace Votos.COMMON.DTHW
             mensaje = estructuraTicketMecanismos(request);
             Console.WriteLine(mensaje);
             PrintDocument pf = new PrintDocument();
+            Console.WriteLine(1);
             pf.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
+            Console.WriteLine(2);
             pf.PrintPage += Pf_PrintPage;
             pf.Print();
+            Console.WriteLine(3);
         }
 
         public void imprimirBoletaCeros(BoletaInicialRequest request)
@@ -58,9 +61,12 @@ namespace Votos.COMMON.DTHW
             mensaje = estructuraBoletaCerosMecanismos(request);
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
+            Console.WriteLine(1);
             pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
             pd.PrintPage += Pd_PrintPageNormal;
+            Console.WriteLine(2);
             pd.Print();
+            Console.WriteLine(4);
         }
         public void imprimirBoletaCerosEscolares(BoletaInicialRequest request)
         {

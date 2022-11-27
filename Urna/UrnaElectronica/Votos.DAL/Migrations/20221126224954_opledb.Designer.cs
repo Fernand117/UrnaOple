@@ -9,8 +9,8 @@ using Votos.DAL.Context;
 namespace Votos.DAL.Migrations
 {
     [DbContext(typeof(VotoContext))]
-    [Migration("20221121001512_dbupdateopleboletas")]
-    partial class dbupdateopleboletas
+    [Migration("20221126224954_opledb")]
+    partial class opledb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,10 @@ namespace Votos.DAL.Migrations
 
                     b.Property<string>("Partido")
                         .HasColumnName("partidos")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Tipo")
+                        .HasColumnName("tipo")
                         .HasColumnType("text");
 
                     b.Property<string>("Voto")
@@ -102,6 +106,10 @@ namespace Votos.DAL.Migrations
                         .HasColumnName("partidos")
                         .HasColumnType("text");
 
+                    b.Property<string>("Tipo")
+                        .HasColumnName("tipo")
+                        .HasColumnType("text");
+
                     b.Property<string>("Voto")
                         .HasColumnName("votos")
                         .HasColumnType("text");
@@ -144,6 +152,10 @@ namespace Votos.DAL.Migrations
 
                     b.Property<string>("Partido")
                         .HasColumnName("partidos")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Tipo")
+                        .HasColumnName("tipo")
                         .HasColumnType("text");
 
                     b.Property<string>("Voto")

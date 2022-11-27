@@ -3,10 +3,39 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Votos.DAL.Migrations
 {
-    public partial class dbVotos_update : Migration
+    public partial class opledb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ayuntamiento",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    partidos = table.Column<string>(nullable: true),
+                    votos = table.Column<string>(nullable: true),
+                    tipo = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbAyuntamiento", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "boletas",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    tipoeleccion = table.Column<string>(nullable: true),
+                    cantidadboletas = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbBoletas", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "consulta",
                 columns: table => new
@@ -23,6 +52,21 @@ namespace Votos.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "diputacion",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    partidos = table.Column<string>(nullable: true),
+                    votos = table.Column<string>(nullable: true),
+                    tipo = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbDiputacion", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "escolares",
                 columns: table => new
                 {
@@ -34,6 +78,21 @@ namespace Votos.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tbEscolares", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "gubernatura",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    partidos = table.Column<string>(nullable: true),
+                    votos = table.Column<string>(nullable: true),
+                    tipo = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbGubernatura", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,10 +129,22 @@ namespace Votos.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ayuntamiento");
+
+            migrationBuilder.DropTable(
+                name: "boletas");
+
+            migrationBuilder.DropTable(
                 name: "consulta");
 
             migrationBuilder.DropTable(
+                name: "diputacion");
+
+            migrationBuilder.DropTable(
                 name: "escolares");
+
+            migrationBuilder.DropTable(
+                name: "gubernatura");
 
             migrationBuilder.DropTable(
                 name: "presbicito");
