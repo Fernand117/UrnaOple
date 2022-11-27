@@ -23,6 +23,9 @@ export class BoletaComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerConfiguracion();
+    this.registrarCandidatosGub();
+    this.registrarCandidatosDip();
+    this.registrarCandidatosAyu();
   }
 
   imprimirBoleta(configuracion: any) {        
@@ -76,6 +79,7 @@ export class BoletaComponent implements OnInit {
     //CONFIGURACIONES PARA ELECCIONALES LOCALES
     this.config_gubernatura =localStorage.getItem('gubernatura');
     this.config_gubernatura = JSON.parse(this.config_gubernatura);    
+    
     this.config_ayuntamiento =localStorage.getItem('ayuntamiento');
     this.config_ayuntamiento = JSON.parse(this.config_ayuntamiento);
     this.config_diputacion =localStorage.getItem('diputacion');
@@ -94,6 +98,39 @@ export class BoletaComponent implements OnInit {
     this.config_consulta =localStorage.getItem('consulta');
     this.config_consulta = JSON.parse(this.config_consulta);
   }  
+
+  registrarCandidatosGub() {    
+    for (let i = 0; i < this.config_gubernatura.Partidos.length; i++) {
+      let request = {
+        "Partido": this.config_gubernatura.Partidos[i].Hipocoristico,
+        "Voto": "0"
+      }
+      // this.service.setVoto(request, "gubernatura").subscribe((resp) => {
+      // });
+    }
+  }
+
+  registrarCandidatosDip() {    
+    for (let i = 0; i < this.config_diputacion.Partidos.length; i++) {
+      let request = {
+        "Partido": this.config_diputacion.Partidos[i].Hipocoristico,
+        "Voto": "0"
+      }            
+      // this.service.setVoto(request, "diputacion").subscribe((resp) => {
+      // });
+    }
+  }
+  
+  registrarCandidatosAyu() {    
+    for (let i = 0; i < this.config_ayuntamiento.Partidos.length; i++) {
+      let request = {
+        "Partido": this.config_ayuntamiento.Partidos[i].Hipocoristico,
+        "Voto": "0"
+      }      
+      // this.service.setVoto(request, "ayuntamiento").subscribe((resp) => {
+      // });
+    }
+  }
 
   continuar() {
     this.route.navigate(['/autorizar'])

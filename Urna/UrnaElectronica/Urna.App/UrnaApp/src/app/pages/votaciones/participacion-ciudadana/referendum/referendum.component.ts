@@ -22,7 +22,7 @@ export class ReferendumComponent implements OnInit {
 
   private buildForm() {
     let form: any = {};
-    this.configuracion?.Preguntas.map((item: any) => form[item.Pregunta] = ['0', [Validators.required]]);
+    this.configuracion?.Preguntas.map((item: any) => form[item.Pregunta] = ['', [Validators.required]]);
     this.form = this.formBuilder.group(form);
   }
 
@@ -67,7 +67,8 @@ export class ReferendumComponent implements OnInit {
         TipoEleccion: this.configuracion.MecanismoTipo,
         Pregunta: prop,
         RespuestaSi: this.form.value[prop],
-      }                  
+      }       
+      console.log(request);
       this.service.setVoto(request, this.app_name).subscribe((resp) => {
         this.msjSuccess();
       }, error => {

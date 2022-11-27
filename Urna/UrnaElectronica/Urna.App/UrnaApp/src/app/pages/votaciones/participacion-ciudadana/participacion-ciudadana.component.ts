@@ -194,9 +194,7 @@ export class ParticipacionCiudadanaComponent implements OnInit, DoCheck{
     this.confi_presbicito = localStorage.getItem('presbicito');
     this.confi_presbicito = JSON.parse(this.confi_presbicito);
     this.confi_consulta = localStorage.getItem('consulta');
-    this.confi_consulta = JSON.parse(this.confi_consulta);
-    console.log(this.confi_referendum);
-    
+    this.confi_consulta = JSON.parse(this.confi_consulta);    
   }
   
     //OBTENER EL NUMERO DE BOLETAS DISPONIBLES
