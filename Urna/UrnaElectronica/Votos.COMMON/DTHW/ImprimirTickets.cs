@@ -387,7 +387,7 @@ namespace Votos.COMMON.DTHW
             string partidos = "";
             foreach (var p in lp)
             {
-                partidos = partidos + "\n" + p.Pregunta + "\n" + "Votos Si: 0\n" + "Votos No: 0\n";
+                partidos = partidos + "\n" + p.Partido + "\n" + "Votos Si: 0\n" + "Votos No: 0\n";
             }
 
             string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +
@@ -437,7 +437,7 @@ namespace Votos.COMMON.DTHW
             string partidos = "";
             foreach (var p in lp)
             {
-                partidos = partidos + "\n" + p.Pregunta + "\n" + "Votos Si: " + p.RespuestaSi + "\n" + "Votos No: " + p.RespuestaNo + "\n";
+                partidos = partidos + "\n" + p.Partido + "\n" + "Votos Si: " + p.RespuestaSi + "\n" + "Votos No: " + p.RespuestaNo + "\n";
             }
 
             string presidente = "\n" + separadorUno + "Funcionariado de Mesa Directiva\n" + "\tde Casilla\n\n\n" +
