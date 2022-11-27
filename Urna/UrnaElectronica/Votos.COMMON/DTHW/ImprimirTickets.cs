@@ -59,7 +59,7 @@ namespace Votos.COMMON.DTHW
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
             pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
-            pd.PrintPage += Pd_PrintPage;
+            pd.PrintPage += Pd_PrintPageNormal;
             pd.Print();
         }
         public void imprimirBoletaCerosEscolares(BoletaInicialRequest request)
@@ -68,7 +68,7 @@ namespace Votos.COMMON.DTHW
             Console.WriteLine(mensaje);
             PrintDocument pd = new PrintDocument();
             pd.DefaultPageSettings.PrinterSettings.PrinterName = "POS-80-Series";
-            pd.PrintPage += Pd_PrintPage;
+            pd.PrintPage += Pd_PrintPageNormal;
             pd.Print();
         }
 
@@ -122,6 +122,22 @@ namespace Votos.COMMON.DTHW
             //g.DrawString(mensaje, font, brush, new Rectangle(0, 0));
             g.DrawImage(imageOple, 20, 0);
             g.DrawImage(imageBit, 170, 0);
+            g.DrawString(mensaje, font, brush, 0, 120);
+        }
+        
+        private void Pd_PrintPageNormal(object sender, PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Image image = Image.FromFile("C:\\LOGOTIPO_OPLE.png");
+            Bitmap imageOple = new Bitmap(image, 120, 80);
+
+            Font font = new Font("Arial", 11);
+
+            SolidBrush brush = new SolidBrush(Color.Black);
+
+            //g.DrawString(mensaje, font, brush, new Rectangle(0, 0));
+            g.DrawImage(imageOple, 20, 0);
+
             g.DrawString(mensaje, font, brush, 0, 120);
         }
 
