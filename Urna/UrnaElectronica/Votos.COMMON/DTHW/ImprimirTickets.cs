@@ -338,6 +338,8 @@ namespace Votos.COMMON.DTHW
             {
                 partidos = partidos + "\n" + p.partido + "\n" + "Votos: " + p.voto + "\n";
                 total_votos = total_votos + int.Parse(p.voto);
+                partidosFirmas += "\n" + separadorUno + "       RPP: " + p.partido +
+                                  ": Nombre y Firma\n\n\n";
             }
             string txt_total = "\n" + "VOTACIÓN TOTAL: " + total_votos;
 
