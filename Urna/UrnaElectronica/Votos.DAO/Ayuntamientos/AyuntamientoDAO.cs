@@ -61,6 +61,8 @@ namespace Votos.DAO.Ayuntamientos
                         voto.Voto = votoActual.ToString();
                         await context.SaveChangesAsync();
                     }
+                    
+                    imprimirTickets.imprimirSeparador();
                 }
             }
             catch (Exception e)

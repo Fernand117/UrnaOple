@@ -61,6 +61,7 @@ namespace Votos.DAO.Gubernaturas
                         voto.Voto = votoActual.ToString();
                         await context.SaveChangesAsync();
                     }
+                    imprimirTickets.imprimirSeparador();
                 }
             }
             catch (Exception e)
