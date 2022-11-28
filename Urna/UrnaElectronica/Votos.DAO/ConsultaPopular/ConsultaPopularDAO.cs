@@ -162,7 +162,10 @@ namespace Votos.DAO.ConsultaPopular
             {
                 using (VotoContext context = new VotoContext())
                 {
-                    var votos = await context.ConsultasPopulares.ToListAsync();
+                    var votos = await context.ConsultasPopulares
+                        .OrderByDescending(i => i)
+                        .ToListAsync();
+                    
                     foreach (var v in votos)
                     {
                         response.Add(new ConsultaPopularDTO()

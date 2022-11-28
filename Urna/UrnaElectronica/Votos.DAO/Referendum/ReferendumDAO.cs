@@ -165,7 +165,10 @@ namespace Votos.DAO.Referendum
             {
                 using (VotoContext context = new VotoContext())
                 {
-                    var votos = await context.Referendums.ToListAsync();
+                    var votos = await context.Referendums
+                        .OrderByDescending(i => i)
+                        .ToListAsync();
+                    
                     foreach (var v in votos)
                     {
                         response.Add(new ReferendumDTO()

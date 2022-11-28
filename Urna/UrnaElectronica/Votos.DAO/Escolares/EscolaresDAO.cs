@@ -123,7 +123,10 @@ namespace Votos.DAO.Escolares
             {
                 using (VotoContext context = new VotoContext())
                 {
-                    var votos = await context.Escolares.ToListAsync();
+                    var votos = await context.Escolares
+                        .OrderByDescending(i => i)
+                        .ToListAsync();
+                    
                     foreach (var v in votos)
                     {
                         response.Add(new EscolaresDTO()

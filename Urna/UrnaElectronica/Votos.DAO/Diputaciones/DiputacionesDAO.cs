@@ -124,7 +124,10 @@ namespace Votos.DAO.Diputaciones
             {
                 using (VotoContext context = new VotoContext())
                 {
-                    var votos = await context.Diputaciones.ToListAsync();
+                    var votos = await context.Diputaciones
+                        .OrderByDescending(i => i)
+                        .ToListAsync();
+                    
                     foreach (var v in votos)
                     {
                         response.Add(new DiputacionDTO()
