@@ -102,6 +102,7 @@ namespace Votos.DAO.Referendum
 
                         await context.SaveChangesAsync();
                     }
+                    imprimirTickets.imprimirSeparador();
                 }
             }
             catch (Exception e)

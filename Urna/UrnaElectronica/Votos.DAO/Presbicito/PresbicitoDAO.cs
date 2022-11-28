@@ -102,6 +102,7 @@ namespace Votos.DAO.Presbicito
 
                         await context.SaveChangesAsync();
                     }
+                    imprimirTickets.imprimirSeparador();
                 }
             }
             catch (Exception e)

@@ -99,6 +99,7 @@ namespace Votos.DAO.ConsultaPopular
 
                         await context.SaveChangesAsync();
                     }
+                    imprimirTickets.imprimirSeparador();
                 }
             }
             catch (Exception e)

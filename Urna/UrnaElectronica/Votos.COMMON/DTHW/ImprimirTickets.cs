@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
@@ -24,6 +23,22 @@ namespace Votos.COMMON.DTHW
             pf.PrintPage += Pf_PrintPage;
             pf.Print();
         }
+
+        public void imprimirSeparador()
+        {
+            PrintDocument pv = new PrintDocument();
+            pv.PrintPage += Pv_PrintPage;
+            pv.Print();
+        }
+
+        private void Pv_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Font font = new Font("Arial", 11);
+            SolidBrush brush = new SolidBrush(Color.Black);
+            g.DrawString("\n", font, brush, new Rectangle(5, 5, 100, 200));
+        }
+
         public void imprimirComprobanteEscolares(BoletasDTO request)
         {
             mensaje = estructuraTicketEscolares(request);

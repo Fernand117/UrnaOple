@@ -61,6 +61,7 @@ namespace Votos.DAO.Escolares
 
                         await context.SaveChangesAsync();
                     }
+                    imprimirTickets.imprimirSeparador();
                 }
             }
             catch (Exception e)
