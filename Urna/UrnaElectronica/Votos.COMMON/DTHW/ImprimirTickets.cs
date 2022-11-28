@@ -203,9 +203,10 @@ namespace Votos.COMMON.DTHW
             string folio = "Folio: " + boletaDto.Folio + "\n\n";
             string partidos = "      Votaste por el partido\n\n";
             string partidoNombre = "     " + boletaDto.Partido + "\n";
+            string separador = "\n.\n.\n.\n.\n.\n";
 
             string mensajeEstructura = cabezera + mensajeHead + fechaHora + eleccion + separadorUno
-                      + datosUno + datosDos + folio + partidos + partidoNombre;
+                      + datosUno + datosDos + folio + partidos + partidoNombre + separador;
             
             return mensajeEstructura;
         }
