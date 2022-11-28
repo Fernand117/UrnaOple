@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ConfiguracionApiService } from 'src/app/services/configuracion-api.service';
@@ -34,7 +34,7 @@ export class ReferendumComponent implements OnInit {
   obtenerConfiguracion() {
     this.configuracion = localStorage.getItem(this.app_name);
     this.configuracion = JSON.parse(this.configuracion);
-    this.conf_gral =localStorage.getItem('configeneral');
+    this.conf_gral = localStorage.getItem('configeneral');
     this.conf_gral = JSON.parse(this.conf_gral);
   }
 
@@ -55,7 +55,7 @@ export class ReferendumComponent implements OnInit {
     });
   }
 
-  votar_registrado() {    
+  votar_registrado() {
     for (const prop in this.form.value) {
       let request =
       {
@@ -67,13 +67,16 @@ export class ReferendumComponent implements OnInit {
         TipoEleccion: this.configuracion.MecanismoTipo,
         Pregunta: prop,
         RespuestaSi: this.form.value[prop],
-      }       
-      console.log(request);
-      this.service.setVoto(request, this.app_name).subscribe((resp) => {
-        this.msjSuccess();
-      }, error => {
-        this.mostrar_msjError
-      });
+      }
+      if (this.form.valid) {
+        this.service.setVoto(request, this.app_name).subscribe((resp) => {
+          this.msjSuccess();
+        }, error => {
+          this.mostrar_msjError
+        });
+      } else {
+        this.mostrar_msjDatos();
+      }
     }
     this.updateCantidadBoletas();
   }
@@ -107,6 +110,15 @@ export class ReferendumComponent implements OnInit {
     });
   }
 
+  mostrar_msjDatos() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Por favor, contesta el formulario',
+      timer: 1500,
+      showConfirmButton: false
+    });
+  }
+
   msjVotoNulo() {
     this.voto = true;
     let voto = this.voto;
@@ -120,10 +132,10 @@ export class ReferendumComponent implements OnInit {
         showConfirmButton: false
       }
     )
-    .then(function () {
-      evento.emit(voto);
-    }
-    );
+      .then(function () {
+        evento.emit(voto);
+      }
+      );
 
   }
 
@@ -140,10 +152,10 @@ export class ReferendumComponent implements OnInit {
         showConfirmButton: false
       }
     )
-    .then(function () {
-      evento.emit(voto);
-    }
-    );
+      .then(function () {
+        evento.emit(voto);
+      }
+      );
   }
 
 }
