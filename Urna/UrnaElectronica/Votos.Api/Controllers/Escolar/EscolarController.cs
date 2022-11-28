@@ -13,7 +13,7 @@ namespace Votos.Api.Controllers.Escolar
         [HttpPost]
         public async Task<ActionResult<ApiResponse>> Post([FromBody] EscolaresRequest request) => await new EscolaresBLO().Create(request);
         
-        [HttpPost]
+        [HttpPost("guardar")]
         public async Task<ActionResult<ApiResponse>> GuardarCandidato([FromBody] EscolaresRequest request) => await new EscolaresBLO().GuardarCandidato(request);
 
         [HttpGet]

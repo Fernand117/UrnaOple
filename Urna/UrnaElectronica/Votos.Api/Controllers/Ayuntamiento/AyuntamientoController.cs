@@ -13,7 +13,7 @@ namespace Votos.Api.Controllers.Ayuntamiento
         [HttpPost]
         public async Task<ActionResult<ApiResponse>> Post([FromBody] AyuntamientoRequest request) => await new AyuntamientoBLO().Create(request);
         
-        [HttpPost]
+        [HttpPost("guardar")]
         public async Task<ActionResult<ApiResponse>> GuardarCandidato([FromBody] AyuntamientoRequest request) => await new AyuntamientoBLO().GuardarCandidatos(request);
 
         [HttpGet]

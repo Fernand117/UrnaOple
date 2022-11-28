@@ -13,7 +13,7 @@ namespace Votos.Api.Controllers.ConsultaPopular
         [HttpPost]
         public async Task<ActionResult<ApiResponse>> Post([FromBody] ConsultaPopularRequest request) => await new ConsultasPopularesBLO().Create(request);
         
-        [HttpPost]
+        [HttpPost("guardar")]
         public async Task<ActionResult<ApiResponse>> GuardarConsulta([FromBody] ConsultaPopularRequest request) => await new ConsultasPopularesBLO().GuardarConsulta(request);
 
         [HttpGet]

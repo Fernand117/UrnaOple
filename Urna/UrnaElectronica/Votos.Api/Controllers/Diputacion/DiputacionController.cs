@@ -13,7 +13,7 @@ namespace Votos.Api.Controllers.Diputacion
         [HttpPost]
         public async Task<ActionResult<ApiResponse>> Post([FromBody] DiputacionRequest request) => await new DiputacionesBLO().Create(request);
         
-        [HttpPost]
+        [HttpPost("guardar")]
         public async Task<ActionResult<ApiResponse>> GuardarCandidato([FromBody] DiputacionRequest request) => await new DiputacionesBLO().GuardarCandidato(request);
 
         [HttpGet]
