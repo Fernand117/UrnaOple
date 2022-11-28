@@ -34,6 +34,9 @@ export class ActaCierreComponent implements OnInit {
   c1 = 0;
   c2 = 0;
   c3 = 0;
+  b1 = false;
+  b2 = false;
+  b3 = false;
 
   title = 'OPLE';
   elementType = NgxQrcodeElementTypes.URL;
@@ -144,14 +147,17 @@ export class ActaCierreComponent implements OnInit {
       this.votosgubFiltro = this.votosgub;
 
       for (let i = 0; i < this.votosgub.length; i++) {
-        if (this.votosgub[i].tipo == "No registrado") {     
+        if (this.votosgub[i].tipo == "No registrado") {  
+          this.b1 = true;   
           this.c1++;
-          this.votosgubFiltro = this.votosgub.filter(function(nor: any) { return nor.tipo !== "No registrado" }); // filtramos          
-          console.log(this.votosgubFiltro);
-          
+          this.votosgubFiltro = this.votosgub.filter(function(nor: any) { return nor.tipo !== "No registrado" }); // filtramos                    
         }  
       }      
-      
+
+      if (this.b1 == true) {
+        this.c1--;
+      }
+
       let noRegistrados = {
         "partido": "No registrados",
         "voto": this.c1.toString(),
@@ -176,16 +182,23 @@ export class ActaCierreComponent implements OnInit {
       this.votosdipFiltro = this.votosdip;        
 
       for (let i = 0; i < this.votosdip.length; i++) {
-        if (this.votosdip[i].tipo == "No registrado") {     
+        if (this.votosdip[i].tipo == "No registrado") {    
+          this.b2 = true; 
           this.c2++;
           this.votosdipFiltro = this.votosdip.filter(function(nor: any) { return nor.tipo !== "No registrado" }); // filtramos          
         }  
       }      
+
+      if (this.b2 == true) {
+        this.c2--;
+      }
+
       let noRegistrados = {
         "partido": "No registrados",
         "voto": this.c2.toString(),
         "tipo": "No registrado"
       }
+
       this.votosdipFiltro.push(noRegistrados);
 
       if (Object.entries(this.votosdipFiltro).length > 0) {
@@ -207,9 +220,14 @@ export class ActaCierreComponent implements OnInit {
       for (let i = 0; i < this.votosayu.length; i++) {
         if (this.votosayu[i].tipo == "No registrado") {     
           this.c3++;
+          this.b3 = true;
           this.votosayuFiltro = this.votosayu.filter(function(nor: any) { return nor.tipo !== "No registrado" }); // filtramos          
         }  
-      }      
+      }  
+      
+      if (this.b3 == true) {
+        this.c3--;
+      }
       let noRegistrados = {
         "partido": "No registrados",
         "voto": this.c3.toString(),

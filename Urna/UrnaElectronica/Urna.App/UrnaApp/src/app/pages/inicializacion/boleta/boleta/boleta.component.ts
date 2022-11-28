@@ -75,16 +75,36 @@ export class BoletaComponent implements OnInit {
   }
 
   obtenerConfiguracion() {
+    let requestNulo = {
+      "Hipocoristico": "Voto nulo",
+      "Voto": "0",
+      "Tipo": "Voto nulo"
+    }
+    let requestNoRegistrado = {
+        "Hipocoristico": "No registrado",
+        "Voto": "0",
+        "Tipo": "No registrado"
+    }
     this.configuracion_general = localStorage.getItem('configeneral');
     this.configuracion_general = JSON.parse(this.configuracion_general);
     //CONFIGURACIONES PARA ELECCIONALES LOCALES
     this.config_gubernatura = localStorage.getItem('gubernatura');
     this.config_gubernatura = JSON.parse(this.config_gubernatura);
+    this.config_gubernatura.Partidos.push(requestNulo);
+    this.config_gubernatura.Partidos.push(requestNoRegistrado);
+    console.log(this.config_gubernatura);
+    
 
     this.config_ayuntamiento = localStorage.getItem('ayuntamiento');
     this.config_ayuntamiento = JSON.parse(this.config_ayuntamiento);
+    this.config_ayuntamiento.Partidos.push(requestNulo);
+    this.config_ayuntamiento.Partidos.push(requestNoRegistrado);
+
     this.config_diputacion = localStorage.getItem('diputacion');
     this.config_diputacion = JSON.parse(this.config_diputacion);
+    this.config_diputacion.Partidos.push(requestNulo);
+    this.config_diputacion.Partidos.push(requestNoRegistrado);
+
 
     //CONFIGURACIÓN ELECCIONES ESCOLARES
     this.config_escolares = localStorage.getItem('escolares');
@@ -118,7 +138,8 @@ export class BoletaComponent implements OnInit {
       for (let i = 0; i < this.config_gubernatura.Partidos.length; i++) {
         let request = {
           "Partido": this.config_gubernatura.Partidos[i].Hipocoristico,
-          "Voto": "0"
+          "Voto": "0",
+          "Tipo": this.config_gubernatura.Partidos[i].Tipo
         }
         this.service.setVoto(request, "gubernatura/guardar").subscribe((resp) => {
         });
@@ -131,7 +152,8 @@ export class BoletaComponent implements OnInit {
       for (let i = 0; i < this.config_diputacion.Partidos.length; i++) {
         let request = {
           "Partido": this.config_diputacion.Partidos[i].Hipocoristico,
-          "Voto": "0"
+          "Voto": "0",
+          "Tipo": this.config_diputacion.Partidos[i].Tipo
         }
         this.service.setVoto(request, "diputacion/guardar").subscribe((resp) => {
         });
@@ -144,7 +166,8 @@ export class BoletaComponent implements OnInit {
       for (let i = 0; i < this.config_ayuntamiento.Partidos.length; i++) {
         let request = {
           "Partido": this.config_ayuntamiento.Partidos[i].Hipocoristico,
-          "Voto": "0"
+          "Voto": "0",
+          "Tipo": this.config_ayuntamiento.Partidos[i].Tipo
         }
         this.service.setVoto(request, "ayuntamiento/guardar").subscribe((resp) => {
         });

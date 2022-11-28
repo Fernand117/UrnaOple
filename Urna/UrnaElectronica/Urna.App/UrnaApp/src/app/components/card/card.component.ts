@@ -99,6 +99,7 @@ export class CardComponent implements OnInit {
       const request = {
         "Partido": "Voto nulo",
         "Voto": "1",
+        "Tipo": "Voto nulo",
         "TipoEleccion": this.partidos.TipoEleccion,
         "Entidad": this.configuracion_general.Entidad,
         "Distrito": this.configuracion_general.Distrito,
