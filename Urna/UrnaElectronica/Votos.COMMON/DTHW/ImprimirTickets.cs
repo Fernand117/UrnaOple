@@ -34,9 +34,12 @@ namespace Votos.COMMON.DTHW
         private void Pv_PrintPage(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
+            Image image = Image.FromFile("C:\\LOGOTIPO_OPLE.png");
+            Bitmap imageOple = new Bitmap(image, 120, 80);
             Font font = new Font("Arial", 11);
             SolidBrush brush = new SolidBrush(Color.Black);
-            g.DrawString("\n", font, brush, new Rectangle(5, 5, 100, 200));
+            g.DrawImage(imageOple, 20, 0);
+            g.DrawString("\n", font, brush, 0, 120);
         }
 
         public void imprimirComprobanteEscolares(BoletasDTO request)
