@@ -12,6 +12,9 @@ namespace Votos.Api.Controllers.Gubernatura
     {
         [HttpPost]
         public async Task<ActionResult<ApiResponse>> Post([FromBody] GubernaturaRequest request) => await new GubernaturasBLO().Create(request);
+        
+        [HttpPost]
+        public async Task<ActionResult<ApiResponse>> GuardarCandidato([FromBody] GubernaturaRequest request) => await new GubernaturasBLO().GuardarCandidato(request);
 
         [HttpGet]
         public async Task<ActionResult<ApiResponse>> Read() => await new GubernaturasBLO().Read();

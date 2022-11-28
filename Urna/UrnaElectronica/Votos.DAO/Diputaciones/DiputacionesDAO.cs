@@ -71,6 +71,51 @@ namespace Votos.DAO.Diputaciones
             return request;
         }
 
+        public async Task<DiputacionRequest> GuardarCandidatos(DiputacionRequest request)
+        {
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var voto = await context.Diputaciones
+                        .Where(v => v.Partido == request.Partido)
+                        .FirstOrDefaultAsync();
+
+                    BoletasDTO boletasDto = new BoletasDTO()
+                    {
+                        Partido = request.Partido,
+                        TipoEleccion = request.TipoEleccion,
+                        Entidad = request.Entidad,
+                        Distrito = request.Distrito,
+                        Municipio = request.Municipio,
+                        Seccion = request.Seccion,
+                        Casilla = request.Casilla,
+                        Folio = request.Folio
+                    };
+
+                    if (voto == null)
+                    {
+                        Diputacion diputacion = new Diputacion()
+                        {
+                            Id = request.Id,
+                            Partido = request.Partido,
+                            Voto = request.Voto,
+                            Tipo = request.Tipo
+                        };
+
+                        await context.AddAsync(diputacion);
+                        await context.SaveChangesAsync();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return request;
+        }
+        
         public async Task<List<DiputacionDTO>> Read()
         {
             List<DiputacionDTO> response = new List<DiputacionDTO>();

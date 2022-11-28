@@ -26,6 +26,24 @@ namespace Votos.BLO.Diputaciones
             }
             return apiResponse;
         }
+        
+        public async Task<ApiResponse> GuardarCandidato(DiputacionRequest request)
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new DiputacionesDAO().GuardarCandidatos(request);
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
 
         public async Task<ApiResponse> Read()
         {

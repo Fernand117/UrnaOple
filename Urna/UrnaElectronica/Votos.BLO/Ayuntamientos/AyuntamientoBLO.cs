@@ -30,6 +30,24 @@ namespace Votos.BLO.Ayuntamientos
             return apiResponse;
         }
 
+        public async Task<ApiResponse> GuardarCandidatos(AyuntamientoRequest request)
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new AyuntamientoDAO().GuardarCandidatos(request);
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
+
         public async Task<ApiResponse> Read()
         {
             ApiResponse apiResponse = new ApiResponse();

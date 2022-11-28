@@ -70,6 +70,51 @@ namespace Votos.DAO.Gubernaturas
             }
             return request;
         }
+        
+        public async Task<GubernaturaRequest> GuardarCandidatos(GubernaturaRequest request)
+        {
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var voto = await context.Gubernaturas
+                        .Where(v => v.Partido == request.Partido)
+                        .FirstOrDefaultAsync();
+
+                    BoletasDTO boletasDto = new BoletasDTO()
+                    {
+                        Partido = request.Partido,
+                        TipoEleccion = request.TipoEleccion,
+                        Entidad = request.Entidad,
+                        Distrito = request.Distrito,
+                        Municipio = request.Municipio,
+                        Seccion = request.Seccion,
+                        Casilla = request.Casilla,
+                        Folio = request.Folio
+                    };
+
+                    if (voto == null)
+                    {
+                        Gubernatura gubernatura = new Gubernatura()
+                        {
+                            Id = request.Id,
+                            Partido = request.Partido,
+                            Voto = request.Voto,
+                            Tipo = request.Tipo
+                        };
+
+                        await context.AddAsync(gubernatura);
+                        await context.SaveChangesAsync();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return request;
+        }
 
         public async Task<List<GubernaturaDTO>> Read()
         {

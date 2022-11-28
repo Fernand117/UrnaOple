@@ -70,6 +70,50 @@ namespace Votos.DAO.Escolares
             }
             return request;
         }
+        
+        public async Task<EscolaresRequest> GuardarCandidatos(EscolaresRequest request)
+        {
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var voto = await context.Escolares
+                        .Where(v => v.Partido == request.Partido)
+                        .FirstOrDefaultAsync();
+
+                    BoletasDTO boletasDto = new BoletasDTO()
+                    {
+                        Partido = request.Partido,
+                        TipoEleccion = request.TipoEleccion,
+                        Entidad = request.Entidad,
+                        Distrito = request.Distrito,
+                        Municipio = request.Municipio,
+                        Seccion = request.Seccion,
+                        Casilla = request.Casilla,
+                        Folio = request.Folio
+                    };
+                    
+                    if (voto == null)
+                    {
+                        Escolar escolaresDto = new Escolar()
+                        {
+                            Id = request.Id,
+                            Partido = request.Partido,
+                            Voto = request.Voto
+                        };
+
+                        await context.AddAsync(escolaresDto);
+                        await context.SaveChangesAsync();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return request;
+        }
 
         public async Task<List<EscolaresDTO>> Read()
         {

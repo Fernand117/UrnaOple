@@ -111,6 +111,51 @@ namespace Votos.DAO.Presbicito
             }
             return request;
         }
+        
+        public async Task<PresbicitoRequest> GuardarCandidato(PresbicitoRequest request)
+        {
+            try
+            {
+                using (VotoContext context = new VotoContext())
+                {
+                    var voto = await context.Presbicitos
+                        .Where(v => v.Pregunta == request.Pregunta)
+                        .FirstOrDefaultAsync();
+
+                    BoletasDTO boletasDto = new BoletasDTO()
+                    {
+                        Partido = request.Pregunta,
+                        TipoEleccion = request.TipoEleccion,
+                        Entidad = request.Entidad,
+                        Distrito = request.Distrito,
+                        Municipio = request.Municipio,
+                        Seccion = request.Seccion,
+                        Casilla = request.Casilla,
+                        Folio = request.Folio,
+                        RespuestaSi = request.RespuestaSi
+                    };
+
+                    if (voto == null)
+                    {
+                        Presbicitos presbicito = new Presbicitos()
+                        {
+                            Id = request.Id,
+                            Pregunta = request.Pregunta,
+                            RespuestaSi = "0",
+                            RespuestaNo = "0"
+                        };
+                        await context.AddAsync(presbicito);
+                        await context.SaveChangesAsync();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return request;
+        }
 
         public async Task<List<PresbicitoDTO>> Read()
         {

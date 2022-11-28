@@ -12,6 +12,9 @@ namespace Votos.Api.Controllers.Referendum
     {
         [HttpPost]
         public async Task<ActionResult<ApiResponse>> Post([FromBody] ReferendumRequest request) => await new ReferendumsBLO().Create(request);
+        
+        [HttpPost]
+        public async Task<ActionResult<ApiResponse>> GuardarPresbicito([FromBody] ReferendumRequest request) => await new ReferendumsBLO().GuardarReferendum(request);
 
         [HttpGet]
         public async Task<ActionResult<ApiResponse>> Read() => await new ReferendumsBLO().Read();

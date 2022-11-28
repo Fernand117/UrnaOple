@@ -26,6 +26,24 @@ namespace Votos.BLO.Escolares
             }
             return apiResponse;
         }
+        
+        public async Task<ApiResponse> GuardarCandidato(EscolaresRequest request)
+        {
+            ApiResponse apiResponse = new ApiResponse();
+            try
+            {
+                apiResponse.ResponseCode = Response.Success;
+                apiResponse.ResponseText = Resources.MensajeOk;
+                apiResponse.Data = await new EscolaresDAO().GuardarCandidatos(request);
+            }
+            catch (Exception e)
+            {
+                apiResponse.ResponseCode = Response.Error;
+                apiResponse.ResponseText = Resources.MensajeError;
+                apiResponse.Data = null;
+            }
+            return apiResponse;
+        }
 
         public async Task<ApiResponse> Read()
         {
