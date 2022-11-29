@@ -308,8 +308,7 @@ namespace Votos.COMMON.DTHW
             string datosDos = "Sección: " + boletaDto.SeccionElectoral + "  Casilla: " + boletaDto.TipoCasilla + "\n";
             string separadorUno = "------------------------------------------------\n";
             string headPartidos = "Que en presencia del Funcionariado\nde Mesa Directiva de Casilla\ny representaciones de los partidos\npolíticos se inicializó y verificó\nque el sistema se encuentra en\nceros, así como el contenedor de\ntestigos de votos se encuentra vacío.\n" + separadorUno+ "\tPartidos Políticos";
-            //var lp = boletaDto.Partidos.ToList();
-            var lp = boletaDto.Partidos.OrderByDescending(i => i);
+            var lp = boletaDto.Partidos.ToList();
             string partidos = "";
             string partidosFirmas = "";
             foreach (var p in lp)
@@ -367,8 +366,7 @@ namespace Votos.COMMON.DTHW
             string datosDos = "Sección: " + boletaDto.SeccionElectoral + "  Casilla: " + boletaDto.TipoCasilla + "\n";
             string separadorUno = "------------------------------------------------\n";
             string headPartidos = "Que en presencia del Funcionariado\nde Mesa Directiva de Casilla\ny representaciones de los partidos\npolíticos se clausuró y computaron\nquedando de la siguiente manera:\n" + separadorUno + "\tVOTACIÓN " + "\n";
-            //var lp = boletaDto.Partidos.ToList();
-            var lp = boletaDto.Partidos.OrderByDescending(i => i);
+            var lp = boletaDto.Partidos.ToList();
             string partidos = "";
             int total_votos = 0;
             string partidosFirmas = "";
