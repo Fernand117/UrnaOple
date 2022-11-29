@@ -163,7 +163,7 @@ namespace Votos.DAO.ConsultaPopular
                 using (VotoContext context = new VotoContext())
                 {
                     var votos = await context.ConsultasPopulares
-                        .OrderByDescending(i => i)
+                        .OrderBy(i => i)
                         .ToListAsync();
                     
                     foreach (var v in votos)

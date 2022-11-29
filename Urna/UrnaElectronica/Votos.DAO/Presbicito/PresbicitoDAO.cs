@@ -166,7 +166,7 @@ namespace Votos.DAO.Presbicito
                 using (VotoContext context = new VotoContext())
                 {
                     var votos = await context.Presbicitos
-                        .OrderByDescending(i => i)
+                        .OrderBy(i => i)
                         .ToListAsync();
                     
                     foreach (var v in votos)

@@ -125,7 +125,7 @@ namespace Votos.DAO.Gubernaturas
                 using (VotoContext context = new VotoContext())
                 {
                     var votos = await context.Gubernaturas
-                        .OrderByDescending(i => i.Partido)
+                        .OrderBy(i => i.Partido)
                         .ToListAsync();
 
                     foreach (var v in votos)

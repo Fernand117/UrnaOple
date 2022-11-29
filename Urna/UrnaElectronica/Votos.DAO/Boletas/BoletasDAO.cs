@@ -75,7 +75,7 @@ namespace Votos.DAO.Boletas
                 using (VotoContext context = new VotoContext())
                 {
                     var boletas = await context.Boletas
-                        .OrderByDescending(i => i)
+                        .OrderBy(i => i)
                         .ToListAsync();
 
                     foreach (var v in boletas)
