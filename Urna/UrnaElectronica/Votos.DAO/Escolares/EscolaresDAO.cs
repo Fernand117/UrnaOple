@@ -124,7 +124,7 @@ namespace Votos.DAO.Escolares
                 using (VotoContext context = new VotoContext())
                 {
                     var votos = await context.Escolares
-                        .OrderByDescending(i => i)
+                        .OrderByDescending(i => i.Partido)
                         .ToListAsync();
                     
                     foreach (var v in votos)
