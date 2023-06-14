@@ -15,7 +15,7 @@ namespace Urna.DAL.Context
             {
                 //TODO: CAMBIO DE CONTRASEÑA DE LA DB A LA DE FERNANDO
                 //var conecction = "host=localhost;port=5432;database=urnaOple;username=postgres;password=Master117+";
-                var conecction = "host=localhost;port=5432;database=urnaOple;username=postgres;password=12345";
+                var conecction = "host=localhost;port=5432;database=urnaOple;username=postgres;password=Master117+";
                 optionsBuilder.UseNpgsql(conecction);
             }
         }

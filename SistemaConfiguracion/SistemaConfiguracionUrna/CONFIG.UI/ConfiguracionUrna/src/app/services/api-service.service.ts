@@ -8,9 +8,9 @@ export class ApiServiceService {
 
 
   //TODO: CAMBIO DE URL DEL LOCALHOST AL DE PRUEBAS DE FERNANDO
-  //private url = "http://localhost:32042/api";
+  private url = "http://localhost:32042/api";
   //private url = "http://localhost:5000/api";
-  private url = "http://74.208.95.183/api";
+  //private url = "http://74.208.95.183/api";
 
   constructor(
     private http: HttpClient

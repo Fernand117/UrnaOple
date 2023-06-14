@@ -5,13 +5,13 @@
 export const environment = {
   //TODO: CAMBIO DEL ENVIROMENT AL PERSONAL DE FERNANDO
   production: false,
-  apiUrl: "http://74.208.95.183/api/",
+  //apiUrl: "http://74.208.95.183/api/",
 
-  // apiUrl: "http://49e2-189-240-194-242.ngrok.io/api/",
+  apiUrl: "http://localhost:50296/api/",
 
   //apiUrl: "http://49e2-189-240-194-242.ngrok.io/api/",
 
-  apiUrl_local: "http://localhost:56017/api/",
+  apiUrl_local: "https://localhost:50001/api/",
 };
 
 /*
