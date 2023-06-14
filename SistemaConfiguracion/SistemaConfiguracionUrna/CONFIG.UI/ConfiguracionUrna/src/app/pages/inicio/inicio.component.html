@@ -2,93 +2,151 @@
 <app-menu></app-menu>
 <div class="contenedor">
 
-  <nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Procesos locales electorales</button>
-      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Mecanismos de participación ciudadana</button>
-      <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Elecciones escolares</button>
-    </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Procesos locales electorales</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Mecanismos de participación ciudadana</button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Elecciones escolares</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
 
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item" *ngFor="let item of listaElecciones">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne'+item.id" aria-expanded="true" aria-controls="collapseOne">
-              Código: {{item.codigo}}  Fecha: {{item.fecha}}
-            </button>
-          </h2>
-          <div id="collapseOne{{item.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <h3>Categoria: {{item.categoria}}</h3>
-              <div class="datos-generales">
-                <h5>Entidad: {{item.configuraciones.Entidad}}</h5>
-              </div>
-              <div class="datos-elecciones" *ngFor="let e of item.configuraciones.Elecciones">
-                <h5>Tipo de elección: {{e.TipoEleccion}}</h5>
-                <div class="datos-partidos" *ngFor="let p of e.Partidos">
-                  <p>Logotipo</p>
-                  <img src="{{p.Logotipo}}" alt="" style="width: 50px; height: auto">
-                  <h4>Hipocorístico: {{p.Hipocoristico}}</h4>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item" *ngFor="let item of listaElecciones">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne'+item.id" aria-expanded="true" aria-controls="collapseOne">Categoría: {{item.categoria}}    Fecha: {{item.fecha}}</button>
+                    </h2>
+                    <div id="collapseOne{{item.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Código: {{item.codigo}}</h5>
+                                </div>
+                                <div class="col">
+                                    <h5>Entidad: {{item.configuraciones.Entidad}}</h5>
+                                </div>
+                            </div>
+                            <div class="datos-elecciones" *ngFor="let e of item.configuraciones.Elecciones">
+                                <h5>Tipo de elección: {{e.TipoEleccion}}</h5>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Logotipo</th>
+                                            <th scope="col">Hipocoristico</th>
+                                            <th scope="col">Propietario</th>
+                                            <th scope="col">Suplente</th>
+                                            <th scope="col">Cargo</th>
+                                            <th scope="col">Tipo de candidatura</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let p of e.Partidos">
+                                            <td>
+                                                <img src="{{p.Logotipo}}" alt="" style="width: 50px; height: auto">
+                                            </td>
+                                            <td>{{p.Hipocoristico}}</td>
+                                            <td>{{p.Propietario}}</td>
+                                            <td>{{p.Suplente}}</td>
+                                            <td>{{p.Cargo}}</td>
+                                            <td>{{p.TipoCandidatura}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+
         </div>
-      </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
 
-    </div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-
-      <div class="accordion" id="accordionExample2">
-        <div class="accordion-item" *ngFor="let item of listaMecanismos">
-          <h2 class="accordion-header" id="headingOne2">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne'+item.id" aria-expanded="true" aria-controls="collapseOne">
-              Código: {{item.codigo}}  Fecha: {{item.fecha}}
-            </button>
-          </h2>
-          <div id="collapseOne{{item.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample2">
-            <div class="accordion-body">
-              <h3>Categoria: {{item.categoria}}</h3>
-              <div class="datos-generales">
-                <h5>Entidad: {{item.configuraciones.Entidad}}</h5>
-              </div>
-              <div class="datos-elecciones" *ngFor="let e of item.configuraciones.TipoMecanismos">
-                <h5>Tipo de elección: {{e.MecanismoTipo}}</h5>
-                <div class="datos-partidos" *ngFor="let p of e.Preguntas">
-                  <h4>Hipocorístico: {{p.Pregunta}}</h4>
+            <div class="accordion" id="accordionExample2">
+                <div class="accordion-item" *ngFor="let item of listaMecanismos">
+                    <h2 class="accordion-header" id="headingOne2">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne'+item.id" aria-expanded="true" aria-controls="collapseOne">Categoría: {{item.categoria}}  Fecha: {{item.fecha}}</button>
+                    </h2>
+                    <div id="collapseOne{{item.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample2">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Código: {{item.codigo}}</h5>
+                                </div>
+                                <div class="col">
+                                    <h5>Entidad: {{item.configuraciones.Entidad}}</h5>
+                                </div>
+                            </div>
+                            <div class="datos-elecciones" *ngFor="let e of item.configuraciones.TipoMecanismos">
+                                <h5>Tipo de mecanismo: {{e.MecanismoTipo}}</h5>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Pregunta</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let p of e.Preguntas">
+                                            <td>{{p.Pregunta}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+
         </div>
-      </div>
-
-    </div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-
-      <div *ngFor="let e of listaEscolares">{{e.id}}</div>
-
-      <div class="accordion" id="accordionExample3">
-        <div class="accordion-item" *ngFor="let item of listaEscolares">
-          <h2 class="accordion-header" id="headingOne3">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne'+item.id" aria-expanded="true" aria-controls="collapseOne">
-              Código: {{item.codigo}}  Fecha: {{item.fecha}}
-            </button>
-          </h2>
-          <div id="collapseOne{{item.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample2">
-            <div class="accordion-body">
-              <h3>Categoria: {{item.categoria}}</h3>
-              <div class="datos-generales" *ngFor="let c of item.configuraciones.Escolares">
-                <h5>Entidad: {{c.NombreInstitucion}}</h5>
-              </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+            <div class="accordion" id="accordionExample3">
+                <div class="accordion-item" *ngFor="let item of listaEscolares">
+                    <h2 class="accordion-header" id="headingOne3">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne'+item.id" aria-expanded="true" aria-controls="collapseOne">Categoría: {{item.categoria}}  Fecha: {{item.fecha}}</button>
+                    </h2>
+                    <div id="collapseOne{{item.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample2">
+                        <div class="accordion-body">
+                            <div class="datos-generales" *ngFor="let c of item.configuraciones.Escolares">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>Código: {{item.codigo}}</h5>
+                                    </div>
+                                    <div class="col">
+                                        <h5>Institución: {{c.NombreInstitucion}}</h5>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Logotipo</th>
+                                            <th scope="col">Hipocoristico</th>
+                                            <th scope="col">Propietario</th>
+                                            <th scope="col">Suplente</th>
+                                            <th scope="col">Cargo</th>
+                                            <th scope="col">Tipo de candidatura</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let p of c.Partidos">
+                                            <td>
+                                                <img src="{{p.Logotipo}}" alt="" style="width: 50px; height: auto">
+                                            </td>
+                                            <td>{{p.Hipocoristico}}</td>
+                                            <td>{{p.Propietario}}</td>
+                                            <td>{{p.Suplente}}</td>
+                                            <td>{{p.Cargo}}</td>
+                                            <td>{{p.TipoCandidatura}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
 
+        </div>
     </div>
-  </div>
 
 </div>

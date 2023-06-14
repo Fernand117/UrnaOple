@@ -50,6 +50,8 @@ export class InicioComponent implements OnInit {
         }
 
         console.log(this.listaEscolares);
+        console.log(this.listaElecciones);
+        console.log(this.listaMecanismos);
       }
     );
   }
